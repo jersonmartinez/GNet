@@ -54,7 +54,7 @@
 				echo $AttackDetect;
 			}
 		} else {
-			$InSession = "INSERT INTO ".$X."user_sessions (id, usr, ip, remember, stop, date_log, date_log_unix) VALUES ('','".@$_SESSION['username']."','".getIpAddr()."','".@$rm."', '','".date('Y-n-j')."','".time()."');";
+			$InSession = "INSERT INTO ".$X."user_sessions (usr, ip, remember, stop, date_log, date_log_unix) VALUES ('".@$_SESSION['username']."','".getIpAddr()."','".@$rm."', '','".date('Y-n-j')."','".time()."');";
 			if ($IC->query($InSession)){
 				echo "OK";
 			}

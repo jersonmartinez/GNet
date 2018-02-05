@@ -6,19 +6,23 @@
 		
 			#Inclusión de constantes que contienen las rutas de acceso. 
 			$Const = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."app/core/ic.const.php";
-			if (!file_exists($Const))
+			if (!file_exists($Const)){
 				$Const = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php";
+			}
 			
 			include ($Const);
-
 			// echo $Const;
 
 			#Se agrega el head del core, utilizando la constante PF_CORE_HEAD.
-			include (PF_CORE_HEAD); 
+			include (PF_CORE_HEAD);
 		?>
 	</head>
 	<body class="external-page sb-l-c sb-r-c">
 		<?php
+
+			function RefreshPage(){
+				header("Refresh:0 url=".$_SERVER['PHP_SELF']."");
+			}
 
 			// echo $Const;
 			// echo PF_CORE_HEAD;
@@ -30,9 +34,12 @@
 			include (PD_CONTROLLER_PHP."/ic.config.class.php");
 
 			$Config = new ConfigFile(); #Instancia de la clase ConfigFile
+			
 
 			#Verificación de la existencia del fichero de configuración. 
 			if (file_exists(PF_CONFIG)){
+				// echo "Existe el fichero de configuracion";
+
 				#Verificar si existen errores, la variable error es originaria de 
 				# el fichero de conexión.
 				if ($error == true){					
@@ -42,6 +49,9 @@
 					#Código de error 1049: La base de datos desconocida.
 					$ArrayError = explode("'", $MessageError);
 					
+					// echo "<br/>"."Hay error en conexion";
+
+
 					if ($CodeError == 1049){
 
 						#Verificación de la existencia del directorio install/
@@ -55,8 +65,9 @@
 								include (PD_GRAPHIC."/ic.message.unknowndb.php");
 						} else {
 							#Instalación manual en modo texto.
-							@exec("start notepad ".PF_CONFIG);
-							header("Location: ./");
+							@exec("leafpad ".PF_CONFIG);
+							// @exec("start notepad ".PF_CONFIG);
+							RefreshPage();
 						}
 					}
 
@@ -74,30 +85,36 @@
 								include (PD_GRAPHIC."/ic.message.unknowndb.php");
 								//include (PD_GRAPHIC."/ic.message.errorfatal.php");
 						} else {
-							@exec("start notepad ".PF_CONFIG);
-							header("Location: ./");
+							@exec("leafpad ".PF_CONFIG);
+							// @exec("start notepad ".PF_CONFIG);
+							RefreshPage();
 						}
 					}
 				} else {
 					#En caso de haber llegado hasta acá significa que el fichero de
 					#configuración no existe.
 
-					#Consulta todos los datos de la tabla con el privilegio root.
-					$URoot = $IC->query("SELECT * FROM ".$X."root;");
 
+					#Consulta todos los datos de la tabla con el privilegio root.
+					@$URoot = $IC->query("SELECT * FROM ".$X."root;");
+					// echo "<br/>"."Caso de error de que el fichero Config.tcb no existe.";
+
+					// exit();
 					#En caso de hayan filas.
 					if (@$URoot->num_rows != 0){
+						// echo "<br/>"."Si hay registros: Line 98";
+						
 
 						#Consulta todos los datos de la tabla con el privilegio admin.
-						$RAdmin = $IC->query("SELECT * FROM ".$X."admin;");
+						@$RAdmin = $IC->query("SELECT * FROM ".$X."admin;");
 
 						#En caso de que hayan registros.
 						if (@$RAdmin->num_rows > 0){
 
-							$VerifyAttack = $IC->query("SELECT * FROM ".$X."control_attack WHERE attacker='".$Config->getIpAddr()."' ORDER BY id DESC LIMIT 1;");
+							@$VerifyAttack = $IC->query("SELECT * FROM ".$X."control_attack WHERE attacker='".$Config->getIpAddr()."' ORDER BY id DESC LIMIT 1;");
 							
-							if ($VerifyAttack->num_rows == 1){
-								$VA = $VerifyAttack->fetch_array(MYSQLI_ASSOC);
+							if (@$VerifyAttack->num_rows == 1){
+								$VA = @$VerifyAttack->fetch_array(MYSQLI_ASSOC);
 								
 								$GetDateLogUNIX = $VA['date_log_unix'];
 								$Actual = time() - 300;
@@ -106,8 +123,8 @@
 								if ($GetDateLogUNIX >= $Actual){
 									$TimeRest = date("i:s", $tiempo);
 
-									$GetOneSession = "SELECT * FROM ".$X."user_sessions WHERE ip='".$Config->getIpAddr()."' ORDER BY id DESC LIMIT 1;";
-									$ThisWell = $IC->query($GetOneSession);
+									@$GetOneSession = "SELECT * FROM ".$X."user_sessions WHERE ip='".$Config->getIpAddr()."' ORDER BY id DESC LIMIT 1;";
+									$ThisWell = $IC->query(@$GetOneSession);
 
 									if (@$ThisWell->num_rows > 0){
 										@$Gresult = $ThisWell->fetch_array(MYSQLI_ASSOC);
@@ -162,21 +179,33 @@
 
 										} else {
 											#No hay sesión recordada. Por lo tanto, se muestra la vista del formulario de login.
-											echo "Acá es donde entra la primer página";
+											// echo "Acá es donde entra la primer página";
 											include (PD_GRAPHIC."/ic.LoginDesign.php");
 										}
 							}
 
 						} else {
+							// echo "<br/>"."Registro de administrador";
+							// exit();
 							#En caso de que no haya registro de administrador, se muestra un formulario
 							#donde puede registrar el primero. Esto será solo una vez.
 							include (PD_GRAPHIC."/ic.RunLogUser.php");
 						}
 					} else {
+						echo "<br/>"."Instalar DB";
 						#En caso de que no exista el usuario Root, se mostrará nuevamente el 
 						#formulario de instalación, de esta forma, los datos de usuario Root se registrarán.
+
+						
+
 						include (PF_INSTALLDB);
-						header("Location: ./");
+						// header("Location: ./");
+						RefreshPage();
+
+						// $page = $_SERVER['PHP_SELF'];
+						// $sec = "10";
+						// header("Refresh: $sec; url=$page");
+						// exit();
 					}
 				}
 			} else {
@@ -192,11 +221,11 @@
 					$Config->CFC(PF_CONFIG);
 
 					#Ejecuta el fichero para reemplazar el contenido inútil por la configuración.
-					@exec("start notepad ".PF_CONFIG);
+					@exec("leafpad ".PF_CONFIG);
 
 					#Se duerme por 1 segundo y recarga la raíz.
 					sleep(1);
-					header("Location: ./");
+					RefreshPage();
 				}
 			}
 		?>

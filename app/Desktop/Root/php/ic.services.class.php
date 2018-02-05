@@ -63,7 +63,7 @@
 		}
 
 		function Add($name, $pass){
-			$Insert = "INSERT INTO ".$this->X."network (id, name, pass, allow) VALUES ('','".$name."','".$pass."', '0');";
+			$Insert = "INSERT INTO ".$this->X."network (name, pass, allow) VALUES ('".$name."','".$pass."', '0');";
 			
 			if ($this->IC->query($Insert))
 				return true;

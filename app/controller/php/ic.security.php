@@ -30,7 +30,7 @@
 				if ($GFN['finished'] == "/"){
 					$IntCount = 0;
 
-					$Q = "INSERT INTO ".$X."control_user (id, usr, ip, count, finished, date_log, date_log_unix) VALUES ('','".$un."','".getIpAddr()."','".($IntCount + 1)."','','".date('Y-n-j')."','".time()."');";
+					$Q = "INSERT INTO ".$X."control_user (usr, ip, count, finished, date_log, date_log_unix) VALUES ('".$un."','".getIpAddr()."','".($IntCount + 1)."','','".date('Y-n-j')."','".time()."');";
 
 					$IC->query($Q);
 					exit();
@@ -41,7 +41,7 @@
 						
 						if (!$Val){
 							if ($IC->query($Q)){
-								$Insert = "INSERT INTO ".$X."control_attack (id, victim, attacker, date_log, date_log_unix) VALUES ('','".$un."','".getIpAddr()."','".date('Y-n-j')."','".time()."');";
+								$Insert = "INSERT INTO ".$X."control_attack (victim, attacker, date_log, date_log_unix) VALUES ('".$un."','".getIpAddr()."','".date('Y-n-j')."','".time()."');";
 								
 								if ($IC->query($Insert)){
 									$AttackDetect = "AD";
@@ -50,7 +50,7 @@
 						}
 					} else {
 						$IntCount = $GFN['count'];
-						$Q = "INSERT INTO ".$X."control_user (id, usr, ip, count, finished, date_log, date_log_unix) VALUES ('','".$un."','".getIpAddr()."','".($IntCount + 1)."','','".date('Y-n-j')."','".time()."');";
+						$Q = "INSERT INTO ".$X."control_user (usr, ip, count, finished, date_log, date_log_unix) VALUES ('".$un."','".getIpAddr()."','".($IntCount + 1)."','','".date('Y-n-j')."','".time()."');";
 
 						$IC->query($Q);
 					}
@@ -69,14 +69,14 @@
 				}
 
 				if ($IntCountTwo == $IntCount){
-					$Q = "INSERT INTO ".$X."control_user (id, usr, ip, count, finished, date_log, date_log_unix) VALUES ('','".$un."','".getIpAddr()."','".($IntCount + 1)."','','".date('Y-n-j')."','".time()."');";
+					$Q = "INSERT INTO ".$X."control_user (usr, ip, count, finished, date_log, date_log_unix) VALUES ('".$un."','".getIpAddr()."','".($IntCount + 1)."','','".date('Y-n-j')."','".time()."');";
 
 					$IC->query($Q);
 				}
 			}
 		} else {
 
-			$Q = "INSERT INTO ".$X."control_user (id, usr, ip, count, finished, date_log, date_log_unix) VALUES ('','".$un."','".getIpAddr()."','".($IntCount + 1)."','','".date('Y-n-j')."','".time()."');";
+			$Q = "INSERT INTO ".$X."control_user (usr, ip, count, finished, date_log, date_log_unix) VALUES ('".$un."','".getIpAddr()."','".($IntCount + 1)."','','".date('Y-n-j')."','".time()."');";
 			
 			$IC->query($Q);
 		}

@@ -14,7 +14,7 @@
 
 	$Object = new ConfigFile();
 	
-	$Query = "INSERT INTO ".@$_SESSION['prefix']."control_logout (id, usr, ip, remember, date_log, date_log_unix) VALUES ('','".@$_SESSION['username']."','".$Object->getIpAddr()."','".@$_SESSION['rmb']."','".date('Y-n-j')."','".time()."');";
+	$Query = "INSERT INTO ".@$_SESSION['prefix']."control_logout (usr, ip, remember, date_log, date_log_unix) VALUES ('".@$_SESSION['username']."','".$Object->getIpAddr()."','".@$_SESSION['rmb']."','".date('Y-n-j')."','".time()."');";
 
 	if (@$IC->query($Query)){
 		@session_destroy();
