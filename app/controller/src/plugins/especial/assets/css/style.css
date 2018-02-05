@@ -1,0 +1,33 @@
+#pad11{
+	padding-left: 11px;
+	padding-right: 0;
+}
+
+.wrap{
+	margin-top: 20px;
+	width: 90%;
+	max-width: 1000px;
+	margin: auto; 
+	margin-left: 150px;
+}
+
+
+#unique{
+	margin-right: 11px;
+}
+
+#unique2{
+	margin-top: 10px;
+}
+
+#h1{
+	/* margin-left: 205px; */
+	text-align: center;
+	color: #2E313D;
+}
+
+#generar{
+	position: absolute;
+    left: 420px;
+    top: -55px;
+}

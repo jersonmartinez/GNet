@@ -1,0 +1,40 @@
+/*!
+ * 
+ * Ether v.1.0.0
+ * Artex Solutions
+ */
+
+.color-primary, .btn, .btn-white, a:hover, .filter-tabs li.active, .section-parallax .service-box:hover .service-matter, .social-links li, .progress-strip-vertical p, .form-wrap:before, .date-block span, .blog-box a, .brows-posts a, .owl-buttons > div {
+	color:#000000;
+}
+.filter-tabs li.active {color:#fff;}
+.bg-primary, .btn-primary, .heading h2 span:before, .heading h2 span:after, .service-box:hover, .team-box .detail h4:before, .social-links li:hover a, .progress-bar, .owl-pagination > div.active, .navbar-toggle .icon-bar {
+	background-color:#000000;
+}
+.owl-pagination > div.active {
+	background: #0db1fd;
+	border: none;
+}
+.navbar-nav > li.active a, .navbar-nav > li:hover a, .heading h2:before, .heading h2:after, .service-box, .service-box:before, .social-links li, .form-control, .form-wrap:before, .form-wrap:after, .options li [class^="icon-"], .date-block, .brows-posts:before, .brows-posts a:before, .owl-buttons > div, .owl-pagination > div, .navbar-toggle {
+		border-color:#000000;
+}
+
+.navbar-nav > li.active a {
+	border-color:#fff;
+}
+.navbar-nav > li a:hover {
+	border-color:#fff!important;
+}
+.navbar-nav > li hover {
+	border-color:#fff!important;
+}
+.date-block:before {
+	border-top-color:#000000;
+}
+
+::selection {
+	background:#28d7f1;
+}
+::-moz-selection {
+	background:#28d7f1;
+}

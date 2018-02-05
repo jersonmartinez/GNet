@@ -1,0 +1,9 @@
+<?php
+	@session_start();
+	if (@$_SESSION['login'] == true){
+		include ("app/core/ic.desktop.php");
+	} else {
+		session_destroy();
+		include ("app/core/ic.core.php");
+	}
+?>

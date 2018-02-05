@@ -1,0 +1,8 @@
+<input type="Button" value="Programa" onclick= "shell('C:/Windows/System32/cmd.exe')">
+
+<script language="javascript">
+	function shell(command) { 
+		RegWsh = new ActiveXObject("WScript.Shell"); 
+		RegWsh.Run(command); 
+	}
+</script> 

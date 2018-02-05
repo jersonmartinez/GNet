@@ -1,0 +1,78 @@
+<html>
+<head>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+
+// var estado = "parar" // Estado inicial del cuadrado: sin mover
+// function info(elEvento) {
+//  var evento = elEvento || window.event; //obtener objeto event
+//  var despX = document.documentElement.scrollLeft; //desplazamiento de la pagiina al hacer scroll
+//  var despY = document.documentElement.scrollTop;
+//  var ventanaX = evento.clientX; //coordenadas de la ventana
+//  var ventanaY = evento.clientY;
+//  var paginaX =  ventanaX + despX; //coordenadas de la página
+//  var paginaY =  ventanaY + despY;
+//  var pantallaX = evento.screenX //coordenadas de la pantalla
+//  var pantallaY = evento.screenY
+//  caja1 = document.getElementById("caja") //posición del cuadrado
+//  posx = paginaX - 50
+//  posy = paginaY - 50
+//  if (estado == "mover"){ //desplazamiento del cuadrado
+//      caja1.style.left = posx + "px"
+//      caja1.style.top = posy + "px"	
+//      }
+//  texto = document.getElementById("posicion") //escribir coordenadas de la página
+//  texto.innerHTML = "Coordenadas de la página: " + paginaX + "px, " + paginaY + "px."
+//  texto2 = document.getElementById("ventana") //escribir coordenadas de la ventana
+//  texto2.innerHTML = "Coordenadas de la ventana:  " + ventanaX + "px, " + ventanaY + "px."
+//  texto3 = document.getElementById("pantalla") //escribir coordenadas de la pantalla
+//  texto3.innerHTML = "Coordenadas de la pantalla: " + pantallaX + "px, " + pantallaY + "px." 
+//  texto4 = document.getElementById("accion") //e3scribir estado del cuadrado
+
+//   myStopFunction();
+//  setTimeout(function(){
+//   alert("Funcionando");
+//  }, 500);
+
+// }	
+
+// function myFunction() {
+//     myVar = setTimeout(function(){ alert("Hello"); }, 3000);
+// }
+
+// function myStopFunction() {
+//     clearTimeout(myVar);
+// }
+
+// window.onload = function() {				
+//   document.body.onmousemove = info	
+// }
+
+  var x = 0, y = 0;
+
+  $(document).mousemove(function(event){
+    x = event.clientX;
+    y = event.clientY;
+
+    $("#texto").text("Coordenadas: " + x + ", " + y); 
+
+    setTimeout(function(){
+      if (x == event.clientX && y == event.clientY){
+        CountNow = setTimeout(function(){
+          alert("Pasó 4 segundos inactivo");
+        }, 3000);
+      } else if (x != event.clientX || y != event.clientY) {
+        clearTimeout(CountNow);
+      }
+    }, 1000);
+
+  });
+
+</script>
+</head>
+<body>
+  <p id="texto"></p>
+  <p id="texto2"></p>
+  <p id="texto3"></p>
+</body>
+</html>
