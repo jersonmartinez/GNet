@@ -16,9 +16,9 @@
 
         <div class="row mb15 table-layout">
 
-          <div class="col-xs-6 va-m pln animated-delay" data-animate='["1000","fadeInDown"]' data-toggle="tooltip" data-placement="top" data-original-title="InterCloud Logo">
+          <div class="col-xs-6 va-m pln animated-delay" data-animate='["1000","fadeInDown"]' data-toggle="tooltip" data-placement="top" data-original-title="Gestor de Red">
             <a href="./">
-              <img src="app/controller/src/logo/logo.png" class="img-responsive w250">
+              <img src="app/controller/src/logo/logo.png" class="img-responsive w150">
             </a>
           </div>
 

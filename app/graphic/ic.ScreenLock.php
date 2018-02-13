@@ -14,12 +14,12 @@
       <!-- Begin: Content -->
       <section id="content">
 
-        <div class="admin-form theme-info mw600" style="margin-top: 13%;" id="login">
+        <div class="admin-form theme-info mw600" style="margin-top: 9%;" id="login">
           <div class="row mb15 table-layout">
 
             <div class="col-xs-6 pln">
-              <a href="./" title="InterCloud Logo">
-                <img src="app/controller/src/logo/logo.png" title="InterCloud Logo" class="img-responsive w250">
+              <a href="./" title="Gestor de Red">
+                <img src="app/controller/src/logo/logo.png" title="InterCloud Logo" class="img-responsive w150">
               </a>
             </div>
 
