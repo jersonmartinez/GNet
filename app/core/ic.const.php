@@ -9,7 +9,7 @@
 	#PF = Path File
 
 	$Path = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1];
-	if (explode("/", $_SERVER['REQUEST_URI'])[1] != "InterCloud"){
+	if (explode("/", $_SERVER['REQUEST_URI'])[1] != "GNet"){
 		$Path = $_SERVER['DOCUMENT_ROOT'];
 	}
 
