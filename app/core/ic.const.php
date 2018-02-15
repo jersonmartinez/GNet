@@ -44,11 +44,7 @@
 	define ("PD_DESKTOP", 	$Path."/app/Desktop");
 		define ("PD_DESKTOP_ROOT", 		$Path."/app/Desktop/Root");
 		define ("PD_DESKTOP_ADMIN", 	$Path."/app/Desktop/Administrador");
-		define ("PD_DESKTOP_MASTER", 	$Path."/app/Desktop/Master");
-		define ("PD_DESKTOP_STUDENT", 	$Path."/app/Desktop/Estudiante");
-		define ("PD_DESKTOP_TUTOR", 	$Path."/app/Desktop/Tutor");
 
 	define ("PD_GRAPHIC", 	$Path."/app/graphic");
 	define ("PD_SRC", 		$Path."/app/src");
-
 ?>
