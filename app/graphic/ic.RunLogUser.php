@@ -18,7 +18,7 @@
 
           <div class="col-xs-6 pln">
               <a href="./" title="Return to Dashboard">
-                <img src="app/controller/src/logo/logo.png" title="InterCloud Logo" class="img-responsive w250">
+                <img src="app/controller/src/logo/logo.png" title="GNet Logo" class="img-responsive w150">
               </a>
             </div>
 
@@ -31,7 +31,7 @@
 
           <div class="panel panel-info heading-border br-n">
 
-            <form method="post" action="http://intercloud.com/" id="contact">
+            <form method="post" action="http://GNet.com/" id="contact">
               <div class="panel-body p15 pt25">
 
                 <div class="alert alert-micro alert-border-left alert-info pastel alert-dismissable mn">

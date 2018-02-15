@@ -64,6 +64,17 @@
 			id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 			name VARCHAR(50) NOT NULL,
 			state INT NOT NULL
+		);",
+		#Tablas que almacenan datos del Tracking Network.
+		$X.'network' => "CREATE TABLE ".$X."network (
+			ip_net VARCHAR(20) NOT NULL, 
+			checked INT
+		);",
+		$X.'host' => "CREATE TABLE ".$X."host (
+			ip_net VARCHAR(20) NOT NULL, 
+			ip_host VARCHAR(20), 
+			router INT UNSIGNED,
+			net_next VARCHAR(20)
 		);"
 	);
 

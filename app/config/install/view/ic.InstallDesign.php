@@ -68,7 +68,7 @@
                   <div class="col-xs-6">
                      <label for="password" class="field-label text-muted fs18 mb10">Base de datos</label>
                     <label for="password" class="field prepend-icon">
-                    <input type="text" name="database" id="InstallDatabase" class="form-control" placeholder="InterCloud" data-toggle="tooltip" data-placement="left" data-original-title="Nombre de base de datos donde se volcarán los datos" required />
+                    <input type="text" name="database" id="InstallDatabase" class="form-control" placeholder="GNet" data-toggle="tooltip" data-placement="left" data-original-title="Nombre de base de datos donde se volcarán los datos" required />
                       <label for="password" class="field-icon">
                           <i class="fa fa-database"></i>
                       </label>

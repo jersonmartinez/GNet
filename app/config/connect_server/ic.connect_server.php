@@ -1,6 +1,6 @@
 <?php
 	#Esta es la clase conexión al servidor de DB que extiende a MySQLi.
-	class InterCloud extends mysqli {
+	class GNet extends mysqli {
 		public function __construct($host, $user, $pass, $db){
 			@parent::__construct($host, $user, $pass, $db);
 		}
@@ -41,7 +41,7 @@
 		}
 
 		#Se hace una instancia del objeto y se establece la conexión a la base de datos.
-		@$IC = new InterCloud($H, $U, $P, $D);
+		@$IC = new GNet($H, $U, $P, $D);
 		
 		#Se verifica la conexión, en caso de error, se escribe true en la variable de error.
 		if (@$IC->connect_error){

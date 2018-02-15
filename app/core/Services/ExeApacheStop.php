@@ -1,3 +1,3 @@
 <?php
-	@exec("/xampp/htdocs/InterCloud/app/core/Services/ApacheStop.bat");
+	@exec("/xampp/htdocs/Gnet/app/core/Services/ApacheStop.bat");
 ?>

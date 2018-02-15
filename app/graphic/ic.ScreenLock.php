@@ -19,7 +19,7 @@
 
             <div class="col-xs-6 pln">
               <a href="./" title="Gestor de Red">
-                <img src="app/controller/src/logo/logo.png" title="InterCloud Logo" class="img-responsive w150">
+                <img src="app/controller/src/logo/logo.png" title="GNet Logo" class="img-responsive w150">
               </a>
             </div>
 
