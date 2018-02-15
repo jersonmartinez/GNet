@@ -1,9 +1,9 @@
 <!-- Este es el fichero de cabecera!. -->
 <meta charset="utf-8">
-<title>[Institución] - InterCloud</title>
-<meta name="keywords" content="TheCodeBrain / InterCloud - Servicio de Intranet Académica" />
-<meta name="description" content="TheCodeBrain / InterCloud - Servicio de Intranet Académica">
-<meta name="author" content="TheCodeBrain / InterCloud">
+<title>GNet</title>
+<meta name="keywords" content="GNet - Sistema de Gestión de Red" />
+<meta name="description" content="GNet - Sistema de Gestión de Red">
+<meta name="author" content="GNet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
 <!-- FullCalendar Plugin CSS -->
