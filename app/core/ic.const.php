@@ -5,8 +5,9 @@
 	#Su mayor funcionamiento será el contenido de rutas, las cuales puedes envocar 
 	#incluyendo este fichero en tu proyecto.
 	
-	#PD = Path Directory
-	#PF = Path File
+	#PD  = Path Directory
+	#PDS = Path Directory Static
+	#PF  = Path File
 
 	$Path = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1];
 	if (explode("/", $_SERVER['REQUEST_URI'])[1] != "GNet"){
@@ -43,7 +44,24 @@
 		
 	define ("PD_DESKTOP", 	$Path."/app/Desktop");
 		define ("PD_DESKTOP_ROOT", 		$Path."/app/Desktop/Root");
+			define ("PD_DESKTOP_ROOT_PHP", 		$Path."/app/Desktop/Root/php");
+			define ("PD_DESKTOP_ROOT_GP", 		$Path."/app/Desktop/Root/graphic");
+			define ("PD_DESKTOP_ROOT_JS", 		$Path."/app/Desktop/Root/js");
+
+		define ("PDS_DESKTOP_ROOT", "app/Desktop/Root");
+			define ("PDS_DESKTOP_ROOT_PHP", 	"app/Desktop/Root/php");
+			define ("PDS_DESKTOP_ROOT_JS", 		"app/Desktop/Root/js");
+			define ("PDS_DESKTOP_ROOT_GP", 		"app/Desktop/Root/graphic");
+		
 		define ("PD_DESKTOP_ADMIN", 	$Path."/app/Desktop/Administrador");
+			define ("PD_DESKTOP_ADMIN_PHP", 	$Path."/app/Desktop/Administrador/php");
+			define ("PD_DESKTOP_ADMIN_GP", 		$Path."/app/Desktop/Administrador/graphic");
+			define ("PD_DESKTOP_ADMIN_JS", 		$Path."/app/Desktop/Administrador/js");
+
+		define ("PDS_DESKTOP_ADMIN", 	"app/Desktop/Administrador");
+			define ("PDS_DESKTOP_ADMIN_PHP", 	"app/Desktop/Administrador/php");
+			define ("PDS_DESKTOP_ADMIN_GP", 	"app/Desktop/Administrador/graphic");
+			define ("PDS_DESKTOP_ADMIN_JS", 	"app/Desktop/Administrador/js");
 
 	define ("PD_GRAPHIC", 	$Path."/app/graphic");
 	define ("PD_SRC", 		$Path."/app/src");
