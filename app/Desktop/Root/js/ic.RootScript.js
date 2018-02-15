@@ -178,6 +178,16 @@ $("#sidebar_show_documentation").click(function(){
 	});
 });
 
+/*This event will show the Tracking Network Design*/
+$("#sb_item_TrackingNetwork").click(function(){
+	$.ajax({
+		url: "app/Desktop/Root/graphic/ic.TrackingNetwork.php",
+		success: function(data){
+			$("div.container_platform").html(data);
+		}
+	});
+});
+
 $("#sidebar_redactDocumentation").click(function(){
 	$(".AddRedactDocumentation").click();
 });

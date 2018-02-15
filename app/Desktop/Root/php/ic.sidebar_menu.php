@@ -1,6 +1,13 @@
 <!-- Start: Sidebar Menu -->
 <ul class="nav sidebar-menu">
-  <li class="sidebar-label pt20">Menú</li>
+  <li class="sidebar-label pt20">GESTIÓN DE RED</li>
+
+  <li>
+    <a href="#" id="sb_item_TrackingNetwork">
+      <span class="fa fa-calendar"></span>
+      <span class="sidebar-title">Autodescubrimiento</span>
+    </a>
+  </li>
 
   <li>
     <a class="accordion-toggle" href="#">
