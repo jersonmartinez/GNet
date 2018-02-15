@@ -26,45 +26,6 @@
 			password VARCHAR(60) NOT NULL, 
 			FOREIGN KEY (username) REFERENCES ".$X."admin_info(username) ON UPDATE CASCADE ON DELETE CASCADE
 		);",
-		$X.'master_info' => "CREATE TABLE ".$X."master_info (
-			n_carnet VARCHAR(50) NOT NULL, 
-			date_log DATE NOT NULL, 
-			date_log_unix VARCHAR(100) NOT NULL, 
-			PRIMARY KEY (n_carnet)
-		);", 
-		$X.'master' => "CREATE TABLE ".$X."master (
-			n_carnet VARCHAR(50) NOT NULL, 
-			password VARCHAR(60) NOT NULL, 
-			FOREIGN KEY (n_carnet) REFERENCES ".$X."master_info(n_carnet) ON UPDATE CASCADE ON DELETE CASCADE
-		);",
-		$X.'student_info' => "CREATE TABLE ".$X."student_info (
-			n_carnet VARCHAR(50) NOT NULL, 
-			date_log DATE NOT NULL, 
-			date_log_unix VARCHAR(100) NOT NULL, 
-			PRIMARY KEY (n_carnet)
-		);", 
-		$X.'student' => "CREATE TABLE ".$X."student (
-			n_carnet VARCHAR(50) NOT NULL, 
-			password VARCHAR(60) NOT NULL, 
-			FOREIGN KEY (n_carnet) REFERENCES ".$X."student_info(n_carnet) ON UPDATE CASCADE ON DELETE CASCADE
-		);",
-		$X.'tutor_info' => "CREATE TABLE ".$X."tutor_info (
-			username VARCHAR(50) NOT NULL, 
-			date_log DATE NOT NULL, 
-			date_log_unix VARCHAR(100) NOT NULL, 
-			PRIMARY KEY (username)
-		);", 
-		$X.'tutor' => "CREATE TABLE ".$X."tutor (
-			username VARCHAR(50) NOT NULL, 
-			password VARCHAR(60) NOT NULL, 
-			FOREIGN KEY (username) REFERENCES ".$X."tutor_info(username) ON UPDATE CASCADE ON DELETE CASCADE
-		);",
-		$X.'network' => "CREATE TABLE ".$X."network (
-			id INT UNSIGNED AUTO_INCREMENT NOT NULL PRIMARY KEY,
-			name VARCHAR(100) NOT NULL, 
-			pass VARCHAR(100) NOT NULL, 
-			allow INT
-		);",
 		$X.'user_sessions' => "CREATE TABLE ".$X."user_sessions (
 			id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 			usr VARCHAR(255) NOT NULL, 
@@ -103,25 +64,6 @@
 			id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
 			name VARCHAR(50) NOT NULL,
 			state INT NOT NULL
-		);",
-		$X.'matricula' => "CREATE TABLE ".$X."matricula (
-			id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-			name VARCHAR(255) NOT NULL,
-			address VARCHAR(255) NOT NULL,
-			IDcard VARCHAR(255) NOT NULL,
-			birth VARCHAR(255) NOT NULL,
-			nationality VARCHAR(255) NOT NULL, 
-			gender INT NOT NULL,
-			phone VARCHAR(255) NOT NULL,
-			phone1 VARCHAR(255) NOT NULL,
-			date_log DATE NOT NULL,
-			date_log_unix VARCHAR(100) NOT NULL
-		);",
-		$X.'countries' => "CREATE TABLE ".$X."countries (
-			id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY, 
-			title VARCHAR(255) NOT NULL,
-			date_log DATE NOT NULL, 
-			date_log_unix VARCHAR(100) NOT NULL
 		);"
 	);
 
