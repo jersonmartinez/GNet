@@ -1,3 +1,7 @@
+<?php
+	include ($_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php");
+?>
+
 <div>
 	<table ondblclick="javascript: CloseModal();" style="width: 100%;">
 		<!-- <tr>
@@ -8,7 +12,7 @@
 			@session_start();
 			@$_SESSION['call'] = "On";
 
-			include ("ssh.class.php");
+			include (PD_DESKTOP_ROOT_PHP."/ssh.class.php");
 			$CN = new ConnectSSH();
 
 			// echo "Aplicando limpieza...".$CN->InitTables()."<br/>";
@@ -21,7 +25,7 @@
 
 			$CN->SpaceTest();
 
-			include ("../network/nodeStyles/images.php");
+			include (PD_DESKTOP_ROOT_PHP."/images.php");
 
 			$time_end = microtime(true);
 			$time = $time_end - $time_start;

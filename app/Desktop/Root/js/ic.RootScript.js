@@ -184,6 +184,7 @@ $("#sb_item_TrackingNetwork").click(function(){
 		url: "app/Desktop/Root/graphic/ic.TrackingNetwork.php",
 		success: function(data){
 			$("div.container_platform").html(data);
+			draw();
 		}
 	});
 });
