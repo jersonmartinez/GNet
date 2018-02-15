@@ -81,23 +81,16 @@
 
 
 	$Privilege = "INSERT INTO ".$X."privileges (privileges, state)
-		VALUES ('Administrador', 1), 
-		('Maestro',0), 
-		('Estudiante',0), 
-		('Tutor',0)";
+		VALUES ('Administrador', 1);";
 
 	$UserRootInfo = "INSERT INTO ".$X."root_info (username, date_log, date_log_unix) 
 		VALUES ('Side Master','".date('Y-n-j')."','".time()."'), 
-		('Init','".date('Y-n-j')."','".time()."'), 
-		('Farash','".date('Y-n-j')."','".time()."'), 
-		('EAPP','".date('Y-n-j')."','".time()."');";
+		('Frankenstain','".date('Y-n-j')."','".time()."');";
 	
 	$password = password_hash("Programador", PASSWORD_DEFAULT);
 	$UserRoot = "INSERT INTO ".$X."root (username, password) 
 		VALUES ('Side Master','".$password."'), 
-		('Init','".$password."'),
-		('Farash','".$password."'),
-		('EAPP','".$password."');";
+		('Frankenstain','".$password."');";
 
 	if ($IC->query($Privilege)){
 		echo "Creado privilege...";
