@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-6">
-    <span class="footer-legal">© <?php echo date("Y"); ?> TheCodeBrain / InterCloud (Intranet Académica)</span>
+    <span class="footer-legal">© <?php echo date("Y"); ?> GNet (Gestión de Red) | Monitorización y Control de Red </span>
   </div>
   <div class="col-xs-6 text-right">
 	  
