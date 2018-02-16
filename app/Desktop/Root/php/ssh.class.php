@@ -16,6 +16,9 @@
 		private $remote_path;
 		private $filename;
 
+		public $db_connect;
+		public $db_prefix;
+
 		function __construct($ip_host, $username, $password){
 			if (!function_exists("ssh2_connect")) {
         		array_push($this->errors, "La función ssh2_connect no existe");
@@ -327,75 +330,75 @@
 		}
 
 		public function addNetwork($ip_net, $checked = "0"){
-			if ($this->ConnectDB()->query("INSERT INTO network (ip_net, checked) VALUES ('".$ip_net."','".$checked."');"))
+			if ($this->db_connect->query("INSERT INTO ".$this->db_prefix."network (ip_net, checked) VALUES ('".$ip_net."','".$checked."');"))
 				return true;
 
 			return false;
 		}
 
 		public function updateNetwork($ip_net, $checked){
-			if ($this->ConnectDB()->query("UPDATE network SET checked='".$checked."' WHERE ip_net='".$ip_net."';"))
+			if ($this->db_connect->query("UPDATE ".$this->db_prefix."network SET checked='".$checked."' WHERE ip_net='".$ip_net."';"))
 				return true;
 
 			return false;
 		}
 
 		public function addHost($ip_net, $ip_host, $router, $net_next){
-			$query = "INSERT INTO host (ip_net, ip_host, router, net_next) VALUES ('".$ip_net."', '".$ip_host."', '".$router."', '".$net_next."');";
+			$query = "INSERT INTO ".$this->db_prefix."host (ip_net, ip_host, router, net_next) VALUES ('".$ip_net."', '".$ip_host."', '".$router."', '".$net_next."');";
 			
-			if ($this->ConnectDB()->query($query))
+			if ($this->db_connect->query($query))
 				return true;
 
 			return false;
 		}
 
 		public function getHostTypeRouterLast(){
-			return $this->ConnectDB()->query("SELECT DISTINCT * FROM host WHERE router='1' AND net_next!='-' ORDER BY ip_net DESC LIMIT 1;");
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='1' AND net_next!='-' ORDER BY ip_net DESC LIMIT 1;");
 		}
 
 		public function getHostNetwork($network){
-			return $this->ConnectDB()->query("SELECT DISTINCT * FROM host WHERE ip_net='".$network."';");
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE ip_net='".$network."';");
 		}
 
 		public function getHostTypeRouter(){
-			return $this->ConnectDB()->query("SELECT DISTINCT * FROM host WHERE router='1' AND net_next!='-';");
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='1' AND net_next!='-';");
 		}
 
 		public function getHostTypeSwitch($IPNet){
-			return $this->ConnectDB()->query("SELECT DISTINCT * FROM host WHERE ip_net='".$IPNet."' AND router='0';");
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE ip_net='".$IPNet."' AND router='0';");
 		}
 
 		public function getHostTypeHost(){
-			return $this->ConnectDB()->query("SELECT DISTINCT * FROM host WHERE router='0';");
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='0';");
 		}
 
 		public function getAllHost(){
-			return $this->ConnectDB()->query("SELECT DISTINCT * FROM host;");
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host;");
 		}
 
 		public function getIPNetNext($ip_net){
-			return $this->ConnectDB()->query("SELECT DISTINCT * FROM network WHERE ip_net>'".$ip_net."' ORDER BY ip_net DESC LIMIT 1;")->fetch_array(MYSQLI_ASSOC)['ip_net'];
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE ip_net>'".$ip_net."' ORDER BY ip_net DESC LIMIT 1;")->fetch_array(MYSQLI_ASSOC)['ip_net'];
 		}
 
 		//Extrae todas las direcciones de red.
 		public function getIPNet(){
-			return @$this->ConnectDB()->query("SELECT DISTINCT * FROM network;");
+			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network;");
 		}
 
 		public function getIPNetLast(){
-			return @$this->ConnectDB()->query("SELECT DISTINCT * FROM network ORDER BY ip_net DESC LIMIT 1;");
+			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network ORDER BY ip_net DESC LIMIT 1;");
 		}
 
 		public function getIPNetOnly(){
-			return @$this->ConnectDB()->query("SELECT DISTINCT * FROM network LIMIT 1;")->fetch_array(MYSQLI_ASSOC)['ip_net'];
+			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network LIMIT 1;")->fetch_array(MYSQLI_ASSOC)['ip_net'];
 		}
 
 		public $CommandIpRoute = "ip route | sed -e '/src/ !d' | sed '/default/ d' | cut -d ' ' -f1";
 
 		//Limpieza de tablas
 		public function InitTables(){
-			$this->ConnectDB()->query("TRUNCATE network;");
-			$this->ConnectDB()->query("TRUNCATE host;");
+			$this->db_connect->query("TRUNCATE ".$this->db_prefix."network;");
+			$this->db_connect->query("TRUNCATE ".$this->db_prefix."host;");
 		}
 
 		public function IsRouter($IPHost, $user = "network", $pass = "123"){
@@ -422,15 +425,15 @@
 		}
 
 		public function getCountNetwork(){
-			return @(int)$this->ConnectDB()->query("SELECT DISTINCT count(*) AS 'count' FROM network;")->fetch_array()['count'];
+			return @(int)$this->db_connect->query("SELECT DISTINCT count(*) AS 'count' FROM ".$this->db_prefix."network;")->fetch_array()['count'];
 		}
 
 		public function getCountNetworkChecked(){
-			return @(int)$this->ConnectDB()->query("SELECT DISTINCT count(*) AS 'count' FROM network WHERE checked='0';")->fetch_array()['count'];
+			return @(int)$this->db_connect->query("SELECT DISTINCT count(*) AS 'count' FROM ".$this->db_prefix."network WHERE checked='0';")->fetch_array()['count'];
 		}
 
 		public function getAllNetworkChecked(){
-			return @$this->ConnectDB()->query("SELECT DISTINCT * FROM network WHERE checked='0' LIMIT 1;");
+			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE checked='0' LIMIT 1;");
 		}
 
 		public function SpaceTest(){
@@ -736,8 +739,9 @@
 			return array ($ArrayHosts, $ArrayNetwork);
 		}
 
-		public function ConnectDB(){
-			return new SideMasters("127.0.0.1", "root", "root", "monitorizador");
+		public function ConnectDB($H, $U, $P, $D, $X){
+			$this->db_connect = new GNet($H, $U, $P, $D);
+			$this->db_prefix = $X;
 		}
 
 	}

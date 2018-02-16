@@ -42,7 +42,7 @@
 
 		#Se hace una instancia del objeto y se establece la conexión a la base de datos.
 		@$IC = new GNet($H, $U, $P, $D);
-		
+
 		#Se verifica la conexión, en caso de error, se escribe true en la variable de error.
 		if (@$IC->connect_error){
 			$error = true;

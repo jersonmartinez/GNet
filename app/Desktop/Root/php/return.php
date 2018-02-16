@@ -10,8 +10,11 @@
 <?php
     // @session_start();
     // if ($_SESSION['call'] != "off"){
+		include (PF_CONNECT_SERVER);
         include (PD_DESKTOP_ROOT_PHP."/ssh.class.php");
         $CN = new ConnectSSH();
+
+        $CN->ConnectDB($H, $U, $P, $D, $X);
 
         include (PD_DESKTOP_ROOT_PHP."/getData.php");
     // }

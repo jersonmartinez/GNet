@@ -4,15 +4,13 @@
 	@session_start();
 	@$_SESSION['call'] = "On";
 
+	include (PF_CONNECT_SERVER);
 	include (PD_DESKTOP_ROOT_PHP."/ssh.class.php");
 
 	$CN = new ConnectSSH();
+	$CN->ConnectDB($H, $U, $P, $D, $X);
 
 	$time_start = microtime(true);
-
-	// echo shell_exec("nmap 192.168.100.0/24 -n -sP | grep report | awk '{print $5}'");
-	// 	echo " | host: ".$value;
-	// }
 
 	$CN->SpaceTest();
 
