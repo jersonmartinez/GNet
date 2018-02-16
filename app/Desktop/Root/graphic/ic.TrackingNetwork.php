@@ -6,7 +6,7 @@
     @$_SESSION['call'] = "off";
 
     include (PF_CONNECT_SERVER);
-    include (PD_DESKTOP_ROOT_PHP."/ssh.class.php");
+    include (PD_DESKTOP_ROOT_PHP."/gn.ssh.class.php");
 
     $CN = new ConnectSSH();
     $CN->ConnectDB($H, $U, $P, $D, $X);
@@ -20,7 +20,7 @@
 <div class="here_write">
     <?php
         if (@$R->num_rows > 0){
-            include (PD_DESKTOP_ROOT_PHP."/images.php");
+            include (PD_DESKTOP_ROOT_PHP."/vis/images.php");
         }
     ?>
 </div>
