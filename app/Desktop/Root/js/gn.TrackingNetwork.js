@@ -6,16 +6,24 @@
 // Bind progress buttons and simulate loading progress. Still requires ".ladda-button" class.
 Ladda.bind('.progress-button', {
     callback: function(instance) {
+
+        StartTracking();
+
         var progress = 0;
         var interval = setInterval(function() {
             progress = Math.min(progress + Math.random() * 0.1, 1);
             instance.setProgress(progress);
 
-            if (progress === 1) {
+            if ($("#retardo_temporal").html() != "..."){
                 instance.stop();
                 clearInterval(interval);
             }
-        }, 200);
+
+            // if (progress === 1) {
+            //     instance.stop();
+            //     clearInterval(interval);
+            // }
+        }, 400);
     }
 });
     
@@ -34,3 +42,5 @@ $('.creating-admin-panels').adminpanel({
         $(window).trigger('resize');
     }
 });
+
+$('#mix-items-other').mixItUp();
