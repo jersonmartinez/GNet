@@ -76,3 +76,41 @@ div#ContextMenuTest li div.label-menu-context {
     margin: 5px 10px;
     padding: 0 20px 0 35px;
 }
+
+div.mixings-get-devices .mix-container {
+    min-height: 300px;
+    padding: 2% 2% 0;
+    text-align: justify;
+    font-size: 0.1px;
+    -webkit-backface-visibility: hidden;
+}
+
+div.mixings-get-devices .mix-container .mix.category-1 {
+    border-top: 3px solid #4a89dc;
+    height: 150px;
+}
+
+div.mixings-get-devices .mix-container .mix.category-2 {
+    border-top: 3px solid #56de04;
+    height: 150px;
+}
+
+div.mixings-get-devices .mix-container .mix, .mix-container .gap {
+    display: inline-block;
+    width: 49%;
+}
+
+div.mixings-get-devices .mix-container .mix {
+    text-align: left;
+    background: #f4f4f4;
+    border: 1px solid #DDD;
+    border-top-width: 1px;
+    border-top-style: solid;
+    border-top-color: rgb(221, 221, 221);
+    margin-bottom: 2%;
+    display: none;
+}
+
+div.mixings-get-devices .mix-container .mix, .mix-container .gap {
+    width: 23.5%;
+}
