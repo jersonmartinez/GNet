@@ -12775,8 +12775,10 @@ a.list-group-item:focus {
   padding: 0 8px;
   background: #fafafa;
   border: 1px solid #e2e2e2;
-  border-top-right-radius: 3px;
-  border-top-left-radius: 3px;
+  /*border-top-right-radius: 3px;*/
+  /*border-top-left-radius: 3px;*/
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
 }
 .panel-heading + .panel-body {
   border-top: 0;

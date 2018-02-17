@@ -25,6 +25,10 @@
   <script src="app/controller/src/plugins/assets/js/demo/widgets.js"></script>
    <script src="app/controller/js/ic.script.js"></script>
    <script src="app/Desktop/Root/js/ic.RootScript.js"></script>
+
+  <!-- Esta libreria es para el efecto de carga, es necesaria su version en css, esta en el archivo ic.head.php o bien, a la constante: PF_CORE_HEAD-->
+  <script src="app/controller/src/plugins/vendor/plugins/ladda/ladda.min.js"></script> 
+
   <script type="text/javascript">
  
 

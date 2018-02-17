@@ -920,7 +920,7 @@
 
                // check for Bootbox plugin - should be in core
                if (bootbox.confirm) {
-                  bootbox.confirm("Are You Sure?!", function(e) {
+                  bootbox.confirm("¿Estás seguro/a de eliminar el contenedor?", function(e) {
 
                      // e returns true if user clicks "accept"
                      // false if "cancel" or dismiss icon are clicked

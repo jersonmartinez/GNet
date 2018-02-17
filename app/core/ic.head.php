@@ -17,3 +17,6 @@
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="app/controller/src/plugins/assets/img/favicon.ico">
+
+<!-- Esta libreria es para el efecto de carga, es necesaria su version en JS, esta en el fichero ic.foot_js.php -->
+<link rel="stylesheet" type="text/css" href="app/controller/src/plugins/vendor/plugins/ladda/ladda.min.css">

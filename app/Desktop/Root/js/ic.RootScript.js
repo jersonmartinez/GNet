@@ -204,7 +204,7 @@ $(document).mousemove(function(event){
 /*This event will show the Tracking Network Design*/
 $("#sb_item_TrackingNetwork").click(function(){
 	$.ajax({
-		url: "app/Desktop/Root/graphic/ic.TrackingNetwork.php",
+		url: "app/Desktop/Root/graphic/gn.TrackingNetwork.php",
 		success: function(data){
 			$("div.container_platform").html(data);
 			draw();
@@ -221,7 +221,7 @@ function StartTracking(){
 	$(".btn_tracking span").html("SONDEANDO...");
 	$(".network_map_loader").fadeIn(500).show();
 	$.ajax({
-	    url: "app/Desktop/Root/php/Tracking.php",
+	    url: "app/Desktop/Root/php/vis/Tracking.php",
 	    success: function(data){
 	    	$(".here_write").html(data);
 			// $(".btn_tracking span").fadeIn(500).html("SONDEAR INFRAESTRUCTURA DE RED");
@@ -237,7 +237,7 @@ function StartTracking(){
 
 function LoadNetworkMap(){
 	$.ajax({
-	    url: "app/Desktop/Root/php/return.php",
+	    url: "app/Desktop/Root/php/vis/return.php",
 	    success: function(data){
 	    	$(".here_write").html(data);
 			// $(".btn_tracking span").html("SONDEAR INFRAESTRUCTURA DE RED");			
