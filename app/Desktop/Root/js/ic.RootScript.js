@@ -203,11 +203,13 @@ $(document).mousemove(function(event){
 
 /*This event will show the Tracking Network Design*/
 $("#sb_item_TrackingNetwork").click(function(){
+	NProgress.start();
 	$.ajax({
 		url: "app/Desktop/Root/graphic/gn.TrackingNetwork.php",
 		success: function(data){
 			$("div.container_platform").html(data);
 			draw();
+			NProgress.done();
 		}
 	});
 });

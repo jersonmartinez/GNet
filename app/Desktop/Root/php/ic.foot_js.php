@@ -29,6 +29,12 @@
   <!-- Esta libreria es para el efecto de carga, es necesaria su version en css, esta en el archivo ic.head.php o bien, a la constante: PF_CORE_HEAD-->
   <script src="app/controller/src/plugins/vendor/plugins/ladda/ladda.min.js"></script> 
 
+  <!-- Progressbar -->
+  <script src="app/controller/src/plugins/vendor/plugins/nprogress/nprogress.js"></script> 
+
+  <!-- Ordenar espacios (dispositivos en la filosofia del proyecto) -->
+  <script src="app/controller/src/plugins/vendor/plugins/mixitup/jquery.mixitup.min.js"></script>
+
   <script type="text/javascript">
  
 
