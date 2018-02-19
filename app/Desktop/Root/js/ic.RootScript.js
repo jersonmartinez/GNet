@@ -222,6 +222,9 @@ function StartTracking(){
 	// setInterval(LoadNetworkMap, 3000);
 	$(".btn_tracking span").html("SONDEANDO...");
 	$(".network_map_loader").fadeIn(500).show();
+
+	$("#retardo_temporal").html("...");
+
 	$.ajax({
 	    url: "app/Desktop/Root/php/vis/Tracking.php",
 	    success: function(data){
@@ -246,4 +249,32 @@ function LoadNetworkMap(){
 			$("#ClickSondeoFinal").click();
 	    }
 	});
+}
+
+// function coordenadas(event) {     
+//     $(".eje_test").val("X: " + event.clientX + "px | Y: " + event.clientY);
+
+//     clickCoords = getPosition(event);
+
+//     $(".eje_bueno").val("X: " + clickCoords.x + "px | Y: " + clickCoords.y);
+// }
+
+function getPosition(e) {
+    var posx = 0;
+    var posy = 0;
+
+    if (!e) var e = window.event;
+    
+    if (e.pageX || e.pageY) {
+      	posx = e.pageX;
+      	posy = e.pageY;
+    } else if (e.clientX || e.clientY) {
+      	posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+      	posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+
+    return {
+      	x: posx,
+      	y: posy
+    }
 }

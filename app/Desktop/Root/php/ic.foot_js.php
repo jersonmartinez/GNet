@@ -35,6 +35,8 @@
   <!-- Ordenar espacios (dispositivos en la filosofia del proyecto) -->
   <script src="app/controller/src/plugins/vendor/plugins/mixitup/jquery.mixitup.min.js"></script>
 
+  <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script> 
+
   <script type="text/javascript">
  
 

@@ -437,45 +437,21 @@
 		}
 
 		public function SpaceTest(){
-			//Limpieza de tablas
-			// echo "Aplicando limpieza...";
 			$this->InitTables();
-			// echo "<br/>";
 
 			do {
-				//Si esta vacia la tabla network
-				if (@!$this->getCountNetwork()){
-					//Se agrega la red por omision
-					if (@$this->addNetwork($this->getIpRouteLocal())){
-						// echo "No hay datos (accion) => Se ha agregado el primer dato de red: ".$this->getIpRouteLocal();
-					} else {
-						// echo "No hay datos (accion) => No ha podido agregar la primera direccion de red: ".$this->getIpRouteLocal();
-					}
-				} else {
-					// echo "<br/>Hay datos";
-				}
-				// echo "<br/><br/>";
-
-				// echo "Valor de Checked: ".$this->getCountNetworkChecked()."<br/>";
+				if (@!$this->getCountNetwork())
+					@$this->addNetwork($this->getIpRouteLocal());
 
 				if ($this->getAllNetworkChecked()->num_rows > 0){
 					$Network = $this->getAllNetworkChecked()->fetch_array(MYSQLI_ASSOC)['ip_net'];
-
-					//Escribir la red que no ha sido sondeada.
-					// echo "<br/>Red escrita en la DB: ".$Network." no sondeada.<br/>";
-
-					//Se sondea la red
 					$D = $this->SondearRed($Network);
-
-					//Eliminando el ultimo dato \n
 					unset($D[count($D) - 1]);
 
-					// echo "Valores sondeados: ";
 					foreach ($D as $value) {
 						$ip_forward = @$this->IsRouter($value);
 						$ArrayNets = @explode("\n", $this->getIpRouteRemote($value));
 						
-						//Se;alando patrones para extraer el siguiente.
 						$NextNet = $ArrayNets[0];
 						$NextNet = "-";
 
@@ -484,40 +460,16 @@
 							if (trim($Network) == trim($NextNet)){
 								$NextNet = "-";
 							} else {
-								if ($this->addNetwork($NextNet)){
-									// echo "<br/>IP Network: ".$NextNet." ha sido agregada<br/>";
-								}
+								$this->addNetwork($NextNet);
 							}
 						}
 
-						if ($this->addHost($Network, $value, $ip_forward, $NextNet)){
-		    				// echo "<br/>IP Red: ".$Network." | IP Host: ".$value." | Router: ".$ip_forward." | Proxima red: ".$NextNet."<br/>";
-						}
+						$this->addHost($Network, $value, $ip_forward, $NextNet);
 		    		}
 
-
-		    		// echo "<br/>";
-
-					//Actualizar checked (sondeado)
-					if ($this->updateNetwork($Network, 1)){
-						// echo "Sondeado<br/>";
-					} else {
-						// echo "No se ha podido actualzar el dato<br/>";
-					}
-					
-
+					$this->updateNetwork($Network, 1);					
 				}
-
-
 			} while ($this->getCountNetworkChecked());
-
-			// if ($this->getCountNetworkChecked()){
-			// 	echo "Si hay datos con checked 1";
-			// } else {
-			// 	echo "nel, no hay checked 1, solo 0";
-			// }
-
-			// echo "<br/>";
 		}
 
 

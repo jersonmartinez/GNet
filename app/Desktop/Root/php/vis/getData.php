@@ -288,9 +288,23 @@
             //     CreateItemsMenu("Propiedades", "properties");
             // }
 
+                var posx = 0;
+                var posy = 0;
+
+                if (!e) var e = window.event;
+                
+                if (e.pageX || e.pageY) {
+                  posx = e.pageX;
+                  posy = e.pageY;
+                } else if (e.clientX || e.clientY) {
+                  posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+                  posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+                }
+
                 popupMenux = document.getElementById("ContextMenuTest");
-                popupMenux.style.left = e.clientX - 332 + 'px';
-                popupMenux.style.top = e.clientY - 95 + 'px';
+                popupMenux.style.left = posx - 272 + 'px';
+                popupMenux.style.top = posy - 132 + 'px';
+                // alert("x: " + e.clientX + " | y: " + e.clientY);
                 container.appendChild(popupMenux);
                 popupMenux.style.visibility = "visible";
                 // popupMenux.innerHTML = "Algo m'as!";
@@ -322,7 +336,7 @@
 </script>
 
 <input type="hidden" style="float: right" id="ClickSondeoFinal" onclick="javascript: draw();" value="Cambiar panorama" />
-<div ondblclick="javascript: draw();" id="mynetwork" style="width: 100%; height: 450px;">
+<div ondblclick="javascript: draw();" id="mynetwork" style="width: 100%; height:470px;">
     
 </div>
 

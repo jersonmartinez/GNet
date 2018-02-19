@@ -6,7 +6,6 @@
 // Bind progress buttons and simulate loading progress. Still requires ".ladda-button" class.
 Ladda.bind('.progress-button', {
     callback: function(instance) {
-
         StartTracking();
 
         var progress = 0;
@@ -44,3 +43,9 @@ $('.creating-admin-panels').adminpanel({
 });
 
 $('#mix-items-other').mixItUp();
+
+// Inline
+$('#datetimepicker_test').datetimepicker({
+    defaultDate: "9/4/2014", 
+    inline: true
+});
