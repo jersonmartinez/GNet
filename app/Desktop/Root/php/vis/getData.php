@@ -240,6 +240,17 @@
         // add event listeners
         $(container).click(function(){
             document.getElementById("ContextMenuTest").style.visibility = "hidden";
+            document.getElementById("ContextMenuTest_White").style.visibility = "hidden";
+            valueSelection = document.getElementById('selection').innerHTML;
+
+            if (valueSelection == 'Seleccionado: ' || valueSelection == ""){
+                // document.getElementById("btn_tracking_b2").setAttribute("disabled", "disabled");
+                $(".btn_tracking_device").attr("disabled", "disabled");
+            } else{
+                $(".btn_tracking_device").removeAttr("disabled");
+                // document.getElementById("btn_tracking_b2").removeAttribute("disabled");
+            }
+
         });
 
         network.on('select', function(params) {
@@ -259,55 +270,32 @@
         });
       
         container.addEventListener('contextmenu', function(e) {
-            // if (popupMenu !== undefined) {
-            //     popupMenu.parentNode.removeChild(popupMenu);
-            //     popupMenu = undefined;
-            // }
-         
-            // if (network.getSelection().nodes.length > 0) {
-            //     var offsetLeft = container.offsetLeft + 330;
-            //     var offsetTop = container.offsetTop + 10;
-
-            //     alert("Top: " + offsetTop + " | Left: " + offsetLeft);
-            //     popupMenu = document.createElement("div");
-            //     popupMenu.className = 'popupMenu';          
-
-            //     popupMenu.style.left = e.clientX - offsetLeft + 'px';
-            //     popupMenu.style.top = e.clientY - offsetTop +'px';
-            //     container.appendChild(popupMenu);
-
-
-                
-            //     CreateItemsMenu("Configurar", "configure");
-            //     CreateItemsMenu("Consola", "console");
-            //     CreateItemsMenu("Procesos", "process");
-            //     CreateItemsMenu("Servicios", "services");
-            //     CreateItemsMenu("Iniciar", "start");
-            //     CreateItemsMenu("Detener", "stop");
-            //     CreateItemsMenu("Apagar", "shutdown");
-            //     CreateItemsMenu("Propiedades", "properties");
-            // }
-
-                var posx = 0;
-                var posy = 0;
-
-                if (!e) var e = window.event;
-                
-                if (e.pageX || e.pageY) {
-                  posx = e.pageX;
-                  posy = e.pageY;
-                } else if (e.clientX || e.clientY) {
-                  posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
-                  posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+                // getCoords = getCoordsPosition(e);
+                valueSelection = document.getElementById('selection').innerHTML;
+                if (valueSelection == 'Seleccionado: ' || valueSelection == ""){
+                    popupMenux = document.getElementById("ContextMenuTest_White");
+                    // document.getElementById("btn_tracking_b2").setAttribute("disabled", "disabled");
+                } else{
+                    // document.getElementById("btn_tracking_b2").removeAttribute("disabled");
+                    popupMenux = document.getElementById("ContextMenuTest");
                 }
 
-                popupMenux = document.getElementById("ContextMenuTest");
-                popupMenux.style.left = posx - 272 + 'px';
-                popupMenux.style.top = posy - 132 + 'px';
-                // alert("x: " + e.clientX + " | y: " + e.clientY);
+                var offsetX = e.offsetX;
+                var offsetY = e.offsetY;
+
+                if( e.target != this ){ // 'this' is our HTMLElement
+                    offsetX = e.target.offsetLeft + e.offsetX;
+                    offsetY = e.target.offsetTop + e.offsetY;
+                }
+
+                // alert("X: " + offsetX + ", Y: " + offsetY);
+
+                popupMenux.style.left = offsetX + 'px';
+                popupMenux.style.top = offsetY + 'px';
+                // popupMenux.style.left = getCoords.x - 272 + 'px';
+                // popupMenux.style.top = getCoords.y - 132 + 'px';
                 container.appendChild(popupMenux);
                 popupMenux.style.visibility = "visible";
-                // popupMenux.innerHTML = "Algo m'as!";
             e.preventDefault()
         }, false);
     }
@@ -344,75 +332,6 @@
 <p id="stabilization"></p>
 <p id="testing_id"></p>
 
-<div id="ContextMenuTest" style="visibility:hidden; z-index: 10000;">
-    <li class="settings" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Configurar
-        </div>
-    </li>
-
-    <li class="console" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Consola
-        </div>
-    </li>
-
-    <li class="process" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Procesos
-        </div>
-    </li>
-
-    <li class="sercices" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Servicios
-        </div>
-    </li>
-
-    <li class="start" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Iniciar
-        </div>
-    </li>
-
-    <li class="stop" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Detener
-        </div>
-    </li>
-
-    <li class="shutdown" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Apagar
-        </div>
-    </li>
-    <li class="properties" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Propiedades
-        </div>
-    </li>
-</div>
+<?php
+    include (PD_DESKTOP_ROOT_PHP."/vis/gn.menu-context.php");
+?>

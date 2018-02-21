@@ -259,7 +259,7 @@ function LoadNetworkMap(){
 //     $(".eje_bueno").val("X: " + clickCoords.x + "px | Y: " + clickCoords.y);
 // }
 
-function getPosition(e) {
+function getCoordsPosition(e) {
     var posx = 0;
     var posy = 0;
 

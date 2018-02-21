@@ -14,6 +14,16 @@ div.popupMenu, div#ContextMenuTest {
   background-color:rgba(0,0,0,.7);
 }
 
+div.popupMenu, div#ContextMenuTest_White {
+  position:absolute;
+  top:0px;
+  left:0px;
+  width:all;
+  height:all;
+  color: #000;
+  background-color:rgba(0,0,0,.7);
+}
+
 div.popupMenu li { 
     padding: 6px 15px;
     cursor: pointer;
@@ -37,11 +47,11 @@ div.popupMenu li:hover {
     color: #fff;
 }
 
-div#ContextMenuTest {
+div#ContextMenuTest, div#ContextMenuTest_White {
     visibility: hidden;
 }
 
-div#ContextMenuTest li {
+div#ContextMenuTest li, div#ContextMenuTest_White li {
     cursor: pointer;
     list-style: none;
     transition-duration: .1s;
@@ -70,6 +80,34 @@ div#ContextMenuTest li div.icons-menu-context {
 }
 
 div#ContextMenuTest li div.label-menu-context {
+    /*float: right; */
+    display: inline-block; 
+    margin: 5px 10px;
+    padding: 0 20px 0 35px;
+}
+
+div#ContextMenuTest_White li:nth-child(odd){
+    background: rgba(255,255,255,.9);
+}
+
+div#ContextMenuTest_White li:nth-child(even) {
+    background: rgba(255,255,255,.8);
+}
+
+div#ContextMenuTest_White li:hover {
+    transition-duration: .1s;
+    transform: linear;
+    background-color: rgba(0,0,0,.5);
+    color: #fff;
+}
+
+div#ContextMenuTest_White li div.icons-menu-context {
+    position: absolute;
+    margin: 2px 0 0 10px;
+    display: inline-block;
+}
+
+div#ContextMenuTest_White li div.label-menu-context {
     /*float: right; */
     display: inline-block; 
     margin: 5px 10px;
