@@ -16,7 +16,7 @@ Para no complicarse pueden instalar algún gestor de paquetes como WAMP(Windows)
 ## Instalación
 En caso de GNU / Linux. 
 ```
-git clone https://github.com/SideMasterGM/Split-Files.git /var/www/html/Split-Files
+git clone https://github.com/SideMasterGM/GNet.git /var/www/html/GNet
 ```
 Este proyecto en su forma funcional, es exclusivamente para ejecutarse en GNU/Linux.
 
