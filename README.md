@@ -1,95 +1,79 @@
 # GNet (Monitorización y control de red)
 Web System of Network Management, Servers and Firewalls under GNU/Linux. 
 
-## Desarrollar nuevo espacio
-
-Las formas básicas para desarrollar un nuevo espacio de trabajo en el software, a nivel de programación, es de la siguiente manera: 
-
-### Script de Selección de Privilegios
-En el fichero core/ic.desktop.php: Este hace referencia al escritorio, invocando al fichero PD_DESKTOP_ROOT."/main.php".
-
-### Script de constantes de rutas
-Esta es la instrucción PHP que se necesita para invocar al script que maneja las rutas absolutas de cada uno de los directorios de importancia. Este fichero es necesario la utilización de las rutas. 
+### Prerrequisitos
+Para utilizar este proyecto deberá tener instalado el siguiente servicio y herramienta.
 
 ```
-#Importar constantes.
-@session_start();
-include (@$_SESSION['getConsts']);
+1- Apache 2		| NGinx
+2- PHP 4.3.0 		| >  superiores
+3- libssh2		| https://libssh2.org/ 
+4- MySQL		| MariaDB 
+5- Git			| Descargar el paquete del proyecto.
+```
+Para no complicarse pueden instalar algún gestor de paquetes como WAMP(Windows), LAMPP (Linux) o XAMPP (Todas las plataformas).
+
+## Instalación
+En caso de GNU / Linux. 
+```
+git clone https://github.com/SideMasterGM/Split-Files.git /var/www/html/Split-Files
+```
+Este proyecto en su forma funcional, es exclusivamente para ejecutarse en GNU/Linux.
+
+Suponiendo que no tiene un host virtual asociado al proyecto, en primera instancia tendrá que acceder con la dirección IP local, ya se localhost | 127.0.0.1, o bien, con la dirección IP que fue asignada por algún enrutador por medio de DHCP.
+
+### Ejecución
+Ejecutar el navegador y arrancar el software: 
+
+```
+https://127.0.0.1/GNet
 ```
 
-### Agregar un nuevo elemento en el menú
-Apuntar al directorio de Root: PD_DESKTOP_ROOT."/main.php".
-Este fichero apunta al fichero: PD_DESKTOP_ROOT_PHP."/ic.sidebar_menu.php".
+### Creación de Base de Datos
+Inicialmente, aparecerá la interfaz gráfica donde aparece un formulario de instalación. Este pide tener una base de datos creada.
 
-Agregar un sólo elemento. 
+Abrir una consola y escribir la siguiente instrucción. 
 ```
-<li>
-    <a href="#" id="sb_item_TrackingNetwork">
-        <span class="fa fa-calendar"></span>
-        <span class="sidebar-title">Autodescubrimiento</span>
-    </a>
-</li>
+mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE gnet;"
 ```
+Luego sólo falta rellenar con los datos host: 127.0.0.1, usuario: root, contraseña: root, base de datos: gnet.
 
-Agregar elementos con sub elementos.
+### Usuario Administrador
+El siguiente formulario es sobre rellenar las credenciales del usuario con privilegio administrador. Este aún no está finalizado, por lo que se deberá acceder por medio de Root.
+
+Pasando de este punto, apareceré el login, ahí es donde te debes loguear. Sólo aquellos usuarios de confianza son permitidos, aunque claro, la pista está en el código.
+
+## Documentación de Aplicaciones
+### Las prácticas en desarrollo son las siguientes: 
 ```
-<li>
-    <a class="accordion-toggle" href="#">
-        <span class="glyphicon glyphicon-book"></span>
-        <span class="sidebar-title">Documentación</span>
-      
-        <span class="caret"></span>
-    </a>
-
-    <ul class="nav sub-nav">
-        <li>
-            <a href="#" id="sidebar_show_documentation">
-                <span class="glyphicon glyphicon-eye-open"></span>
-                Mostrar
-            </a>
-        </li>
-        
-        <li>
-            <a href="#" id="sidebar_redactDocumentation">
-                <span class="glyphicon glyphicon-text-height"></span>
-                Redactar
-            </a>
-        </li>
-      
-    </ul>
-</li>
+Tracking Network
+Agregar dispositivos de telecomunicaciones manualmente
+Control de usuarios | Seguridad de Login
+Obtención de información de los equipos
+Recolección de Logs
+Backups y Restores (Base de datos y configuración de servicios)
 ```
+Fuente: https://github.com/SideMasterGM/GNet/wiki/Desarrollos
 
-### Capturando evento de clic del elemento | JS (JQuery)
-Por omisión, la librería de JQuery está agregada.
+Tracking Network (Autodescubrimiento de dispositivos interconectados en Red): https://github.com/SideMasterGM/GNet/wiki/Tracking-Network-(Autodescubrimiento-de-dispositivos-interconectados-en-Red)
 
-Se le agrega un identificador al elemento, así específicamente.
-```
-<li>
-    <a href="#" id="sb_item_MiIdentificador">
-        <span class="fa fa-calendar"></span>
-        <span class="sidebar-title">Nuevo elemento</span>
-    </a>
-</li>
-```
-Le describo un poco, sb_item = elemento del sidebar.
+### Incrustar nuevo código
+Desarrollar nuevo espacio de trabajo (Dashboard): https://github.com/SideMasterGM/GNet/wiki/Desarrollar-nuevo-espacio-de-trabajo-(Dashboard)
 
-Se dirige al fichero Script JS llamado: PD_DESKTOP_ROOT_JS."/ic.RootScript.js". 
+## Authors
 
-Agregar la siguiente instrucción:
-```
-$("#sb_item_MiIdentificador").click(function(){
-	NProgress.start();
-	$.ajax({
-		url: "app/Desktop/Root/graphic/gn.MiIdentificador.php",
-		success: function(data){
-			$("div.container_platform").html(data);
-			NProgress.done();
-		}
-	});
-});
-```
+* **Jerson A. Martínez M.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn]
+https://www.linkedin.com/in/jersonmartinezsm/
 
-Se escucha el evento click del elemento con el identificador. Luego se aplica la barra de carga superior, mientras está en ejecución una petición Ajax al fichero de diseño que debe estar elojado sí o sí en el directorio: PD_DESKTOP_ROOT_GP. Luego de obtener la información solicitada, se envía el diseño al contenedor tipo DIV con la clase "container_platform", este se encuentra en el fichero: PD_DESKTOP_ROOT_PHP."/ic.content_main.php". Cuando el servidor devuelva la información, he ahí donde la barra de carga llega a 100%.
+* **Frankier Y. Flores Z.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn]
+https://www.linkedin.com/in/frankier-flores-4b9b94108/
 
-Hasta ahí, no hay más que hacer, sólo queda diseñar en el fichero donde se le hace la petición.
+### YouTube Channels
+
+* **Side Master** - *Formador en YouTube | Canal de contenido variado sobre Informática (Shell Script, Programación, Hacking, Networking, etc.)* - [Channel 1]
+
+https://www.youtube.com/user/sidemastersupremo/
+
+* **Core Stack** - *Formador en YouTube | Canal de contenido variado sobre Informática (Shell Script, Programación, Hacking, Networking, etc.)* - [Channel 2]
+
+https://www.youtube.com/user/gvideosmtutorialesgm
