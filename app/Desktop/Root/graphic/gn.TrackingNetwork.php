@@ -1,8 +1,9 @@
 <?php
-	#Importar constantes.
-	include ($_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php");
-
     @session_start();
+
+    #Importar constantes.
+    include (@$_SESSION['getConsts']);
+
     @$_SESSION['call'] = "off";
 
     include (PF_CONNECT_SERVER);
@@ -13,7 +14,6 @@
 
     $R = $CN->getAllHost();
 ?>
-
 
 <!-- <div class="mixings-get-devices"> -->
     <!-- Mixitup Filters -->

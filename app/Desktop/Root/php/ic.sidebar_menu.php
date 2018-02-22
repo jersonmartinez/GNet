@@ -1,32 +1,38 @@
 <!-- Start: Sidebar Menu -->
 <ul class="nav sidebar-menu">
-  <li class="sidebar-label pt20">GESTIÓN DE RED</li>
+    <li class="sidebar-label pt20">GESTIÓN DE RED</li>
 
-  <li>
-    <a href="#" id="sb_item_TrackingNetwork">
-      <span class="fa fa-calendar"></span>
-      <span class="sidebar-title">Autodescubrimiento</span>
-    </a>
-  </li>
+    <li>
+        <a href="#" id="sb_item_TrackingNetwork">
+            <span class="fa fa-calendar"></span>
+            <span class="sidebar-title">Autodescubrimiento</span>
+        </a>
+    </li>
 
-  <li>
-    <a class="accordion-toggle" href="#">
-      <span class="glyphicon glyphicon-book"></span>
-      <span class="sidebar-title">Documentación</span>
-      
-      <span class="caret"></span>
-    </a>
-    <ul class="nav sub-nav">
-      <li>
-        <a href="#" id="sidebar_show_documentation">
-          <span class="glyphicon glyphicon-eye-open"></span>Mostrar</a>
-      </li>
-      <li>
-        <a href="#" id="sidebar_redactDocumentation">
-          <span class="glyphicon glyphicon-text-height"></span>Redactar</a>
-      </li>
-      
-    </ul>
+    <li>
+        <a class="accordion-toggle" href="#">
+            <span class="glyphicon glyphicon-book"></span>
+            <span class="sidebar-title">Documentación</span>
+          
+            <span class="caret"></span>
+        </a>
+    
+        <ul class="nav sub-nav">
+            <li>
+                <a href="#" id="sidebar_show_documentation">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    Mostrar
+                </a>
+            </li>
+            
+            <li>
+                <a href="#" id="sidebar_redactDocumentation">
+                    <span class="glyphicon glyphicon-text-height"></span>
+                    Redactar
+                </a>
+            </li>
+          
+        </ul>
   </li>
 
 

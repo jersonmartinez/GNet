@@ -1,11 +1,9 @@
 <?php
 	/*Se incluye el fichero que contiene las constantes, 
 	listas para ser llamadas*/
-	$Const = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php";
-	if (!file_exists($Const))
-		$Const = $_SERVER['DOCUMENT_ROOT']."/app/core/ic.const.php";
 	
-	include ($Const);
+	@session_start();
+	include (@$_SESSION['getConsts']);
 
 	/*Se incluye una clase que contiene los métodos 
 	necesarios para realizar las operaciones 

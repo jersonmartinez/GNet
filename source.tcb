@@ -1,5 +1,12 @@
 <?php
 	@session_start();
+	
+	#Inclusión de constantes que contienen las rutas de acceso. 
+	@$_SESSION['getConsts'] = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."app/core/ic.const.php";
+	if (!file_exists(@$_SESSION['getConsts'])){
+		@$_SESSION['getConsts'] = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php";
+	}
+	
 	if (@$_SESSION['login'] == true){
 		include ("app/core/ic.desktop.php");
 	} else {

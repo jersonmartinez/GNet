@@ -2,15 +2,8 @@
 <html lang="en">
 	<head>
 		<?php
-			#Author: Jerson Martínez (Side Master)
-		
-			#Inclusión de constantes que contienen las rutas de acceso. 
-			$Const = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."app/core/ic.const.php";
-			if (!file_exists($Const)){
-				$Const = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php";
-			}
-			
-			include ($Const);
+			#Author: Jerson Martínez (Side Master)			
+			include (@$_SESSION['getConsts']);
 			// echo $Const;
 
 			#Se agrega el head del core, utilizando la constante PF_CORE_HEAD.
