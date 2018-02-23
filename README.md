@@ -2,7 +2,7 @@
 Web System of Network Management, Servers and Firewalls under GNU/Linux. 
 
 ### Prerrequisitos
-Para utilizar este proyecto deberá tener instalado el siguiente servicio y herramienta.
+Para utilizar este proyecto deberá tener instalado los siguientes servicios y herramientas.
 
 ```
 1- Apache 2		| NGinx
@@ -20,7 +20,7 @@ git clone https://github.com/SideMasterGM/GNet.git /var/www/html/GNet
 ```
 Este proyecto en su forma funcional, es exclusivamente para ejecutarse en GNU/Linux.
 
-Suponiendo que no tiene un host virtual asociado al proyecto, en primera instancia tendrá que acceder con la dirección IP local, ya se localhost | 127.0.0.1, o bien, con la dirección IP que fue asignada por algún enrutador por medio de DHCP.
+Suponiendo que no tiene un host virtual asociado al proyecto, en primera instancia tendrá que acceder con la dirección IP local, ya sea localhost | 127.0.0.1, o bien, con la dirección IP que fue asignada por algún enrutador por medio de DHCP.
 
 ### Ejecución
 Ejecutar el navegador y arrancar el software: 
@@ -38,6 +38,16 @@ mysql -h 127.0.0.1 -u root -proot -e "CREATE DATABASE gnet;"
 ```
 Luego sólo falta rellenar con los datos host: 127.0.0.1, usuario: root, contraseña: root, base de datos: gnet.
 
+Verificar las credenciales en el fichero.
+```
+app/config/Config.tcb
+Line 1: Host
+Line 2: Username
+Line 3: Password
+Line 4: Database
+Line 5: Prefix Database
+```
+
 ### Usuario Administrador
 El siguiente formulario es sobre rellenar las credenciales del usuario con privilegio administrador. Este aún no está finalizado, por lo que se deberá acceder por medio de Root.
 
@@ -46,12 +56,12 @@ Pasando de este punto, apareceré el login, ahí es donde te debes loguear. Sól
 ## Documentación de Aplicaciones
 ### Las prácticas en desarrollo son las siguientes: 
 ```
-Tracking Network
-Agregar dispositivos de telecomunicaciones manualmente
-Control de usuarios | Seguridad de Login
-Obtención de información de los equipos
-Recolección de Logs
-Backups y Restores (Base de datos y configuración de servicios)
+1. Tracking Network
+2. Agregar dispositivos de telecomunicaciones manualmente
+3. Control de usuarios | Seguridad de Login
+4. Obtención de información de los equipos
+5. Recolección de Logs
+6. Backups y Restores (Base de datos y configuración de servicios)
 ```
 Fuente: https://github.com/SideMasterGM/GNet/wiki/Desarrollos
 
