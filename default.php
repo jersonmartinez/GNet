@@ -1,3 +1,3 @@
 <?php
-	include ("source.tcb");
+	include ("./source.tcb");
 ?>
