@@ -3,7 +3,7 @@
 	<head>
 		<?php
 			#Author: Jerson Martínez (Side Master)			
-			include (@$_SESSION['getConsts']);
+			// include (@$_SESSION['getConsts']);
 			// echo $Const;
 
 			#Se agrega el head del core, utilizando la constante PF_CORE_HEAD.

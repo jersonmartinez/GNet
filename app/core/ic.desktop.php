@@ -4,7 +4,7 @@
 		<?php 
 			
 			#Importar constantes.
-			include (@$_SESSION['getConsts']);
+			// include (@$_SESSION['getConsts']);
 
 			#Agregando fichero head del core.
 			include (PF_CORE_HEAD); 
