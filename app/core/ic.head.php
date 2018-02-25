@@ -22,4 +22,4 @@
 <link rel="stylesheet" type="text/css" href="app/controller/src/plugins/vendor/plugins/ladda/ladda.min.css">
 
 <!-- Para los calendarios... -->
-<link href="app/controller/src/plugins/vendor/plugins/datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
+<link href="app/controller/src/plugins/vendor/plugins/datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css">
