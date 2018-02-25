@@ -278,3 +278,16 @@ function getCoordsPosition(e) {
       	y: posy
     }
 }
+
+/*Gestionar dispositivos en red*/
+$("#sb_item_DevicesShow").click(function(){
+	NProgress.start();
+	$.ajax({
+		url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
+		success: function(data){
+			$("div.container_platform").html(data);
+			draw();
+			NProgress.done();
+		}
+	});
+});

@@ -2,12 +2,41 @@
 <ul class="nav sidebar-menu">
     <li class="sidebar-label pt20">GESTIÓN DE RED</li>
 
+    <!-- Se gestionan los dispositivos -->
+    <li>
+        <a class="accordion-toggle" href="#" id="sb_item_Devices">
+            <span class="glyphicon glyphicon-book"></span>
+            <span class="sidebar-title">Dispositivos</span>
+          
+            <span class="caret"></span>
+        </a>
+    
+        <ul class="nav sub-nav">
+            <li>
+                <a href="#" id="sb_item_DevicesShow">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    Gestionar
+                </a>
+            </li>
+            
+            <li>
+                <a href="#" id="sb_item_DevicesAdd">
+                    <span class="glyphicon glyphicon-text-height"></span>
+                    Agregar nuevo
+                </a>
+            </li>
+          
+        </ul>
+    </li>
+    
+    <!-- Se aplica el sondeo de Red -->
     <li>
         <a href="#" id="sb_item_TrackingNetwork">
             <span class="fa fa-calendar"></span>
             <span class="sidebar-title">Autodescubrimiento</span>
         </a>
     </li>
+
 
     <li>
         <a class="accordion-toggle" href="#">
@@ -33,7 +62,7 @@
             </li>
           
         </ul>
-  </li>
+    </li>
 
 
   <li>
