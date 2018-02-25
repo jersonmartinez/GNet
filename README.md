@@ -13,7 +13,55 @@ Para utilizar este proyecto deberá tener instalado los siguientes servicios y h
 ```
 Para no complicarse pueden instalar algún gestor de paquetes como WAMP(Windows), LAMPP (Linux) o XAMPP (Todas las plataformas).
 
-## Instalación
+## Instalación de Paquetes
+Es necesario instalar lo siguientes paquetes, para eso dejaré las instrucciones.
+
+### Repositorio
+```
+sudo add-apt-repository ppa:ondrej/php
+sudo apt-get update
+```
+
+### Apache 2 (Web Server)
+```
+apt-get -y install apache2
+```
+
+### PHP 7 | Módulo Apache PHP
+```
+apt-get -y install php7.0 libapache2-mod-php7.0
+```
+
+### MySQL 5.7
+```
+apt-get -y install mysql-server mysql-client
+mysql_secure_installation
+```
+
+Instrucción para crear un usuario: 
+```
+mysql -h 127.0.0.1 -u root -proot -e "GRANT ALL PRIVILEGES ON *.* TO 'Side Master'@'127.0.0.1' IDENTIFIED BY 'MiClave' WITH GRANT OPTION";
+```
+
+### MariaDB 10
+```
+apt-get -y install mariadb-server mariadb-client
+mysql_secure_installation
+```
+
+### MySQL | MariaDB para soportar PHP
+```
+apt-cache search php7.0
+apt-get -y install php7.0-mysql php7.0-curl php7.0-gd php7.0-intl php-pear php-imagick php7.0-imap php7.0-mcrypt php-memcache  php7.0-pspell php7.0-recode php7.0-sqlite3 php7.0-tidy php7.0-xmlrpc php7.0-xsl php7.0-mbstring php-gettext
+```
+
+### phpMyAdmin
+```
+apt-get -y install phpmyadmin
+```
+Luego de haber instalado todos estos paquetes, tendrá un sistema flexible.
+
+## Instalación del Proyecto
 En caso de GNU / Linux. 
 ```
 git clone https://github.com/SideMasterGM/GNet.git /var/www/html/GNet
