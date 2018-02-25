@@ -286,7 +286,7 @@ $("#sb_item_DevicesShow").click(function(){
 		url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
 		success: function(data){
 			$("div.container_platform").html(data);
-			draw();
+			// draw();
 			NProgress.done();
 		}
 	});
