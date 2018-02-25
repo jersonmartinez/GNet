@@ -1,8 +1,8 @@
 <?php
     @session_start();
-    include (@$_SESSION['getConsts']);
+    // include (@$_SESSION['getConsts']);
     
-    // include ($_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php");
+    include ($_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php");
 
 ?>
 

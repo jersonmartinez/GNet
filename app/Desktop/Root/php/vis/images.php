@@ -1,5 +1,5 @@
 <?php
-	// include ($_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php");
+	include ($_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php");
 
 	?>
 		<script type="text/javascript" src="<?php echo PDS_DESKTOP_ROOT; ?>/js/vis/vis.js"></script>
