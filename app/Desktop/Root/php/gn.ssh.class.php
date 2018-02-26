@@ -83,7 +83,7 @@
 			return true;
 		}
 
-		public function getMemoryState(){
+		/*public function getMemoryState(){
 			$filename = "getMemoryState.sh";
 			$ActionArray[] = "MEMORIA=($(free -m | grep 'Mem' | cut -d ':' -f2))";
 			array_push($ActionArray, 'echo "${MEMORIA[0]},${MEMORIA[1]},${MEMORIA[2]},${MEMORIA[3]},${MEMORIA[4]},${MEMORIA[5]},"');
@@ -93,7 +93,7 @@
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
-		}
+		}*/
 
 		public function getDiskUsage(){
 			$filename = "getDiskUsage.sh";
@@ -694,6 +694,30 @@
 		public function ConnectDB($H, $U, $P, $D, $X){
 			$this->db_connect = new GNet($H, $U, $P, $D);
 			$this->db_prefix = $X;
+		}
+
+		public function getMemoryState(){
+			$filename = "getMemoryState.sh";
+			$ActionArray[] = "MEMORIA=($(free -m | grep 'Mem' | cut -d ':' -f2))";
+			array_push($ActionArray, 'echo "${MEMORIA[0]},${MEMORIA[1]},${MEMORIA[2]},"');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getSwapState(){
+			$filename = "getSwapState.sh";
+			$ActionArray[] = "SWAP=($(free -m | egrep '(Intercambio|Swap)' | cut -d ':' -f2))";
+			array_push($ActionArray, 'echo "${SWAP[0]},${SWAP[1]},${SWAP[2]},"');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
 		}
 
 	}
