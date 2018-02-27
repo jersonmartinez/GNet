@@ -99,7 +99,7 @@
 	            plotShadow: false
 	        },
 	        title: {
-	            text: "Estado de la memoria Swap"
+	            text: "Área de intercambio | Swap"
 	        },
 	        tooltip: {
 	            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'

@@ -15,6 +15,7 @@
   <script src="app/controller/src/plugins/assets/js/demo/demo.js"></script>
   <script src="app/controller/src/plugins/assets/js/main.js"></script>
   <script src="app/controller/js/ic.script.js"></script>
+  <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts.js"></script>
   <script src="app/controller/src/plugins/vendor/plugins/c3charts/d3.min.js"></script>
   <script src="app/controller/src/plugins/vendor/plugins/c3charts/c3.min.js"></script> 
 

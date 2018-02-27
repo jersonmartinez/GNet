@@ -278,3 +278,14 @@ function getCoordsPosition(e) {
       	y: posy
     }
 }
+
+$("#sb_item_MonirorResources").click(function(){
+	NProgress.start();
+	$.ajax({
+		url: "app/Desktop/Root/graphic/gn.MonitorResources.php",
+		success: function(data){
+			$("div.container_platform").html(data);
+			NProgress.done();
+		}
+	});
+});
