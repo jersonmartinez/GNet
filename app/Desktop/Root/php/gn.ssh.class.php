@@ -95,7 +95,7 @@
 			return getErrors();
 		}*/
 
-		public function getDiskUsage(){
+		/*public function getDiskUsage(){
 			$filename = "getDiskUsage.sh";
 			$ActionArray[] = "DISCO=($(df -PH | grep sda | cut -d '/' -f3))";
 			array_push($ActionArray, 'echo "${DISCO[1]},${DISCO[2]},${DISCO[3]},${DISCO[4]},"');
@@ -105,7 +105,7 @@
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
-		}
+		}*/
 
 		public function getNetworkInterfaces(){
 			$filename = "getNetworkInterfaces.sh";
@@ -719,6 +719,39 @@
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
 		}
+
+		public function getCpuState(){
+			$filename = "getcpuState.sh";
+			$ActionArray[] = "NameModel=($(cat /proc/cpuinfo | grep name | cut -d ':' -f2))";
+			array_push($ActionArray, "Velocidad=$(cat /proc/cpuinfo | grep name | cut -d ' ' -f 10)");
+			array_push($ActionArray, "UsoUser=$(top -n1 | grep '%Cpu' | cut -d ' ' -f3 | sed 's/,/./g')");
+			array_push($ActionArray, "UsoSystem=$(top -n1 | grep '%Cpu' | cut -d ' ' -f6 | sed 's/,/./g')");
+			array_push($ActionArray, "TotalProc=$(top -n1 | egrep '(Tareas|Tasks)' | cut -d ' ' -f2)");
+			array_push($ActionArray, 'echo "${NameModel[*]},${Velocidad[*]},$UsoUser,$UsoSystem,$UsoTotal,$TotalProc,"');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getDiskState(){
+			$filename = "getDiskState.sh";
+			$ActionArray[] = "Parts=($(lsblk -i | grep 'part' | awk {'print $1'}))";
+			array_push($ActionArray, 'for i in ${Parts[*]}; do');
+			array_push($ActionArray, 'Part=$(echo ${i:2})');
+			array_push($ActionArray, 'Disk=($(df -H /dev/$Part | sed "1d" | tr -d "G"))');
+			array_push($ActionArray, 'echo "${Disk[2]},${Disk[3]},${Disk[4]},${Disk[5]},"');
+			array_push($ActionArray, "done");
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
 
 	}
 	// echo (new ConnectSSH("192.168.100.2", "network", "123"))->getDHCPShowAssignIP();

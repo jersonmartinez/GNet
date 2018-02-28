@@ -23,17 +23,30 @@
    		echo $value." ";
    	}
 
+   	$CpuState = explode(",", $ConnectSSH->getCpuState());
+   	foreach ($CpuState as $value) {
+   		echo $value."";
+   	}
+
+   	$DiskUsage = explode(",", $ConnectSSH->getDiskState());
+   	foreach ($DiskUsage as $value) {
+   		echo $value."";
+   	}
+
  ?>
 
 <div class="row">
 	<div class="col-xs-6">
  		<div id="highchart-pie_memory" style="width: 100%; height: 250px; "></div>
+ 		<div id="container_disk" style="height: 400px; margin-top: 20px;"></div>
 	</div>
 
 	<div class="col-xs-6">
-		<div id="highchart-pie_swap" style="width: 100%; height: 250px; "></div>
+		<div id="highchart-pie_swap" style="width: 100%; height: 250px;"></div>
 	</div>
+	<div id="donut-chart_cpu" style="height: 250px; width: 100%; margin-top: 20px;"></div>
 </div>
+
 
 <script type="text/javascript">
 
@@ -132,4 +145,58 @@
 	        }]
 	    });
 	}
- </script>
+
+	// Espacio en disco
+	Highcharts.chart('container_disk', {
+	credits: false,
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45
+        }
+    },
+    title: {
+        text: 'Uso del disco duro'
+    },
+    subtitle: {
+        text: 'Estado del disco'
+    },
+    plotOptions: {
+        pie: {
+            innerSize: 100,
+            depth: 45
+        }
+    },
+    series: [{
+        name: 'Tamaño en GB',
+        data: [
+            ['Espacio usado', <?php echo $DiskUsage[0]; ?>],
+            ['Espacio disponible', <?php echo $DiskUsage[1]; ?>]
+        ]
+    }]
+});
+
+
+/*// Donut Chart
+var donutChartCpu = c3.generate({
+    bindto: '#donut-chart_cpu',
+    color: {
+      pattern: Colors,
+    },
+    data: {
+        columns: [
+            ['data1', 30],
+            ['data2', 120],
+        ],
+        type : 'donut',
+        onclick: function (d, i) { console.log("onclick", d, i); },
+        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
+        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+    },
+    donut: {
+        title: "Iris Petal Width"
+    }
+});*/
+
+</script>

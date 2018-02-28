@@ -2,8 +2,12 @@
  
   <script src="app/controller/src/plugins/vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
 
+<!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
+
   <!-- HighCharts Plugin -->
   <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts.js"></script>
+  <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts-3d.js"></script> 
+  <script src="app/controller/src/plugins/vendor/plugins/highcharts/exporting.js"></script> 
 
   <!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
   <script src="app/controller/src/plugins/vendor/plugins/jvectormap/jquery.jvectormap.min.js"></script>
@@ -35,7 +39,15 @@
   <!-- Ordenar espacios (dispositivos en la filosofia del proyecto) -->
   <script src="app/controller/src/plugins/vendor/plugins/mixitup/jquery.mixitup.min.js"></script>
 
-  <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script> 
+  <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script>
+
+  <script src="app/controller/src/plugins/vendor/plugins/c3charts/d3.min.js"></script>
+  <script src="app/controller/src/plugins/vendor/plugins/c3charts/c3.min.js"></script> 
+
+<!-- <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+
+
 
   <script type="text/javascript">
  
