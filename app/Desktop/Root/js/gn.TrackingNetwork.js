@@ -25,7 +25,7 @@ Ladda.bind('.progress-button', {
         }, 400);
     }
 });
-    
+
 $('.creating-admin-panels').adminpanel({
     grid: '.admin-grid',
     draggable: false,
@@ -41,6 +41,41 @@ $('.creating-admin-panels').adminpanel({
         $(window).trigger('resize');
     }
 });
+    
+// $('.creating-admin-panels').adminpanel({
+//     grid: '.admin-grid',
+//     draggable: false,
+//     preserveGrid: true,
+//     mobile: true,
+//     // On AdminPanel Init complete we fade in the content. Optional
+//     onFinish: function() {
+//         $('.creating-admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+//     },
+//     // We trigger a window resize after a panel has been modified. This helps catch
+//     // any plugins which may need to update after the panel was changed. Optional
+//     onSave: function() {
+//         $(window).trigger('resize');
+//     }
+// });
+
+
+
+// /*Devices Management*/
+// $('.CAP-DevicesManagement').adminpanel({
+//     grid: '.AG-DevicesManagement',
+//     draggable: false,
+//     preserveGrid: true,
+//     mobile: true,
+//     // On AdminPanel Init complete we fade in the content. Optional
+//     onFinish: function() {
+//         $('.CAP-DevicesManagement').addClass('animated fadeIn').removeClass('fade-onload');
+//     },
+//     // We trigger a window resize after a panel has been modified. This helps catch
+//     // any plugins which may need to update after the panel was changed. Optional
+//     onSave: function() {
+//         $(window).trigger('resize');
+//     }
+// });
 
 $('#mix-items-other').mixItUp();
 

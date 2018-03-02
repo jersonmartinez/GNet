@@ -37,6 +37,9 @@
 
   <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script> 
 
+  <script src="app/controller/src/plugins/vendor/plugins/highlight/highlight.pack.js"></script> 
+
+
   <script type="text/javascript">
  
 

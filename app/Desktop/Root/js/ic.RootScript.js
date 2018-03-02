@@ -183,7 +183,7 @@ $("#sidebar_redactDocumentation").click(function(){
 });
 
 var GlobalX = 0, GlobalY = 0;
-
+var CountNow = 0;
 $(document).mousemove(function(event){	
     GlobalX = event.clientX;
     GlobalY = event.clientY;

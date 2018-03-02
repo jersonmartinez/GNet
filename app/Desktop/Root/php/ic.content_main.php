@@ -8,8 +8,9 @@
   include (PD_DESKTOP_ROOT."/graphic/ic.modal.config_network.php");
 ?>
 
-<div class="container_platform"></div>
+<div class="container_platform">
 
+</div>
 
 
 <button type="hidden" class="AddRedactDocumentation" data-toggle="modal" data-target="#NowAddRedactDocumentation"></button>
