@@ -7,7 +7,11 @@
   <!-- HighCharts Plugin -->
   <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts.js"></script>
   <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts-3d.js"></script> 
-  <script src="app/controller/src/plugins/vendor/plugins/highcharts/exporting.js"></script> 
+  <script src="app/controller/src/plugins/vendor/plugins/highcharts/exporting.js"></script>
+  <script src="app/controller/src/plugins/vendor/plugins/highcharts/solid-gauge.js"></script>
+  <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts-more.js"></script>
+
+   
 
   <!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
   <script src="app/controller/src/plugins/vendor/plugins/jvectormap/jquery.jvectormap.min.js"></script>

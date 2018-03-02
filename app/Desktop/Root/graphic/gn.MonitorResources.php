@@ -14,22 +14,17 @@
 
    	$Variable = explode(",", $ConnectSSH->getMemoryState());
 
-   	foreach ($Variable as $value) {
-   		echo $value." ";
-   	}
-
+   	
    	$SwapState = explode(",", $ConnectSSH->getSwapState());
-   	foreach ($SwapState as $value) {
-   		echo $value." ";
-   	}
 
    	$CpuState = explode(",", $ConnectSSH->getCpuState());
-   	foreach ($CpuState as $value) {
-   		echo $value."";
-   	}
 
    	$DiskUsage = explode(",", $ConnectSSH->getDiskState());
-   	foreach ($DiskUsage as $value) {
+
+   	$NetAddress = explode(",", $ConnectSSH->getNetAddress());
+
+   	$BatteryState = explode(",", $ConnectSSH->getBatteryState());
+   	foreach ($BatteryState as $value) {
    		echo $value."";
    	}
 
@@ -37,7 +32,7 @@
 
 <div class="row">
 	<div class="col-xs-6">
- 		<div id="highchart-pie_memory" style="width: 100%; height: 250px; "></div>
+ 		<div id="highchart-pie_memory" style="width: 100%; height: 250px;"></div>
  		<div id="container_disk" style="height: 400px; margin-top: 20px;"></div>
 	</div>
 
@@ -47,6 +42,29 @@
 	<div id="donut-chart_cpu" style="height: 250px; width: 100%; margin-top: 20px;"></div>
 </div>
 
+<table>
+	<tr>
+		<td>Interfaz de red</td>
+		<td>Dirección IP</td>	
+	</tr>
+	<?php
+		$i = 0;
+		foreach ($NetAddress as $value) {
+
+			?>
+				<tr>
+					<td><?php echo $NetAddress[$i++]; ?></td>
+					<td><?php echo $NetAddress[$i++]; ?></td>
+				</tr>
+			<?php
+		}
+	?>
+</table>
+
+<div style="width: 600px; height: 400px; margin: 0 auto">
+    <div id="container-speed_cpu" style="width: 300px; height: 200px; float: left"></div>
+    <div id="container-rpm_cpu" style="width: 300px; height: 200px; float: left"></div>
+</div>
 
 <script type="text/javascript">
 
@@ -110,6 +128,7 @@
 	            plotBackgroundColor: null,
 	            plotBorderWidth: null,
 	            plotShadow: false
+
 	        },
 	        title: {
 	            text: "Área de intercambio | Swap"
@@ -145,7 +164,7 @@
 	        }]
 	    });
 	}
-
+	
 	// Espacio en disco
 	Highcharts.chart('container_disk', {
 	credits: false,
@@ -178,25 +197,145 @@
 });
 
 
-/*// Donut Chart
-var donutChartCpu = c3.generate({
-    bindto: '#donut-chart_cpu',
-    color: {
-      pattern: Colors,
+	var gaugeOptionsCpu = {
+
+    chart: {
+        type: 'solidgauge'
     },
-    data: {
-        columns: [
-            ['data1', 30],
-            ['data2', 120],
+
+    title: null,
+
+    pane: {
+        center: ['50%', '85%'],
+        size: '140%',
+        startAngle: -90,
+        endAngle: 90,
+        background: {
+            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+            innerRadius: '60%',
+            outerRadius: '100%',
+            shape: 'arc'
+        }
+    },
+
+    tooltip: {
+        enabled: false
+    },
+
+    // the value axis
+    yAxis: {
+        stops: [
+            [0.1, '#55BF3B'], // green
+            [0.5, '#DDDF0D'], // yellow
+            [0.9, '#DF5353'] // red
         ],
-        type : 'donut',
-        onclick: function (d, i) { console.log("onclick", d, i); },
-        onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-        onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+        lineWidth: 0,
+        minorTickInterval: null,
+        tickAmount: 2,
+        title: {
+            y: -70
+        },
+        labels: {
+            y: 16
+        }
     },
-    donut: {
-        title: "Iris Petal Width"
+
+    plotOptions: {
+        solidgauge: {
+            dataLabels: {
+                y: 5,
+                borderWidth: 0,
+                useHTML: true
+            }
+        }
     }
-});*/
+};
+
+// The speed gauge
+var chartSpeedOne = Highcharts.chart('container-speed_cpu', Highcharts.merge(gaugeOptionsCpu, {
+    yAxis: {
+        min: 0,
+        max: 200,
+        title: {
+            text: 'Speed'
+        }
+    },
+
+    credits: {
+        enabled: false
+    },
+
+    series: [{
+        name: 'Speed',
+        data: [80],
+        dataLabels: {
+            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
+                   '<span style="font-size:12px;color:silver">km/h</span></div>'
+        },
+        tooltip: {
+            valueSuffix: ' km/h'
+        }
+    }]
+
+}));
+
+// The RPM gauge
+var chartRpm = Highcharts.chart('container-rpm_cpu', Highcharts.merge(gaugeOptionsCpu, {
+    yAxis: {
+        min: 0,
+        max: 5,
+        title: {
+            text: 'RPM'
+        }
+    },
+
+    series: [{
+        name: 'RPM',
+        data: [1],
+        dataLabels: {
+            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y:.1f}</span><br/>' +
+                   '<span style="font-size:12px;color:silver">* 1000 / min</span></div>'
+        },
+        tooltip: {
+            valueSuffix: ' revolutions/min'
+        }
+    }]
+
+}));
+
+// Bring life to the dials
+setInterval(function () {
+    // Speed
+    var point,
+        newVal,
+        inc;
+
+    if (chartSpeedOne) {
+        point = chartSpeedOne.series[0].points[0];
+        inc = Math.round((Math.random() - 0.5) * 100);
+        newVal = point.y + inc;
+
+        if (newVal < 0 || newVal > 200) {
+            newVal = point.y - inc;
+        }
+
+        point.update(newVal);
+    }
+
+    // RPM
+    if (chartRpm) {
+        point = chartRpm.series[0].points[0];
+        inc = Math.random() - 0.5;
+        newVal = point.y + inc;
+
+        if (newVal < 0 || newVal > 5) {
+            newVal = point.y - inc;
+        }
+
+        point.update(newVal);
+    }
+}, 2000);
 
 </script>
