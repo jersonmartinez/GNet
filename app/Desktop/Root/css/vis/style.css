@@ -127,6 +127,16 @@ div.mixings-get-devices .mix-container .mix.category-1 {
     height: 150px;
 }
 
+div.mixings-get-devices .mix-container .mix.category-1 img {
+    margin-left: 25%; 
+    height: 130px;
+}
+
+div.mixings-get-devices .mix-container .mix.category-2 img {
+    margin-left: 25%; 
+    height: 130px;
+}
+
 div.mixings-get-devices .mix-container .mix.category-2 {
     border-top: 3px solid #56de04;
     height: 150px;

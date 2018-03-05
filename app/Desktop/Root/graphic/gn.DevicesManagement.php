@@ -71,11 +71,15 @@
                                     while ($Restore = @$R->fetch_array(MYSQLI_ASSOC)) {
                                         if ((bool)$Restore['router']){
                                             ?>
-                                                <div class="mix category-1" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;"></div>
+                                                <div class="mix category-1" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
+                                                    <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/computers/laptop1.png" />
+                                                </div>
                                             <?php
                                         } else {
                                             ?>
-                                                <div class="mix category-2" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;"></div>
+                                                <div class="mix category-2" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
+                                                    <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/routers/router4.png" />
+                                                </div>
                                             <?php
                                         }
                                         $R_Count++;
