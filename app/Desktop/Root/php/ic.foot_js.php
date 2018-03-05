@@ -10,7 +10,6 @@
   <script src="app/controller/src/plugins/vendor/plugins/highcharts/exporting.js"></script>
   <script src="app/controller/src/plugins/vendor/plugins/highcharts/solid-gauge.js"></script>
   <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts-more.js"></script>
-
    
 
   <!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
@@ -48,8 +47,8 @@
   <script src="app/controller/src/plugins/vendor/plugins/c3charts/d3.min.js"></script>
   <script src="app/controller/src/plugins/vendor/plugins/c3charts/c3.min.js"></script> 
 
-<!-- <script src="https://code.highcharts.com/highcharts-3d.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script> -->
+  <!-- Table -->
+  <script src="app/controller/src/plugins/vendor/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
 
 
 
