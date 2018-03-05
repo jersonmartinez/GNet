@@ -15,33 +15,6 @@
     $R = $CN->getAllHost();
 ?>
 
-<!-- <div class="mixings-get-devices"> -->
-    <!-- Mixitup Filters -->
-   <!--  <div class="controls mt15">
-      <label class="ml5 mr10">Filter:</label>
-      <button class="filter btn btn-primary btn-sm" data-filter="all">All</button>
-      <button class="filter btn btn-primary btn-sm" data-filter=".category-1">Category 1</button>
-      <button class="filter btn btn-primary btn-sm" data-filter=".category-2">Category 2</button>
-      
-      <label class="ml20 mr10">Sort:</label>
-      <button class="sort btn btn-info btn-sm" data-sort="myorder:asc">Asc</button>
-      <button class="sort btn btn-info btn-sm" data-sort="myorder:desc">Desc</button>
-    </div> -->
-
-    <!-- Mixitup Items -->
-   <!--  <div id="mix-items-other" class="mix-container">
-      <div class="mix category-1" data-myorder="1"></div>
-      <div class="mix category-1" data-myorder="2"></div>
-      <div class="mix category-1" data-myorder="3"></div>
-      <div class="mix category-2" data-myorder="4"></div>
-      <div class="mix category-1" data-myorder="5"></div>
-      <div class="mix category-1" data-myorder="6"></div>
-      <div class="mix category-2" data-myorder="7"></div>
-      <div class="mix category-2" data-myorder="8"></div>
-      <div class="gap"></div>
-      <div class="gap"></div>
-    </div>
-</div> -->
 <!-- <hr>
 <div id="datetimepicker_test">
     <input type="text" class="form-control" style="max-width: 250px;">
