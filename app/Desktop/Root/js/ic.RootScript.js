@@ -1,4 +1,5 @@
 $(".AddRedactDocumentation").hide();
+$(".AddDeviceManagement").hide();
 
 $("#ConfigNetwork").click(function(){
 	$(".ConfigNetwork").click();
@@ -288,4 +289,8 @@ $("#sb_item_DevicesShow").click(function(){
 			NProgress.done();
 		}
 	});
+});
+
+$("#sb_item_AddDeviceManagement").click(function(){
+	$(".AddDeviceManagement").click();
 });

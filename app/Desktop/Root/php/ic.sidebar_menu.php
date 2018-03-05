@@ -20,7 +20,7 @@
             </li>
             
             <li>
-                <a href="#" id="sb_item_DevicesAdd">
+                <a href="#" id="sb_item_AddDeviceManagement">
                     <span class="glyphicon glyphicon-text-height"></span>
                     Agregar nuevo
                 </a>
