@@ -122,12 +122,12 @@
 <button type="hidden" id="ValidateModalProblemUser" class="btn btn-primary btn-lg animated-delay" data-animate='["1700", "fadeInUp"]' data-toggle="modal" data-target="#ValidationProblemUser"></button>
 
 <!-- Confirmar sus datos, estado de verificación -->
-<div class="modal fade" id="ValidationProblemUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="ValidationProblemUser" tabindex="-1" role="dialog" aria-labelledby="ModalOtherConfirmData" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Confirmación de los datos</h4>
+        <h4 class="modal-title" id="ModalOtherConfirmData">Confirmación de los datos</h4>
       </div>
       <div class="modal-body">
         <p><b>En el proceso de verificación de los datos nos dimos cuenta qué: </b></p>
@@ -147,12 +147,12 @@
 <button type="hidden" id="VMCreateUser" class="btn btn-primary btn-lg animated-delay" data-animate='["1700", "fadeInUp"]' data-toggle="modal" data-target="#VMUser">Validar Datos</button>
 
 <!-- Modal -->
-<div class="modal fade" id="VMUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="VMUser" tabindex="-1" role="dialog" aria-labelledby="ModalValidateData" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Instalación completada</h4>
+        <h4 class="modal-title" id="ModalValidateData">Instalación completada</h4>
       </div>
       <div class="modal-body">
         <p><b>¡Genial!, ¿Qué esperas para iniciar sesión?.</b></p>

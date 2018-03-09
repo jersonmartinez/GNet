@@ -108,12 +108,12 @@
 <button type="hidden" id="BtnModalLogin" class="btn btn-primary btn-lg animated-delay" data-animate='["1700", "fadeInUp"]' data-toggle="modal" data-target="#ValidationProblemUser"></button>
 
 <!-- Confirmar sus datos, estado de verificación -->
-<div class="modal fade" id="ValidationProblemUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="ValidationProblemUser" tabindex="-1" role="dialog" aria-labelledby="ModalConfirmData" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Confirmación de los datos</h4>
+        <h4 class="modal-title" id="ModalConfirmData">Confirmación de los datos</h4>
       </div>
       <div class="modal-body">
         <p><b>En el proceso de verificación de los datos nos dimos cuenta qué: </b></p>

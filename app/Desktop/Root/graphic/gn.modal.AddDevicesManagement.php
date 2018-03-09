@@ -1,12 +1,12 @@
 <button type="hidden" class="AddDeviceManagement" data-toggle="modal" data-target="#NowAddDeviceManagement"></button>
 
 <!-- <!- Modal -->
-<div class="modal fade" id="NowAddDeviceManagement" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="NowAddDeviceManagement" tabindex="-1" role="dialog" aria-labelledby="ModalAddNewDeviceNetwork" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Agregar nuevo dispositivo en red</h4>
+        <h4 class="modal-title" id="ModalAddNewDeviceNetwork">Agregar nuevo dispositivo en red</h4>
       </div>
       <div class="modal-body">
 

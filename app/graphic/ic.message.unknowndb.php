@@ -2,12 +2,12 @@
 <button type="hidden" id="ModalMessageUnknowndb" class="btn btn-primary btn-lg animated-delay" data-animate='["1700", "fadeInUp"]' data-toggle="modal" data-target="#MessageUnknowndb">Validar Datos</button>
 
 <!-- Modal -->
-<div class="modal fade" id="MessageUnknowndb" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="MessageUnknowndb" tabindex="-1" role="dialog" aria-labelledby="ModalMessageUps" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Up's, algo inesperado ha ocurrido</h4>
+        <h4 class="modal-title" id="ModalMessageUps">Up's, algo inesperado ha ocurrido</h4>
       </div>
       <div class="modal-body">
         <p><b>¡Ajá!, ¿Qué hizo con la base de datos?</b></p>

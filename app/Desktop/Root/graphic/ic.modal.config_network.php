@@ -1,12 +1,12 @@
 <button type="hidden" class="ConfigNetwork" data-toggle="modal" data-target="#NowConfigNetwork"></button>
 
 <!-- <!- Modal -->
-<div class="modal fade" id="NowConfigNetwork" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="NowConfigNetwork" tabindex="-1" role="dialog" aria-labelledby="ModalConfigureService" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Configurar servicio de Red</h4>
+        <h4 class="modal-title" id="ModalConfigureService">Configurar servicio de Red</h4>
       </div>
       <div class="modal-body">
 

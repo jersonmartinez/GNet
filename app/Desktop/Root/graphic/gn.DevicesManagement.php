@@ -76,7 +76,7 @@
                                                 ?>
                                                     <div class="mix category-3" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
                                                         <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/switchs/switchicon1.png" style="margin-left: 25%; height: 130px;" />
-                                                        <p style="margin: -10px 0 0 30%; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
+                                                        <p style="margin: -10px 0 0 27%; font-size: 16px;"><?php echo $Restore['net_next']; ?></p>
                                                     </div>
                                                 <?php
                                             } else {

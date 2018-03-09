@@ -111,12 +111,12 @@
   <!-- End: Content-Wrapper -->
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="ModalAgreements" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" title="Licencia de GNet" id="myModalLabel">Terminos de licencia | GNet (Gestión de Red)</h4>
+        <h4 class="modal-title" title="Licencia de GNet" id="ModalAgreements">Terminos de licencia | GNet (Gestión de Red)</h4>
       </div>
       <div class="modal-body">
         <p><b>Algún título por aquí de prueba</b></p>
@@ -148,12 +148,12 @@
 </div>
 
 <!-- Confirmar sus datos, estado de verificación -->
-<div class="modal fade" id="ValidationOfTheData" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="ValidationOfTheData" tabindex="-1" role="dialog" aria-labelledby="InstallProcessVerification" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Confirme sus datos</h4>
+        <h4 class="modal-title" id="InstallProcessVerification">Confirme sus datos</h4>
       </div>
       <div class="modal-body">
         <p><b>En el proceso de verificación de los datos nos dimos cuenta qué: </b></p>
@@ -173,12 +173,12 @@
 <button type="hidden" id="CallModalSuccessful" class="btn btn-primary btn-lg animated-delay" data-animate='["1700", "fadeInUp"]' data-toggle="modal" data-target="#InstallationSuccessful">Validar Datos</button>
 
 <!-- Modal -->
-<div class="modal fade" id="InstallationSuccessful" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="InstallationSuccessful" tabindex="-1" role="dialog" aria-labelledby="ModalInstallCompleted" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Instalación completada</h4>
+        <h4 class="modal-title" id="ModalInstallCompleted">Instalación completada</h4>
       </div>
       <div class="modal-body">
         <p><b>¡Que emoción!, ahora ya estamos listos.</b></p>
