@@ -10,7 +10,16 @@
 ?>
 
 <div class="container_platform">
+    <label class="field prepend-icon">
+                    <input type="text" name="tooltip2" id="tooltip2" class="gui-input" placeholder="Left">
+                     <b class="tooltip tip-left"><em> I am a left aligned tooltip!</em></b>
+                    <label for="tooltip2" class="field-icon"><i class="fa fa-flag"></i>
+                    </label>
+                </label>
 
+                <label class="option option-danger">
+                              <input name="checked" value="checked" checked="" type="checkbox">
+                              <span class="checkbox"></span>Check</label>
 </div>
 
 

@@ -6,12 +6,12 @@
   <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts.js"></script>
 
   <!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
-  <script src="app/controller/src/plugins/vendor/plugins/jvectormap/jquery.jvectormap.min.js"></script>
-  <script src="app/controller/src/plugins/vendor/plugins/jvectormap/assets/jquery-jvectormap-us-lcc-en.js"></script> 
+<!--   <script src="app/controller/src/plugins/vendor/plugins/jvectormap/jquery.jvectormap.min.js"></script>
+  <script src="app/controller/src/plugins/vendor/plugins/jvectormap/assets/jquery-jvectormap-us-lcc-en.js"></script>  -->
 
   <!-- FullCalendar Plugin + moment Dependency -->
-  <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/lib/moment.min.js"></script>
-  <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.js"></script>
+  <!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/lib/moment.min.js"></script> -->
+  <!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.js"></script> -->
 
    <!-- PNotify -->
   <script src="app/controller/src/plugins/vendor/plugins/pnotify/pnotify.js"></script>
@@ -35,7 +35,7 @@
   <!-- Ordenar espacios (dispositivos en la filosofia del proyecto) -->
   <script src="app/controller/src/plugins/vendor/plugins/mixitup/jquery.mixitup.min.js"></script>
 
-  <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script> 
+  <!-- <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script>  -->
 
   <script src="app/controller/src/plugins/vendor/plugins/highlight/highlight.pack.js"></script> 
 
