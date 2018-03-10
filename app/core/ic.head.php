@@ -12,13 +12,13 @@
 
 <!-- Theme CSS -->
 
-<link rel="stylesheet" type="text/css" href="app/controller/src/plugins/assets/skin/default_skin/css/theme.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_ASSETS_SKIN; ?>/default_skin/css/theme.css">
 
 <!-- Admin Forms CSS -->
-<link rel="stylesheet" type="text/css" href="app/controller/src/plugins/assets/admin-tools/admin-forms/css/admin-forms.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_ASSETS_ADMINTOOLS; ?>/admin-forms/css/admin-forms.min.css">
 
 <!-- Esta libreria es para el efecto de carga, es necesaria su version en JS, esta en el fichero ic.foot_js.php -->
-<link rel="stylesheet" type="text/css" href="app/controller/src/plugins/vendor/plugins/ladda/ladda.min.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/ladda/ladda.min.css">
 
 <!-- Para los calendarios... -->
-<link href="app/controller/src/plugins/vendor/plugins/datepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" type="text/css">
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datepicker/css/bootstrap-datetimepicker.css"> -->

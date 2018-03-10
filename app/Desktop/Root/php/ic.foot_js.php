@@ -1,46 +1,47 @@
-  <script src="app/controller/src/plugins/vendor/jquery/jquery-1.11.1.min.js"></script>
- 
-  <script src="app/controller/src/plugins/vendor/jquery/jquery_ui/jquery-ui.min.js"></script>
+<!-- Include Scrips -->
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery-1.11.1.min.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery_ui/jquery-ui.min.js"></script>
 
-  <!-- HighCharts Plugin -->
-  <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts.js"></script>
+<!-- HighCharts Plugin -->
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highcharts/highcharts.js"></script>
 
-  <!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
+
+<!-- PNotify -->
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/pnotify/pnotify.js"></script>
+
+<!-- Theme Javascript -->
+<script src="<?php echo PDS_SRC_PLUGINS_ASSETS_JS; ?>/utility/utility.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_ASSETS_JS; ?>/demo/demo.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_ASSETS_JS; ?>/main.js"></script>
+
+<!-- Widget Javascript -->
+<script src="<?php echo PDS_SRC_PLUGINS_ASSETS_JS; ?>/demo/widgets.js"></script>
+
+<!-- Importants Scripts -->
+<script src="<?php echo PDS_CTL_JS; ?>/ic.script.js"></script>
+<script src="<?php echo PDS_DESKTOP_ROOT_JS; ?>/ic.RootScript.js"></script>
+
+<!-- Esta libreria es para el efecto de carga, es necesaria su version en css, esta en el archivo ic.head.php o bien, a la constante: PF_CORE_HEAD-->
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/ladda/ladda.min.js"></script> 
+
+<!-- Progressbar -->
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/nprogress/nprogress.js"></script> 
+
+<!-- Ordenar espacios (dispositivos en la filosofia del proyecto) -->
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/mixitup/jquery.mixitup.min.js"></script>
+
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highlight/highlight.pack.js"></script> 
+
+<!-- <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script>  -->
+<!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
 <!--   <script src="app/controller/src/plugins/vendor/plugins/jvectormap/jquery.jvectormap.min.js"></script>
-  <script src="app/controller/src/plugins/vendor/plugins/jvectormap/assets/jquery-jvectormap-us-lcc-en.js"></script>  -->
+<script src="app/controller/src/plugins/vendor/plugins/jvectormap/assets/jquery-jvectormap-us-lcc-en.js"></script>  -->
 
-  <!-- FullCalendar Plugin + moment Dependency -->
-  <!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/lib/moment.min.js"></script> -->
-  <!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.js"></script> -->
+<!-- FullCalendar Plugin + moment Dependency -->
+<!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/lib/moment.min.js"></script> -->
+<!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.js"></script> -->
 
-   <!-- PNotify -->
-  <script src="app/controller/src/plugins/vendor/plugins/pnotify/pnotify.js"></script>
-
-  <!-- Theme Javascript -->
-  <script src="app/controller/src/plugins/assets/js/utility/utility.js"></script>
-  <script src="app/controller/src/plugins/assets/js/demo/demo.js"></script>
-  <script src="app/controller/src/plugins/assets/js/main.js"></script>
-
-  <!-- Widget Javascript -->
-  <script src="app/controller/src/plugins/assets/js/demo/widgets.js"></script>
-   <script src="app/controller/js/ic.script.js"></script>
-   <script src="app/Desktop/Root/js/ic.RootScript.js"></script>
-
-  <!-- Esta libreria es para el efecto de carga, es necesaria su version en css, esta en el archivo ic.head.php o bien, a la constante: PF_CORE_HEAD-->
-  <script src="app/controller/src/plugins/vendor/plugins/ladda/ladda.min.js"></script> 
-
-  <!-- Progressbar -->
-  <script src="app/controller/src/plugins/vendor/plugins/nprogress/nprogress.js"></script> 
-
-  <!-- Ordenar espacios (dispositivos en la filosofia del proyecto) -->
-  <script src="app/controller/src/plugins/vendor/plugins/mixitup/jquery.mixitup.min.js"></script>
-
-  <!-- <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script>  -->
-
-  <script src="app/controller/src/plugins/vendor/plugins/highlight/highlight.pack.js"></script> 
-
-
-  <script type="text/javascript">
+<script type="text/javascript">
  
 
   jQuery(document).ready(function() {

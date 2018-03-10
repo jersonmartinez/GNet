@@ -33,7 +33,11 @@
 		define ("PD_CONTROLLER_JS", 	$Path."/app/controller/js");
 		define ("PD_CONTROLLER_PHP", 	$Path."/app/controller/php");
 		define ("PD_CONTROLLER_SRC", 	$Path."/app/controller/src");
-	
+
+		define ("PDS_CTL_SRC", 			"app/controller/src");
+		define ("PDS_CTL_JS", 			"app/controller/js");
+		define ("PDS_CTL_PHP", 			"app/controller/php");
+
 	define ("PD_CORE", 		$Path."/app/core");
 		define ("PD_CORE_SERVICES", $Path."/app/core/Services");
 		
@@ -65,4 +69,17 @@
 
 	define ("PD_GRAPHIC", 	$Path."/app/graphic");
 	define ("PD_SRC", 		$Path."/app/src");
+
+	#Plugins
+	define ("PDS_SRC_PLUGINS_ASSETS", "app/controller/src/plugins/assets");
+		define ("PDS_SRC_PLUGINS_ASSETS_JS", "app/controller/src/plugins/assets/js");
+		define ("PDS_SRC_PLUGINS_ASSETS_ADMINTOOLS", "app/controller/src/plugins/assets/admin-tools");
+		define ("PDS_SRC_PLUGINS_ASSETS_FONTS", "app/controller/src/plugins/assets/fonts");
+		define ("PDS_SRC_PLUGINS_ASSETS_IMG", "app/controller/src/plugins/assets/img");
+		define ("PDS_SRC_PLUGINS_ASSETS_SKIN", "app/controller/src/plugins/assets/skin");
+
+	define ("PDS_SRC_PLUGINS_VENDOR", "app/controller/src/plugins/vendor");
+		define ("PDS_SRC_PLUGINS_VENDOR_JQ", "app/controller/src/plugins/vendor/jquery");
+		define ("PDS_SRC_PLUGINS_VENDOR_PLUGINS", "app/controller/src/plugins/vendor/plugins");
+
 ?>
