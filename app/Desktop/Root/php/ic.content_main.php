@@ -14,10 +14,10 @@
     <div class="admin-panels">
 
         <!-- Create Row -->
-        <div class="row" style="display: none;">
+        <div class="row AdminPanelPorDefecto">
 
             <!-- Create Column with required .admin-grid class -->
-            <div class="col-md-6 admin-grid">
+            <div class="col-md-6">
 
                 <!-- Create Panel with required unique ID -->
                 <div class="panel" id="p1">
@@ -72,7 +72,7 @@
                         <span class="panel-icon"><i class="fa fa-desktop"></i></span>
                         <span class="panel-title">Gestión de dispositivos</span>
                         
-                        <div class="container_options_controls" style="position: absolute; top: 0; right: 100px;">
+                        <div class="container_options_controls" style="position: absolute; top: 0; right:100px;">
                             <button style="padding: 9px;" class="filter btn btn-primary btn-sm active" data-filter="all">Todo</button>
                             <button style="padding: 9px;" class="filter btn btn-primary btn-sm" data-filter=".category-1">Dispositivos finales</button>
                             <button style="padding: 9px;" class="filter btn btn-info btn-sm" data-filter=".category-2">Enrutadores</button>
@@ -105,7 +105,7 @@
         </div>
 
         <!-- Create Row -->
-        <div class="row AdminPanel_TrackingNetwork" style="display: none;">
+        <div class="row AdminPanel_TrackingNetwork">
 
             <!-- Create Column with required .admin-grid class -->
             <div class="col-md-12">
@@ -142,10 +142,10 @@
 </div>
 
 
-<button type="hidden" class="AddRedactDocumentation" data-toggle="modal" data-target="#NowAddRedactDocumentation"></button>
+<!-- <button type="hidden" class="AddRedactDocumentation" data-toggle="modal" data-target="#NowAddRedactDocumentation"></button> -->
 
 <!-- <!- Modal -->
-<div class="modal fade" id="NowAddRedactDocumentation" tabindex="-1" role="dialog" aria-labelledby="ModalRedactionDocument" aria-hidden="true">
+<!-- <div class="modal fade" id="NowAddRedactDocumentation" tabindex="-1" role="dialog" aria-labelledby="ModalRedactionDocument" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
@@ -179,4 +179,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
