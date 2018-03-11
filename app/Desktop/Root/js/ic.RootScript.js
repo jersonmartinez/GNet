@@ -1,5 +1,14 @@
-$(".AddRedactDocumentation").hide();
+// $(".AddRedactDocumentation").hide();
 $(".AddDeviceManagement").hide();
+
+/*Admin Panels*/
+function HideAdminPanels(){
+	$(".AdminPanelPorDefecto").hide();
+	// $(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
+	// $(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
+}
+
+HideAdminPanels();
 
 $("#ConfigNetwork").click(function(){
 	$(".ConfigNetwork").click();
@@ -202,7 +211,8 @@ $(document).mousemove(function(event){
 
 //Tracking Network
 $("#sb_item_TrackingNetworkTest").click(function(){
-	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
+
+	HideAdminPanels();
 	
 	NProgress.start();
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeIn').show();
@@ -218,7 +228,10 @@ $("#sb_item_TrackingNetworkTest").click(function(){
 });
 
 /*Gestionar dispositivos en red*/
-$("#sb_item_DevicesManagementTest").click(function(){
+$("#sb_item_DevicesManagement").click(function(){
+
+	HideAdminPanels();
+
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
 	
 	NProgress.start();
@@ -227,7 +240,7 @@ $("#sb_item_DevicesManagementTest").click(function(){
 	$.ajax({
 		url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
 		success: function(data){
-			$(".AdminPanel_DevicesManagement_PanelBody").html(data);
+			$(".AdminPanel_DevicesManagement_PanelBody").addClass('animated fadeIn').html(data);
 			NProgress.done();
 		}
 	});
