@@ -10,16 +10,62 @@
 ?>
 
 <div class="container_platform">
-    <label class="field prepend-icon">
-                    <input type="text" name="tooltip2" id="tooltip2" class="gui-input" placeholder="Left">
-                     <b class="tooltip tip-left"><em> I am a left aligned tooltip!</em></b>
-                    <label for="tooltip2" class="field-icon"><i class="fa fa-flag"></i>
-                    </label>
-                </label>
+    <!-- Wrap content in admin-panel class -->
+    <div class="admin-panels">
 
-                <label class="option option-danger">
-                              <input name="checked" value="checked" checked="" type="checkbox">
-                              <span class="checkbox"></span>Check</label>
+        <!-- Create Row -->
+        <div class="row">
+
+            <!-- Create Column with required .admin-grid class -->
+            <div class="col-md-6 admin-grid">
+
+                <!-- Create Panel with required unique ID -->
+                <div class="panel" id="p1">
+                    <div class="panel-heading">
+                        <span class="panel-title"> Panel 1</span>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+
+                <!-- Create Panel with required unique ID -->
+                <div class="panel" id="p2">
+                    <div class="panel-heading">
+                        <span class="panel-title"> Panel 2</span>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+
+            </div>
+            <!-- End Column -->
+
+            <div class="col-md-6">
+
+                <!-- Create Panel with required unique ID -->
+                <div class="panel" id="p3">
+                    <div class="panel-heading">
+                        <span class="panel-title"> Panel 3</span>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+
+                <!-- Create Panel with required unique ID -->
+                <div class="panel" id="p4">
+                    <div class="panel-heading"> 
+                        <span class="panel-title"> Panel 4</span>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+                
+                Algo
+
+            </div>
+            <!-- End Column -->
+        </div>
+   </div>
 </div>
 
 

@@ -1,6 +1,6 @@
 <!-- Este es el fichero de cabecera!. -->
 <meta charset="utf-8">
-<title>GNet | <?php echo @$_SESSION['username']; ?></title>
+<title>GNet <?php echo empty(@$_SESSION['username']) ? "" : " | ".@$_SESSION['username']; ?></title>
 <meta name="keywords" content="GNet - Sistema de Gestión de Red" />
 <meta name="description" content="GNet - Sistema de Gestión de Red">
 <meta name="author" content="GNet">

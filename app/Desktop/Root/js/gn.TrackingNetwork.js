@@ -26,22 +26,18 @@ Ladda.bind('.progress-button', {
     }
 });
 
-$('.creating-admin-panels').adminpanel({
-    grid: '.admin-grid',
-    draggable: false,
+$('.admin-panels').adminpanel({
+    grid: '.admin-grid', // set column class
+    // draggable: true,
     preserveGrid: true,
     mobile: true,
-    // On AdminPanel Init complete we fade in the content. Optional
-    onFinish: function() {
-        $('.creating-admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
-    },
-    // We trigger a window resize after a panel has been modified. This helps catch
-    // any plugins which may need to update after the panel was changed. Optional
-    onSave: function() {
-        $(window).trigger('resize');
-    }
-});
     
+    onFinish: function() {
+        // On Init complete fadeIn adminpanel content
+        $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+    },
+});
+
 // $('.creating-admin-panels').adminpanel({
 //     grid: '.admin-grid',
 //     draggable: false,
@@ -53,34 +49,15 @@ $('.creating-admin-panels').adminpanel({
 //     },
 //     // We trigger a window resize after a panel has been modified. This helps catch
 //     // any plugins which may need to update after the panel was changed. Optional
-//     onSave: function() {
-//         $(window).trigger('resize');
-//     }
-// });
-
-
-
-// /*Devices Management*/
-// $('.CAP-DevicesManagement').adminpanel({
-//     grid: '.AG-DevicesManagement',
-//     draggable: false,
-//     preserveGrid: true,
-//     mobile: true,
-//     // On AdminPanel Init complete we fade in the content. Optional
-//     onFinish: function() {
-//         $('.CAP-DevicesManagement').addClass('animated fadeIn').removeClass('fade-onload');
-//     },
-//     // We trigger a window resize after a panel has been modified. This helps catch
-//     // any plugins which may need to update after the panel was changed. Optional
-//     onSave: function() {
-//         $(window).trigger('resize');
-//     }
+//     // onSave: function() {
+//     //     $(window).trigger('resize');
+//     // }
 // });
 
 $('#mix-items-other').mixItUp();
 
 // Inline
-$('#datetimepicker_test').datetimepicker({
-    defaultDate: "9/4/2014", 
-    inline: true
-});
+// $('#datetimepicker_test').datetimepicker({
+//     defaultDate: "9/4/2014", 
+//     inline: true
+// });

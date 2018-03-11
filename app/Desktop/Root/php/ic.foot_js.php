@@ -44,19 +44,16 @@
 <script type="text/javascript">
  
 
-  jQuery(document).ready(function() {
-
+jQuery(document).ready(function() {
     "use strict";
 
     // Init Demo JS  
     Demo.init();
  
-
     // Init Theme Core    
     Core.init({
       collapse: "sb-l-c", // sidebar left collapse style
     });
-
 
     // A "stack" controls the direction and position
     // of a notification. Here we create an array w
@@ -163,29 +160,51 @@
     // Init plugins used on this page
     // HighCharts, JvectorMap, Admin Panels
 
-    // Init Admin Panels on widgets inside the ".admin-panels" container
-    $('.admin-panels').adminpanel({
-      grid: '.admin-grid',
-      draggable: true,
-      // preserveGrid: true,
-      // mobile: true,
-      onStart: function() {
-        // Do something before AdminPanels runs
-      },
-      onFinish: function() {
-        $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+     // Init Admin Panels on widgets inside the ".admin-panels" container
+        $('.admin-panels').adminpanel({
+            grid: '.admin-grid', // set column class
+            // draggable: true,
+            preserveGrid: true,
+            mobile: true,
+            
+            onFinish: function() {
+                // On Init complete fadeIn adminpanel content
+                $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+            },
+        });
 
-        // Init the rest of the plugins now that the panels
-        // have had a chance to be moved and organized.
-        // It's less taxing to organize empty panels
-        demoHighCharts.init();
-        runVectorMaps(); // function below
-      },
-      onRemove: function(panel) {
-        var pID = $(panel).attr('id');
-        console.log(pID);
-      }
-    });
+        // $('.admin-panels2').adminpanel({
+        //     grid: '.admin-grid2', // set column class
+        //     onFinish: function() {
+        //         // On Init complete fadeIn adminpanel content
+        //         $('.admin-panels2').addClass('animated fadeIn').removeClass('fade-onload');
+        //     },
+        // });
+
+    // Init Admin Panels on widgets inside the ".admin-panels" container
+    // $('.admin-panels').adminpanel({
+    //   grid: '.admin-grid',
+    //   draggable: false,
+    //   preserveGrid: true,
+    //   mobile: true,
+
+    //   onStart: function() {
+    //     // Do something before AdminPanels runs
+    //   },
+    //   onFinish: function() {
+    //     $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+
+    //     // Init the rest of the plugins now that the panels
+    //     // have had a chance to be moved and organized.
+    //     // It's less taxing to organize empty panels
+    //     demoHighCharts.init();
+    //     runVectorMaps(); // function below
+    //   },
+    //   onRemove: function(panel) {
+    //     var pID = $(panel).attr('id');
+    //     console.log(pID);
+    //   }
+    // });
 
 
     // Init plugins for ".calendar-widget"

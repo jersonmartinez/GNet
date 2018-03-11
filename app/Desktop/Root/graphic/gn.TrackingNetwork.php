@@ -22,16 +22,16 @@
 
 <!-- <hr/> -->
 <!-- Required .creating-admin-panels wrapper-->
-<div class="creating-admin-panels">
+<div class="admin-panels">
 
     <!-- Create Row -->
     <div class="row">
 
         <!-- Create Column with required .admin-grid class -->
-        <div class="col-md-12 admin-grid">
+        <div class="col-md-12">
 
             <!-- Create Panel with required unique ID -->
-            <div class="panel" id="p1">
+            <div class="panel" id="p_TrackingNetwork">
                 <div class="panel-heading">
                     <span class="panel-icon"><i class="fa fa-desktop"></i></span>
                     <span class="panel-title">Mapa de Red (Autodescubrir dispositivos)</span>
