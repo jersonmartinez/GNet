@@ -203,6 +203,8 @@ $(document).mousemove(function(event){
 //Tracking Network
 
 $("#sb_item_TrackingNetworkTest").click(function(){
+	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
+	
 	NProgress.start();
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeIn').show();
 
