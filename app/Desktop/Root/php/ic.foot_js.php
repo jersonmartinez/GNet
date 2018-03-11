@@ -164,7 +164,7 @@ jQuery(document).ready(function() {
         $('.admin-panels').adminpanel({
             grid: '.admin-grid', // set column class
             // draggable: true,
-            preserveGrid: true,
+            // preserveGrid: true,
             mobile: true,
             
             onFinish: function() {

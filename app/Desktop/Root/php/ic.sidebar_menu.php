@@ -4,7 +4,7 @@
 
     <!-- Se gestionan los dispositivos -->
     <li>
-        <a class="accordion-toggle" href="#" id="sb_item_Devices">
+        <a class="accordion-toggle" href="#">
             <span class="glyphicon glyphicon-book"></span>
             <span class="sidebar-title">Dispositivos</span>
           
@@ -13,38 +13,18 @@
     
         <ul class="nav sub-nav">
             <li>
-                <a href="#" id="sb_item_DevicesShow">
+                <a href="#" id="sb_item_DevicesManagement">
                     <span class="glyphicon glyphicon-eye-open"></span>
                     Gestionar
                 </a>
             </li>
-            
+
             <li>
                 <a href="#" id="sb_item_AddDeviceManagement">
                     <span class="glyphicon glyphicon-text-height"></span>
                     Agregar nuevo
                 </a>
-            </li>
-          
-        </ul>
-    </li>
-
-    <!-- Se gestionan los dispositivos -->
-    <li>
-        <a class="accordion-toggle" href="#" id="sb_item_DevicesTest">
-            <span class="glyphicon glyphicon-book"></span>
-            <span class="sidebar-title">DispositivosTest</span>
-          
-            <span class="caret"></span>
-        </a>
-    
-        <ul class="nav sub-nav">
-            <li>
-                <a href="#" id="sb_item_DevicesManagementTest">
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                    Gestionar
-                </a>
-            </li>          
+            </li>      
         </ul>
     </li>
     
