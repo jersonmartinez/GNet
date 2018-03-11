@@ -202,6 +202,20 @@ $(document).mousemove(function(event){
 
 //Tracking Network
 
+$("#sb_item_TrackingNetworkTest").click(function(){
+	NProgress.start();
+	$(".AdminPanel_TrackingNetwork").addClass('animated fadeIn').show();
+
+	$.ajax({
+		url: "app/Desktop/Root/graphic/gn.TrackingNetworkTest.php",
+		success: function(data){
+			$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
+			draw();
+			NProgress.done();
+		}
+	});
+});
+
 /*This event will show the Tracking Network Design*/
 $("#sb_item_TrackingNetwork").click(function(){
 	NProgress.start();

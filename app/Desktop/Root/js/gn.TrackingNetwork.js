@@ -26,17 +26,17 @@ Ladda.bind('.progress-button', {
     }
 });
 
-$('.admin-panels').adminpanel({
-    grid: '.admin-grid', // set column class
-    // draggable: true,
-    preserveGrid: true,
-    mobile: true,
+// $('.admin-panels').adminpanel({
+//     grid: '.admin-grid', // set column class
+//     // draggable: true,
+//     preserveGrid: true,
+//     mobile: true,
     
-    onFinish: function() {
-        // On Init complete fadeIn adminpanel content
-        $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
-    },
-});
+//     onFinish: function() {
+//         // On Init complete fadeIn adminpanel content
+//         $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+//     },
+// });
 
 // $('.creating-admin-panels').adminpanel({
 //     grid: '.admin-grid',

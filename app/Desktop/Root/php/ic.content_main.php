@@ -14,7 +14,7 @@
     <div class="admin-panels">
 
         <!-- Create Row -->
-        <div class="row">
+        <div class="row master_row" style="display: none;">
 
             <!-- Create Column with required .admin-grid class -->
             <div class="col-md-6 admin-grid">
@@ -40,12 +40,13 @@
             </div>
             <!-- End Column -->
 
+            <!-- Create Column with required .admin-grid class -->
             <div class="col-md-6">
 
                 <!-- Create Panel with required unique ID -->
                 <div class="panel" id="p3">
                     <div class="panel-heading">
-                        <span class="panel-title"> Panel 3</span>
+                        <span class="panel-title"> Panel 1</span>
                     </div>
                     <div class="panel-body">
                     </div>
@@ -53,17 +54,64 @@
 
                 <!-- Create Panel with required unique ID -->
                 <div class="panel" id="p4">
-                    <div class="panel-heading"> 
-                        <span class="panel-title"> Panel 4</span>
+                    <div class="panel-heading">
+                        <span class="panel-title"> Panel 2</span>
                     </div>
                     <div class="panel-body">
                     </div>
                 </div>
-                
-                Algo
 
             </div>
+        </div>
+
+        <!-- Create Row -->
+        <div class="row AdminPanel_TrackingNetwork" style="display: none;">
+
+            <!-- Create Column with required .admin-grid class -->
+            <div class="col-md-12">
+
+                <!-- Create Panel with required unique ID -->
+                <div class="panel" id="p5">
+                    <div class="panel-heading">
+
+                        <span class="panel-icon"><i class="fa fa-desktop"></i></span>
+                        <span class="panel-title">Mapa de Red (Autodescubrir dispositivos)</span>
+
+                        <div class="container_options_controls" style="position: absolute; top: 0; right: 100px;">
+                            <button type="button" id="btn_tracking_b1" class="btn btn-dark btn_tracking_device" disabled="disabled">Configurar</button>
+                            <button type="button" id="btn_tracking_b2" class="btn btn-dark btn_tracking_device" disabled="disabled">Consola</button>
+                            <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Procesos</button>
+                            <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Servicios</button>
+                            <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Historial</button>
+                            <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Propiedades</button>
+
+                            <button type="button" class="btn btn-primary ladda-button progress-button" data-style="expand-right">
+                                <span class="ladda-label">Tracking Network</span>
+                            </button>
+                        </div>
+
+                    </div>
+                    <div class="panel-body AdminPanel_TrackingNetwork_PanelBody">
+                        
+
+
+                    </div>
+                </div>
+            </div>
             <!-- End Column -->
+        </div>
+
+        <div class="row" style="display: none;">
+            <div class="col-md-12">
+                 <!-- Create Panel with required unique ID -->
+                <div class="panel" id="p6">
+                    <div class="panel-heading">
+                        <span class="panel-title"> Panel 2</span>
+                    </div>
+                    <div class="panel-body">
+                    </div>
+                </div>
+            </div>
         </div>
    </div>
 </div>

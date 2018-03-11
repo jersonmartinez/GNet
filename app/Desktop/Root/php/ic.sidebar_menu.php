@@ -31,6 +31,14 @@
     
     <!-- Se aplica el sondeo de Red -->
     <li>
+        <a href="#" id="sb_item_TrackingNetworkTest">
+            <span class="fa fa-users"></span>
+            <span class="sidebar-title">Prueba de Tracking Network</span>
+        </a>
+    </li>
+
+    <!-- Se aplica el sondeo de Red -->
+    <li>
         <a href="#" id="sb_item_TrackingNetwork">
             <span class="fa fa-calendar"></span>
             <span class="sidebar-title">Autodescubrimiento</span>
