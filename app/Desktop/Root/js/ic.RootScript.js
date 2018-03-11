@@ -201,7 +201,6 @@ $(document).mousemove(function(event){
 });
 
 //Tracking Network
-
 $("#sb_item_TrackingNetworkTest").click(function(){
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
 	
@@ -213,6 +212,22 @@ $("#sb_item_TrackingNetworkTest").click(function(){
 		success: function(data){
 			$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
 			draw();
+			NProgress.done();
+		}
+	});
+});
+
+/*Gestionar dispositivos en red*/
+$("#sb_item_DevicesManagementTest").click(function(){
+	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
+	
+	NProgress.start();
+	$(".AdminPanel_DevicesManagement").addClass('animated fadeIn').show();
+
+	$.ajax({
+		url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
+		success: function(data){
+			$(".AdminPanel_DevicesManagement_PanelBody").html(data);
 			NProgress.done();
 		}
 	});
