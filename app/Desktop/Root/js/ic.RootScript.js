@@ -4,8 +4,8 @@ $(".AddDeviceManagement").hide();
 /*Admin Panels*/
 function HideAdminPanels(){
 	$(".AdminPanelPorDefecto").hide();
-	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
-	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
+	// $(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
+	// $(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
 }
 
 HideAdminPanels();
@@ -210,7 +210,7 @@ $(document).mousemove(function(event){
 });
 
 //Tracking Network
-$("#sb_item_TrackingNetworkTest").click(function(){
+$("#sb_item_TrackingNetwork").click(function(){
 
 	HideAdminPanels();
 	
@@ -218,7 +218,7 @@ $("#sb_item_TrackingNetworkTest").click(function(){
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeIn').show();
 
 	$.ajax({
-		url: "app/Desktop/Root/graphic/gn.TrackingNetworkTest.php",
+		url: "app/Desktop/Root/graphic/gn.TrackingNetwork.php",
 		success: function(data){
 			$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
 			draw();
@@ -241,19 +241,6 @@ $("#sb_item_DevicesManagement").click(function(){
 		url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
 		success: function(data){
 			$(".AdminPanel_DevicesManagement_PanelBody").addClass('animated fadeIn').html(data);
-			NProgress.done();
-		}
-	});
-});
-
-/*This event will show the Tracking Network Design*/
-$("#sb_item_TrackingNetwork").click(function(){
-	NProgress.start();
-	$.ajax({
-		url: "app/Desktop/Root/graphic/gn.TrackingNetwork.php",
-		success: function(data){
-			$("div.container_platform").html(data);
-			draw();
 			NProgress.done();
 		}
 	});
