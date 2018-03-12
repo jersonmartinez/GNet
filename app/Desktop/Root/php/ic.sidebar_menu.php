@@ -36,7 +36,6 @@
         </a>
     </li>
 
-
     <li>
         <a class="accordion-toggle" href="#">
             <span class="glyphicon glyphicon-book"></span>

@@ -11,7 +11,7 @@
 
 <div class="container_platform">
     <!-- Wrap content in admin-panel class -->
-    <div class="admin-panels">
+    <div>
 
         <!-- Create Row -->
         <div class="row AdminPanelPorDefecto">

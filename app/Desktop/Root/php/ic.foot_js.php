@@ -161,7 +161,7 @@ jQuery(document).ready(function() {
     // HighCharts, JvectorMap, Admin Panels
 
      // Init Admin Panels on widgets inside the ".admin-panels" container
-        $('.admin-panels').adminpanel({
+        $('.AdminPanel_TrackingNetwork').adminpanel({
             grid: '.admin-grid', // set column class
             // draggable: true,
             // preserveGrid: true,
@@ -169,7 +169,7 @@ jQuery(document).ready(function() {
             
             onFinish: function() {
                 // On Init complete fadeIn adminpanel content
-                $('.admin-panels').addClass('animated fadeIn').removeClass('fade-onload');
+                $('.AdminPanel_TrackingNetwork').addClass('animated fadeIn').removeClass('fade-onload');
             },
         });
 
