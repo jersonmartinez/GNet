@@ -160,6 +160,15 @@ jQuery(document).ready(function() {
     // Init plugins used on this page
     // HighCharts, JvectorMap, Admin Panels
 
+    <?php
+        if (basename($_SERVER['SCRIPT_NAME']) == "index.php"){
+            ?>
+                $(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
+                $(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
+            <?php
+        }
+    ?>
+
      // Init Admin Panels on widgets inside the ".admin-panels" container
         $('.AdminPanel_TrackingNetwork').adminpanel({
             grid: '.admin-grid', // set column class

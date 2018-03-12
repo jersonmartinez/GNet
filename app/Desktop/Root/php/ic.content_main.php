@@ -13,57 +13,6 @@
     <!-- Wrap content in admin-panel class -->
     <div>
 
-        <!-- Create Row -->
-        <div class="row AdminPanelPorDefecto">
-
-            <!-- Create Column with required .admin-grid class -->
-            <div class="col-md-6">
-
-                <!-- Create Panel with required unique ID -->
-                <div class="panel" id="p1">
-                    <div class="panel-heading">
-                        <span class="panel-title"> Panel 1</span>
-                    </div>
-                    <div class="panel-body">
-                    </div>
-                </div>
-
-                <!-- Create Panel with required unique ID -->
-                <div class="panel" id="p2">
-                    <div class="panel-heading">
-                        <span class="panel-title"> Panel 2</span>
-                    </div>
-                    <div class="panel-body">
-                    </div>
-                </div>
-
-            </div>
-            <!-- End Column -->
-
-            <!-- Create Column with required .admin-grid class -->
-            <div class="col-md-6">
-
-                <!-- Create Panel with required unique ID -->
-                <div class="panel" id="p3">
-                    <div class="panel-heading">
-                        <span class="panel-title"> Panel 1</span>
-                    </div>
-                    <div class="panel-body">
-                    </div>
-                </div>
-
-                <!-- Create Panel with required unique ID -->
-                <div class="panel" id="p4">
-                    <div class="panel-heading">
-                        <span class="panel-title"> Panel 2</span>
-                    </div>
-                    <div class="panel-body">
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
         <div class="row AdminPanel_DevicesManagement">
             <div class="col-md-12">
                  <!-- Create Panel with required unique ID -->
