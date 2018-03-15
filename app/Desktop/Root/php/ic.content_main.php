@@ -9,7 +9,8 @@
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddDevicesManagement.php");
 ?>
 
-<div class="container_platform">
+<div class="container_platform">    
+
     <!-- Wrap content in admin-panel class -->
     <div>
 

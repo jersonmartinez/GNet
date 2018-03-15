@@ -10,24 +10,24 @@
             </div>
 
             <div class="modal-body">
-                <p>Hello World</p>
-
-                <label class="field prepend-icon">
-                    <input type="text" name="tooltip2" id="tooltip2" class="gui-input" placeholder="Left">
-                     <b class="tooltip tip-left"><em> I am a left aligned tooltip!</em></b>
-                    <label for="tooltip2" class="field-icon"><i class="fa fa-flag"></i>
-                    </label>
-                </label>
-
-
-                <label class="field prepend-icon">
-                    <input name="tooltip143" id="tooltip143" class="gui-input" placeholder="Top Right" type="text">
-                    <b class="tooltip tip-right-top"><em> I am a top right aligned tooltip! Pretty useful huh.</em></b>
-                    <label for="tooltip143" class="field-icon">
-                      <i class="fa fa-flag"></i>
-                    </label>
-                </label>
-
+                               
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="input-group">
+                            <div class="input-group-btn">
+                                <button type="button" class="btn btn-default dropdown-toggle ddt_SelectTypeDevice" data-toggle="dropdown" aria-expanded="false">Dispositivo <span class="caret"></span></button>
+                                <ul class="dropdown-menu" role="menu">
+                                  <li id="ddt_SelectTypeDeviceOptionFinalHost"><a href="#">Ordenador </a></li>
+                                  <li id="ddt_SelectTypeDeviceOptionServer"><a href="#">Servidor </a></li>
+                                  <li class="divider"></li>
+                                  <li id="ddt_SelectTypeDeviceOptionRouter"><a href="#">Enrutador </a></li>
+                                </ul>
+                            </div><!-- /btn-group -->
+                            <input type="text" class="form-control" aria-label="..." data-placement="bottom" data-toggle="popover" title="Atención por acá" data-content="Escriba la dirección IP que apunta al host." placeholder="Dirección IP"/>
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                  
+                </div><!-- /.row -->
 
             </div>
 

@@ -324,3 +324,15 @@ $("#sb_item_DevicesShow").click(function(){
 $("#sb_item_AddDeviceManagement").click(function(){
 	$(".AddDeviceManagement").click();
 });
+
+$("#ddt_SelectTypeDeviceOptionFinalHost").click(function(){
+    $(".ddt_SelectTypeDevice").html("Ordenador <span class='caret'></span>");
+});
+
+$("#ddt_SelectTypeDeviceOptionServer").click(function(){
+    $(".ddt_SelectTypeDevice").html("Servidor <span class='caret'></span>");
+});
+
+$("#ddt_SelectTypeDeviceOptionRouter").click(function(){
+    $(".ddt_SelectTypeDevice").html("Enrutador <span class='caret'></span>");
+});

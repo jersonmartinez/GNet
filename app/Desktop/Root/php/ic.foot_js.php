@@ -21,6 +21,10 @@
 <script src="<?php echo PDS_CTL_JS; ?>/ic.script.js"></script>
 <script src="<?php echo PDS_DESKTOP_ROOT_JS; ?>/ic.RootScript.js"></script>
 
+<!-- Editable -->
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/moment/moment.min.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/xeditable/js/bootstrap-editable.min.js"></script>
+
 <!-- Esta libreria es para el efecto de carga, es necesaria su version en css, esta en el archivo ic.head.php o bien, a la constante: PF_CORE_HEAD-->
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/ladda/ladda.min.js"></script> 
 
@@ -53,6 +57,13 @@ jQuery(document).ready(function() {
     // Init Theme Core    
     Core.init({
       collapse: "sb-l-c", // sidebar left collapse style
+    });
+
+    $('#xedit-basssjsjsic').editable({
+        type: 'text',
+        pk: 3,
+        name: 'editable-33',
+        title: 'Editable Data'
     });
 
     // A "stack" controls the direction and position
