@@ -23,6 +23,3 @@
 
 <!-- Para los calendarios... -->
 <link href="app/controller/src/plugins/vendor/plugins/datepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" type="text/css">
-
-<!-- Para los gráficos -->
-<link href="app/controller/src/plugins/vendor/plugins/c3charts/c3.min.css" rel="stylesheet" type="text/css">

@@ -147,7 +147,7 @@
 			return getErrors();
 		}*/
 
-		public function getNetworkConnections(){
+		/*public function getNetworkConnections(){
 			$filename = "getNetworkConnections.sh";
 			$ActionArray[] = 'echo "="';
 			array_push($ActionArray, "PROTO=$(netstat -putona | grep -e tcp -e udp | awk {'print $1'})");
@@ -167,7 +167,7 @@
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
-		}
+		}*/
 
 		/*public function getUsersConnected(){
 			$filename = "getUsersConnected.sh";
@@ -719,11 +719,12 @@
 			$filename = "getcpuState.sh";
 			$ActionArray[] = "NameModel=($(cat /proc/cpuinfo | grep name | cut -d ':' -f2))";
 			array_push($ActionArray, "Velocidad=$(cat /proc/cpuinfo | grep name | cut -d ' ' -f 10)");
-			array_push($ActionArray, "UsoUser=$(top -n1 | grep '%Cpu' | cut -d ' ' -f2 | sed 's/,/./g')");
-			array_push($ActionArray, "UsoSystem=$(top -n1 | grep '%Cpu' | cut -d ' ' -f5 | sed 's/,/./g')");
-			array_push($ActionArray, "UsoTotal=$(echo $UsoUser + $UsoSystem | bc)");
-			array_push($ActionArray, "TotalProc=$(top -n1 | egrep '(Tareas|Tasks)' | cut -d ' ' -f2)");
-			array_push($ActionArray, 'echo "${NameModel[*]},$Velocidad,$UsoUser,$UsoSystem,$UsoTotal,$TotalProc,"');
+			array_push($ActionArray, "UsoUser=$(top -n1 -b | grep '%Cpu' | cut -d ' ' -f2 | sed 's/,/./g')");
+			array_push($ActionArray, "UsoSystem=$(top -n1 -b | grep '%Cpu' | cut -d ' ' -f5 | sed 's/,/./g')");
+			array_push($ActionArray, 'UsoTotal=$(echo "$UsoUser + $UsoSystem" | bc)');
+			array_push($ActionArray, 'Disponible=$(echo "100 - $UsoTotal" | bc)');
+			array_push($ActionArray, "TotalProc=$(ps ax | wc -l)");
+			array_push($ActionArray, 'echo "${NameModel[*]},$Velocidad,$UsoUser,$UsoSystem,$UsoTotal,$Disponible,$TotalProc,"');
 			
 			$RL[] = $this->remote_path.$filename;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
@@ -803,7 +804,7 @@
 
 		public function getBatteryState(){
 			$filename = "getBatteryState.sh";
-			$ActionArray[] = 'Porcentaje=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | cut -d ":" -f2)';
+			$ActionArray[] = 'Porcentaje=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | cut -d ":" -f2 | tr -d "%")';
 			array_push($ActionArray, 'StatusBat=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | cut -d ":" -f2)');
 			array_push($ActionArray, 'echo "$Porcentaje,$StatusBat,"');
 			
@@ -816,12 +817,12 @@
 
 		public function getInfoOS(){
 			$filename = "getInfoOS.sh";
-			$ActionArray[] = "Name=$(lsb_release -si)";
+			$ActionArray[] = "HostName=$(hostname)";
+			array_push($ActionArray, "NameOs=$(lsb_release -si)");
 			array_push($ActionArray, "Version=$(lsb_release -sr)");
-			array_push($ActionArray, "CodeName=$(lsb_release -sc)");
 			array_push($ActionArray, "TypeMachine=$(uname -m)");
 			array_push($ActionArray, "Kernel=$(uname -r)");
-			array_push($ActionArray, 'echo "$Name,$Version,$CodeName,$TypeMachine,$Kernel,"');
+			array_push($ActionArray, 'echo "$HostName,$NameOs,$Version,$TypeMachine,$Kernel,"');
 			
 			$RL[] = $this->remote_path.$filename;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
@@ -832,11 +833,11 @@
 
 		public function getUsersConnected(){
 			$filename = "getUsersConnected.sh";
-			$ActionArray[] = 'Users=$(w | sed "1,2d" | cut -d " " -f1)';
-			array_push($ActionArray, 'echo "${#Users[*]},"');
-			array_push($ActionArray, 'for i in ${Users[*]}; do');
+			$ActionArray[] = "Users=($(w | sed '1,2d' | awk {'print $1 ,$4'}))";
+			array_push($ActionArray, 'echo "${Users[*]},"');
+			/*array_push($ActionArray, 'for i in ${Users[*]}; do');
 			array_push($ActionArray, 'echo "$i,"');
-			array_push($ActionArray, "done");
+			array_push($ActionArray, "done");*/
 			
 			$RL[] = $this->remote_path.$filename;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);

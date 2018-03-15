@@ -1,3 +1,7 @@
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
+
+<script src="https://code.highcharts.com/modules/solid-gauge.js"></script>
 <?php
 	#Importar constantes.
 	@session_start();
@@ -18,9 +22,9 @@
    	$SwapState = explode(",", $ConnectSSH->getSwapState());
 
    	$CpuState = explode(",", $ConnectSSH->getCpuState());
-   	foreach ($CpuState as $value) {
+   	/*foreach ($CpuState as $value) {
    		echo $value."";
-   	}
+   	}*/
 
    	$DiskUsage = explode(",", $ConnectSSH->getDiskState());
 
@@ -38,30 +42,26 @@
    	$InfoOS = explode(",", $ConnectSSH->getInfoOS());
 
    	$UsersConnected = explode(",", $ConnectSSH->getUsersConnected());
-   	foreach ($UsersConnected as $value) {
-   		echo $value."";
-   	}
 ?>
 
 <div class="row">
 	<div class="col-xs-6">
  		<div id="highchart-pie_memory" style="width: 100%; height: 250px;"></div>
- 		<div id="container_disk" style="height: 400px; margin-top: 20px;"></div>
+ 		<div id="container_disk" style="width: 100%; height: 300px; margin-top: 20px;"></div>
 	</div>
 
 	<div class="col-xs-6">
 		<div id="highchart-pie_swap" style="width: 100%; height: 250px;"></div>
-		<div style="width: 600px; height: 400px; margin: 0 auto;">
-		<div id="container-speed" style="width: 300px; height: 200px; float: left;"></div>
-		<div id="container-rpm" style="width: 300px; height: 200px; float: left">
-			<div class="panel panel-dark">
-				<label><?php echo $CpuState[0]; ?></label><br>
-				<label>Porcentaje en uso: <?php echo $CpuState[4]; ?></label><br>
-				<label>Velocidad: <?php echo $CpuState[1]; ?></label><br>
-				<label>Procesos: <?php echo $CpuState[5]; ?></label>
-			</div>
-		</div>
-		</div>
+        <div id="container_cpu" style="width: 100%; height: 300px; margin-top: 20px"></div>
+		<!-- <div style="width: 600px; height: 400px; margin: 0 auto">
+            <div id="container-speed_cpu" style="width: 300px; height: 200px; float: left"></div>
+    		<div id="container-rpm" style="width: 300px; height: 200px; float: left">
+				<p><?php #echo $CpuState[0]; ?></p>
+				<p>Porcentaje en uso: <?php #echo $CpuState[4]; ?></p>
+				<p>Velocidad: <?php #echo $CpuState[1]; ?></p>
+				<p>Procesos: <?php #echo $CpuState[5]; ?></p>
+    		</div>
+        </div> -->
 	</div>
 </div>
 
@@ -72,7 +72,69 @@
         <!-- Create Column with required .admin-grid class -->
         <div class="col-md-6 admin-grid">
             <!-- Create Panel with required unique ID -->
-            <div class="panel" id="p1">
+            <div class="panel panel-dark" id="p1">
+                <div class="panel-heading">
+                    <span class="panel-title">Información básica del equipo</span>
+                </div>
+                <div class="panel-body">
+                	<table class="table">
+						<tr>
+							<td>Nombre de equipo:</td>
+							<td><?php echo $InfoOS[0]; ?></td>
+						</tr>
+						<tr>
+							<td>Sistema Operativo:</td>
+							<td><?php echo $InfoOS[1]; ?></td>
+						</tr>
+						<tr>
+							<td>Versión del sistema:</td>
+							<td><?php echo $InfoOS[2]; ?></td>
+						</tr>
+						<tr>
+							<td>Tipo de sistema (Arquitectura):</td>
+							<td><?php echo $InfoOS[3]; ?></td>
+						</tr>
+						<tr>
+							<td>Versión de Kernel:</td>
+							<td><?php echo $InfoOS[4]; ?></td>
+						</tr>
+				    </table>
+                </div>
+            </div>
+        </div>
+        <!-- End Column -->
+
+        <!-- Create Column with required .admin-grid class -->
+        <div class="col-md-6 admin-grid">
+
+            <!-- Create Panel with required unique ID -->
+            <div class="panel panel-dark" id="p3">
+                <div class="panel-heading">
+                    <span class="panel-title">Estado de la batería</span>
+                </div>
+                <div class="panel-body">
+                	<p>Porcentaje de carga: <?php echo $BatteryState[0]; ?></p>
+                	<p>Estado: <?php echo $BatteryState[1]; ?></p>
+                </div>
+                <div id="highchart-pie_swap" style="width: 100%; height: 250px;"></div>
+            </div>
+        </div>
+        <!-- End Column -->
+
+    </div>
+    <!-- End Row -->
+
+</div>
+<!-- End .admin-panels Wrapper -->
+
+<!-- Required .admin-panels wrapper-->
+<div class="admin-panels">
+    <!-- Create Row -->
+    <div class="row">
+        <!-- Create Column with required .admin-grid class -->
+        <div class="col-md-6 admin-grid">
+            <!-- Create Panel with required unique ID -->
+            <div class="panel panel-dark" id="p1">
                 <div class="panel-heading">
                     <span class="panel-title">Interfaces de red y direcciones IP asignadas</span>
                 </div>
@@ -104,7 +166,7 @@
         <div class="col-md-6 admin-grid">
 
             <!-- Create Panel with required unique ID -->
-            <div class="panel" id="p3">
+            <div class="panel panel-dark" id="p3">
                 <div class="panel-heading">
                     <span class="panel-title">Puertos Abiertos</span>
                 </div>
@@ -144,49 +206,6 @@
 </div>
 <!-- End .admin-panels Wrapper -->
 
-<!-- Required .admin-panels wrapper-->
-<div class="admin-panels">
-    <!-- Create Row -->
-    <div class="row">
-        <!-- Create Column with required .admin-grid class -->
-        <div class="col-md-6 admin-grid">
-            <!-- Create Panel with required unique ID -->
-            <div class="panel" id="p1">
-                <div class="panel-heading">
-                    <span class="panel-title">Detalles del Sistema Operativo</span>
-                </div>
-                <div class="panel-body">
-                	<p>Nombre: <?php echo $InfoOS[0]; ?></p>
-                	<p>Versión: <?php echo $InfoOS[1]; ?></p>
-                	<p>Código: <?php echo $InfoOS[2]; ?></p>
-                	<p>Arquitéctura: <?php echo $InfoOS[3]; ?></p>
-                	<p>Kernel: <?php echo $InfoOS[4]; ?></p>
-                </div>
-            </div>
-        </div>
-        <!-- End Column -->
-
-        <!-- Create Column with required .admin-grid class -->
-        <div class="col-md-6 admin-grid">
-
-            <!-- Create Panel with required unique ID -->
-            <div class="panel" id="p3">
-                <div class="panel-heading">
-                    <span class="panel-title">Estado de la batería</span>
-                </div>
-                <div class="panel-body">
-                	<p>Porcentaje de carga: <?php echo $BatteryState[0]; ?></p>
-                	<p>Estado: <?php echo $BatteryState[1]; ?></p>
-                </div>
-            </div>
-        </div>
-        <!-- End Column -->
-
-    </div>
-    <!-- End Row -->
-
-</div>
-<!-- End .admin-panels Wrapper -->
 
 <!-- Required .admin-panels wrapper-->
 <div class="admin-panels">
@@ -195,28 +214,31 @@
         <!-- Create Column with required .admin-grid class -->
         <div class="col-md-6 admin-grid">
             <!-- Create Panel with required unique ID -->
-            <div class="panel" id="p1">
+            <div class="panel panel-dark" id="p1">
                 <div class="panel-heading">
                     <span class="panel-title">Usuarios con sesión iniciada</span>
                 </div>
                 <div class="panel-body">
                 	<table class="table">
-		                <tr>
-							<td>Número de usuarios</td>
-							<td>Nombre de usuario</td>
-						</tr>
-						<tr>
-							<td><?php echo $UsersConnected[0]; ?></td>
-						<?php
-							for ($i=1; $i < count($UsersConnected); $i++) { 
-								?>
-									<td><?php echo $UsersConnected[$i]; ?></td>
-								<?php
-							}
-						?>
-							
-						</tr>
-				    </table>
+                        <tr>
+                            <td>Nombre de usuario</td>
+                            <td>Hora de logueo</td>
+                        </tr>
+                        <?php
+                            for ($i=0; $i < count($UsersConnected); $i++) { 
+                                $Firts = explode(" ", $UsersConnected[$i]);
+
+                                for ($j=0; $j < count($Firts); $j++) { 
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $Firts[$j]; ?></td>
+                                            <td><?php echo $Firts[$j+1]; $j++; ?></td>
+                                        </tr>
+                                    <?php
+                                }
+                            }
+                        ?>
+                    </table>
                 </div>
             </div>
         </div>
@@ -226,11 +248,11 @@
         <div class="col-md-6 admin-grid">
 
             <!-- Create Panel with required unique ID -->
-            <div class="panel" id="p3">
+            <div class="panel panel-dark" id="p3">
                 <div class="panel-heading">
                     <span class="panel-title">Procesos iniciados</span>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="height: 300px; overflow: scroll;">
                 	<table id="tb_procesos" class="display" cellspacing="0" width="100%">
 			    		<thead>
 				            <tr>
@@ -396,9 +418,8 @@
     }]
 });
 
-
-// Uso de la CPU
-var gaugeOptions = {
+/*// Uso de la CPU
+var gaugeOptionsCpu = {
 
     chart: {
         type: 'solidgauge'
@@ -453,7 +474,7 @@ var gaugeOptions = {
 };
 
 // The speed gauge
-var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptions, {
+var chartSpeed = Highcharts.chart('container-speed_cpu', Highcharts.merge(gaugeOptionsCpu, {
     yAxis: {
         min: 0,
         max: 100,
@@ -468,7 +489,7 @@ var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptio
 
     series: [{
         name: 'Speed',
-        data: [<?php echo $CpuState[4]; ?>],
+        data: [<?php #echo $CpuState[4]; ?>],
         dataLabels: {
             format: '<div style="text-align:center"><span style="font-size:25px;color:' +
                 ((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black') + '">{y}</span><br/>' +
@@ -479,8 +500,49 @@ var chartSpeed = Highcharts.chart('container-speed', Highcharts.merge(gaugeOptio
         }
     }]
 
-}));
+}));*/
 
+Highcharts.chart('container_cpu', {
+    credits: false,
+    chart: {
+        type: 'pie',
+        options3d: {
+            enabled: true,
+            alpha: 45,
+            beta: 0
+        }
+    },
+    title: {
+        text: 'Uso de la CPU'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            depth: 35,
+            dataLabels: {
+                enabled: true,
+                format: '{point.name}'
+            }
+        }
+    },
+    series: [{
+        type: 'pie',
+        name: 'Porcentaje de CPU',
+        data: [
+            ['En uso', <?php echo $CpuState[4];; ?>],
+            {
+                name: 'Disponible',
+                y: <?php echo $CpuState[5]; ?>,
+                sliced: true,
+                selected: true
+            }
+        ]
+    }]
+});
 
 // Init AdminPanels on columns inside the ".admin-panels" container
 $('.admin-panels').adminpanel({
