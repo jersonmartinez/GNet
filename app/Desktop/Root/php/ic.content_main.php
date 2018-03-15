@@ -11,6 +11,10 @@
 
 <div class="container_platform">    
 
+    <?php
+        echo "Prueba".(`lsof -i -nP`);
+    ?>
+
     <!-- Wrap content in admin-panel class -->
     <div>
 
