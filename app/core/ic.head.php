@@ -1,4 +1,4 @@
-<!-- Este es el fichero de cabecera!. -->
+<!-- Este es el fichero de cabecera!. --> 
 <meta charset="utf-8">
 <title>GNet <?php echo empty(@$_SESSION['username']) ? "" : " | ".@$_SESSION['username']; ?></title>
 <meta name="keywords" content="GNet - Sistema de Gestión de Red" />
@@ -16,6 +16,9 @@
 
 <!-- Admin Forms CSS -->
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_ASSETS_ADMINTOOLS; ?>/admin-forms/css/admin-forms.min.css">
+
+<!-- Editable -->
+<link href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/xeditable/css/bootstrap-editable.css" rel="stylesheet" type="text/css">
 
 <!-- Esta libreria es para el efecto de carga, es necesaria su version en JS, esta en el fichero ic.foot_js.php -->
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/ladda/ladda.min.css">
