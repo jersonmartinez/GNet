@@ -3,9 +3,8 @@ $(".AddDeviceManagement").hide();
 
 /*Admin Panels*/
 function HideAdminPanels(){
-	$(".AdminPanelPorDefecto").hide();
-	// $(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
-	// $(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
+	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
+	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
 }
 
 HideAdminPanels();

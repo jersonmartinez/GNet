@@ -163,8 +163,8 @@ jQuery(document).ready(function() {
     <?php
         if (basename($_SERVER['SCRIPT_NAME']) == "index.php"){
             ?>
-                $(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
-                $(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
+                // $(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
+                // $(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
             <?php
         }
     ?>
