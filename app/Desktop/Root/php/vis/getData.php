@@ -90,11 +90,11 @@
                 // $IDValueSwitch  = implode("", explode(".", $RRouter['ip_net']));
                 
                  ?>
-                        console.log("ID Router: " + <?php echo $IDRouter; ?> + " Switch Value: " + <?php echo $RIPValueSwitch; ?>);
+                        // console.log("ID Router: " + <?php echo $IDRouter; ?> + " Switch Value: " + <?php echo $RIPValueSwitch; ?>);
                     <?php
 
                 ?>
-                    nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo $RRouter['net_next']; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
+                    nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo $RRouter['ip_host']; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
                     
                     // edges.push({from: <?php echo $IDRouter; ?>, to: <?php echo $RIPValueSwitch; ?>, length: EDGE_LENGTH_SUB});
                 <?php
@@ -112,7 +112,7 @@
                 $RMValueSwitch  = implode("", explode("/", implode("", explode(".", $rm['ip_net']))));
 
                 ?>
-                        console.log("IP Host: " + <?php echo $RMValue; ?> + " Switch Value: " + <?php echo $RMValueSwitch; ?>);
+                        // console.log("IP Host: " + <?php echo $RMValue; ?> + " Switch Value: " + <?php echo $RMValueSwitch; ?>);
                     <?php
 
 
