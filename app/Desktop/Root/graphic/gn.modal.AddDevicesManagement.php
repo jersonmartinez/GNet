@@ -1,5 +1,3 @@
-<link href="app/controller/src/plugins/assets/admin-tools/admin-forms/css/admin-forms.css" rel="stylesheet" type="text/css">
-
 <button type="hidden" class="AddDeviceManagement" data-toggle="modal" data-target="#NowAddDeviceManagement"></button>
 
 <!-- <!- Modal -->
