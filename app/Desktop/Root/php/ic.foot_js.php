@@ -62,10 +62,9 @@
 
 <!-- FullCalendar Plugin + moment Dependency -->
 <!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/lib/moment.min.js"></script> -->
-<!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.js"></script> -->
+<script src="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.js"></script>
 
 <script type="text/javascript">
- 
 
 jQuery(document).ready(function() {
     "use strict";
