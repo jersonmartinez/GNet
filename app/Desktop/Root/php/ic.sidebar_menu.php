@@ -37,6 +37,13 @@
     </li>
 
     <li>
+        <a href="#" id="sb_item_MonirorResources">
+            <span class="fa fa-calendar"></span>
+            <span class="sidebar-title">Monitorizar recursos</span>
+        </a>
+    </li>
+
+    <li>
         <a class="accordion-toggle" href="#">
             <span class="glyphicon glyphicon-book"></span>
             <span class="sidebar-title">Documentación</span>

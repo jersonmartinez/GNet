@@ -4,7 +4,18 @@
 
 <!-- HighCharts Plugin -->
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highcharts/highcharts.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highcharts/exporting.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highcharts/highcharts-3d.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highcharts/solid-gauge.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highcharts/highcharts-more.js"></script>
+<!-- <script src="https://code.highcharts.com/highcharts.js"></script> -->
 
+  <!-- HighCharts Plugin -->
+  <!-- <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts.js"></script> -->
+  <!-- <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts-3d.js"></script>  -->
+  <!-- <script src="app/controller/src/plugins/vendor/plugins/highcharts/exporting.js"></script> -->
+  <!-- <script src="app/controller/src/plugins/vendor/plugins/highcharts/solid-gauge.js"></script> -->
+  <!-- <script src="app/controller/src/plugins/vendor/plugins/highcharts/highcharts-more.js"></script> -->
 
 <!-- PNotify -->
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/pnotify/pnotify.js"></script>
@@ -21,6 +32,11 @@
 <script src="<?php echo PDS_CTL_JS; ?>/ic.script.js"></script>
 <script src="<?php echo PDS_DESKTOP_ROOT_JS; ?>/ic.RootScript.js"></script>
 
+  <!-- Widget Javascript -->
+  <!-- <script src="app/controller/src/plugins/assets/js/demo/widgets.js"></script> -->
+  <!-- <script src="app/controller/js/ic.script.js"></script> -->
+  <!-- <script src="app/Desktop/Root/js/ic.RootScript.js"></script> -->
+
 <!-- Editable -->
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/moment/moment.min.js"></script>
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/xeditable/js/bootstrap-editable.min.js"></script>
@@ -33,6 +49,9 @@
 
 <!-- Ordenar espacios (dispositivos en la filosofia del proyecto) -->
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/mixitup/jquery.mixitup.min.js"></script>
+
+<!-- <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script> -->
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datatables/media/js/jquery.dataTables.min.js"></script>
 
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highlight/highlight.pack.js"></script> 
 

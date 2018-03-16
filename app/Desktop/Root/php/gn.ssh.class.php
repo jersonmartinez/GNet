@@ -83,7 +83,7 @@
 			return true;
 		}
 
-		public function getMemoryState(){
+		/*public function getMemoryState(){
 			$filename = "getMemoryState.sh";
 			$ActionArray[] = "MEMORIA=($(free -m | grep 'Mem' | cut -d ':' -f2))";
 			array_push($ActionArray, 'echo "${MEMORIA[0]},${MEMORIA[1]},${MEMORIA[2]},${MEMORIA[3]},${MEMORIA[4]},${MEMORIA[5]},"');
@@ -93,9 +93,9 @@
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
-		}
+		}*/
 
-		public function getDiskUsage(){
+		/*public function getDiskUsage(){
 			$filename = "getDiskUsage.sh";
 			$ActionArray[] = "DISCO=($(df -PH | grep sda | cut -d '/' -f3))";
 			array_push($ActionArray, 'echo "${DISCO[1]},${DISCO[2]},${DISCO[3]},${DISCO[4]},"');
@@ -105,9 +105,9 @@
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
-		}
+		}*/
 
-		public function getNetworkInterfaces(){
+		/*public function getNetworkInterfaces(){
 			$filename = "getNetworkInterfaces.sh";
 			$ActionArray[] = "INTERFACES=($(ifconfig -a -s | awk {'print $1'}))";
 			array_push($ActionArray, 'echo "="');
@@ -127,9 +127,9 @@
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
-		}
+		}*/
 
-		public function getOpenPorts(){
+		/*public function getOpenPorts(){
 			$filename = "getOpenPorts.sh";
 			$ActionArray[] = 'echo "="';
 			array_push($ActionArray, "PORT_TCP=($(netstat -pltona | grep 'tcp ' | awk {'print $4 ,$1'} | cut -d ':' -f2))");
@@ -145,9 +145,9 @@
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
-		}
+		}*/
 
-		public function getNetworkConnections(){
+		/*public function getNetworkConnections(){
 			$filename = "getNetworkConnections.sh";
 			$ActionArray[] = 'echo "="';
 			array_push($ActionArray, "PROTO=$(netstat -putona | grep -e tcp -e udp | awk {'print $1'})");
@@ -167,9 +167,9 @@
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
-		}
+		}*/
 
-		public function getUsersConnected(){
+		/*public function getUsersConnected(){
 			$filename = "getUsersConnected.sh";
 			$ActionArray[] = "USUARIOS=($(who | cut -d ' ' -f1))";
 			array_push($ActionArray, 'for i in ${USUARIOS[*]}; do');
@@ -182,7 +182,7 @@
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
-		}
+		}*/
 
 		public function getDHCPShowAssignIP(){
 			$filename = "getDHCPShowAssignIP.sh";
@@ -689,6 +689,161 @@
 			} while ($Feliz != 0);
 
 			return array ($ArrayHosts, $ArrayNetwork);
+		}
+
+		public function getMemoryState(){
+			$filename = "getMemoryState.sh";
+			$ActionArray[] = "MEMORIA=($(free -m | grep 'Mem' | cut -d ':' -f2))";
+			array_push($ActionArray, 'echo "${MEMORIA[0]},${MEMORIA[1]},${MEMORIA[2]},"');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getSwapState(){
+			$filename = "getSwapState.sh";
+			$ActionArray[] = "SWAP=($(free -m | egrep '(Intercambio|Swap)' | cut -d ':' -f2))";
+			array_push($ActionArray, 'echo "${SWAP[0]},${SWAP[1]},${SWAP[2]},"');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getCpuState(){
+			$filename = "getcpuState.sh";
+			$ActionArray[] = "NameModel=($(cat /proc/cpuinfo | grep name | cut -d ':' -f2))";
+			array_push($ActionArray, "Velocidad=$(cat /proc/cpuinfo | grep name | cut -d ' ' -f 10)");
+			array_push($ActionArray, "UsoUser=$(top -n1 -b | grep '%Cpu' | cut -d ' ' -f2 | sed 's/,/./g')");
+			array_push($ActionArray, "UsoSystem=$(top -n1 -b | grep '%Cpu' | cut -d ' ' -f5 | sed 's/,/./g')");
+			array_push($ActionArray, 'UsoTotal=$(echo "$UsoUser + $UsoSystem" | bc)');
+			array_push($ActionArray, 'Disponible=$(echo "100 - $UsoTotal" | bc)');
+			array_push($ActionArray, "TotalProc=$(ps ax | wc -l)");
+			array_push($ActionArray, 'echo "${NameModel[*]},$Velocidad,$UsoUser,$UsoSystem,$UsoTotal,$Disponible,$TotalProc,"');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getDiskState(){
+			$filename = "getDiskState.sh";
+			$ActionArray[] = 'Disk=($(df -H /dev/sda1 | sed "1d" | tr -d "G"))';
+			array_push($ActionArray, 'echo "${Disk[2]},${Disk[3]},${Disk[4]},${Disk[5]},"');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getProcState(){
+			$filename = "getProcState.sh";
+			$ActionArray[] = "Proc=($(ps axo pid,cmd | sed '1d' | awk '{print $1 ,$2}'))";
+			// array_push($ActionArray, 'for p in ${PID[*]}; do');
+			// array_push($ActionArray, 'echo "$p,"');
+			// array_push($ActionArray, 'done');
+			array_push($ActionArray, 'echo "${Proc[*]},"');
+			// array_push($ActionArray, '|');
+			// array_push($ActionArray, "CMD=($(ps axo cmd | sed '1d' | cut -d ' ' -f1))");
+			// array_push($ActionArray, 'for c in ${CMD[*]}; do');
+			// array_push($ActionArray, 'echo "$c"');
+			// array_push($ActionArray, "done");
+			// array_push($ActionArray, 'echo "${CMD[*]}"');	
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getNetAddress(){
+			$filename = "getNetAddress.sh";
+			$ActionArray[] = 'Interfaces=($(ip addr show | egrep "[1-9]: " | cut -d ":" -f2 | tr -d " "))';
+			array_push($ActionArray, 'for i in ${Interfaces[*]}; do');
+			array_push($ActionArray, 'DirIP=$(ip addr show $i | grep -w inet | cut -d " " -f6 | cut -d "/" -f1)');
+			array_push($ActionArray, 'if [[ $DirIP != "" ]]; then');
+			array_push($ActionArray, 'echo "$i,$DirIP,"');
+			array_push($ActionArray, 'else');
+			array_push($ActionArray, 'echo "$i,No tiene IP asignada,"');
+			array_push($ActionArray, 'fi');
+			array_push($ActionArray, 'done');	
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getPortsListen(){
+			$filename = "getPortsListen.sh";
+			$ActionArray[] = "Ports=($(lsof -i -nP | sed '1d' | grep -v ESTAB | awk {'print $9 ,$8 ,$5 ,$1'} | cut -d ':' -f2 | uniq))";
+			array_push($ActionArray, 'echo "${Ports[*]},"');
+			/*array_push($ActionArray, "Service=$(lsof -i -nP | sed '1d' | awk {'print $1'})");
+			array_push($ActionArray, 'echo "${Protocol[*]} | "');
+			array_push($ActionArray, 'echo "${Type[*]} | "');
+			array_push($ActionArray, 'echo "${Ports[*]} | "');
+			array_push($ActionArray, 'echo "${Service[*]} | "');*/
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}	
+
+		public function getBatteryState(){
+			$filename = "getBatteryState.sh";
+			$ActionArray[] = 'Porcentaje=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | cut -d ":" -f2 | tr -d "%")';
+			array_push($ActionArray, 'StatusBat=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | cut -d ":" -f2)');
+			array_push($ActionArray, 'echo "$Porcentaje,$StatusBat,"');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getInfoOS(){
+			$filename = "getInfoOS.sh";
+			$ActionArray[] = "HostName=$(hostname)";
+			array_push($ActionArray, "NameOs=$(lsb_release -si)");
+			array_push($ActionArray, "Version=$(lsb_release -sr)");
+			array_push($ActionArray, "TypeMachine=$(uname -m)");
+			array_push($ActionArray, "Kernel=$(uname -r)");
+			array_push($ActionArray, 'echo "$HostName,$NameOs,$Version,$TypeMachine,$Kernel,"');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getUsersConnected(){
+			$filename = "getUsersConnected.sh";
+			$ActionArray[] = "Users=($(w | sed '1,2d' | awk {'print $1 ,$4'}))";
+			array_push($ActionArray, 'echo "${Users[*]},"');
+			/*array_push($ActionArray, 'for i in ${Users[*]}; do');
+			array_push($ActionArray, 'echo "$i,"');
+			array_push($ActionArray, "done");*/
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
 		}
 
 		public function ConnectDB($H, $U, $P, $D, $X){

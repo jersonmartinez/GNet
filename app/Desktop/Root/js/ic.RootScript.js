@@ -309,17 +309,17 @@ function getCoordsPosition(e) {
 }
 
 /*Gestionar dispositivos en red*/
-$("#sb_item_DevicesShow").click(function(){
-	NProgress.start();
-	$.ajax({
-		url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
-		success: function(data){
-			$("div.container_platform").html(data);
-			// draw();
-			NProgress.done();
-		}
-	});
-});
+// $("#sb_item_DevicesShow").click(function(){
+// 	NProgress.start();
+// 	$.ajax({
+// 		url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
+// 		success: function(data){
+// 			$("div.container_platform").html(data);
+// 			// draw();
+// 			NProgress.done();
+// 		}
+// 	});
+// });
 
 $("#sb_item_AddDeviceManagement").click(function(){
 	$(".AddDeviceManagement").click();
@@ -335,4 +335,14 @@ $("#ddt_SelectTypeDeviceOptionServer").click(function(){
 
 $("#ddt_SelectTypeDeviceOptionRouter").click(function(){
     $(".ddt_SelectTypeDevice").html("Enrutador <span class='caret'></span>");
+
+$("#sb_item_MonirorResources").click(function(){
+	NProgress.start();
+	$.ajax({
+		url: "app/Desktop/Root/graphic/gn.MonitorResources.php",
+		success: function(data){
+			$("div.container_platform").html(data);
+			NProgress.done();
+		}
+	});
 });
