@@ -37,7 +37,7 @@
     </li>
 
     <li>
-        <a href="#" id="sb_item_MonirorResources">
+        <a href="#" id="sb_item_ResourcesMonitor">
             <span class="fa fa-calendar"></span>
             <span class="sidebar-title">Monitorizar recursos</span>
         </a>

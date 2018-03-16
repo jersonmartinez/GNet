@@ -5,6 +5,7 @@ $(".AddDeviceManagement").hide();
 function HideAdminPanels(){
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
+	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeOut').hide();
 }
 
 HideAdminPanels();
@@ -231,7 +232,7 @@ $("#sb_item_DevicesManagement").click(function(){
 
 	HideAdminPanels();
 
-	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
+	// $(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
 	
 	NProgress.start();
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeIn').show();
@@ -240,6 +241,25 @@ $("#sb_item_DevicesManagement").click(function(){
 		url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
 		success: function(data){
 			$(".AdminPanel_DevicesManagement_PanelBody").addClass('animated fadeIn').html(data);
+			NProgress.done();
+		}
+	});
+});
+
+/*Monitorizar recursos*/
+$("#sb_item_ResourcesMonitor").click(function(){
+
+	HideAdminPanels();
+
+	// $(".AdminPanel_ResourcesMonitor").addClass('animated fadeOut').hide();
+	
+	NProgress.start();
+	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
+
+	$.ajax({
+		url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
+		success: function(data){
+			$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html(data);
 			NProgress.done();
 		}
 	});
@@ -337,13 +357,13 @@ $("#ddt_SelectTypeDeviceOptionRouter").click(function(){
     $(".ddt_SelectTypeDevice").html("Enrutador <span class='caret'></span>");
 });
 
-$("#sb_item_MonirorResources").click(function(){
-	NProgress.start();
-	$.ajax({
-		url: "app/Desktop/Root/graphic/gn.MonitorResources.php",
-		success: function(data){
-			$("div.container_platform").html(data);
-			NProgress.done();
-		}
-	});
-});
+// $("#sb_item_MonirorResources").click(function(){
+// 	NProgress.start();
+// 	$.ajax({
+// 		url: "app/Desktop/Root/graphic/gn.MonitorResources.php",
+// 		success: function(data){
+// 			$("div.container_platform").html(data);
+// 			NProgress.done();
+// 		}
+// 	});
+// });

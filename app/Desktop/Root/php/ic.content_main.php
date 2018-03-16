@@ -88,6 +88,25 @@
             </div>
             <!-- End Column -->
         </div>
+
+        <div class="row AdminPanel_ResourcesMonitor">
+
+            <!-- Create Column with required .admin-grid class -->
+            <div class="col-md-12">
+
+                <!-- Create Panel with required unique ID -->
+                <div class="panel" id="pUnique_ResourcesMonitor">
+                    <div class="panel-heading">
+                        <span class="panel-icon"><i class="fa fa-desktop"></i></span>
+                        <span class="panel-title">Monitorizador de Recursos</span>
+                    </div>
+                    <div class="panel-body AdminPanel_ResourcesMonitor_PanelBody">
+                        <!-- El contenido -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Column -->
+        </div>
     </div>
 </div>
 
