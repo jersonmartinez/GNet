@@ -11,10 +11,8 @@
     include (PD_DESKTOP_ROOT_PHP."/gn.ssh.class.php");
     // include (PD_DESKTOP_ROOT_PHP."/gn.fr.ssh.network.php");
 
-   	$ConnectSSH = new ConnectSSH("127.0.0.1", "network", "123");
+   	$ConnectSSH = new ConnectSSH("127.0.0.1", "root", "123");
 
-   	// echo "Uso del disco: ".$ConnectSSH->getDiskUsage()."<br/>";
-   	// echo "Uso de la memoria".$ConnectSSH->getMemoryState();
 
    	$Variable = explode(",", $ConnectSSH->getMemoryState());
 
@@ -33,9 +31,6 @@
    	$NetAddress = explode(",", $ConnectSSH->getNetAddress());
 
    	$PortsListen = explode(",", $ConnectSSH->getPortsListen());
-   	foreach ($PortsListen as $value) {
-   		echo $value."";
-   	}
 
    	$BatteryState = explode(",", $ConnectSSH->getBatteryState());
 
@@ -76,7 +71,7 @@
                 <div class="panel-heading">
                     <span class="panel-title">Información básica del equipo</span>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="max-height: 300px;">
                 	<table class="table">
 						<tr>
 							<td>Nombre de equipo:</td>
@@ -116,7 +111,6 @@
                 	<p>Porcentaje de carga: <?php echo $BatteryState[0]; ?></p>
                 	<p>Estado: <?php echo $BatteryState[1]; ?></p>
                 </div>
-                <div id="highchart-pie_swap" style="width: 100%; height: 250px;"></div>
             </div>
         </div>
         <!-- End Column -->
@@ -138,11 +132,11 @@
                 <div class="panel-heading">
                     <span class="panel-title">Interfaces de red y direcciones IP asignadas</span>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="max-height: 300px;">
                 	<table class="table">
 		                <tr>
-							<td>Interfaz de red</td>
-							<td>Dirección IP</td>	
+							<th>Interfaz de red</th>
+							<th>Dirección IP</th>	
 						</tr>
 						<?php
 							$i = 0;
@@ -170,13 +164,13 @@
                 <div class="panel-heading">
                     <span class="panel-title">Puertos Abiertos</span>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="max-height: 300px; overflow: scroll;">
                 	<table class="table">
 		                <tr>
-							<td>Puerto</td>
-							<td>Protocolo</td>
-							<td>Tipo</td>	
-							<td>Proceso</td>
+							<th>Puerto</th>
+							<th>Protocolo</th>
+							<th>Tipo</th>	
+							<th>Proceso</th>
 						</tr>
 						<?php
 							for ($i=0; $i < count($PortsListen); $i++) { 
@@ -187,8 +181,8 @@
 									<tr>
 										<td><?php echo $Firts[$j]; ?></td>
 										<td><?php echo $Firts[$j+1]; $j++; ?></td>
-										<td><?php echo $Firts[$j+2]; $j++; ?></td>
-										<td><?php echo $Firts[$j+3]; $j++; ?></td>
+										<td><?php echo $Firts[$j+1]; $j++; ?></td>
+										<td><?php echo $Firts[$j+1]; $j++; ?></td>
 									</tr>
 								<?php
 								}
@@ -218,11 +212,11 @@
                 <div class="panel-heading">
                     <span class="panel-title">Usuarios con sesión iniciada</span>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" style="max-height: 300px;">
                 	<table class="table">
                         <tr>
-                            <td>Nombre de usuario</td>
-                            <td>Hora de logueo</td>
+                            <th>Nombre de usuario</th>
+                            <th>Login</th>
                         </tr>
                         <?php
                             for ($i=0; $i < count($UsersConnected); $i++) { 
@@ -252,7 +246,7 @@
                 <div class="panel-heading">
                     <span class="panel-title">Procesos iniciados</span>
                 </div>
-                <div class="panel-body" style="height: 300px; overflow: scroll;">
+                <div class="panel-body" style="max-height: 300px; overflow: scroll;">
                 	<table id="tb_procesos" class="display" cellspacing="0" width="100%">
 			    		<thead>
 				            <tr>
@@ -306,6 +300,9 @@
 	        title: {
 	            text: "Estado de la memoria"
 	        },
+            subtitle: {
+                text: 'Memoria Total: <?php echo "$Variable[0] MB"; ?>'
+            },
 	        tooltip: {
 	            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 	        },
@@ -331,8 +328,8 @@
 	            type: 'pie',
 	            name: 'Porcentaje de memoria',
 	            data: [
-	                ['Espacio usado', <?php echo $Variable[0]; ?>],
-	                ['Espacio libre', <?php echo $Variable[1]; ?>],
+	                ['En uso: <?php echo "$Variable[1] MB"; ?>', <?php echo $Variable[1]; ?>],
+	                ['Disponible: <?php echo "$Variable[2] MB"; ?>', <?php echo $Variable[2]; ?>],
 	            ]
 	        }]
 	    });
@@ -355,6 +352,9 @@
 	        title: {
 	            text: "Área de intercambio | Swap"
 	        },
+            subtitle: {
+                text: 'Espacio total: <?php echo "$Variable[0] MB"; ?>'
+            },
 	        tooltip: {
 	            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
 	        },
@@ -380,8 +380,9 @@
 	            type: 'pie',
 	            name: 'Memoria Swap',
 	            data: [
-	                ['Espacio usado', <?php echo $SwapState[1]; ?>],
-	                ['Espacio libre', <?php echo $SwapState[2]; ?>],
+
+	                ['En uso: <?php echo "$SwapState[1] MB"; ?>', <?php echo $SwapState[1]; ?>],
+	                ['Disponible: <?php echo "$SwapState[2] MB"; ?>', <?php echo $SwapState[2]; ?>],
 	            ]
 	        }]
 	    });
