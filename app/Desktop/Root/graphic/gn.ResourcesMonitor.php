@@ -388,19 +388,20 @@
         text: 'Uso del disco duro'
     },
     subtitle: {
-        text: 'Estado del disco'
+        text: 'Capacidad total: <?php echo "$DiskUsage[0] GB"; ?>'
     },
     plotOptions: {
         pie: {
             innerSize: 100,
             depth: 45
         }
+
     },
     series: [{
         name: 'Tamaño en GB',
         data: [
-            ['Espacio usado', <?php echo $DiskUsage[0]; ?>],
-            ['Espacio disponible', <?php echo $DiskUsage[1]; ?>]
+            ['Espacio usado', <?php echo $DiskUsage[1]; ?>],
+            ['Espacio disponible', <?php echo $DiskUsage[2]; ?>]
         ]
     }]
 });

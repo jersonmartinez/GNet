@@ -635,7 +635,7 @@
 		public function getDiskState(){
 			$filename = "getDiskState.sh";
 			$ActionArray[] = 'Disk=($(df -H /dev/sda1 | sed "1d" | tr -d "G"))';
-			array_push($ActionArray, 'echo "${Disk[2]},${Disk[3]},${Disk[4]},${Disk[5]},"');
+			array_push($ActionArray, 'echo "${Disk[1]},${Disk[2]},${Disk[3]},${Disk[4]},${Disk[5]},"');
 			
 			$RL[] = $this->remote_path.$filename;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
