@@ -13,7 +13,7 @@
         echo $value."";
     }*/
 
-   	$Variable       = explode(",", $ConnectSSH->getMemoryState());
+   	$MemoryState    = explode(",", $ConnectSSH->getMemoryState());
     $SwapState      = explode(",", $ConnectSSH->getSwapState());
    	$CpuState       = explode(",", $ConnectSSH->getCpuState());
    	$DiskUsage      = explode(",", $ConnectSSH->getDiskState());
@@ -287,7 +287,7 @@
 	            text: "Estado de la memoria"
 	        },
             subtitle: {
-                text: 'Memoria Total: <?php echo "$Variable[0] MB"; ?>'
+                text: 'Memoria Total: <?php echo "$MemoryState[0] MB"; ?>'
             },
 	        tooltip: {
 	            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -314,8 +314,8 @@
 	            type: 'pie',
 	            name: 'Porcentaje de memoria',
 	            data: [
-	                ['En uso: <?php echo "$Variable[1] MB"; ?>', <?php echo $Variable[1]; ?>],
-	                ['Disponible: <?php echo "$Variable[2] MB"; ?>', <?php echo $Variable[2]; ?>],
+	                ['En uso: <?php echo "$MemoryState[1] MB"; ?>', <?php echo $MemoryState[1]; ?>],
+	                ['Disponible: <?php echo "$MemoryState[2] MB"; ?>', <?php echo $MemoryState[2]; ?>],
 	            ]
 	        }]
 	    });
@@ -339,7 +339,7 @@
 	            text: "Área de intercambio | Swap"
 	        },
             subtitle: {
-                text: 'Espacio total: <?php echo "$Variable[0] MB"; ?>'
+                text: 'Espacio total: <?php echo "$SwapState[0] MB"; ?>'
             },
 	        tooltip: {
 	            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
