@@ -23,6 +23,15 @@
     $BatteryState   = explode(",", $ConnectSSH->getBatteryState());
     $InfoOS         = explode(",", $ConnectSSH->getInfoOS());
     $UsersConnected = explode(",", $ConnectSSH->getUsersConnected());
+
+    foreach ($MemoryState as $value) {
+        if ($value >= 1024) {
+            $value = ($value / 1024);
+        } else {
+            $value = $value;
+        }
+        echo "$value\n";
+    }
 ?>
 
 <div class="row">
@@ -393,15 +402,30 @@
     plotOptions: {
         pie: {
             innerSize: 100,
-            depth: 45
+            depth: 45, 
+            center: ['30%', '50%'],
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: false
+            },
+            showInLegend: true
         }
 
     },
+    legend: {
+        x: 90,
+        floating: true,
+        verticalAlign: "middle",
+        layout: "vertical",
+        itemMarginTop: 10
+    },
     series: [{
         name: 'Tamaño en GB',
+        type: 'pie',
         data: [
-            ['Espacio usado', <?php echo $DiskUsage[1]; ?>],
-            ['Espacio disponible', <?php echo $DiskUsage[2]; ?>]
+            ['Espacio usado <?php echo "$DiskUsage[1] GB"; ?>', <?php echo $DiskUsage[1]; ?>],
+            ['Espacio disponible: <?php echo "$DiskUsage[2] GB"; ?>', <?php echo $DiskUsage[2]; ?>]
         ]
     }]
 });
@@ -421,27 +445,39 @@ Highcharts.chart('container_cpu', {
     title: {
         text: 'Uso de la CPU'
     },
+    subtitle: {
+        text: '<?php echo "$CpuState[0]"; ?>'
+    },
     tooltip: {
         pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
     },
     plotOptions: {
         pie: {
+            depth: 35,
+            center: ['30%', '50%'],
             allowPointSelect: true,
             cursor: 'pointer',
-            depth: 35,
             dataLabels: {
-                enabled: true,
+                enabled: false,
                 format: '{point.name}'
-            }
+            },
+            showInLegend: true
         }
+    },
+    legend: {
+        x: 90,
+        floating: true,
+        verticalAlign: "middle",
+        layout: "vertical",
+        itemMarginTop: 10
     },
     series: [{
         type: 'pie',
         name: 'Porcentaje de CPU',
         data: [
-            ['En uso', <?php echo $CpuState[4];; ?>],
+            ['En uso: <?php echo "$CpuState[4]%"; ?>', <?php echo $CpuState[4];; ?>],
             {
-                name: 'Disponible',
+                name: 'Disponible: <?php echo "$CpuState[5]%"; ?>',
                 y: <?php echo $CpuState[5]; ?>,
                 sliced: true,
                 selected: true
