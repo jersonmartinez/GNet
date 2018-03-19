@@ -23,14 +23,22 @@
     $InfoOS         = explode(",", $ConnectSSH->getInfoOS());
     $UsersConnected = explode(",", $ConnectSSH->getUsersConnected());
 
-    /*foreach ($MemoryState as $value) {
-        if ($value >= 1024) {
-            $value = ($value / 1024);
+    // Función para convertir a GB
+    function ConvertUnit($InputValue) {
+        if ($InputValue >= 1024) {
+            $InputValue = ($InputValue / 1024);
+            if(is_float($InputValue)) {
+                $ValueFloat = number_format($InputValue, 2, '.', '');
+                return $ValueFloat." GB";
+            } else {
+                return $InputValue." GB";
+            }
         } else {
-            $value = $value;
+            $InputValue = $InputValue;
+            return $InputValue." MB";
         }
-        echo "$value\n";
-    }*/
+    }
+
 ?>
 
 <div class="row">
@@ -296,7 +304,7 @@
 	            text: "Estado de la memoria"
 	        },
             subtitle: {
-                text: 'Memoria Total: <?php echo "$MemoryState[0] MB"; ?>'
+                text: 'Memoria Total: <?php echo ConvertUnit($MemoryState[0]); ?>'
             },
 	        tooltip: {
 	            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -323,8 +331,8 @@
 	            type: 'pie',
 	            name: 'Porcentaje de memoria',
 	            data: [
-	                ['En uso: <?php echo "$MemoryState[1] MB"; ?>', <?php echo $MemoryState[1]; ?>],
-	                ['Disponible: <?php echo "$MemoryState[2] MB"; ?>', <?php echo $MemoryState[2]; ?>],
+	                ['En uso: <?php echo ConvertUnit($MemoryState[1]); ?>', <?php echo $MemoryState[1]; ?>],
+	                ['Disponible: <?php echo ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[2]; ?>],
 	            ]
 	        }]
 	    });
@@ -348,7 +356,7 @@
 	            text: "Área de intercambio | Swap"
 	        },
             subtitle: {
-                text: 'Espacio total: <?php echo "$SwapState[0] MB"; ?>'
+                text: 'Espacio total: <?php echo ConvertUnit($SwapState[0]); ?>'
             },
 	        tooltip: {
 	            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -376,8 +384,8 @@
 	            name: 'Memoria Swap',
 	            data: [
 
-	                ['En uso: <?php echo "$SwapState[1] MB"; ?>', <?php echo $SwapState[1]; ?>],
-	                ['Disponible: <?php echo "$SwapState[2] MB"; ?>', <?php echo $SwapState[2]; ?>],
+	                ['En uso: <?php echo ConvertUnit($SwapState[1]); ?>', <?php echo $SwapState[1]; ?>],
+	                ['Disponible: <?php echo ConvertUnit($SwapState[2]); ?>', <?php echo $SwapState[2]; ?>],
 	            ]
 	        }]
 	    });
@@ -386,6 +394,7 @@
 	// Espacio en disco
 	Highcharts.chart('container_disk', {
     	credits: false,
+        // colors: ['#1E90FF', '#97C3E6'],
         chart: {
             type: 'pie',
             options3d: {
