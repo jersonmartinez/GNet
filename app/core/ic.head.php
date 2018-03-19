@@ -23,5 +23,6 @@
 <!-- Esta libreria es para el efecto de carga, es necesaria su version en JS, esta en el fichero ic.foot_js.php -->
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/ladda/ladda.min.css">
 
+<link rel="stylesheet" type="text/css" href="app/Desktop/Root/css/battery.css">
 <!-- Para los calendarios... -->
 <!-- <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datepicker/css/bootstrap-datetimepicker.css"> -->

@@ -689,8 +689,8 @@
 
 		public function getBatteryState(){
 			$filename = "getBatteryState.sh";
-			$ActionArray[] = 'Porcentaje=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | cut -d ":" -f2 | tr -d "%")';
-			array_push($ActionArray, 'StatusBat=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | cut -d ":" -f2)');
+			$ActionArray[] = "Porcentaje=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk {'print $2'} | tr -d '%')";
+			array_push($ActionArray, "StatusBat=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | awk {'print $2'})");
 			array_push($ActionArray, 'echo "$Porcentaje,$StatusBat,"');
 			
 			$RL[] = $this->remote_path.$filename;

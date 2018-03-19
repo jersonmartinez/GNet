@@ -5,7 +5,6 @@
 
 	include (PF_CONNECT_SERVER);
     include (PD_DESKTOP_ROOT_PHP."/gn.ssh.class.php");
-    // include (PD_DESKTOP_ROOT_PHP."/gn.fr.ssh.network.php");
 
    	$ConnectSSH = new ConnectSSH("127.0.0.1", "root", "123");
 
@@ -24,14 +23,14 @@
     $InfoOS         = explode(",", $ConnectSSH->getInfoOS());
     $UsersConnected = explode(",", $ConnectSSH->getUsersConnected());
 
-    foreach ($MemoryState as $value) {
+    /*foreach ($MemoryState as $value) {
         if ($value >= 1024) {
             $value = ($value / 1024);
         } else {
             $value = $value;
         }
         echo "$value\n";
-    }
+    }*/
 ?>
 
 <div class="row">
@@ -103,8 +102,8 @@
                     <span class="panel-title">Estado de la batería</span>
                 </div>
                 <div class="panel-body">
-                	<p>Porcentaje de carga: <?php echo $BatteryState[0]; ?></p>
-                	<p>Estado: <?php echo $BatteryState[1]; ?></p>
+                    <div id="battery" data-percent="<?php echo $BatteryState[0]; ?>"></div>
+                    <div class="charging_txt glow" id="charging_text"></div>
                 </div>
             </div>
         </div>
@@ -278,7 +277,6 @@
 <!-- End .admin-panels Wrapper -->
 
 <script type="text/javascript">
-
 	// Memoria Ram
  	// Pie Chart
 	var HighChartPie = $('#highchart-pie_memory');
@@ -385,113 +383,141 @@
 	
 	// Espacio en disco
 	Highcharts.chart('container_disk', {
-	credits: false,
-    chart: {
-        type: 'pie',
-        options3d: {
-            enabled: true,
-            alpha: 45
-        }
-    },
-    title: {
-        text: 'Uso del disco duro'
-    },
-    subtitle: {
-        text: 'Capacidad total: <?php echo "$DiskUsage[0] GB"; ?>'
-    },
-    plotOptions: {
-        pie: {
-            innerSize: 100,
-            depth: 45, 
-            center: ['30%', '50%'],
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: false
-            },
-            showInLegend: true
-        }
-
-    },
-    legend: {
-        x: 90,
-        floating: true,
-        verticalAlign: "middle",
-        layout: "vertical",
-        itemMarginTop: 10
-    },
-    series: [{
-        name: 'Tamaño en GB',
-        type: 'pie',
-        data: [
-            ['Espacio usado <?php echo "$DiskUsage[1] GB"; ?>', <?php echo $DiskUsage[1]; ?>],
-            ['Espacio disponible: <?php echo "$DiskUsage[2] GB"; ?>', <?php echo $DiskUsage[2]; ?>]
-        ]
-    }]
-});
-
-
-
-Highcharts.chart('container_cpu', {
-    credits: false,
-    chart: {
-        type: 'pie',
-        options3d: {
-            enabled: true,
-            alpha: 45,
-            beta: 0
-        }
-    },
-    title: {
-        text: 'Uso de la CPU'
-    },
-    subtitle: {
-        text: '<?php echo "$CpuState[0]"; ?>'
-    },
-    tooltip: {
-        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-    },
-    plotOptions: {
-        pie: {
-            depth: 35,
-            center: ['30%', '50%'],
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: false,
-                format: '{point.name}'
-            },
-            showInLegend: true
-        }
-    },
-    legend: {
-        x: 90,
-        floating: true,
-        verticalAlign: "middle",
-        layout: "vertical",
-        itemMarginTop: 10
-    },
-    series: [{
-        type: 'pie',
-        name: 'Porcentaje de CPU',
-        data: [
-            ['En uso: <?php echo "$CpuState[4]%"; ?>', <?php echo $CpuState[4];; ?>],
-            {
-                name: 'Disponible: <?php echo "$CpuState[5]%"; ?>',
-                y: <?php echo $CpuState[5]; ?>,
-                sliced: true,
-                selected: true
+    	credits: false,
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45
             }
-        ]
-    }]
-});
+        },
+        title: {
+            text: 'Uso del disco duro'
+        },
+        subtitle: {
+            text: 'Capacidad total: <?php echo "$DiskUsage[0] GB"; ?>'
+        },
+        plotOptions: {
+            pie: {
+                innerSize: 100,
+                depth: 45, 
+                center: ['30%', '50%'],
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false
+                },
+                showInLegend: true
+            }
 
-$(document).ready(function() {
-    $('#tb_procesos').DataTable( {
-        "scrollY":        "200px",
-        "scrollCollapse": true,
-        "paging":         false
+        },
+        legend: {
+            x: 90,
+            floating: true,
+            verticalAlign: "middle",
+            layout: "vertical",
+            itemMarginTop: 10
+        },
+        series: [{
+            name: 'Tamaño en GB',
+            type: 'pie',
+            data: [
+                ['Espacio usado <?php echo "$DiskUsage[1] GB"; ?>', <?php echo $DiskUsage[1]; ?>],
+                ['Espacio disponible: <?php echo "$DiskUsage[2] GB"; ?>', <?php echo $DiskUsage[2]; ?>]
+            ]
+        }]
     });
-});
+
+    // Estado de la CPU
+    Highcharts.chart('container_cpu', {
+        credits: false,
+        chart: {
+            type: 'pie',
+            options3d: {
+                enabled: true,
+                alpha: 45,
+                beta: 0
+            }
+        },
+        title: {
+            text: 'Uso de la CPU'
+        },
+        subtitle: {
+            text: '<?php echo "$CpuState[0]"; ?>'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                depth: 35,
+                center: ['30%', '50%'],
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: false,
+                    format: '{point.name}'
+                },
+                showInLegend: true
+            }
+        },
+        legend: {
+            x: 90,
+            floating: true,
+            verticalAlign: "middle",
+            layout: "vertical",
+            itemMarginTop: 10
+        },
+        series: [{
+            type: 'pie',
+            name: 'Porcentaje de CPU',
+            data: [
+                ['En uso: <?php echo "$CpuState[4]%"; ?>', <?php echo $CpuState[4];; ?>],
+                {
+                    name: 'Disponible: <?php echo "$CpuState[5]%"; ?>',
+                    y: <?php echo $CpuState[5]; ?>,
+                    sliced: true,
+                    selected: true
+                }
+            ]
+        }]
+    });
+
+    // Estado de la batería
+    //----------------------
+    var stDiv = $('#battery')[0];
+    var dataPercent = stDiv.getAttribute('data-percent');
+    var width = dataPercent - 4;
+    stDiv.insertAdjacentHTML('afterend', '<style>#battery::after{width:' + width + '%;}</style>');
+
+    if (dataPercent <= 10) {
+      stDiv.setAttribute('red','');
+    } else if (dataPercent > 10 && dataPercent <= 30) {
+        stDiv.setAttribute('orange','');
+    } else if (dataPercent > 30 && dataPercent <= 50) {
+        stDiv.setAttribute('yellow','');
+    } else if (dataPercent > 50 && dataPercent <= 70) {
+        stDiv.setAttribute('yellowgreen','');
+    } else if (dataPercent > 70 && dataPercent <= 90) {
+        stDiv.setAttribute('green','');
+    }
+
+    var dataStatus = "<?php echo $BatteryState[1] ?>";
+
+    if (dataStatus == "charging" && dataPercent < 100) {
+        $(charging_text).html("Cargando...");   
+    } else if (dataStatus != "charging" && dataPercent < 100) {
+        $(charging_text).html('Quedan ' + dataPercent + '%');
+    } else if (dataPercent = 100) {
+        $(charging_text).html("Carga completa");
+    }
+
+    $(document).ready(function() {
+        $('#tb_procesos').DataTable( {
+            "scrollY":        "200px",
+            "scrollCollapse": true,
+            "paging":         false
+        });
+    });
 
 </script>
