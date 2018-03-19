@@ -133,16 +133,18 @@
 							<th>Dirección IP</th>	
 						</tr>
 						<?php
-							$i = 0;
-							foreach ($NetAddress as $value) {
+                            for ($i=0; $i < count($NetAddress); $i++) { 
+                                $Firts = explode("|", $NetAddress[$i]);
 
-								?>
-									<tr>
-										<td><?php echo $NetAddress[$i++]; ?></td>
-										<td><?php echo $NetAddress[$i++]; ?></td>
-									</tr>
-								<?php
-							}
+                                for ($j=0; $j < count($Firts); $j++) { 
+                                ?>
+                                    <tr>
+                                        <td><?php echo $Firts[$j]; ?></td>
+                                        <td><?php echo $Firts[$j+1]; $j++; ?></td>
+                                    </tr>
+                                <?php
+                                }
+                            }
 						?>
 				    </table>
                 </div>
@@ -507,7 +509,7 @@
     if (dataStatus == "charging" && dataPercent < 100) {
         $(charging_text).html("Cargando...");   
     } else if (dataStatus != "charging" && dataPercent < 100) {
-        $(charging_text).html('Quedan ' + dataPercent + '%');
+        $(charging_text).html('Queda ' + dataPercent + '%');
     } else if (dataPercent = 100) {
         $(charging_text).html("Carga completa");
     }

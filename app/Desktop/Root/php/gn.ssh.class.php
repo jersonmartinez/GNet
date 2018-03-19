@@ -662,9 +662,9 @@
 			array_push($ActionArray, 'for i in ${Interfaces[*]}; do');
 			array_push($ActionArray, 'DirIP=$(ip addr show $i | grep -w inet | cut -d " " -f6 | cut -d "/" -f1)');
 			array_push($ActionArray, 'if [[ $DirIP != "" ]]; then');
-			array_push($ActionArray, 'echo "$i,$DirIP,"');
+			array_push($ActionArray, 'echo "$i|$DirIP,"');
 			array_push($ActionArray, 'else');
-			array_push($ActionArray, 'echo "$i,No tiene IP asignada,"');
+			array_push($ActionArray, 'echo "$i|No tiene IP asignada,"');
 			array_push($ActionArray, 'fi');
 			array_push($ActionArray, 'done');	
 			
