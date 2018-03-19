@@ -498,7 +498,7 @@
     //----------------------
     var stDiv = $('#battery')[0];
     var dataPercent = stDiv.getAttribute('data-percent');
-    var width = dataPercent - 4;
+    var width = dataPercent - 2;
     stDiv.insertAdjacentHTML('afterend', '<style>#battery::after{width:' + width + '%;}</style>');
 
     if (dataPercent <= 10) {
@@ -517,9 +517,9 @@
 
     if (dataStatus == "charging" && dataPercent < 100) {
         $(charging_text).html("Cargando...");   
-    } else if (dataStatus != "charging" && dataPercent < 100) {
+    } else if (dataStatus == "discharging" && dataPercent < 100) {
         $(charging_text).html('Queda ' + dataPercent + '%');
-    } else if (dataPercent = 100) {
+    } else if (dataStatus == "fully-charged") {
         $(charging_text).html("Carga completa");
     }
 
