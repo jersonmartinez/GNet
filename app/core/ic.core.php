@@ -17,13 +17,7 @@
 				header("Refresh:0 url=".$_SERVER['PHP_SELF']."");
 			}
 
-			// echo $Const;
-			// echo PF_CORE_HEAD;
-			// echo PF_CONNECT_SERVER;
-			// echo PD_CONTROLLER_PHP;
-
 			#Se incluye el fichero de conexión, siguiendo la clase ConfigFile.
-			include (PF_CONNECT_SERVER);
 			include (PD_CONTROLLER_PHP."/ic.config.class.php");
 
 			$Config = new ConfigFile(); #Instancia de la clase ConfigFile
