@@ -272,16 +272,16 @@
 		}
 
 		public function getAllHost(){
-			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host;");
-		}
-
-		public function getIPNetNext($ip_net){
-			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE ip_net>'".$ip_net."' ORDER BY ip_net DESC LIMIT 1;")->fetch_array(MYSQLI_ASSOC)['ip_net'];
+			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host;");
 		}
 
 		//Extrae todas las direcciones de red.
 		public function getIPNet(){
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network;");
+		}
+
+		public function getIPNetNext($ip_net){
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE ip_net>'".$ip_net."' ORDER BY ip_net DESC LIMIT 1;")->fetch_array(MYSQLI_ASSOC)['ip_net'];
 		}
 
 		public function getIPNetLast(){
