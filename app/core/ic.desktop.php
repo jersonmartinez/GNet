@@ -2,7 +2,6 @@
 <html lang="en">
 	<head>
 		<?php 
-			
 			#Importar constantes.
 			// include (@$_SESSION['getConsts']);
 
