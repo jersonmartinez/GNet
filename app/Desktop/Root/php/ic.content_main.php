@@ -99,6 +99,9 @@
                     <div class="panel-heading">
                         <span class="panel-icon"><i class="fa fa-desktop"></i></span>
                         <span class="panel-title">Monitorizador de Recursos</span>
+                    
+                        
+                        
                     </div>
                     <div class="panel-body AdminPanel_ResourcesMonitor_PanelBody">
                         <!-- El contenido -->
