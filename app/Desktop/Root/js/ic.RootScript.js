@@ -1,14 +1,4 @@
 // $(".AddRedactDocumentation").hide();
-$(".AddDeviceManagement").hide();
-
-/*Admin Panels*/
-function HideAdminPanels(){
-	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
-	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
-	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeOut').hide();
-}
-
-HideAdminPanels();
 
 $("#ConfigNetwork").click(function(){
 	$(".ConfigNetwork").click();
@@ -213,10 +203,10 @@ $(document).mousemove(function(event){
 $("#sb_item_TrackingNetwork").click(function(){
 
 	HideAdminPanels();
-	
-	NProgress.start();
-	$(".AdminPanel_TrackingNetwork").addClass('animated fadeIn').show();
 
+	NProgress.start();
+
+	$(".AdminPanel_TrackingNetwork").addClass('animated fadeIn').show();
 	$.ajax({
 		url: "app/Desktop/Root/graphic/gn.TrackingNetwork.php",
 		success: function(data){
@@ -231,8 +221,6 @@ $("#sb_item_TrackingNetwork").click(function(){
 $("#sb_item_DevicesManagement").click(function(){
 
 	HideAdminPanels();
-
-	// $(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
 	
 	NProgress.start();
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeIn').show();
@@ -250,8 +238,6 @@ $("#sb_item_DevicesManagement").click(function(){
 $("#sb_item_ResourcesMonitor").click(function(){
 
 	HideAdminPanels();
-
-	// $(".AdminPanel_ResourcesMonitor").addClass('animated fadeOut').hide();
 	
 	NProgress.start();
 	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
@@ -334,4 +320,107 @@ $("#ddt_SelectTypeDeviceOptionServer").click(function(){
 
 $("#ddt_SelectTypeDeviceOptionRouter").click(function(){
     $(".ddt_SelectTypeDevice").html("Enrutador <span class='caret'></span>");
+});
+
+$(".AddDeviceManagement").hide();
+
+/*Admin Panels*/
+function HideAdminPanels(){
+	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
+	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
+	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeOut').hide();
+}
+
+function HideADM(which){
+
+	// $(".ADM_Host").addClass('animated fadeOut').hide();
+	$(".ADM_Server").addClass('animated fadeOut').hide();
+	$(".ADM_Router").addClass('animated fadeOut').hide();
+
+	if (which == "ADM_Host"){
+		$(".ADM_Host").addClass('animated fadeIn').show();
+		$(".ADM_Server").addClass('animated fadeOut').hide();
+		$(".ADM_Router").addClass('animated fadeOut').hide();
+	} else if (which == "ADM_Server"){
+		$(".ADM_Host").addClass('animated fadeOut').hide();
+		$(".ADM_Server").addClass('animated fadeIn').show();
+		$(".ADM_Router").addClass('animated fadeOut').hide();
+	} else if (which == "ADM_Router"){
+		$(".ADM_Host").addClass('animated fadeOut').hide();
+		$(".ADM_Server").addClass('animated fadeOut').hide();
+		$(".ADM_Router").addClass('animated fadeIn').show();
+	}
+
+	$(".ddt_SelectTypeDevice").click();
+}
+
+HideAdminPanels();
+HideADM();
+
+$("#ddt_SelectTypeDeviceOptionFinalHost").click(function(){
+	HideADM("ADM_Host");
+});
+
+$("#ddt_SelectTypeDeviceOptionServer").click(function(){
+	HideADM("ADM_Server");
+});
+
+$("#ddt_SelectTypeDeviceOptionRouter").click(function(){
+	HideADM("ADM_Router");
+});
+
+// Tooltip
+$(function(){
+    $('[data-toggle="tooltip"]').tooltip()
+});
+
+function KnowIPClass(first_octec){
+	if (first_octec >= 1 && first_octec <= 126)
+		return "A";
+	else if (first_octec >= 128 && first_octec <= 191)
+		return "B";
+	else if (first_octec >= 192 && first_octec <= 223)
+		return "C";
+		
+	return "DESCONOCIDA";
+}
+
+// Muestra la dirección IP de red seleccionada.
+function getDataAndWriteTBNetIP(ip_net){
+	let IPOctec = ip_net.split(".");
+	let LastOctec = IPOctec[3].split("/");
+
+	$(".ADM_TB_IPNet").val(ip_net);
+	$(".ADM_TB_IPNet").attr("disabled", "disabled");
+
+	$(".ADM_TB_IPHost").val(IPOctec.slice(0, 3).join(".") + ".");
+	$(".ADM_TB_IPHost").attr("data-content", "La IP es de clase " + KnowIPClass(IPOctec[0]) + " y debe estar comprendida en el rango de red /" + LastOctec[1] + ".");
+	$(".ADM_TB_IPHost").click();
+	$(".ADM_TB_IPHost").focus();
+}
+
+function getDataAndWriteTBHostIP(ip_net){
+	let IPOctec = ip_net.split(".");
+	let LastOctec = IPOctec[3].split("/");
+
+	$(".ADM_TB_IPNet").val(ip_net);
+	$(".ADM_TB_IPNet").attr("disabled", "disabled");
+
+	$(".ADM_TB_IPHost").val(IPOctec.slice(0, 3).join(".") + ".");
+	$(".ADM_TB_IPHost").attr("data-content", "La IP es de clase " + KnowIPClass(IPOctec[0]) + " y debe estar comprendida en el rango de red /" + LastOctec[1] + ".");
+}
+
+$(".Option_ADM_NewNetwork").click(function(){
+	$(".ADM_TB_IPNet").removeAttr("disabled");
+	$(".ADM_TB_IPNet").click();
+	$(".ADM_TB_IPNet").focus();
+});
+
+$(".ADM_TB_IPHost").click(function(){
+	let ADM_TB_IPNet_ID = document.getElementById("ADM_TB_IPNet_ID");
+
+	// alert("Resultado: " + ADM_TB_IPNet_ID.value);
+
+	if (ADM_TB_IPNet_ID.value.length > 0)
+		getDataAndWriteTBHostIP(ADM_TB_IPNet_ID.value);
 });
