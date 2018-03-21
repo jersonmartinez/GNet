@@ -27,7 +27,7 @@
                                   <li id="ddt_SelectTypeDeviceOptionRouter"><a href="#">Enrutador </a></li>
                                 </ul>
                             </div><!-- /btn-group -->
-                            <input type="text" class="form-control" aria-label="..." data-placement="bottom" data-toggle="popover" title="Atención por acá" data-content="Escriba el nombre o alias del dispositivo a conectar en la infraestructura de red." placeholder="Nombre del dispositivo"/>
+                            <input type="text" class="form-control" aria-label="..." data-placement="bottom" data-toggle="popover" title="Atención por acá" data-content="Escriba el nombre o alias del dispositivo a conectar en la infraestructura de red." placeholder="Nombre del dispositivo" style="height: auto;" />
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
                 </div><!-- /.row -->

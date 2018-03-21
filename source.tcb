@@ -13,10 +13,13 @@
     include (PD_DESKTOP_ROOT_PHP."/gn.ssh.class.php");
 
     $CN_Global = new ConnectSSH();
-    $CN_Global->ConnectDB($H, $U, $P, $D, $X);
+    if (!$CN_Global->ConnectDB($H, $U, $P, $D, $X)->errno){
+		if (@$_SESSION['login'] == true)
+			include (PF_DESKTOP);
+		else
+			include (PF_CORE);
+	} else {
+		@session_destroy();
+	}
 	
-	if (@$_SESSION['login'] == true)
-		include (PF_DESKTOP);
-	else
-		include (PF_CORE);
 ?>

@@ -68,13 +68,15 @@
 		#Tablas que almacenan datos del Tracking Network.
 		$X.'network' => "CREATE TABLE ".$X."network (
 			ip_net VARCHAR(20) NOT NULL, 
-			checked INT
+			checked INT, 
+			alias VARCHAR(30)
 		);",
 		$X.'host' => "CREATE TABLE ".$X."host (
 			ip_net VARCHAR(20) NOT NULL, 
 			ip_host VARCHAR(20), 
 			router INT UNSIGNED,
-			net_next VARCHAR(20)
+			net_next VARCHAR(20),
+			alias VARCHAR(30)
 		);"
 	);
 
