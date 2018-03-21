@@ -64,6 +64,8 @@
 <!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/lib/moment.min.js"></script> -->
 <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.js"></script>
 
+<script src="app/controller/src/plugins/vendor/plugins/typeahead/typeahead.bundle.min.js"></script>
+
 <script type="text/javascript">
 
 jQuery(document).ready(function() {
@@ -210,6 +212,81 @@ jQuery(document).ready(function() {
                 $('.AdminPanel_TrackingNetwork').addClass('animated fadeIn').removeClass('fade-onload');
             },
         });
+
+        //Sugerencias
+          // Init Twitter Typeahead.js
+          var substringMatcher = function(strs) {
+            return function findMatches(q, cb) {
+              var matches, substrRegex;
+
+              // an array that will be populated with substring matches
+              matches = [];
+
+              // regex used to determine if a string contains the substring `q`
+              substrRegex = new RegExp(q, 'i');
+
+              // iterate through the pool of strings and for any string that
+              // contains the substring `q`, add it to the `matches` array
+              $.each(strs, function(i, str) {
+                if (substrRegex.test(str)) {
+                  // the typeahead jQuery plugin expects suggestions to a
+                  // JavaScript object, refer to typeahead docs for more info
+                  matches.push({
+                    value: str
+                  });
+                }
+              });
+
+              cb(matches);
+            };
+          };
+
+          // Define List
+
+          <?php
+            $getAllHost = $CN_Global->getAllHost();
+            $getAllNet  = $CN_Global->getIPNet();
+
+
+            if ($getAllHost->num_rows > 0 && $getAllNet->num_rows > 0){
+                while ($list_host = $getAllHost->fetch_array(MYSQLI_ASSOC))
+                    $ADM_ListData_Host[] = $list_host['ip_host'];
+
+                while ($list_net = $getAllNet->fetch_array(MYSQLI_ASSOC))
+                    $ADM_ListData_Net[] = $list_net['ip_net'];
+
+                ?>
+                    var ADM_ListData_Host = [<?php echo '"'.implode('","', $ADM_ListData_Host).'"' ?>];
+                    var ADM_ListData_Net = [<?php echo '"'.implode('","', $ADM_ListData_Net).'"' ?>];
+                <?php
+            } else {
+                ?>
+                    var ADM_ListData_Host = ['No hay dispositivos'];
+                    var ADM_ListData_Net = ['No hay redes'];
+                <?php
+            }
+          ?>
+
+          // Init Typeahead
+          $('.ADM_TB_IPHost').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+          }, {
+            name: 'ADM_ListData_Host',
+            displayKey: 'value',
+            source: substringMatcher(ADM_ListData_Host)
+          });
+
+          $('.ADM_TB_IPNet').typeahead({
+            hint: true,
+            highlight: true,
+            minLength: 1
+          }, {
+            name: 'ADM_ListData_Net',
+            displayKey: 'value',
+            source: substringMatcher(ADM_ListData_Net)
+          });
 
         // $('.admin-panels2').adminpanel({
         //     grid: '.admin-grid2', // set column class
