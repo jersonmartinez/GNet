@@ -36,6 +36,32 @@
         </a>
     </li>
 
+    <!-- Gestionar servicios de red -->
+    <li>
+        <a class="accordion-toggle" href="#">
+            <span class="glyphicon glyphicon-book"></span>
+            <span class="sidebar-title">Servicios de red</span>
+          
+            <span class="caret"></span>
+        </a>
+    
+        <ul class="nav sub-nav">
+            <li>
+                <a href="#" id="sb_item_ServicesManagement">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                    Gestionar servicios
+                </a>
+            </li>
+
+            <li>
+                <a href="#" id="sb_item_AddServicesManagement">
+                    <span class="glyphicon glyphicon-text-height"></span>
+                    Agregar servicios
+                </a>
+            </li>      
+        </ul>
+    </li>
+
     <li>
         <a href="#" id="sb_item_ResourcesMonitor">
             <span class="fa fa-calendar"></span>

@@ -23,6 +23,10 @@
     $InfoOS         = explode(",", $ConnectSSH->getInfoOS());
     $UsersConnected = explode(",", $ConnectSSH->getUsersConnected());
 
+    $NetworkServices = explode(",", $ConnectSSH->getNetworkServices());
+    $VirtualHost = explode(",", explode("=", $ConnectSSH->getWebServer())[0]);
+    $WebServer  = explode(",", explode("=", $ConnectSSH->getWebServer())[1]);
+
     // Función para convertir a GB
     function ConvertUnit($InputValue) {
         if ($InputValue >= 1024) {
@@ -204,7 +208,6 @@
 </div>
 <!-- End .admin-panels Wrapper -->
 
-
 <!-- Required .admin-panels wrapper-->
 <div class="admin-panels">
     <!-- Create Row -->
@@ -251,7 +254,7 @@
                     <span class="panel-title">Procesos iniciados</span>
                 </div>
                 <div class="panel-body" style="max-height: 300px; overflow: scroll;">
-                	<table id="tb_procesos" class="display" cellspacing="0" width="100%">
+                	<table class="table">
 			    		<thead>
 				            <tr>
 				                <th>PID</th>
@@ -275,6 +278,95 @@
 							}
 						?>
 			    	</table>
+                </div>
+            </div>
+        </div>
+        <!-- End Column -->
+
+    </div>
+    <!-- End Row -->
+
+</div>
+<!-- End .admin-panels Wrapper -->
+
+<!-- Required .admin-panels wrapper-->
+<div class="admin-panels">
+    <!-- Create Row -->
+    <div class="row">
+        <!-- Create Column with required .admin-grid class -->
+        <div class="col-md-6 admin-grid">
+            <!-- Create Panel with required unique ID -->
+            <div class="panel panel-dark" id="p1">
+                <div class="panel-heading">
+                    <span class="panel-title">Servidor Web | Sitios virtuales</span>
+                </div>
+                <div class="panel-body" style="max-height: 300px;">
+                    <table class="table">
+                        <tr>
+                            <th>Sitio virtual</th>
+                            <th>Nombre de dominio</th> 
+                            <th>Estado</th>  
+                        </tr>
+                        <?php
+                            for ($i=0; $i < count($VirtualHost); $i++) { 
+                                $Firts = explode("|", $VirtualHost[$i]);
+
+                                for ($j=0; $j < count($Firts); $j++) { 
+                                ?>
+                                    <tr>
+                                        <td><?php echo $Firts[$j]; ?></td>
+                                        <td><?php echo $Firts[$j+1]; $j++; ?></td>
+                                        <td><?php echo $Firts[$j+1]; $j++; ?></td>
+                                    </tr>
+                                <?php
+                                }
+                            }
+                        ?>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- End Column -->
+
+        <!-- Create Column with required .admin-grid class -->
+        <div class="col-md-6 admin-grid">
+
+            <!-- Create Panel with required unique ID -->
+            <div class="panel panel-dark" id="p3">
+                <div class="panel-heading">
+                    <span class="panel-title">Monitorización del servidor web</span>
+                </div>
+                <div class="panel-body" style="max-height: 300px; overflow: scroll;">
+                    <table class="table">
+                        <tr>
+                            <td>Número de accesos:</td>
+                            <td><?php echo $WebServer[0]; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Conexiones establecidas al puerto 80:</td>
+                            <td><?php echo $WebServer[1]; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Conexiones establecidas al puerto 443:</td>
+                            <td><?php echo $WebServer[2]; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Conexiones en espera de cierre puerto 80:</td>
+                            <td><?php echo $WebServer[3]; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Conexiones en espera de cierre puerto 443:</td>
+                            <td><?php echo $WebServer[4]; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Fecha y hora de inicio:</td>
+                            <td><?php echo "$WebServer[5] $WebServer[6]"; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Número de veces que ha sido reiniciado:</td>
+                            <td><?php echo $WebServer[7]; ?></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
@@ -433,8 +525,8 @@
             name: 'Tamaño en GB',
             type: 'pie',
             data: [
-                ['Espacio usado <?php echo "$DiskUsage[1] GB"; ?>', <?php echo $DiskUsage[1]; ?>],
-                ['Espacio disponible: <?php echo "$DiskUsage[2] GB"; ?>', <?php echo $DiskUsage[2]; ?>]
+                ['En uso: <?php echo "$DiskUsage[1] GB"; ?>', <?php echo $DiskUsage[1]; ?>],
+                ['Disponible: <?php echo "$DiskUsage[2] GB"; ?>', <?php echo $DiskUsage[2]; ?>]
             ]
         }]
     });
@@ -523,12 +615,12 @@
         $(charging_text).html("Carga completa");
     }
 
-    $(document).ready(function() {
+    /*$(document).ready(function() {
         $('#tb_procesos').DataTable( {
             "scrollY":        "200px",
             "scrollCollapse": true,
             "paging":         false
         });
-    });
+    });*/
 
 </script>

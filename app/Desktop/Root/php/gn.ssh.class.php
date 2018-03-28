@@ -126,27 +126,6 @@
 			return getErrors();
 		}
 
-		public function getHTTPVirtualHost(){
-			$filename = "getHTTPVirtualHost.sh";
-			$ActionArray[] = "SITIOS=$(ls /etc/apache2/sites-available/)";
-			array_push($ActionArray, 'for i in ${SITIOS[*]}; do');
-			array_push($ActionArray, '	NAME_SERVER=$(cat /etc/apache2/sites-available/$i | grep "ServerName" | cut -d " " -f2 | tail -n1)');
-			array_push($ActionArray, '	SITE_ENABLE=$(ls /etc/apache2/sites-enabled/ | grep $i)');
-			array_push($ActionArray, '	if [[ $SITE_ENABLE == "" && $NAME_SERVER == "" ]]; then');
-			array_push($ActionArray, '		echo "$i,No identificado,No habilitado"');
-			array_push($ActionArray, '	else');
-			array_push($ActionArray, '		echo "$i,$NAME_SERVER,Habilitado"');
-			array_push($ActionArray, '	fi');
-			array_push($ActionArray, 'done');
-			array_push($ActionArray, 'echo "="');
-			
-			$RL[] = $this->remote_path.$filename;
-			array_push($RL, "rm -rf ".$this->remote_path.$filename);
-			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
-				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
-		}
-
 		public function getNetworkIPLocal(){
 			$IP 		= shell_exec('ip route show | awk {"print $NF"}');
 			$ArrayIP 	= explode("metric ", $IP);
@@ -720,10 +699,68 @@
 			$filename = "getUsersConnected.sh";
 			$ActionArray[] = "Users=($(w | sed '1,2d' | awk {'print $1 ,$4'}))";
 			array_push($ActionArray, 'echo "${Users[*]},"');
-			/*array_push($ActionArray, 'for i in ${Users[*]}; do');
-			array_push($ActionArray, 'echo "$i,"');
-			array_push($ActionArray, "done");*/
 			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getNetworkServices() {
+			$filename = "getNetworkServices.sh";
+			$ActionArray[] = "Services=$(lsof -i -n | egrep -v '(ESTAB|WAIT)' | sed '1d' | awk {'print $1'} | uniq)";
+			array_push($ActionArray, 'echo "${Users[*]},"');
+			array_push($ActionArray, 'for i in ${Services[*]}; do');
+			array_push($ActionArray, 'case $i in');
+			array_push($ActionArray, '"sshd" )');
+			array_push($ActionArray, 'echo "SSH,"');
+			array_push($ActionArray, ';;');
+			array_push($ActionArray, '"apache2" )');
+			array_push($ActionArray, 'echo "HTTP,"');
+			array_push($ActionArray, ';;');
+			array_push($ActionArray, '"mysqld" )');
+			array_push($ActionArray, 'echo "MySQL,"');
+			array_push($ActionArray, ';;');
+			array_push($ActionArray, '"named" )');
+			array_push($ActionArray, 'echo "DNS,"');
+			array_push($ActionArray, ';;');
+			array_push($ActionArray, '"vsftpd" )');
+			array_push($ActionArray, 'echo "FTP,"');
+			array_push($ActionArray, ';;');
+			array_push($ActionArray, 'esac');
+			array_push($ActionArray, 'done');
+
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getWebServer(){
+			$filename = "getWebServer.sh";
+			$ActionArray[] = "Sites=($(ls /etc/apache2/sites-available/))";
+			array_push($ActionArray, 'for i in ${Sites[*]}; do');
+			array_push($ActionArray, "	ServerName=$(cat /etc/apache2/sites-available/$i | grep 'ServerName' | cut -d ' ' -f2 | tail -n1)");
+			array_push($ActionArray, '	SitesEnable=$(ls /etc/apache2/sites-enabled/ | grep $i)');
+			array_push($ActionArray, '	if [[ $SitesEnable == "" && $ServerName == "" ]]; then');
+			array_push($ActionArray, '		echo "$i|No identificado|No habilitado,"');
+			array_push($ActionArray, '	else');
+			array_push($ActionArray, '		echo "$i|$ServerName|Habilitado,"');
+			array_push($ActionArray, '	fi');
+			array_push($ActionArray, 'done');
+			array_push($ActionArray, 'echo "="');
+			array_push($ActionArray, "NumAccesos=$(cat /var/log/apache2/access.log | wc -l)");
+			array_push($ActionArray, "ConHttp=$(lsof -i -nP | egrep '(CONNECTED|ESTAB)' | grep '80' | wc -l)");
+			array_push($ActionArray, "ConHttps=$(lsof -i -nP | egrep '(CONNECTED|ESTAB)' | grep '443' | wc -l)");
+			array_push($ActionArray, "TimeWaitHttp=$(lsof -i -nP | grep TIME_WAIT | grep '80' | wc -l)");
+			array_push($ActionArray, "TimeWaitHttps=$(lsof -i -nP | grep TIME_WAIT | grep '443' | wc -l)");
+			array_push($ActionArray, "APID=$(ps axo pid,cmd,user | grep apache2 | grep root | grep -v $0 | grep -v g | cut -d' ' -f2)");
+			array_push($ActionArray, "DateInit=$(ls -od --time-style=+%d-%m-%y,%H-%M /proc/$APID | cut -d' ' -f5)");
+			array_push($ActionArray, "CantRestart=$(cat /var/log/apache2/*.log | grep 'resuming normal operations' | wc -l)");
+			array_push($ActionArray, 'echo "$NumAccesos,$ConHttp,$ConHttps,$TimeWaitHttp,$TimeWaitHttps,$DateInit,$CantRestart,"');
+
 			$RL[] = $this->remote_path.$filename;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
