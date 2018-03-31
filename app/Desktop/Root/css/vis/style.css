@@ -178,22 +178,7 @@ div.mixings-get-devices .mix-container .mix.category-1:active, .mix.category-4:a
     font-weight: bold;
 }
 
-div.mixings-get-devices .mix-container .mix.category-2 {
-    border-top: 3px solid #212933;
-    height: 150px;
-}
-
-div.mixings-get-devices .mix-container .mix.category-1 {
-    border-top: 3px solid #212933;
-    height: 150px;
-}
-
-div.mixings-get-devices .mix-container .mix.category-3 {
-    border-top: 3px solid #212933;
-    height: 150px;
-}
-
-div.mixings-get-devices .mix-container .mix.category-4 {
+div.mixings-get-devices .mix-container .mix.category-1, .mix.category-2, .mix.category-3, .mix.category-4 {
     border-top: 3px solid #212933;
     height: 150px;
 }
