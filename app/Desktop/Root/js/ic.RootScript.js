@@ -194,7 +194,13 @@ $(document).mousemove(function(event){
         	window.location.href="app/controller/php/ic.logout.php";
         }, 299000);
       } else if (GlobalX != event.clientX || GlobalY != event.clientY) {
-        clearTimeout(CountNow);
+        if (CountNow != 0){
+        	// console.log("Reiniciando de: " + CountNow);
+        	clearTimeout(CountNow);
+        	// console.log("El clearTimeout es de: " + CountNow);
+    	    CountNow = 0;
+	        // console.log("El contador es de: " + CountNow);
+        }
       }
     }, 1000);
 });
