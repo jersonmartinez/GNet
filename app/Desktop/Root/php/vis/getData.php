@@ -94,7 +94,7 @@
                     <?php
 
                 ?>
-                    nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo $RRouter['ip_host']; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
+                    nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo "[".$RRouter['ip_host']."]"; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
                     
                     // edges.push({from: <?php echo $IDRouter; ?>, to: <?php echo $RIPValueSwitch; ?>, length: EDGE_LENGTH_SUB});
                 <?php

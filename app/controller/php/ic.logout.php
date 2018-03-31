@@ -1,11 +1,7 @@
 <?php
 	@session_start();
 
-	#Importar constantes.
-	$Local = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php";
-
-	if (!file_exists($Local))
-		$Local = $_SERVER['DOCUMENT_ROOT']."/app/core/ic.const.php";
+	include (@$_SESSION['getConsts']);
 
 	include ($Local);
 	include (PF_CONNECT_SERVER);
@@ -26,6 +22,4 @@
 		@session_destroy();
 		header("Location: ../../../");
 	}
-
-
 ?>
