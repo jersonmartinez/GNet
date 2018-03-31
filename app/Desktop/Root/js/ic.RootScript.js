@@ -212,6 +212,7 @@ $("#sb_item_TrackingNetwork").click(function(){
 		success: function(data){
 			$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
 			draw();
+				
 			NProgress.done();
 		}
 	});
@@ -357,15 +358,19 @@ function HideADM(which){
 HideAdminPanels();
 HideADM();
 
+var ADM_Value = "";
 $("#ddt_SelectTypeDeviceOptionFinalHost").click(function(){
+	ADM_Value = "ADM_Host";
 	HideADM("ADM_Host");
 });
 
 $("#ddt_SelectTypeDeviceOptionServer").click(function(){
+	ADM_Value = "ADM_Server";
 	HideADM("ADM_Server");
 });
 
 $("#ddt_SelectTypeDeviceOptionRouter").click(function(){
+	ADM_Value = "ADM_Router";
 	HideADM("ADM_Router");
 });
 
@@ -423,4 +428,32 @@ $(".ADM_TB_IPHost").click(function(){
 
 	if (ADM_TB_IPNet_ID.value.length > 0)
 		getDataAndWriteTBHostIP(ADM_TB_IPNet_ID.value);
+});
+
+/*Registrar nuevo dispositivo*/
+$("#Btn_ADM_Save").click(function(){	
+	NProgress.start();
+
+	if (ADM_Value == "ADM_Host"){
+
+		$("#InputADMOptionHost_WhoIs").val(ADM_Value);
+		$("#InputADMOptionHost_AliasHost").val($("#ADM_InsertAliasHost").val());
+		$("#InputADMOptionHost_IPNet").val($("#ADM_TB_IPNet_ID").val());
+		$("#InputADMOptionHost_IPHost").val($("#ADM_TB_IPHost_ID").val());
+
+		$.ajax({
+			url: "app/Desktop/Root/php/gn.AddDevice.php",
+			type: "post",
+			data: $("#Form_ADM_Option_Host").serialize(),
+			success: function(data){
+				$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html(data);
+				NProgress.done();
+			}
+		});
+	} else if (ADM_Value == "ADM_Server"){
+		alert("Intenta agregar un servidor");
+	} else if (ADM_Value == "ADM_Router"){
+		alert("Intenta agregar un enrutador");
+	}
+
 });
