@@ -66,6 +66,8 @@
 
 <script src="app/controller/src/plugins/vendor/plugins/typeahead/typeahead.bundle.min.js"></script>
 
+<script src="app/controller/src/plugins/vendor/plugins/bstour/bootstrap-tour.js"></script>
+
 <script type="text/javascript">
 
 jQuery(document).ready(function() {
@@ -286,6 +288,24 @@ jQuery(document).ready(function() {
             name: 'ADM_ListData_Net',
             displayKey: 'value',
             source: substringMatcher(ADM_ListData_Net)
+          });
+
+          // Create Tour steps
+          var tour = new Tour({
+            backdrop: true, // can mask content in a modal
+            steps: [
+              {
+                element: "#tour-item1", // item selector
+                title: "Tour item title!", // title
+                content: "I'm the content", // content
+                placement: 'top' // left, right, top, bottom
+              },
+            ]
+          });
+
+          // Start Tour on click
+          $('#tour_start').on('click',function(){
+              tour.restart();
           });
 
         // $('.admin-panels2').adminpanel({
