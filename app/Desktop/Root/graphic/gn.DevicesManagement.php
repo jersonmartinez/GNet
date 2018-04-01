@@ -5,7 +5,7 @@
     include (@$_SESSION['getConsts']);
 
     include (PF_CONNECT_SERVER);
-    include (PD_DESKTOP_ROOT_PHP."/gn.ssh.class.php");
+    include (PF_SSH);
 
     $CN = new ConnectSSH();
     $CN->ConnectDB($H, $U, $P, $D, $X);

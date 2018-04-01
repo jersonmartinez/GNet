@@ -751,8 +751,6 @@
 		}
 
 	}
-
 	// echo (new ConnectSSH("192.168.100.2", "network", "123"))->getDHCPShowAssignIP();
-
 
 ?>

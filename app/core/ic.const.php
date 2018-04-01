@@ -44,6 +44,7 @@
 		define ("PF_CORE_HEAD", 		$Path."/app/core/ic.head.php");
 		define ("PF_CORE", 				$Path."/app/core/ic.core.php");
 		define ("PF_DESKTOP", 			$Path."/app/core/ic.desktop.php");
+		define ("PF_SSH", 				$Path."/app/core/gn.ssh.class.php");
 		define ("PF_CORE_FOOT", 		$Path."/app/core/ic.foot.php");
 		
 	define ("PD_DESKTOP", 	$Path."/app/Desktop");
