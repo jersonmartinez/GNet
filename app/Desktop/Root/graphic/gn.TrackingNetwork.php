@@ -19,9 +19,7 @@
 
 <div class="here_write">
     <?php
-        if ($R->num_rows > 0){
-            include (PD_DESKTOP_ROOT_PHP."/vis/images.php");
-        }
+        include (PD_DESKTOP_ROOT_PHP."/vis/images.php");
     ?>
 </div>
 
