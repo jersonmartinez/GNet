@@ -1,4 +1,4 @@
-<!-- Este es el fichero de cabecera!. --> 
+<!-- Este es el fichero de cabecera!. -->
 <meta charset="utf-8">
 <title>GNet <?php echo empty(@$_SESSION['username']) ? "" : " | ".@$_SESSION['username']; ?></title>
 <meta name="keywords" content="GNet - Sistema de Gestión de Red" />
@@ -6,11 +6,9 @@
 <meta name="author" content="GNet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="app/controller/src/plugins/assets/img/favicon.ico">
-  
+
 <!-- FullCalendar Plugin CSS -->
 <!-- <link rel="stylesheet" type="text/css" href="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.css"> -->
-
-<!-- Theme CSS -->
 
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_ASSETS_SKIN; ?>/default_skin/css/theme.css">
 
