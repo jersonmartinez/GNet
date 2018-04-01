@@ -1,5 +1,4 @@
 <!-- Este es el fichero de pie de página, donde se insertan los scripts escritos en JS -->
-
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery-1.11.1.min.js"></script>
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery_ui/jquery-ui.min.js"></script>
 
@@ -39,29 +38,25 @@
 
 <!-- <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script> -->
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datatables/media/js/jquery.dataTables.min.js"></script>
-
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highlight/highlight.pack.js"></script> 
 
 <!-- Widget Javascript -->
 <script src="<?php echo PDS_SRC_PLUGINS_ASSETS_JS; ?>/demo/widgets.js"></script>
 
+<!-- FullCalendar Plugin + moment Dependency -->
+<!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/lib/moment.min.js"></script> -->
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/fullcalendar/fullcalendar.min.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/typeahead/typeahead.bundle.min.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/bstour/bootstrap-tour.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datepicker/js/bootstrap-datetimepicker.min.js"></script> 
+
+<!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/jvectormap/jquery.jvectormap.min.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/jvectormap/assets/jquery-jvectormap-us-lcc-en.js"></script> 
 
 <!-- Importants Scripts -->
 <script src="<?php echo PDS_CTL_JS; ?>/ic.script.js"></script>
 <script src="<?php echo PDS_DESKTOP_ROOT_JS; ?>/ic.RootScript.js"></script>
-
-<!-- <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script>  -->
-<!-- JvectorMap Plugin + US Map (more maps in plugin/assets folder) -->
-<!--   <script src="app/controller/src/plugins/vendor/plugins/jvectormap/jquery.jvectormap.min.js"></script>
-<script src="app/controller/src/plugins/vendor/plugins/jvectormap/assets/jquery-jvectormap-us-lcc-en.js"></script>  -->
-
-<!-- FullCalendar Plugin + moment Dependency -->
-<!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/lib/moment.min.js"></script> -->
-<script src="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.js"></script>
-
-<script src="app/controller/src/plugins/vendor/plugins/typeahead/typeahead.bundle.min.js"></script>
-
-<script src="app/controller/src/plugins/vendor/plugins/bstour/bootstrap-tour.js"></script>
 
 <script type="text/javascript">
 

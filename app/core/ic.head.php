@@ -5,7 +5,7 @@
 <meta name="description" content="GNet - Sistema de Gestión de Red">
 <meta name="author" content="GNet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="shortcut icon" href="app/controller/src/plugins/assets/img/favicon.ico">
+<link rel="shortcut icon" href="<?php echo PDS_CTL_SRC; ?>/plugins/assets/img/favicon.ico">
 
 <!-- FullCalendar Plugin CSS -->
 <!-- <link rel="stylesheet" type="text/css" href="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.css"> -->

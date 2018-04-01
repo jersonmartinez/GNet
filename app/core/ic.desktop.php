@@ -12,7 +12,6 @@
 				include (PD_DESKTOP_ROOT."/main.php");
 			else if (@$_SESSION['p'] == "admin")
 				include (PD_DESKTOP_ADMIN."/main.php");
-
 		?>
 	<div>
 		<?php
