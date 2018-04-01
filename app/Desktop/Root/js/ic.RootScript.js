@@ -1,4 +1,5 @@
 // $(".AddRedactDocumentation").hide();
+var xhr = null;
 
 $("#ConfigNetwork").click(function(){
 	$(".ConfigNetwork").click();
@@ -15,7 +16,7 @@ $(".savechange").click(function(){
 });
 
 $("#DetailsNetwork").click(function(){
-	$.ajax({
+	xhr = $.ajax({
 		url: "app/Desktop/Root/php/ic.GetNetworkData.php",
 		success: function(data){
 			$("#FormAppendDataDetails").html(data);
@@ -24,7 +25,7 @@ $("#DetailsNetwork").click(function(){
 });
 
 $("#HistoryNetwork").click(function(){
-	$.ajax({
+	xhr = $.ajax({
 		url: "app/Desktop/Root/php/ic.GetNetworkHistory.php",
 		success: function(data){
 			$(".HereBreakHistory").html(data);
@@ -37,7 +38,7 @@ $("#LogoutRoot").click(function(){
 });
 
 function AddNetwork(){
-	$.ajax({
+	xhr = $.ajax({
 		url: "app/Desktop/Root/php/ic.AddNet.php",
 		type: "post",
 		data: $("#FormCreateNetwork").serialize(),
@@ -170,7 +171,7 @@ $("#dropdown-Apache").click(function(){
 
 /*This event will show to the documentation area.*/
 $("#sidebar_show_documentation").click(function(){
-	$.ajax({
+	xhr = $.ajax({
 		url: "app/Desktop/Root/graphic/ic.showDocumentation.php",
 		success: function(data){
 			$("div.container_platform").html(data);
@@ -213,7 +214,7 @@ $("#sb_item_TrackingNetwork").click(function(){
 	NProgress.start();
 
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeIn').show();
-	$.ajax({
+	xhr = $.ajax({
 		url: "app/Desktop/Root/graphic/gn.TrackingNetwork.php",
 		success: function(data){
 			$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
@@ -232,7 +233,7 @@ $("#sb_item_DevicesManagement").click(function(){
 	NProgress.start();
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeIn').show();
 
-	$.ajax({
+	xhr = $.ajax({
 		url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
 		success: function(data){
 			$(".AdminPanel_DevicesManagement_PanelBody").addClass('animated fadeIn').html(data);
@@ -249,7 +250,7 @@ $("#sb_item_ResourcesMonitor").click(function(){
 	NProgress.start();
 	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
 
-	$.ajax({
+	xhr = $.ajax({
 		url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
 		success: function(data){
 			$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html(data);
@@ -268,7 +269,7 @@ function StartTracking(){
 
 	$("#retardo_temporal").html("...");
 
-	$.ajax({
+	xhr = $.ajax({
 	    url: "app/Desktop/Root/php/vis/Tracking.php",
 	    success: function(data){
 	    	$(".here_write").html(data);
@@ -282,7 +283,7 @@ function StartTracking(){
 }
 
 function LoadNetworkMap(){
-	$.ajax({
+	xhr = $.ajax({
 	    url: "app/Desktop/Root/php/vis/return.php",
 	    success: function(data){
 	    	$(".here_write").html(data);
@@ -447,7 +448,7 @@ $("#Btn_ADM_Save").click(function(){
 		$("#InputADMOptionHost_IPNet").val($("#ADM_TB_IPNet_ID").val());
 		$("#InputADMOptionHost_IPHost").val($("#ADM_TB_IPHost_ID").val());
 
-		$.ajax({
+		xhr = $.ajax({
 			url: "app/Desktop/Root/php/gn.AddDevice.php",
 			type: "post",
 			data: $("#Form_ADM_Option_Host").serialize(),
@@ -462,4 +463,11 @@ $("#Btn_ADM_Save").click(function(){
 		alert("Intenta agregar un enrutador");
 	}
 
+});
+
+$(".btn_main_logo").click(function(){
+	if (xhr != null)
+		xhr.abort();
+	
+	window.location.reload();
 });
