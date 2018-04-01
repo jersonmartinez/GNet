@@ -1,4 +1,4 @@
-<?php include (PD_CONTROLLER_PHP."/ic.CalcDate.php"); ?>
+<?php include (PD_CTL_PHP."/ic.CalcDate.php"); ?>
 
 <!-- Start: Main -->
   <div id="main" class="animated fadeIn">

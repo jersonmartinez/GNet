@@ -18,7 +18,7 @@
 			}
 
 			#Se incluye el fichero de conexión, siguiendo la clase ConfigFile.
-			include (PD_CONTROLLER_PHP."/ic.config.class.php");
+			include (PD_CTL_PHP."/ic.config.class.php");
 
 			$Config = new ConfigFile(); #Instancia de la clase ConfigFile
 			

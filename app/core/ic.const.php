@@ -29,10 +29,10 @@
 		
 		define ("PF_CONFIG", 			$Path."/app/config/Config.tcb");
 
-	define ("PD_CONTROLLER",$Path."/app/controller");
-		define ("PD_CONTROLLER_JS", 	$Path."/app/controller/js");
-		define ("PD_CONTROLLER_PHP", 	$Path."/app/controller/php");
-		define ("PD_CONTROLLER_SRC", 	$Path."/app/controller/src");
+	define ("PD_CTL",$Path."/app/controller");
+		define ("PD_CTL_JS", 	$Path."/app/controller/js");
+		define ("PD_CTL_PHP", 	$Path."/app/controller/php");
+		define ("PD_CTL_SRC", 	$Path."/app/controller/src");
 
 		define ("PDS_CTL_SRC", 			"app/controller/src");
 		define ("PDS_CTL_JS", 			"app/controller/js");

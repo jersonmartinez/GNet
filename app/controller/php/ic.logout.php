@@ -5,7 +5,7 @@
 
 	include ($Local);
 	include (PF_CONNECT_SERVER);
-	include (PD_CONTROLLER_PHP."/ic.config.class.php");
+	include (PD_CTL_PHP."/ic.config.class.php");
 
 	$Object = new ConfigFile();
 	
