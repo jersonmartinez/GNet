@@ -50,11 +50,13 @@
 	define ("PD_DESKTOP", 	$Path."/app/Desktop");
 		define ("PD_DESKTOP_ROOT", 		$Path."/app/Desktop/Root");
 			define ("PD_DESKTOP_ROOT_PHP", 		$Path."/app/Desktop/Root/php");
+				define ("PD_DESKTOP_ROOT_PHP_CLASS", 		$Path."/app/Desktop/Root/php/class");
 			define ("PD_DESKTOP_ROOT_GP", 		$Path."/app/Desktop/Root/graphic");
 			define ("PD_DESKTOP_ROOT_JS", 		$Path."/app/Desktop/Root/js");
 
 		define ("PDS_DESKTOP_ROOT", "app/Desktop/Root");
 			define ("PDS_DESKTOP_ROOT_PHP", 	"app/Desktop/Root/php");
+				define ("PDS_DESKTOP_ROOT_PHP_CLASS", 	"app/Desktop/Root/php/class");
 			define ("PDS_DESKTOP_ROOT_JS", 		"app/Desktop/Root/js");
 			define ("PDS_DESKTOP_ROOT_GP", 		"app/Desktop/Root/graphic");
 		
