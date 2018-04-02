@@ -256,6 +256,20 @@
 			return false;
 		}
 
+		public function updateNetworkAlias($ip_net, $alias){
+			if ($this->db_connect->query("UPDATE ".$this->db_prefix."network SET alias='".$alias."' WHERE ip_net='".$ip_net."';"))
+				return true;
+
+			return false;
+		}
+
+		public function updateHostAlias($ip_host, $alias){
+			if ($this->db_connect->query("UPDATE ".$this->db_prefix."host SET alias='".$alias."' WHERE ip_host='".$ip_host."';"))
+				return true;
+
+			return false;
+		}
+
 		public function addHost($ip_net, $ip_host, $router, $net_next, $alias = ""){
 			$query = "INSERT INTO ".$this->db_prefix."host (ip_net, ip_host, router, net_next, alias) VALUES ('".$ip_net."', '".$ip_host."', '".$router."', '".$net_next."', '".$alias."');";
 			
