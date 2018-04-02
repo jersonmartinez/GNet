@@ -12,17 +12,6 @@
 <div class="container_platform">
 
     <?php
-        $ip = "192.168.100.3";
-        $v = exec("ping -q -c1 ".$ip." >/dev/null 2>&1 ; echo $?");
-
-        if ($v == 0) {
-            echo "La conexión está correcta";
-        } else if ($v == 1){
-            echo "No hay conexión";
-        } else if ($v == 2){
-            echo "No hay conexion a internet, sin resolver el DNS";
-        }
-
         // $wait = 1; // wait Timeout In Seconds
         // $host = '192.168.102.2';
         // $ports = [
