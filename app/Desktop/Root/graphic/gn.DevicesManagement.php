@@ -6,11 +6,15 @@
 
     include (PF_CONNECT_SERVER);
     include (PF_SSH);
+    include (PD_DESKTOP_ROOT_PHP_CLASS."/gn.class.ping.php");
+
+    $CD = new CheckDevice();
 
     $CN = new ConnectSSH();
     $CN->ConnectDB($H, $U, $P, $D, $X);
 
     $R = $CN->getAllHost();
+    $IPNet = $CN->getIPNet(); 
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/style.css">
@@ -22,53 +26,136 @@
         <?php
             if (@$R->num_rows > 0){
                 $R_Count = 1;
+
+                while ($SwitchIPNet = @$IPNet->fetch_array(MYSQLI_ASSOC)){
+                    /*Switch*/
+
+                    ?>
+                        <div class="mix category-3" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #212933;">
+                            <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/switchs/switchicon1.png" style="margin-left: 25%; height: 130px;" />
+                            
+                            <?php
+                                if (!empty($SwitchIPNet['alias'])){
+                                    ?>
+                                        <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $SwitchIPNet['ip_net']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $SwitchIPNet['alias']; ?></p>
+                                    <?php
+                                } else {
+                                    ?>
+                                        <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $SwitchIPNet['ip_net']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $SwitchIPNet['ip_net']; ?></p>
+                                    <?php
+                                }
+                            ?>
+                        </div>
+                    <?php
+
+                    ?>
+                        <script type="text/javascript">
+                            $('#getIdDeviceManagement<?php echo $R_Count; ?>').editable({
+                                type: 'text',
+                                pk: <?php echo $R_Count; ?>,
+                                name: 'getIdDeviceManagement<?php echo $R_Count; ?>',
+                                title: 'Editar dispositivo'
+                            });
+
+                            $('#getIdDeviceManagement<?php echo $R_Count; ?>').on('save', function(e, params) {
+                                ip_addr = $('#getIdDeviceManagement<?php echo $R_Count; ?>').attr("ip_addr");
+                                FunctionOnChange(ip_addr, params);
+                                
+                            });
+                        </script>
+                    <?php
+
+                    $R_Count++;
+                }
+
                 while ($Restore = @$R->fetch_array(MYSQLI_ASSOC)) {
                     if ((bool)$Restore['router']){
 
                         if ($Restore['net_next'] != "-"){
                             /*Switch*/
-
-                            ?>
-                                <div class="mix category-3" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
-                                    <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/switchs/switchicon1.png" style="margin-left: 25%; height: 130px;" />
-                                    <p id="getIdDeviceManagement<?php echo $R_Count; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['net_next']; ?></p>
-                                </div>
-                            <?php
                         } else {
                             /*Router*/
-                            // $v = (`ping -q -c1 `.(echo $Restore['ip_host']).` >/dev/null 2>&1 ; echo $?`);
-                            $v = exec("ping -q -c1 ".$Restore['ip_host']." >/dev/null 2>&1 ; echo $?");
-                            if ($v == 0){
+                            if ($CD->ping($Restore['ip_host'])){
                                 ?>
                                     <div class="mix category-2" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
-                                        <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/routers/router4.png" style="margin-left: 25%; height: 130px;" />
-                                        <p id="getIdDeviceManagement<?php echo $R_Count; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
-                                    </div>
                                 <?php
                             } else {
                                 ?>
-                                    <div class="mix category-2" data-myorder="<?php echo $R_Count; ?>" style="border-top: 3px solid red; display: inline-block;">
-                                        <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/routers/router4.png" style="margin-left: 25%; height: 130px;" />
-                                        <p id="getIdDeviceManagement<?php echo $R_Count; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
-                                    </div>
+                                    <div class="mix category-2" data-myorder="<?php echo $R_Count; ?>" style="border-top: 3px solid #cc2e2e; display: inline-block;">
                                 <?php
                             }
+                            ?>
+                                    <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/routers/router4.png" style="margin-left: 25%; height: 130px;" />
+                                    
+                                    <?php
+                                        if (!empty($Restore['alias'])){
+                                            ?>
+                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['alias']; ?></p>
+                                            <?php
+                                        } else {
+                                            ?>
+                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
+                                            <?php
+                                        }
+                                    ?>
+                                </div>
+                            <?php
                         }
                     } else {
                         $getMyIPServer = $CN->getMyIPServer();
 
                         if ($getMyIPServer == $Restore['ip_host']){
+
+                            if ($CD->ping($Restore['ip_host'])){
+                                ?>
+                                    <div class="mix category-4" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #4a89dc;">
+                                <?php
+                            } else {
+                                ?>
+                                    <div class="mix category-4" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #cc2e2e;">
+                                <?php
+                            }
                             ?>
-                                <div class="mix category-4" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
                                     <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/servers/server1.png" style="margin-left: 16%; height: 130px;" />
-                                    <p id="getIdDeviceManagement<?php echo $R_Count; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
+                                    
+                                    <?php
+                                        if (!empty($Restore['alias'])){
+                                            ?>
+                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['alias']; ?></p>
+                                            <?php
+                                        } else {
+                                            ?>
+                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
+                                            <?php
+                                        }
+                                    ?>
                                 </div>
                             <?php
                         } else {
+
+                            if ($CD->ping($Restore['ip_host'])){
+                                ?>
+                                    <div class="mix category-1" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #4a89dc;">
+                                <?php
+                            } else {
+                                ?>
+                                    <div class="mix category-1" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #cc2e2e;">
+                                <?php
+                            }
                             ?>
-                                <div class="mix category-1" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
-                                    <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/computers/laptop1.png" style="margin-left: 25%; height: 130px;" />
-                                    <p id="getIdDeviceManagement<?php echo $R_Count; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;" class="xedit-virtual_machine"><?php echo $Restore['ip_host']; ?></p>
+                                        <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/computers/laptop1.png" style="margin-left: 25%; height: 130px;" />
+                                    
+                                    <?php
+                                        if (!empty($Restore['alias'])){
+                                            ?>
+                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;" class="xedit-virtual_machine"><?php echo $Restore['alias']; ?></p>
+                                            <?php
+                                        } else {
+                                            ?>
+                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;" class="xedit-virtual_machine"><?php echo $Restore['ip_host']; ?></p>
+                                            <?php
+                                        }
+                                    ?>
                                 </div>
                             <?php
                         }
@@ -81,6 +168,12 @@
                                 pk: <?php echo $R_Count; ?>,
                                 name: 'getIdDeviceManagement<?php echo $R_Count; ?>',
                                 title: 'Editar dispositivo'
+                            });
+
+                            $('#getIdDeviceManagement<?php echo $R_Count; ?>').on('save', function(e, params) {
+                                ip_addr = $('#getIdDeviceManagement<?php echo $R_Count; ?>').attr("ip_addr");
+                                FunctionOnChange(ip_addr, params);
+                                
                             });
                         </script>
                     <?php
