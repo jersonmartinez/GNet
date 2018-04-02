@@ -66,9 +66,17 @@
                     $Switches = $CN->getHostTypeSwitch($RIP['ip_net']);
 
                     if ($Switches->num_rows >= 2){
-                        ?>
-                            nodes.push({id: <?php echo $RIPValue; ?>, label: "<?php echo $RIP['ip_net']; ?>", image: DIR + 'switchs/switchicon1.png', shape: 'image'});
-                        <?php
+
+                        if (!empty($RIP['alias'])){
+                            ?>
+                                nodes.push({id: <?php echo $RIPValue; ?>, label: "<?php echo $RIP['alias']; ?>", image: DIR + 'switchs/switchicon1.png', shape: 'image'});
+                            <?php
+                        } else {
+                            ?>
+                                nodes.push({id: <?php echo $RIPValue; ?>, label: "<?php echo $RIP['ip_net']; ?>", image: DIR + 'switchs/switchicon1.png', shape: 'image'});
+                            <?php
+                        }
+
                     }
                 }
             }
@@ -92,11 +100,16 @@
                  ?>
                         // console.log("ID Router: " + <?php echo $IDRouter; ?> + " Switch Value: " + <?php echo $RIPValueSwitch; ?>);
                     <?php
-
-                ?>
-                    nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo "[".$RRouter['ip_host']."]"; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
-                    
-                    // edges.push({from: <?php echo $IDRouter; ?>, to: <?php echo $RIPValueSwitch; ?>, length: EDGE_LENGTH_SUB});
+                        if (!empty($RRouter['alias'])){
+                            ?>
+                                nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo "[".$RRouter['alias']."]"; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
+                            <?php
+                        } else {
+                            ?>
+                                nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo "[".$RRouter['ip_host']."]"; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
+                            <?php
+                        }
+                    ?>
                 <?php
             }
         ?>
@@ -111,27 +124,27 @@
                 $RMValue        = implode("", explode(".", $rm['ip_host']));
                 $RMValueSwitch  = implode("", explode("/", implode("", explode(".", $rm['ip_net']))));
 
-                ?>
-                        // console.log("IP Host: " + <?php echo $RMValue; ?> + " Switch Value: " + <?php echo $RMValueSwitch; ?>);
-                    <?php
-
-
                 if ($getMyIPServer == $rm['ip_host']){
-                    ?>
-                        nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $rm['ip_host']; ?>", image: DIR + 'servers/server1.png', shape: 'image'});
-                    
-                        
-                        // edges.push({from: <?php echo $RMValue; ?>, to: <?php echo $RMValueSwitch; ?> , length: EDGE_LENGTH_SUB});
-                    <?php
+                    if (!empty($rm['alias'])){
+                        ?>
+                            nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $rm['alias']; ?>", image: DIR + 'servers/server1.png', shape: 'image'});
+                        <?php
+                    } else {
+                        ?>
+                            nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $rm['ip_host']; ?>", image: DIR + 'servers/server1.png', shape: 'image'});
+                        <?php
+                    }
                 } else {
-                    ?>
-                        nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $rm['ip_host']; ?>", image: DIR + 'computers/laptop1.png', shape: 'image'});
-                
-                    
-                        // edges.push({from: <?php echo $RMValue; ?>, to: <?php echo $RMValueSwitch; ?> , length: EDGE_LENGTH_SUB});
-                    <?php
+                    if (!empty($rm['alias'])){
+                        ?>
+                            nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $rm['alias']; ?>", image: DIR + 'computers/laptop1.png', shape: 'image'});
+                        <?php
+                    } else {
+                        ?>
+                            nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $rm['ip_host']; ?>", image: DIR + 'computers/laptop1.png', shape: 'image'});
+                        <?php
+                    }
                 }
-
             }
         ?>
 
