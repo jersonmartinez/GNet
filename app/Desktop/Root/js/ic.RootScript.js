@@ -471,3 +471,25 @@ $(".btn_main_logo").click(function(){
 	
 	window.location.reload();
 });
+
+function FunctionOnChange(ip_addr, value){
+	
+	var parametros = {
+        "ip_addr" : ip_addr,
+        "alias" : value.newValue
+    }
+
+	xhr = $.ajax({
+		url: "app/Desktop/Root/php/gn.UpdateAliasNetHost.php",
+		type: "post",
+		data: parametros,
+		success: function(data){
+			if (data == "Ok"){
+				console.log('IP Address: ' + ip_addr + ', Valor guardado: ' + value.newValue);
+			} else {
+				console.log("Ha fallado...");
+			}
+		}
+	});
+	
+}
