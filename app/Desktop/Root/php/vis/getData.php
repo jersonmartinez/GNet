@@ -92,25 +92,29 @@
 
             $Routers = $CN->getHostTypeRouter();
             while ($RRouter = $Routers->fetch_array(MYSQLI_ASSOC)){
-                $IDRouter = implode("", explode(".", $RRouter['ip_host']));
-                // $IDRouter = implode("", explode(".", implode("", explode("/", $RRouter['net_next']))));
-                $RIPValueSwitch = implode("", explode("/", implode("", explode(".", $RRouter['ip_net']))));
-                // $IDValueSwitch  = implode("", explode(".", $RRouter['ip_net']));
                 
-                 ?>
-                        // console.log("ID Router: " + <?php echo $IDRouter; ?> + " Switch Value: " + <?php echo $RIPValueSwitch; ?>);
+                if ($RRouter['net_next'] != "-"){
+                    $IDRouter = implode("", explode(".", $RRouter['ip_host']));
+                    // $IDRouter = implode("", explode(".", implode("", explode("/", $RRouter['net_next']))));
+                    $RIPValueSwitch = implode("", explode("/", implode("", explode(".", $RRouter['ip_net']))));
+                    // $IDValueSwitch  = implode("", explode(".", $RRouter['ip_net']));
+                    
+                     ?>
+                            // console.log("ID Router: " + <?php echo $IDRouter; ?> + " Switch Value: " + <?php echo $RIPValueSwitch; ?>);
+                        <?php
+                            if (!empty($RRouter['alias'])){
+                                ?>
+                                    nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo "[".$RRouter['alias']."] →"; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
+                                <?php
+                            } else {
+                                ?>
+                                    nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo "[".$RRouter['ip_host']."] →"; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
+                                <?php
+                            }
+                        ?>
                     <?php
-                        if (!empty($RRouter['alias'])){
-                            ?>
-                                nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo "[".$RRouter['alias']."]"; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
-                            <?php
-                        } else {
-                            ?>
-                                nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo "[".$RRouter['ip_host']."]"; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
-                            <?php
-                        }
-                    ?>
-                <?php
+                }
+
             }
         ?>
 
