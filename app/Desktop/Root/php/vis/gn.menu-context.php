@@ -1,19 +1,10 @@
 <div id="ContextMenuTest" style="visibility:hidden; z-index: 10000;">
-    <li class="settings" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Configurar
-        </div>
-    </li>
-
     <li class="console" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
             <i class="fa fa-desktop"></i>
         </div>
         <div class="label-menu-context">
-            Consola
+            Monitorizar
         </div>
     </li>
 
@@ -35,7 +26,24 @@
         </div>
     </li>
 
-    <li class="start" onclick="javascript: getDataSelection(this);">
+    <li class="properties" onclick="javascript: getDataSelection(this);">
+        <div class="icons-menu-context">
+            <i class="fa fa-desktop"></i>
+        </div>
+        <div class="label-menu-context">
+            Propiedades
+        </div>
+    </li>
+    <!-- <li class="settings" onclick="javascript: getDataSelection(this);">
+        <div class="icons-menu-context">
+            <i class="fa fa-desktop"></i>
+        </div>
+        <div class="label-menu-context">
+            Configurar
+        </div>
+    </li> -->
+
+    <!-- <li class="start" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
             <i class="fa fa-desktop"></i>
         </div>
@@ -60,15 +68,7 @@
         <div class="label-menu-context">
             Apagar
         </div>
-    </li>
-    <li class="properties" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Propiedades
-        </div>
-    </li>
+    </li> -->
 </div>
 
 <div id="ContextMenuTest_White" style="visibility:hidden; z-index: 10001;">
