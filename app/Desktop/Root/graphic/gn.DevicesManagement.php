@@ -37,11 +37,11 @@
                             <?php
                                 if (!empty($SwitchIPNet['alias'])){
                                     ?>
-                                        <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $SwitchIPNet['ip_net']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $SwitchIPNet['alias']; ?></p>
+                                        <p title="<?php echo $SwitchIPNet['ip_net']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $SwitchIPNet['ip_net']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $SwitchIPNet['alias']; ?></p>
                                     <?php
                                 } else {
                                     ?>
-                                        <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $SwitchIPNet['ip_net']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $SwitchIPNet['ip_net']; ?></p>
+                                        <p title="Cambiar nombre" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $SwitchIPNet['ip_net']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $SwitchIPNet['ip_net']; ?></p>
                                     <?php
                                 }
                             ?>
@@ -71,9 +71,7 @@
                 while ($Restore = @$R->fetch_array(MYSQLI_ASSOC)) {
                     if ((bool)$Restore['router']){
 
-                        if ($Restore['net_next'] != "-"){
-                            /*Switch*/
-                        } else {
+                        if ($Restore['net_next'] == "-"){
                             /*Router*/
                             if ($CD->ping($Restore['ip_host'])){
                                 ?>
@@ -90,11 +88,11 @@
                                     <?php
                                         if (!empty($Restore['alias'])){
                                             ?>
-                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['alias']; ?></p>
+                                                <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['alias']; ?></p>
                                             <?php
                                         } else {
                                             ?>
-                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
+                                                <p title="Cambiar nombre" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
                                             <?php
                                         }
                                     ?>
@@ -121,11 +119,11 @@
                                     <?php
                                         if (!empty($Restore['alias'])){
                                             ?>
-                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['alias']; ?></p>
+                                                <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['alias']; ?></p>
                                             <?php
                                         } else {
                                             ?>
-                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
+                                                <p title="Cambiar nombre" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
                                             <?php
                                         }
                                     ?>
@@ -148,11 +146,11 @@
                                     <?php
                                         if (!empty($Restore['alias'])){
                                             ?>
-                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;" class="xedit-virtual_machine"><?php echo $Restore['alias']; ?></p>
+                                                <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;" class="xedit-virtual_machine"><?php echo $Restore['alias']; ?></p>
                                             <?php
                                         } else {
                                             ?>
-                                                <p id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;" class="xedit-virtual_machine"><?php echo $Restore['ip_host']; ?></p>
+                                                <p title="Cambiar nombre" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;" class="xedit-virtual_machine"><?php echo $Restore['ip_host']; ?></p>
                                             <?php
                                         }
                                     ?>
