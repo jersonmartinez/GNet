@@ -270,6 +270,13 @@
 			return false;
 		}
 
+		public function updateHostRouterAlias($ip_net, $alias){
+			if ($this->db_connect->query("UPDATE ".$this->db_prefix."host SET alias='".$alias."' WHERE ip_net='".$ip_net."' AND router='1';"))
+				return true;
+
+			return false;
+		}
+
 		public function addHost($ip_net, $ip_host, $router, $net_next, $alias = ""){
 			$query = "INSERT INTO ".$this->db_prefix."host (ip_net, ip_host, router, net_next, alias) VALUES ('".$ip_net."', '".$ip_host."', '".$router."', '".$net_next."', '".$alias."');";
 			
@@ -288,7 +295,7 @@
 		}
 
 		public function getHostTypeRouter(){
-			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='1' AND net_next!='-';");
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='1';");
 		}
 
 		public function getHostTypeSwitch($IPNet){
