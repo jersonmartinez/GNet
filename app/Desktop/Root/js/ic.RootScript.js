@@ -193,7 +193,7 @@ $(document).mousemove(function(event){
       if (GlobalX == event.clientX && GlobalY == event.clientY){
         CountNow = setTimeout(function(){
         	window.location.href="app/controller/php/ic.logout.php";
-        }, 299000);
+        }, 1800000);
       } else if (GlobalX != event.clientX || GlobalY != event.clientY) {
         if (CountNow != 0){
         	// console.log("Reiniciando de: " + CountNow);
