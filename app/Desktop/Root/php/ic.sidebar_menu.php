@@ -5,7 +5,7 @@
     <!-- Se gestionan los dispositivos -->
     <li>
         <a class="accordion-toggle" href="#">
-            <span class="glyphicon glyphicon-book"></span>
+            <span class="fa fa-th"></span>
             <span class="sidebar-title">Dispositivos</span>
           
             <span class="caret"></span>
@@ -14,14 +14,14 @@
         <ul class="nav sub-nav">
             <li>
                 <a href="#" id="sb_item_DevicesManagement">
-                    <span class="glyphicon glyphicon-eye-open"></span>
+                    <span class="fa fa-dashboard"></span>
                     Gestionar
                 </a>
             </li>
 
             <li>
                 <a href="#" id="sb_item_AddDeviceManagement">
-                    <span class="glyphicon glyphicon-text-height"></span>
+                    <span class="fa fa-keyboard-o"></span>
                     Agregar nuevo
                 </a>
             </li>      
@@ -31,14 +31,14 @@
     <!-- Se aplica el sondeo de Red -->
     <li>
         <a href="#" id="sb_item_TrackingNetwork">
-            <span class="fa fa-calendar"></span>
+            <span class="fa fa-sitemap"></span>
             <span class="sidebar-title">Autodescubrimiento</span>
         </a>
     </li>
 
     <li>
         <a href="#" id="sb_item_ResourcesMonitor">
-            <span class="fa fa-calendar"></span>
+            <span class="fa fa-tachometer"></span>
             <span class="sidebar-title">Monitorizar recursos</span>
         </a>
     </li>

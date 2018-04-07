@@ -1,7 +1,7 @@
 <div id="ContextMenuTest" style="visibility:hidden; z-index: 10000;">
     <li class="console" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
+            <i class="fa fa-tachometer"></i>
         </div>
         <div class="label-menu-context">
             Monitorizar
@@ -10,7 +10,7 @@
 
     <li class="process" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
+            <i class="glyphicon glyphicon-tasks"></i>
         </div>
         <div class="label-menu-context">
             Procesos
@@ -28,7 +28,7 @@
 
     <li class="properties" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
+            <i class="fa fa-wrench"></i>
         </div>
         <div class="label-menu-context">
             Propiedades

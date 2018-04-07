@@ -41,7 +41,7 @@
                  <!-- Create Panel with required unique ID -->
                 <div class="panel" id="pUnique_DevicesManagement">
                     <div class="panel-heading">
-                        <span class="panel-icon"><i class="fa fa-desktop"></i></span>
+                        <span class="panel-icon"><i class="fa fa-th"></i></span>
                         <span class="panel-title">Gestión de dispositivos</span>
                         
                         <div class="container_options_controls" style="position: absolute; top: 0; right:100px;">
@@ -86,7 +86,7 @@
                 <div class="panel" id="pUnique_TrackingNetwork">
                     <div class="panel-heading">
 
-                        <span class="panel-icon"><i class="fa fa-desktop"></i></span>
+                        <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
                         <span class="panel-title">Mapa de Red (Autodescubrir dispositivos)</span>
 
                         <div class="container_options_controls" style="position: absolute; top: 0; right: 100px;">
@@ -119,7 +119,7 @@
                 <!-- Create Panel with required unique ID -->
                 <div class="panel" id="pUnique_ResourcesMonitor">
                     <div class="panel-heading">
-                        <span class="panel-icon"><i class="fa fa-desktop"></i></span>
+                        <span class="panel-icon"><i class="fa fa-tachometer"></i></span>
                         <span class="panel-title">Monitorizador de Recursos</span>
                     
                         
