@@ -6,7 +6,7 @@
 	include (PF_CONNECT_SERVER);
     include (PD_DESKTOP_ROOT_PHP."/gn.ssh.class.php");
 
-   	$ConnectSSH = new ConnectSSH("127.0.0.1", "root", "123");
+   	$ConnectSSH = new ConnectSSH("192.168.1.2", "root", "123");
 
     /*foreach ($CpuState as $value) {
         echo $value."";
@@ -24,8 +24,8 @@
     $UsersConnected = explode(",", $ConnectSSH->getUsersConnected());
 
     $NetworkServices = explode(",", $ConnectSSH->getNetworkServices());
-    $VirtualHost = explode(",", explode("=", $ConnectSSH->getWebServer())[0]);
-    $WebServer  = explode(",", explode("=", $ConnectSSH->getWebServer())[1]);
+    $VirtualHost     = explode(",", explode("=", $ConnectSSH->getWebServer())[0]);
+    $WebServer       = explode(",", explode("=", $ConnectSSH->getWebServer())[1]);
 
     // Función para convertir a GB
     function ConvertUnit($InputValue) {
@@ -40,6 +40,17 @@
         } else {
             $InputValue = $InputValue;
             return $InputValue." MB";
+        }
+    }
+
+    // Función para calcular el uso de la CPU
+    function OperacionCPU($UsoUser, $UsoSystem, $Operacion) {
+        $UsoTotal = $UsoUser + $UsoSystem;
+        if ($Operacion == "uso") {
+            return $UsoTotal;   
+        } else if ($Operacion == "disponible") {
+            $Disponible = 100 - $UsoTotal;
+            return $Disponible;
         }
     }
 
@@ -65,7 +76,7 @@
         </div> -->
 	</div>
 </div>
-<br>
+
 <!-- Required .admin-panels wrapper-->
 <div class="admin-panels">
     <!-- Create Row -->
@@ -379,113 +390,111 @@
 <!-- End .admin-panels Wrapper -->
 
 <script type="text/javascript">
-	// Memoria Ram
- 	// Pie Chart
-	var HighChartPie = $('#highchart-pie_memory');
-	if (HighChartPie.length) {
+    var HighChartPie = $('#highchart-pie_memory');
+    if (HighChartPie.length) {
 
-	    HighChartPie.highcharts({
-	        credits: false, // Disable HighCharts logo
-	        colors: ['#f6bb42', '#3bafda'], // Set Colors
-	        chart: {
-	            plotBackgroundColor: null,
-	            plotBorderWidth: null,
-	            plotShadow: false
-	        },
-	        title: {
-	            text: "Estado de la memoria"
-	        },
+        HighChartPie.highcharts({
+            credits: false, // Disable HighCharts logo
+            colors: ['#f6bb42', '#3bafda'], // Set Colors
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
+            },
+            title: {
+                text: "Estado de la memoria"
+            },
             subtitle: {
                 text: 'Memoria Total: <?php echo ConvertUnit($MemoryState[0]); ?>'
             },
-	        tooltip: {
-	            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-	        },
-	        plotOptions: {
-	            pie: {
-	                center: ['30%', '50%'],
-	                allowPointSelect: true,
-	                cursor: 'pointer',
-	                dataLabels: {
-	                    enabled: false
-	                },
-	                showInLegend: true
-	            }
-	        },
-	        legend: {
-	            x: 90,
-	            floating: true,
-	            verticalAlign: "middle",
-	            layout: "vertical",
-	            itemMarginTop: 10
-	        },
-	        series: [{
-	            type: 'pie',
-	            name: 'Porcentaje de memoria',
-	            data: [
-	                ['En uso: <?php echo ConvertUnit($MemoryState[1]); ?>', <?php echo $MemoryState[1]; ?>],
-	                ['Disponible: <?php echo ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[2]; ?>],
-	            ]
-	        }]
-	    });
-	}
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    center: ['30%', '50%'],
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            legend: {
+                x: 90,
+                floating: true,
+                verticalAlign: "middle",
+                layout: "vertical",
+                itemMarginTop: 10
+            },
+            series: [{
+                type: 'pie',
+                name: 'Porcentaje de memoria',
+                data: [
+                    ['En uso: <?php echo ConvertUnit($MemoryState[1]); ?>', <?php echo $MemoryState[1]; ?>],
+                    ['Disponible: <?php echo ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[2]; ?>],
+                ]
+            }]
+        });
+    }
 
-	// Memoria Swap
-	// Pie Chart
-	var HighChartPie_MemoriaDos = $('#highchart-pie_swap');
-	if (HighChartPie_MemoriaDos.length) {
+    // Memoria Swap
+    // Pie Chart
+    var HighChartPie_MemoriaDos = $('#highchart-pie_swap');
+    if (HighChartPie_MemoriaDos.length) {
 
-	    HighChartPie_MemoriaDos.highcharts({
-	        credits: false, // Disable HighCharts logo
-	        colors: ['#f6bb42', '#4a89dc'], // Set Colors
-	        chart: {
-	            plotBackgroundColor: null,
-	            plotBorderWidth: null,
-	            plotShadow: false
+        HighChartPie_MemoriaDos.highcharts({
+            credits: false, // Disable HighCharts logo
+            colors: ['#f6bb42', '#4a89dc'], // Set Colors
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false
 
-	        },
-	        title: {
-	            text: "Área de intercambio | Swap"
-	        },
+            },
+            title: {
+                text: "Área de intercambio | Swap"
+            },
             subtitle: {
                 text: 'Espacio total: <?php echo ConvertUnit($SwapState[0]); ?>'
             },
-	        tooltip: {
-	            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-	        },
-	        plotOptions: {
-	            pie: {
-	                center: ['30%', '50%'],
-	                allowPointSelect: true,
-	                cursor: 'pointer',
-	                dataLabels: {
-	                    enabled: false
-	                },
-	                showInLegend: true
-	            }
-	        },
-	        legend: {
-	            x: 90,
-	            floating: true,
-	            verticalAlign: "middle",
-	            layout: "vertical",
-	            itemMarginTop: 10
-	        },
-	        series: [{
-	            type: 'pie',
-	            name: 'Memoria Swap',
-	            data: [
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    center: ['30%', '50%'],
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: false
+                    },
+                    showInLegend: true
+                }
+            },
+            legend: {
+                x: 90,
+                floating: true,
+                verticalAlign: "middle",
+                layout: "vertical",
+                itemMarginTop: 10
+            },
+            series: [{
+                type: 'pie',
+                name: 'Memoria Swap',
+                data: [
 
-	                ['En uso: <?php echo ConvertUnit($SwapState[1]); ?>', <?php echo $SwapState[1]; ?>],
-	                ['Disponible: <?php echo ConvertUnit($SwapState[2]); ?>', <?php echo $SwapState[2]; ?>],
-	            ]
-	        }]
-	    });
-	}
-	
-	// Espacio en disco
-	Highcharts.chart('container_disk', {
-    	credits: false,
+                    ['En uso: <?php echo ConvertUnit($SwapState[1]); ?>', <?php echo $SwapState[1]; ?>],
+                    ['Disponible: <?php echo ConvertUnit($SwapState[2]); ?>', <?php echo $SwapState[2]; ?>],
+                ]
+            }]
+        });
+    }
+
+    // Espacio en disco
+    Highcharts.chart('container_disk', {
+        credits: false,
         // colors: ['#1E90FF', '#97C3E6'],
         chart: {
             type: 'pie',
@@ -575,10 +584,10 @@
             type: 'pie',
             name: 'Porcentaje de CPU',
             data: [
-                ['En uso: <?php echo "$CpuState[4]%"; ?>', <?php echo $CpuState[4];; ?>],
+                ['En uso: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?>', <?php echo OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?>],
                 {
-                    name: 'Disponible: <?php echo "$CpuState[5]%"; ?>',
-                    y: <?php echo $CpuState[5]; ?>,
+                    name: 'Disponible: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?>',
+                    y: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?>,
                     sliced: true,
                     selected: true
                 }
@@ -587,11 +596,12 @@
     });
 
     // Estado de la batería
-    //----------------------
+    // ----------------------
     var stDiv = $('#battery')[0];
     var dataPercent = stDiv.getAttribute('data-percent');
     var width = dataPercent - 2;
     stDiv.insertAdjacentHTML('afterend', '<style>#battery::after{width:' + width + '%;}</style>');
+
 
     if (dataPercent <= 10) {
       stDiv.setAttribute('red','');
@@ -606,7 +616,7 @@
     }
 
     var dataStatus = "<?php echo $BatteryState[1] ?>";
-
+    
     if (dataStatus == "charging" && dataPercent < 100) {
         $(charging_text).html("Cargando...");   
     } else if (dataStatus == "discharging" && dataPercent < 100) {

@@ -597,12 +597,12 @@
 			$filename = "getcpuState.sh";
 			$ActionArray[] = "NameModel=($(cat /proc/cpuinfo | grep name | cut -d ':' -f2))";
 			array_push($ActionArray, "Velocidad=$(cat /proc/cpuinfo | grep name | cut -d ' ' -f 10)");
-			array_push($ActionArray, "UsoUser=$(top -n1 -b | grep '%Cpu' | cut -d ' ' -f2 | sed 's/,/./g')");
-			array_push($ActionArray, "UsoSystem=$(top -n1 -b | grep '%Cpu' | cut -d ' ' -f5 | sed 's/,/./g')");
-			array_push($ActionArray, 'UsoTotal=$(echo "$UsoUser + $UsoSystem" | bc)');
-			array_push($ActionArray, 'Disponible=$(echo "100 - $UsoTotal" | bc)');
+			array_push($ActionArray, "UsoUser=$(top -n1 -b | grep '%Cpu' | awk {'print $2'} | sed 's/,/./g')");
+			array_push($ActionArray, "UsoSystem=$(top -n1 -b | grep '%Cpu' | awk {'print $4'} | sed 's/,/./g')");
+			// array_push($ActionArray, 'UsoTotal=$(echo "$UsoUser + $UsoSystem" | bc)');
+			// array_push($ActionArray, 'Disponible=$(echo "100 - $UsoTotal" | bc)');
 			array_push($ActionArray, "TotalProc=$(ps ax | wc -l)");
-			array_push($ActionArray, 'echo "${NameModel[*]},$Velocidad,$UsoUser,$UsoSystem,$UsoTotal,$Disponible,$TotalProc,"');
+			array_push($ActionArray, 'echo "${NameModel[*]},$UsoUser,$UsoSystem,$TotalProc,"');
 			
 			$RL[] = $this->remote_path.$filename;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
@@ -613,8 +613,8 @@
 
 		public function getDiskState(){
 			$filename = "getDiskState.sh";
-			$ActionArray[] = 'Disk=($(df -H /dev/sda1 | sed "1d" | tr -d "G"))';
-			array_push($ActionArray, 'echo "${Disk[1]},${Disk[2]},${Disk[3]},${Disk[4]},${Disk[5]},"');
+			$ActionArray[] = 'Disk=($(df -H /dev/sda1 | sed "1d" | sed "s/,/./g" | tr -d "G"))';
+			array_push($ActionArray, 'echo "${Disk[1]},${Disk[2]},${Disk[3]},"');
 			
 			$RL[] = $this->remote_path.$filename;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
@@ -767,6 +767,27 @@
 				return $this->RunLines(implode("\n", $RL));
 			return getErrors();
 		}
+
+		/*public function getDHCPServer(){
+			$filename = "getDHCPServer.sh";
+			$ActionArray[] = 'IntListen=($(cat /etc/default/isc-dhcp-server | grep INTERFACES | cut -d " -f2))';
+			array_push($ActionArray, 'echo "${IntListen[*]},"');
+			array_push($ActionArray, 'echo "="');
+			array_push($ActionArray, 'Fichero="/var/lib/dhcp/dhcpd.leases"');
+			array_push($ActionArray, "Leases=($(cat $Fichero | grep lease | sed '1,2d' | tr -d '{' | cut -d ' ' -f2))");
+			array_push($ActionArray, 'if [[ ${Leases[*]} != "" ]]; then');
+			array_push($ActionArray, '	for i in ${Leases[*]}; do');
+			array_push($ActionArray, "		Mac=$(cat $Fichero | grep -A7 $i | grep ethernet | awk {'print $3'} | tr -d ';')");
+			array_push($ActionArray, '		echo "$i,$Mac,"');
+			array_push($ActionArray, "	done");
+			array_push($ActionArray, 'fi');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}*/
 
 		public function ConnectDB($H, $U, $P, $D, $X){
 			$this->db_connect = new GNet($H, $U, $P, $D);
