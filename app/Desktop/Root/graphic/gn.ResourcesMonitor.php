@@ -78,6 +78,8 @@
 	</div>
 </div>
 
+<br>
+
 <!-- Required .admin-panels wrapper-->
 <div class="admin-panels">
     <!-- Create Row -->
@@ -127,7 +129,11 @@
                 </div>
                 <div class="panel-body">
                     <div id="battery" data-percent="<?php echo $BatteryState[0]; ?>"></div>
+                    <br>
+                </div>
+                <div class="panel-heading">
                     <div class="charging_txt glow" id="charging_text"></div>
+                    <!-- <span class="panel-title">Estado de la batería</span> -->
                 </div>
             </div>
         </div>

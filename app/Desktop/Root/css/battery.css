@@ -58,14 +58,28 @@
 	  border-radius: 4px;
 	}
 
-	.charging_txt, #battery::after { 
-		font-family: arial, helvetica, sans-serif;
-		font-weight:bold;
-		font-style:italic;
-		text-align:center;
-		clear:both;
-		color: #000;
-		text-shadow:0 2px #000;
+	.charging_txt {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		/*background-color: #3B3F4F;*/
+
+		text-align: center;
+		clear: both;
+		text-shadow: 3px 2px 6px #000;
+		font-size: 15px;
+		color: #fff;
+	}
+
+	#battery::after {
+		text-align: center;
+		clear: both;
+		font-size: 15px;
+		
+		padding-left: 50px;
+		padding-top: 23px;
+		color: #fff;
 	}
 
 	@keyframes glow {
