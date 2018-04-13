@@ -6,7 +6,7 @@
 	include (PF_CONNECT_SERVER);
     include (PD_DESKTOP_ROOT_PHP."/gn.ssh.class.php");
 
-   	$ConnectSSH = new ConnectSSH("192.168.1.2", "root", "123");
+   	$ConnectSSH = new ConnectSSH("127.0.0.1", "root", "123");
 
     /*foreach ($CpuState as $value) {
         echo $value."";
