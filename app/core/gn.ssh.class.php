@@ -39,6 +39,28 @@
 		    }
 		}
 
+		public function FinalConnect($ip_host, $username, $password){
+			if (!function_exists("ssh2_connect")) {
+        		array_push($this->errors, "La función ssh2_connect no existe");
+			}
+
+        	if(!($this->connect = ssh2_connect($ip_host, 22))){
+				$this->ip_host = $ip_host;
+        		array_push($this->errors, "No hay conexión con al dirección IP: " . $ip_host);
+		    } else {
+		        if(!ssh2_auth_password($this->connect, $username, $password)) {
+        			array_push($this->errors, "Autenticación invalida");
+		        } else {
+					$this->ip_host 		= $ip_host;
+					$this->username 	= $username;
+					$this->password 	= $password;
+					$this->remote_path 	= "/home/".$username."/";
+		        }
+		    }
+
+		    return true;
+		}
+
 		public function RunLines($RL){
 			if(!($this->stream = ssh2_exec($this->connect, $RL)))
 		        return "Falló: El comando no se ha podido ejecutar.";
@@ -182,33 +204,25 @@
 		}
 
 		public function getMyIPServer(){
-			return shell_exec("ip -4 route get 8.8.8.8 | awk {'print $7'} | tr -d '\n'");
+			return shell_exec("ip -4 route get 1.1.1.1 | awk {'print $7'} | tr -d '\n'");
 		}
 
-		public function FinalConnect($ip_host, $username, $password){
-			if (!function_exists("ssh2_connect")) {
-        		array_push($this->errors, "La función ssh2_connect no existe");
-			}
+		public function checkNetwork($ip_net){
+			if ($this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE ip_net='".trim($ip_net)."';")->num_rows > 0)
+				return true;
 
-        	if(!($this->connect = ssh2_connect($ip_host, 22))){
-				$this->ip_host = $ip_host;
-        		array_push($this->errors, "No hay conexión con al dirección IP: " . $ip_host);
-		    } else {
-		        if(!ssh2_auth_password($this->connect, $username, $password)) {
-        			array_push($this->errors, "Autenticación invalida");
-		        } else {
-					$this->ip_host 		= $ip_host;
-					$this->username 	= $username;
-					$this->password 	= $password;
-					$this->remote_path 	= "/home/".$username."/";
-		        }
-		    }
-
-		    return true;
+			return false;
 		}
 
-		public function addNetwork($ip_net, $checked = "0"){
-			if ($this->db_connect->query("INSERT INTO ".$this->db_prefix."network (ip_net, checked) VALUES ('".$ip_net."','".$checked."');"))
+		public function checkHost($ip_host){
+			if ($this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE ip_host='".trim($ip_host)."';")->num_rows > 0)
+				return true;
+
+			return false;
+		}
+
+		public function addNetwork($ip_net, $checked = "0", $alias = ""){
+			if ($this->db_connect->query("INSERT INTO ".$this->db_prefix."network (ip_net, checked, alias) VALUES ('".trim($ip_net)."','".$checked."', '".$alias."');"))
 				return true;
 
 			return false;
@@ -221,13 +235,45 @@
 			return false;
 		}
 
-		public function addHost($ip_net, $ip_host, $router, $net_next){
-			$query = "INSERT INTO ".$this->db_prefix."host (ip_net, ip_host, router, net_next) VALUES ('".$ip_net."', '".$ip_host."', '".$router."', '".$net_next."');";
+		public function updateNetworkNextRouterAlias($ip_net_next, $alias){
+			if ($this->db_connect->query("UPDATE ".$this->db_prefix."host SET alias='".$alias."' WHERE net_next='".$ip_net_next."';"))
+				return true;
+
+			return false;
+		}
+
+		public function updateNetworkAlias($ip_net, $alias){
+			if ($this->db_connect->query("UPDATE ".$this->db_prefix."network SET alias='".$alias."' WHERE ip_net='".$ip_net."';"))
+				return true;
+
+			return false;
+		}
+
+		public function updateHostAlias($ip_host, $alias){
+			if ($this->db_connect->query("UPDATE ".$this->db_prefix."host SET alias='".$alias."' WHERE ip_host='".$ip_host."';"))
+				return true;
+
+			return false;
+		}
+
+		public function updateHostRouterAlias($ip_net, $alias){
+			if ($this->db_connect->query("UPDATE ".$this->db_prefix."host SET alias='".$alias."' WHERE ip_net='".$ip_net."' AND router='1';"))
+				return true;
+
+			return false;
+		}
+
+		public function addHost($ip_net, $ip_host, $router, $net_next, $alias = ""){
+			$query = "INSERT INTO ".$this->db_prefix."host (ip_net, ip_host, router, net_next, alias) VALUES ('".$ip_net."', '".$ip_host."', '".$router."', '".$net_next."', '".$alias."');";
 			
 			if ($this->db_connect->query($query))
 				return true;
 
 			return false;
+		}
+
+		public function getIPNetFromIPHost($ip_host){
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE ip_host='".$ip_host."' LIMIT 1;");
 		}
 
 		public function getHostTypeRouterLast(){
@@ -239,7 +285,7 @@
 		}
 
 		public function getHostTypeRouter(){
-			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='1' AND net_next!='-';");
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='1';");
 		}
 
 		public function getHostTypeSwitch($IPNet){
@@ -251,16 +297,16 @@
 		}
 
 		public function getAllHost(){
-			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host;");
-		}
-
-		public function getIPNetNext($ip_net){
-			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE ip_net>'".$ip_net."' ORDER BY ip_net DESC LIMIT 1;")->fetch_array(MYSQLI_ASSOC)['ip_net'];
+			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host;");
 		}
 
 		//Extrae todas las direcciones de red.
 		public function getIPNet(){
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network;");
+		}
+
+		public function getIPNetNext($ip_net){
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE ip_net>'".$ip_net."' ORDER BY ip_net DESC LIMIT 1;")->fetch_array(MYSQLI_ASSOC)['ip_net'];
 		}
 
 		public function getIPNetLast(){
@@ -796,4 +842,5 @@
 
 	}
 	// echo (new ConnectSSH("192.168.100.2", "network", "123"))->getDHCPShowAssignIP();
+
 ?>

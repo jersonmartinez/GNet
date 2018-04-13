@@ -118,6 +118,9 @@ Tracking Network (Autodescubrimiento de dispositivos interconectados en Red): ht
 ### Incrustar nuevo código
 Desarrollar nuevo espacio de trabajo (Dashboard): https://github.com/SideMasterGM/GNet/wiki/Desarrollar-nuevo-espacio-de-trabajo-(Dashboard)
 
+### Conexiones SSH
+Habilitar el usuario Root para conexiones SSH: https://github.com/SideMasterGM/GNet/wiki/Habilitar-el-usuario-Root-con-SSH
+
 ## Authors
 
 * **Jerson A. Martínez M.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn]

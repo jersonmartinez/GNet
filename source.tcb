@@ -8,9 +8,22 @@
 		@$_SESSION['getConsts'] = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php";
 
 	include (@$_SESSION['getConsts']);
+
+	include (PF_CONNECT_SERVER);
+    include (PF_SSH);
+
+    $CN_Global = new ConnectSSH();
+    $CN_Global->ConnectDB($H, $U, $P, $D, $X);
 	
-	if (@$_SESSION['login'] == true)
-		include (PF_DESKTOP);
-	else
-		include (PF_CORE);
+	if ($CN_Global->db_connect){
+		if (@$_SESSION['login'] == true)
+			include (PF_DESKTOP);
+		else
+			include (PF_CORE);
+	} else {
+		session_destroy();
+	}
+
+	unset($CN_Global);
+
 ?>

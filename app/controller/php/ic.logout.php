@@ -1,26 +1,32 @@
 <?php
-
-	#Importar constantes.
-	$Local = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php";
-
-	if (!file_exists($Local))
-		$Local = $_SERVER['DOCUMENT_ROOT']."/app/core/ic.const.php";
-
 	@session_start();
 
-	include ($Local);
+	if ($_SESSION['session_expired'])
+		header("Location: ../../../");
+
+	if (!isset($_SESSION['getConsts'])){
+		echo "Sesión expirada, presione F5 o CTRL + R";
+		$_SESSION['session_expired'] = true;
+	}
+
+	include (@$_SESSION['getConsts']);
+
 	include (PF_CONNECT_SERVER);
-	include (PD_CONTROLLER_PHP."/ic.config.class.php");
+	include (PD_CTL_PHP."/ic.config.class.php");
 
 	$Object = new ConfigFile();
 	
 	$Query = "INSERT INTO ".@$_SESSION['prefix']."control_logout (usr, ip, remember, date_log, date_log_unix) VALUES ('".@$_SESSION['username']."','".$Object->getIpAddr()."','".@$_SESSION['rmb']."','".date('Y-n-j')."','".time()."');";
 
-	if (@$IC->query($Query)){
+	if ($IC){
+		if (@$IC->query($Query)){
+			@session_destroy();
+			header("Location: ../../../");
+		} else {
+			echo "Ha ocurrido un problema al intentar cerrar sesión.";
+		}
+	} else {
 		@session_destroy();
 		header("Location: ../../../");
-	} else {
-		echo "Ha ocurrido un problema al intentar cerrar sesión.";
 	}
-
 ?>

@@ -45,7 +45,7 @@
 	}
 
 	if ($ExistUser){
-		include (PD_CONTROLLER_PHP."/ic.security.php");
+		include (PD_CTL_PHP."/ic.security.php");
 		
 		if (!$Val){
 			if ($AttackDetect != "AD"){

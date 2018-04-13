@@ -29,10 +29,10 @@
 		
 		define ("PF_CONFIG", 			$Path."/app/config/Config.tcb");
 
-	define ("PD_CONTROLLER",$Path."/app/controller");
-		define ("PD_CONTROLLER_JS", 	$Path."/app/controller/js");
-		define ("PD_CONTROLLER_PHP", 	$Path."/app/controller/php");
-		define ("PD_CONTROLLER_SRC", 	$Path."/app/controller/src");
+	define ("PD_CTL",$Path."/app/controller");
+		define ("PD_CTL_JS", 	$Path."/app/controller/js");
+		define ("PD_CTL_PHP", 	$Path."/app/controller/php");
+		define ("PD_CTL_SRC", 	$Path."/app/controller/src");
 
 		define ("PDS_CTL_SRC", 			"app/controller/src");
 		define ("PDS_CTL_JS", 			"app/controller/js");
@@ -44,16 +44,19 @@
 		define ("PF_CORE_HEAD", 		$Path."/app/core/ic.head.php");
 		define ("PF_CORE", 				$Path."/app/core/ic.core.php");
 		define ("PF_DESKTOP", 			$Path."/app/core/ic.desktop.php");
+		define ("PF_SSH", 				$Path."/app/core/gn.ssh.class.php");
 		define ("PF_CORE_FOOT", 		$Path."/app/core/ic.foot.php");
 		
 	define ("PD_DESKTOP", 	$Path."/app/Desktop");
 		define ("PD_DESKTOP_ROOT", 		$Path."/app/Desktop/Root");
 			define ("PD_DESKTOP_ROOT_PHP", 		$Path."/app/Desktop/Root/php");
+				define ("PD_DESKTOP_ROOT_PHP_CLASS", 		$Path."/app/Desktop/Root/php/class");
 			define ("PD_DESKTOP_ROOT_GP", 		$Path."/app/Desktop/Root/graphic");
 			define ("PD_DESKTOP_ROOT_JS", 		$Path."/app/Desktop/Root/js");
 
 		define ("PDS_DESKTOP_ROOT", "app/Desktop/Root");
 			define ("PDS_DESKTOP_ROOT_PHP", 	"app/Desktop/Root/php");
+				define ("PDS_DESKTOP_ROOT_PHP_CLASS", 	"app/Desktop/Root/php/class");
 			define ("PDS_DESKTOP_ROOT_JS", 		"app/Desktop/Root/js");
 			define ("PDS_DESKTOP_ROOT_GP", 		"app/Desktop/Root/graphic");
 		

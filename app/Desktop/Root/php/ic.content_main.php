@@ -2,14 +2,36 @@
 <input type="hidden" id="content_sm" value="" />
 
 <?php
-  //include ("ic.test.php");
-
   #Agregando ventana modal, configuración de la red.
   include (PD_DESKTOP_ROOT."/graphic/ic.modal.config_network.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddDevicesManagement.php");
 ?>
 
 <div class="container_platform">
+    <!-- Tour Activation Btn -->
+    <!-- <button class="btn btn-primary" id="tour_start" type="button">Begin Tour</button> -->
+
+    <!-- Tour Steps -->
+    <!-- <div class="row">
+      <div class="col-md-6">
+        <div class="panel" id="tour-item1">
+            <div class="panel-heading">
+              <span class="panel-title"> Panel 1</span>
+            </div>    
+            <div class="panel-body" style="min-height: 100px;">
+            </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="panel" id="tour-item2">
+            <div class="panel-heading">
+              <span class="panel-title"> Panel 2</span>
+            </div>    
+            <div class="panel-body" style="min-height: 100px;">
+            </div>
+        </div>
+      </div>
+    </div> -->
 
     <!-- Wrap content in admin-panel class -->
     <div>
@@ -19,7 +41,7 @@
                  <!-- Create Panel with required unique ID -->
                 <div class="panel" id="pUnique_DevicesManagement">
                     <div class="panel-heading">
-                        <span class="panel-icon"><i class="fa fa-desktop"></i></span>
+                        <span class="panel-icon"><i class="fa fa-th"></i></span>
                         <span class="panel-title">Gestión de dispositivos</span>
                         
                         <div class="container_options_controls" style="position: absolute; top: 0; right:100px;">
@@ -64,19 +86,19 @@
                 <div class="panel" id="pUnique_TrackingNetwork">
                     <div class="panel-heading">
 
-                        <span class="panel-icon"><i class="fa fa-desktop"></i></span>
+                        <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
                         <span class="panel-title">Mapa de Red (Autodescubrir dispositivos)</span>
 
                         <div class="container_options_controls" style="position: absolute; top: 0; right: 100px;">
-                            <button type="button" id="btn_tracking_b1" class="btn btn-dark btn_tracking_device" disabled="disabled">Configurar</button>
-                            <button type="button" id="btn_tracking_b2" class="btn btn-dark btn_tracking_device" disabled="disabled">Consola</button>
+                            <button type="button" id="btn_tracking_b1" class="btn btn-dark btn_tracking_device" disabled="disabled">Monitorizar</button>
                             <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Procesos</button>
                             <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Servicios</button>
-                            <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Historial</button>
                             <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Propiedades</button>
+                            <!-- <button type="button" id="btn_tracking_b2" class="btn btn-dark btn_tracking_device" disabled="disabled">Consola</button> -->
+                            <!-- <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Historial</button> -->
 
                             <button type="button" class="btn btn-primary ladda-button progress-button" data-style="expand-right">
-                                <span class="ladda-label">Tracking Network</span>
+                                <span class="ladda-label">Rastrear</span>
                             </button>
                         </div>
 
@@ -97,7 +119,7 @@
                 <!-- Create Panel with required unique ID -->
                 <div class="panel" id="pUnique_ResourcesMonitor">
                     <div class="panel-heading">
-                        <span class="panel-icon"><i class="fa fa-desktop"></i></span>
+                        <span class="panel-icon"><i class="fa fa-tachometer"></i></span>
                         <span class="panel-title">Monitorizador de Recursos</span>
                     </div>
                     <div class="panel-body AdminPanel_ResourcesMonitor_PanelBody">
