@@ -98,7 +98,7 @@
                             <!-- <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Historial</button> -->
 
                             <button type="button" class="btn btn-primary ladda-button progress-button" data-style="expand-right">
-                                <span class="ladda-label">Tracking Network</span>
+                                <span class="ladda-label">Rastrear</span>
                             </button>
                         </div>
 
@@ -121,9 +121,6 @@
                     <div class="panel-heading">
                         <span class="panel-icon"><i class="fa fa-tachometer"></i></span>
                         <span class="panel-title">Monitorizador de Recursos</span>
-                    
-                        
-                        
                     </div>
                     <div class="panel-body AdminPanel_ResourcesMonitor_PanelBody">
                         <!-- El contenido -->

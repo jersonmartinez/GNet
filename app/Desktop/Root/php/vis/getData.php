@@ -3,7 +3,6 @@
     // include (@$_SESSION['getConsts']);
     
     include ($_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php");
-
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/style.css">
@@ -45,126 +44,76 @@
         //nodes.push({id: 1, label: change, image: DIR + 'server.png', shape: 'image'});
         //nodes.push({id: 2, label: arrayNet, image: DIR + 'switch.png', shape: 'image'});
 
-        //-----------------------------------
-        //Get Networks | ej: 192.168.100.0  -
-        //-----------------------------------
+        //Correcto | Networks
         <?php
-            ?>
-                console.log("------------------ Networks ------------------");
-            <?php
-
-            $getMyIPServer  = $CN->getMyIPServer();
+            #Se obtienen las direcciones de red.
             $ReturnIPNets   = $CN->getIPNet();
 
             if ($ReturnIPNets->num_rows > 0){
                 while ($RIP = $ReturnIPNets->fetch_array(MYSQLI_ASSOC)){
-                    // $RIPValue = explode(".", $RIP['ip_net'])[2];
                     $RIPValue = implode("", explode("/", implode("", explode(".", $RIP['ip_net']))));
-                    ?>
-                        console.log("Networks: " + <?php echo $RIPValue; ?>);
-                    <?php
                     $Switches = $CN->getHostTypeSwitch($RIP['ip_net']);
 
-                    if ($Switches->num_rows >= 2){
+                    $RIPValue_Alias = !empty($RIP['alias']) ? $RIP['alias'] : $RIP['ip_net'];
 
-                        if (!empty($RIP['alias'])){
-                            ?>
-                                nodes.push({id: <?php echo $RIPValue; ?>, label: "<?php echo $RIP['alias']; ?>", image: DIR + 'switchs/switchicon1.png', shape: 'image'});
-                            <?php
-                        } else {
-                            ?>
-                                nodes.push({id: <?php echo $RIPValue; ?>, label: "<?php echo $RIP['ip_net']; ?>", image: DIR + 'switchs/switchicon1.png', shape: 'image'});
-                            <?php
-                        }
-
+                    if ($Switches->num_rows >= 1){
+                        ?>
+                            nodes.push({id: <?php echo $RIPValue; ?>, label: "<?php echo $RIPValue_Alias; ?>", image: DIR + 'switchs/switchicon1.png', shape: 'image'});
+                        <?php
                     }
                 }
             }
         ?>
 
-        //-----------------------------------
-        //Get Routers | ej: 192.168.100.4   -
-        //-----------------------------------
+        //Correcto | Routers with network next 
         <?php
-            ?>
-                console.log("------------------ Routers ------------------");
-            <?php
-
             $Routers = $CN->getHostTypeRouter();
             while ($RRouter = $Routers->fetch_array(MYSQLI_ASSOC)){
                 
                 if ($RRouter['net_next'] != "-"){
                     $IDRouter = implode("", explode(".", $RRouter['ip_host']));
-                    // $IDRouter = implode("", explode(".", implode("", explode("/", $RRouter['net_next']))));
                     $RIPValueSwitch = implode("", explode("/", implode("", explode(".", $RRouter['ip_net']))));
-                    // $IDValueSwitch  = implode("", explode(".", $RRouter['ip_net']));
                     
-                     ?>
-                            // console.log("ID Router: " + <?php echo $IDRouter; ?> + " Switch Value: " + <?php echo $RIPValueSwitch; ?>);
-                        <?php
-                            if (!empty($RRouter['alias'])){
-                                ?>
-                                    nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo "[".$RRouter['alias']."] →"; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
-                                <?php
-                            } else {
-                                ?>
-                                    nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo "[".$RRouter['ip_host']."] →"; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
-                                <?php
-                            }
-                        ?>
-                    <?php
-                }
+                    $RIPValueRouter_Alias = !empty($RRouter['alias']) ? $RRouter['alias'] : $RRouter['ip_host'];
 
+                    ?>
+                        nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo $RIPValueRouter_Alias; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
+                    <?php                    
+                }
             }
         ?>
 
+        //Correcto | Devices that are not routers.
         <?php
-            ?>
-                console.log("------------------ Host Type ------------------");
-            <?php
-
             $Machines = $CN->getHostTypeHost();
             while ($rm = $Machines->fetch_array(MYSQLI_ASSOC)){
                 $RMValue        = implode("", explode(".", $rm['ip_host']));
                 $RMValueSwitch  = implode("", explode("/", implode("", explode(".", $rm['ip_net']))));
 
-                if ($getMyIPServer == $rm['ip_host']){
-                    if (!empty($rm['alias'])){
-                        ?>
-                            nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $rm['alias']; ?>", image: DIR + 'servers/server1.png', shape: 'image'});
-                        <?php
-                    } else {
-                        ?>
-                            nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $rm['ip_host']; ?>", image: DIR + 'servers/server1.png', shape: 'image'});
-                        <?php
-                    }
+                $RMValue_Alias = !empty($rm['alias']) ? $rm['alias'] : $rm['ip_host'];
+
+                if ($CN->getMyIPServer() == $rm['ip_host']){
+                    ?>
+                        nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $RMValue_Alias; ?>", image: DIR + 'servers/server1.png', shape: 'image'});
+                    <?php
                 } else {
-                    if (!empty($rm['alias'])){
-                        ?>
-                            nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $rm['alias']; ?>", image: DIR + 'computers/laptop1.png', shape: 'image'});
-                        <?php
-                    } else {
-                        ?>
-                            nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $rm['ip_host']; ?>", image: DIR + 'computers/laptop1.png', shape: 'image'});
-                        <?php
-                    }
+                    ?>
+                        nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $RMValue_Alias; ?>", image: DIR + 'computers/laptop1.png', shape: 'image'});
+                    <?php
                 }
             }
         ?>
 
+        //Connections
         <?php
             $ExtgetIPNet = $CN->getIPNet();
 
             if ($ExtgetIPNet->num_rows > 0){
                 while ($ExtGIPN = $ExtgetIPNet->fetch_array(MYSQLI_ASSOC)){
-                    // $ExtGIPNValue = explode(".", $ExtGIPN['ip_net'])[2];
                     $ExtGIPNValue   = implode("", explode("/", implode("", explode(".", $ExtGIPN['ip_net']))));
                     $Switches       = $CN->getHostTypeSwitch($ExtGIPN['ip_net']);
 
-                    if ($Switches->num_rows >= 2){
-
-                        // echo "<br/>Network: ".$ExtGIPN['ip_net']." | ID Network: ".$ExtGIPNValue."<br/>";
-
+                    if ($Switches->num_rows >= 1){
                         $RecorrerHosts = $CN->getHostNetwork($ExtGIPN['ip_net']);
 
                         if ($RecorrerHosts->num_rows > 0){
@@ -176,32 +125,6 @@
                                 <?php
                             }
                         }
-                        
-                    } else if ($Switches->num_rows == 1){
-                        $getHT = $CN->getHostTypeHost();
-                        if ($getHT->num_rows > 0){
-                            while ($rowGetHT = $getHT->fetch_array(MYSQLI_ASSOC)){
-
-                                $SFindRouterNext = $CN->getHostTypeRouter();
-                                while ($SResultadin = $SFindRouterNext->fetch_array(MYSQLI_ASSOC)){
-                                    if ($rowGetHT['ip_net'] == $SResultadin['net_next']){
-
-                                        $MyIDNetNext = implode("", explode(".", $rowGetHT['ip_host']));
-                                        $OtherRouter = implode("", explode(".", $SResultadin['ip_host']));
-
-                                        ?>
-                                            edges.push({from: <?php echo $MyIDNetNext; ?>, to: <?php echo $OtherRouter; ?>, length: EDGE_LENGTH_SUB});
-                                        <?php
-                                        goto Finalizando;
-                                    }
-                                }
-                                
-                            }
-                        }
-
-                        Finalizando:
-                            break;
-
                     }
                 }
             }
@@ -218,7 +141,6 @@
                 <?php
                 // echo "ID: ".$IDLastRouter." | LastRouterSwitch: ".$LastRouterSwitch."<br/>";
             }
-
 
             //Recorremos los enrutadores para saber quienes son los siguientes conectados.
             $TypeRouter = $CN->getHostTypeRouter();
@@ -271,7 +193,6 @@
                 $(".btn_tracking_device").removeAttr("disabled");
                 // document.getElementById("btn_tracking_b2").removeAttribute("disabled");
             }
-
         });
 
         network.on('select', function(params) {
@@ -319,23 +240,6 @@
                 popupMenux.style.visibility = "visible";
             e.preventDefault()
         }, false);
-    }
-
-    function CreateItemsMenu(value, className){
-        itemMenu = document.createElement("li");
-        // itemMenu.className = 'itemMenuClass' + className;
-        $(itemMenu).addClass("itemMenuClass" + className);
-        itemMenu.innerHTML = value;
-        itemMenu.id = "itemMenuId" + className;
-        popupMenu.appendChild(itemMenu);
-
-        $("#itemMenuId" + className).click(function(){
-            getDataSelection(className);
-        });
-
-        // document.getElementById("itemMenuId" + className).addEventListener("click", function(){
-        //     alert("Identificador del host: " + document.getElementById("selection").innerHTML + " para: " + className);
-        // });
     }
 
     function getDataSelection(cn){

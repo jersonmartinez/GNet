@@ -24,7 +24,23 @@
                     <span class="fa fa-keyboard-o"></span>
                     Agregar nuevo
                 </a>
-            </li>      
+            </li>
+
+            <?php
+              //Sidebar Menu Host
+              $SMHost = $CN_Global->getAllHost();
+
+              if ($SMHost->num_rows > 0){
+                ?>
+                  <li>
+                      <a href="#" id="sb_subitem_NetworkMap">
+                          <span class="fa fa-sitemap"></span>
+                          Topología de red
+                      </a>
+                  </li> 
+                <?php
+              }
+            ?>     
         </ul>
     </li>
     
@@ -43,7 +59,7 @@
         </a>
     </li>
 
-    <li>
+    <!-- <li>
         <a class="accordion-toggle" href="#">
             <span class="glyphicon glyphicon-book"></span>
             <span class="sidebar-title">Documentación</span>
@@ -67,14 +83,14 @@
             </li>
           
         </ul>
-    </li>
+    </li> -->
 
 
-  <li class="sidebar-label pt15">Configuración de usuarios</li>
+  <li class="sidebar-label pt15">Otras configuraciones</li>
   <li>
     <a class="accordion-toggle" href="#">
       <span class="glyphicon glyphicon-fire"></span>
-      <span class="sidebar-title">Usuarios</span>
+      <span class="sidebar-title">...</span>
       <span class="caret"></span>
     </a>
     <ul class="nav sub-nav">
@@ -93,7 +109,7 @@
     </ul>
   </li>
 
-  <li>
+  <!-- <li>
     <a class="accordion-toggle" href="#">
       <span class="glyphicon glyphicon-duplicate"></span>
       <span class="sidebar-title">...</span>
@@ -186,19 +202,19 @@
         </ul>
       </li>
     </ul>
-  </li>
+  </li> -->
 
   <!-- sidebar bullets -->
-  <li class="sidebar-label pt20">Proyectos</li>
+  <!-- <li class="sidebar-label pt20">Proyectos</li>
   <li class="sidebar-proj">
     <a href="#projectOne">
       <span class="fa fa-dot-circle-o text-warning"></span>
       <span class="sidebar-title">Una opción más.</span>
     </a>
-  </li>
+  </li> -->
 
   <!-- sidebar progress bars -->
-  <li class="sidebar-label pt25 pb10">Estadísticas</li>
+  <!-- <li class="sidebar-label pt25 pb10">Estadísticas</li>
   <li class="sidebar-stat">
     <a href="#projectOne" class="fs11">
       <span class="fa fa-inbox text-info"></span>
@@ -222,7 +238,7 @@
         </div>
       </div>
     </a>
-  </li>
+  </li> -->
 </ul>
 <!-- End: Sidebar Menu -->
 

@@ -19,20 +19,15 @@
 
     if ($getHosts->num_rows > 0){
         while ($listHosts = $getHosts->fetch_array(MYSQLI_ASSOC)){
+            $ip_net_now = $CN->getIPNetFromIPHost($ip_addr)->fetch_array(MYSQLI_ASSOC)['ip_net'];
+            
+            if ($CN->updateNetworkNextRouterAlias($ip_net_now, $alias))
+                echo "Ok";
+
             if ($listHosts['ip_host'] == $ip_addr){
-                if ((bool)$listHosts['router']){
-
-                    #Cambiar todos los que son enrutadores
-                    if ($CN->updateHostRouterAlias($listHosts['ip_net'], $alias))
-                        echo "Ok";
-                    
-                    // echo $listHosts['ip_net']." | ".$listHosts['ip_host']." | ".$listHosts['router'];
-                } else {
-                    if ($CN->updateHostAlias($ip_addr, $alias))
-                        echo "Ok";
-                }
-
-            } else if ($listHosts['net_next'] == $ip_test){
+                if ($CN->updateHostAlias($ip_addr, $alias))
+                    echo "Ok";
+            } else {
                 if ($CN->updateNetworkAlias($ip_addr, $alias))
                     echo "Ok";
             }

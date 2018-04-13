@@ -1,9 +1,16 @@
 <?php
 	@session_start();
 
+	if ($_SESSION['session_expired'])
+		header("Location: ../../../");
+
+	if (!isset($_SESSION['getConsts'])){
+		echo "Sesión expirada, presione F5 o CTRL + R";
+		$_SESSION['session_expired'] = true;
+	}
+
 	include (@$_SESSION['getConsts']);
 
-	include ($Local);
 	include (PF_CONNECT_SERVER);
 	include (PD_CTL_PHP."/ic.config.class.php");
 

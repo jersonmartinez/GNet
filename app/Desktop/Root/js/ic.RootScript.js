@@ -206,6 +206,10 @@ $(document).mousemove(function(event){
     }, 1000);
 });
 
+$("#sb_subitem_NetworkMap").click(function(){
+	$("#sb_item_TrackingNetwork").click();
+});
+
 //Tracking Network
 $("#sb_item_TrackingNetwork").click(function(){
 
@@ -316,6 +320,7 @@ function getCoordsPosition(e) {
 
 $("#sb_item_AddDeviceManagement").click(function(){
 	$(".AddDeviceManagement").click();
+	$("#ADM_InsertAliasHost").focus();
 });
 
 $("#ddt_SelectTypeDeviceOptionFinalHost").click(function(){
@@ -438,7 +443,7 @@ $(".ADM_TB_IPHost").click(function(){
 });
 
 /*Registrar nuevo dispositivo*/
-$("#Btn_ADM_Save").click(function(){	
+$("#Btn_ADM_Save").click(function(){
 	NProgress.start();
 
 	if (ADM_Value == "ADM_Host"){
@@ -454,7 +459,12 @@ $("#Btn_ADM_Save").click(function(){
 			data: $("#Form_ADM_Option_Host").serialize(),
 			success: function(data){
 				$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html(data);
+				$(".ddt_SelectTypeDevice").html("* Dispositivo <span class='caret'></span>");
+				$("#ADM_InsertAliasHost").val("");
+				$("#ADM_TB_IPNet_ID").val(" ");
+				$("#ADM_TB_IPHost_ID").val("");
 				NProgress.done();
+				$("#ModalCloseADMSave").click();
 			}
 		});
 	} else if (ADM_Value == "ADM_Server"){
@@ -466,8 +476,7 @@ $("#Btn_ADM_Save").click(function(){
 });
 
 $(".btn_main_logo").click(function(){
-	if (xhr != null)
-		xhr.abort();
+	CleanXHR();
 	
 	window.location.reload();
 });
@@ -484,7 +493,7 @@ function FunctionOnChange(ip_addr, value){
 		type: "post",
 		data: parametros,
 		success: function(data){
-			if (data == "Ok"){
+			if (data != ""){
 				console.log('IP Address: ' + ip_addr + ', Valor guardado: ' + value.newValue);
 			} else {
 				console.log("Ha fallado...");
@@ -492,4 +501,9 @@ function FunctionOnChange(ip_addr, value){
 		}
 	});
 	
+}
+
+function CleanXHR(){
+	if (xhr != null)
+		xhr.abort();
 }

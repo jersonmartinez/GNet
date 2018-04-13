@@ -225,7 +225,7 @@
 		}
 
 		public function getMyIPServer(){
-			return shell_exec("ip -4 route get 8.8.8.8 | awk {'print $7'} | tr -d '\n'");
+			return shell_exec("ip -4 route get 1.1.1.1 | awk {'print $7'} | tr -d '\n'");
 		}
 
 		public function checkNetwork($ip_net){
@@ -251,6 +251,13 @@
 
 		public function updateNetwork($ip_net, $checked){
 			if ($this->db_connect->query("UPDATE ".$this->db_prefix."network SET checked='".$checked."' WHERE ip_net='".$ip_net."';"))
+				return true;
+
+			return false;
+		}
+
+		public function updateNetworkNextRouterAlias($ip_net_next, $alias){
+			if ($this->db_connect->query("UPDATE ".$this->db_prefix."host SET alias='".$alias."' WHERE net_next='".$ip_net_next."';"))
 				return true;
 
 			return false;
@@ -284,6 +291,10 @@
 				return true;
 
 			return false;
+		}
+
+		public function getIPNetFromIPHost($ip_host){
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE ip_host='".$ip_host."' LIMIT 1;");
 		}
 
 		public function getHostTypeRouterLast(){
