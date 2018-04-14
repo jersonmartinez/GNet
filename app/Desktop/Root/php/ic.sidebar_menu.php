@@ -2,6 +2,13 @@
 <ul class="nav sidebar-menu">
     <li class="sidebar-label pt20">GESTIÓN DE RED</li>
 
+    <li>
+        <a href="#" id="sb_item_ResourcesMonitor">
+            <span class="fa fa-tachometer"></span>
+            <span class="sidebar-title">Mi servidor</span>
+        </a>
+    </li>
+
     <!-- Se gestionan los dispositivos -->
     <li>
         <a class="accordion-toggle" href="#">
@@ -76,13 +83,6 @@
                 </a>
             </li>      
         </ul>
-    </li>
-
-    <li>
-        <a href="#" id="sb_item_ResourcesMonitor">
-            <span class="fa fa-tachometer"></span>
-            <span class="sidebar-title">Monitorizar recursos</span>
-        </a>
     </li>
 
     <!-- <li>
