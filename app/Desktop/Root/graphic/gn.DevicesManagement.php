@@ -13,7 +13,8 @@
     $CN = new ConnectSSH();
     $CN->ConnectDB($H, $U, $P, $D, $X);
 
-    $R = $CN->getAllHost();
+    // $R = $CN->getAllHost();
+    $R = $CN->getHostWithOutInterfaces();
     $IPNet = $CN->getIPNet(); 
 ?>
 
@@ -70,47 +71,46 @@
 
                 while ($Restore = @$R->fetch_array(MYSQLI_ASSOC)) {
                     if ((bool)$Restore['router']){
-
-                        if ($Restore['net_next'] == "-"){
-                            /*Router*/
-                            if ($CD->ping($Restore['ip_host'])){
-                                ?>
-                                    <div class="mix category-2" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
-                                <?php
-                            } else {
-                                ?>
-                                    <div class="mix category-2" data-myorder="<?php echo $R_Count; ?>" style="border-top: 3px solid #cc2e2e; display: inline-block;">
-                                <?php
-                            }
+                        /*Router*/
+                        $IDOrderHost = implode("", explode(".", $Restore['ip_host']));
+                        if (1!=1){
                             ?>
-                                    <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/routers/router4.png" style="margin-left: 25%; height: 130px;" />
-                                    
-                                    <?php
-                                        if (!empty($Restore['alias'])){
-                                            ?>
-                                                <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['alias']; ?></p>
-                                            <?php
-                                        } else {
-                                            ?>
-                                                <p title="Cambiar nombre" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
-                                            <?php
-                                        }
-                                    ?>
-                                </div>
+                                <div class="mix category-2 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
+                            <?php
+                        } else {
+                            ?>
+                                <div class="mix category-2 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="border-top: 3px solid #cc2e2e; display: inline-block;">
                             <?php
                         }
+                        ?>
+                                <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/routers/router4.png" style="margin-left: 25%; height: 130px;" />
+                                
+                                <?php
+                                    if (!empty($Restore['alias'])){
+                                        ?>
+                                            <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['alias']; ?></p>
+                                        <?php
+                                    } else {
+                                        ?>
+                                            <p title="Cambiar nombre" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['ip_host']; ?></p>
+                                        <?php
+                                    }
+                                ?>
+                            </div>
+                        <?php
                     } else {
                         $getMyIPServer = $CN->getMyIPServer();
+                        $IDOrderHost = implode("", explode(".", $Restore['ip_host']));
 
                         if ($getMyIPServer == $Restore['ip_host']){
 
-                            if ($CD->ping($Restore['ip_host'])){
+                            if (1!=1){
                                 ?>
-                                    <div class="mix category-4" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #4a89dc;">
+                                    <div class="mix category-4 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #4a89dc;">
                                 <?php
                             } else {
                                 ?>
-                                    <div class="mix category-4" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #cc2e2e;">
+                                    <div class="mix category-4 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #cc2e2e;">
                                 <?php
                             }
                             ?>
@@ -131,13 +131,13 @@
                             <?php
                         } else {
 
-                            if ($CD->ping($Restore['ip_host'])){
+                            if (1!=1){
                                 ?>
-                                    <div class="mix category-1" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #4a89dc;">
+                                    <div class="mix category-1 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #4a89dc;">
                                 <?php
                             } else {
                                 ?>
-                                    <div class="mix category-1" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #cc2e2e;">
+                                    <div class="mix category-1 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #cc2e2e;">
                                 <?php
                             }
                             ?>
