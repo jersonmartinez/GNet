@@ -215,6 +215,7 @@ $("#sb_item_TrackingNetwork").click(function(){
 
 	HideAdminPanels();
 
+	NProgress.configure({parent: 'body'});
 	NProgress.start();
 
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeIn').show();
@@ -234,6 +235,7 @@ $("#sb_item_DevicesManagement").click(function(){
 
 	HideAdminPanels();
 	
+	NProgress.configure({parent: 'body'});
 	NProgress.start();
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeIn').show();
 
@@ -251,6 +253,7 @@ $("#sb_item_ResourcesMonitor").click(function(){
 
 	HideAdminPanels();
 	
+	NProgress.configure({parent: 'body'});
 	NProgress.start();
 	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
 
@@ -444,6 +447,7 @@ $(".ADM_TB_IPHost").click(function(){
 
 /*Registrar nuevo dispositivo*/
 $("#Btn_ADM_Save").click(function(){
+	NProgress.configure({parent: 'body'});
 	NProgress.start();
 
 	if (ADM_Value == "ADM_Host"){
@@ -507,3 +511,167 @@ function CleanXHR(){
 	if (xhr != null)
 		xhr.abort();
 }
+
+var respuesta;
+
+$("#TestingShowUsers").click(function(){
+	$.ajax({
+		url: "app/Desktop/Root/php/gn.TestingShowUsers.php", 
+		type: "post", 
+		dataType: "json",
+	})
+	.done(function(response) {
+		respuesta = response;
+	})
+	.fail(function( jqXHR, textStatus, errorThrown ) {
+	     if ( console && console.log ) {
+	         console.log( "La solicitud a fallado: " +  textStatus);
+	     }
+	})
+
+	.then(function(){
+		if (respuesta.success){
+            $.each(respuesta.data.hosts, function( key, value ) {
+                $.each( value, function ( userkey, uservalue) {
+                    if (userkey == "ip_host"){
+
+                    	var ClassParent = uservalue.split(".").slice(0,4).join("");
+
+                    	var parametros = {"ip_addr" : uservalue}
+
+						$.ajax({
+							url: "app/Desktop/Root/php/gn.CheckPing.php",
+							type: "post",
+							data: parametros,
+							beforeSend: function() {
+								NProgress.configure({ parent: '.host' + ClassParent });
+								NProgress.start();
+							}, 
+							success: function(data){
+								NProgress.done();
+							}
+						});
+                    }
+                });
+            });
+		}
+	});
+});
+
+$.ajax({
+	url: "app/Desktop/Root/php/gn.TestingShowUsers.php", 
+	type: "post", 
+	dataType: "json",
+})
+.done(function(response) {
+	respuesta = response;
+})
+.fail(function( jqXHR, textStatus, errorThrown ) {
+     if ( console && console.log ) {
+         console.log( "La solicitud a fallado: " +  textStatus);
+     }
+})
+.then(function(){
+	console.log(respuesta);
+});
+
+function promiseSqrt(value){
+    return new Promise(function (fulfill, reject){
+        console.log('START execution with value =', value);
+
+        setTimeout(function() {
+            fulfill({ value: value, result: value.split(".").slice(0,4).join("") });
+        }, 800 | Math.random() * 100);
+    });
+}
+
+function myCo(gen) {
+    var i = gen();
+    function sequent(result) {
+        var ret = i.next(result);
+        if (!ret.done) {
+            ret.value.then(sequent);
+        }
+    }
+    sequent();
+}
+
+function respuestarapida(){
+	if (respuesta.success){
+	    $.each(respuesta.data.hosts, function( key, value ) {
+	        $.each( value, function ( userkey, uservalue) {
+	            if (userkey == "ip_host"){
+					console.log(callmyCo(uservalue));
+	            }
+	        });
+	    });
+	}
+}
+
+function callmyCo(userkey){
+	return myCo(function* gen() {
+
+		var obj = yield promiseSqrt(userkey);
+		console.log('END execution with value =', obj.value, 'and result =', obj.result);
+
+	    // for (var n = 0; n <= 9; n++) {
+	    // }
+	}); 
+}
+
+
+function asyncSqrt(value, callback) {
+    console.log('START execution with value =', value);
+    var ip_host = respuesta.data.hosts[value].ip_host;
+    var parametros = {"ip_addr" : ip_host}
+    
+    NProgress.start();
+
+	$.ajax({
+		url: "app/Desktop/Root/php/gn.CheckPing.php",
+		type: "post",
+		data: parametros,
+		success: function(data){
+        	NProgress.done();
+
+
+        	callback(value, {ip_host: ip_host, data: data});
+		}
+	});
+}
+
+var max;
+var cnt = 13;
+
+function nuevallamada(){
+
+	max = respuesta.data.count;
+
+	asyncSqrt(cnt, function callback(value, result) {
+	    
+
+	    console.log('END execution with value =', value, 'and result =', result.ip_host, ' and status: ', result.data);
+	    if (result.data == "1"){
+	    	var request = ".host" + respuesta.data.hosts[cnt-1].ip_host.split(".").slice(0,4).join("");
+	    	$(request).css("border-top", "3px solid blue");
+	    }
+
+	    NProgress.configure({parent: '.host' + respuesta.data.hosts[cnt-1].ip_host.split(".").slice(0,4).join("")});
+	    if (cnt === max) {
+	        console.log('COMPLETED');
+	        cnt = 0;
+	    	NProgress.done();
+	    } else {
+			// NProgress.start();
+	        asyncSqrt(cnt, callback);
+	    }
+
+	    cnt++;
+	    // NProgress.configure({parent: '.host' + respuesta.data.hosts[cnt].ip_host.split(".").slice(0,4).join("")});
+	});
+}
+
+// function ApplyChangesCall(cnt){
+// 	NProgress.configure({parent: '.host' + respuesta.data.hosts[cnt].ip_host.split(".").slice(0,4).join("")});
+// 	NProgress.start();
+// }
