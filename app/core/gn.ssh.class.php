@@ -1,10 +1,4 @@
 <?php
-	class SideMasters extends mysqli {
-		public function __construct($host, $user, $pass, $db){
-			@parent::__construct($host, $user, $pass, $db);
-		}
-	}
-
 	class ConnectSSH {
 		public $ip_host;
 		private $username;
@@ -300,6 +294,10 @@
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host;");
 		}
 
+		public function getHostWithOutInterfaces(){
+			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE NOT (router='1' AND net_next='-');");
+		}
+
 		//Extrae todas las direcciones de red.
 		public function getIPNet(){
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network;");
@@ -360,6 +358,7 @@
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE checked='0' LIMIT 1;");
 		}
 
+		#Rastreo de Red
 		public function SpaceTest(){
 			$this->InitTables();
 
@@ -396,7 +395,6 @@
 			} while ($this->getCountNetworkChecked());
 		}
 
-
 		public function IPRouteShow($IPHost){
 			$R = $this->getIPNet();
 
@@ -430,189 +428,6 @@
 
 		public function SrMartinez(){
 			return explode("\n", shell_exec("nmap 192.168.100.0/24 -n -sP | grep report | awk '{print $5}'"));
-		}
-
-		public function Tracking(){
-
-			$IPLocal = $this->IPRouteShow("localhost");
-
-			$i = 0;
-			do {
-				$CountNet = $this->getIPNet()->num_rows;
-				
-				if ($CountNet == 0){
-					$Info = $this->SondearRed($IPLocal);
-
-					//Para saber si es enrutador
-					$RL[] = "cat /proc/sys/net/ipv4/ip_forward";
-
-					//Para obtener las otras rutas de red
-					$RA[] = "ip route | sed '/default/ d' | cut -d ' ' -f1";
-
-					for ($j = 0; $j < sizeof($Info)-1; $j++){
-						//Se agregan en un array los dispositivos sondeados
-						$ArrayHosts[$i][$j] = trim($Info[$j]);
-
-						//Se aplica una conexion SSH al host
-						$this->FinalConnect($ArrayHosts[$i][$j], "network", "123");
-
-						//Se obtiene valores booleanos (0, 1 = enrutador)
-						$ip_forward = $this->RunLines(implode("\n", $RL));
-
-						//Se verifica si es enrutador
-						if ($ip_forward > 0){
-							//Si es enrutador, se le pregunta por las nuevas rutas de red
-							$AddrIPNext = $this->IPRouteShow($ArrayHosts[$i][$j]);
-							//Si viene un resultado vacio, entonces no hay red siguiente
-							$AddrIPNext = empty($AddrIPNext) ? "-" : $AddrIPNext;
-
-							//Si hay red siguiente, entonces se agrega la siguiente red a la tabla de redes
-							if ($AddrIPNext != "-"){
-								$this->addNetwork($AddrIPNext);
-								//Si hay siguiente, este deberia pasar a la otra vuelta del ciclo
-								$Feliz = 1;
-							}
-							
-						} else {
-							//No es enrutador
-							$AddrIPNext = "-";
-						}
-						echo "<br/>Direccion de Red: ".$IPLocal[$i].", Host: ".$ArrayHosts[$i][$j].", Router: ".$ip_forward.", Siguiente: ".$AddrIPNext."<br/>";
-						$this->addHost($IPLocal[$i], $ArrayHosts[$i][$j], $ip_forward, $AddrIPNext); 
-					}
-
-				}
-				exit();
-				
-				//Se obtiene la red actual
-				$ArrayNetwork = trim($IPLocal);
-
-				
-				//Se verifica si hay red
-				if ($CountNet == 0){
-					echo "<br/>Red inicial: ".$ArrayNetwork."<br/>";
-					//Si no hay, se agrega la actual y primera direccion de red
-					$this->addNetwork($ArrayNetwork);
-
-					//Obtengo la primer direccion de red de la base de datos
-					$AddNet = $this->getIPNetOnly();
-
-					//Se sondea la primera direccion de red
-					$Info = explode("\n", shell_exec("nmap ".$AddNet." -n -sP | grep report | awk '{print $5}'"));
-					
-					//Para saber si es enrutador
-					$RL[] = "cat /proc/sys/net/ipv4/ip_forward";
-
-					//Para obtener las otras rutas de red
-					$RA[] = "ip route | sed '/default/ d' | cut -d ' ' -f1";
-					
-					//Se recorren los dispositivos sondeados
-					for ($j = 0; $j < sizeof($Info)-1; $j++){
-						//Se agregan en un array los dispositivos sondeados
-						$ArrayHosts[$i][$j] = trim($Info[$j]);
-
-						//Se aplica una conexion SSH al host
-						$this->FinalConnect($ArrayHosts[$i][$j], "network", "123");
-
-						//Se obtiene valores booleanos (0, 1 = enrutador)
-						$ip_forward = $this->RunLines(implode("\n", $RL));
-
-						//Se verifica si es enrutador
-						if ($ip_forward > 0){
-							//Si es enrutador, se le pregunta por las nuevas rutas de red
-							$AddrIPNext = trim(explode("\n", $this->RunLines(implode("\n", $RA)))[1]);
-							//Si viene un resultado vacio, entonces no hay red siguiente
-							$AddrIPNext = empty($AddrIPNext) ? "-" : $AddrIPNext;
-
-							//Si hay red siguiente, entonces se agrega la siguiente red a la tabla de redes
-							if ($AddrIPNext != "-"){
-								$this->addNetwork($AddrIPNext);
-								//Si hay siguiente, este deberia pasar a la otra vuelta del ciclo
-								$Feliz = 1;
-							}
-							
-						} else {
-							//No es enrutador
-							$AddrIPNext = "-";
-						}
-						echo "<br/>Direccion de Red: ".$ArrayNetwork[$i].", Host: ".$ArrayHosts[$i][$j].", Router: ".$ip_forward.", Siguiente: ".$AddrIPNext."<br/>";
-						$this->addHost($ArrayNetwork[$i], $ArrayHosts[$i][$j], $ip_forward, $AddrIPNext); 
-					}
-
-
-				} else if ($CountNet == 1) {
-					// Si hay una red
-
-					echo "Finalizando";
-
-				} else if ($CountNet > 1 && !empty($this->getIPNetNext($ArrayNetwork[$i]))){
-					//Se extrae la siguiente direccion IP
-					$ArrayNetworkNext = $this->getIPNetNext($ArrayNetwork[$i]);
-
-					echo "<br/>Test: ".$ArrayNetworkNext."<br/>";
-					//Si no hay, se agrega la actual y primera direccion de red
-					// $this->addNetwork($ArrayNetwork[$i]);
-
-					//Obtengo la primer direccion de red de la base de datos
-					// $AddNet = $this->getIPNetOnly();
-
-					//Se sondea la primera direccion de red
-					$Info = explode("\n", shell_exec("nmap ".$ArrayNetworkNext." -n -sP | grep report | awk '{print $5}'"));
-					
-					//Para saber si es enrutador
-					$RL[] = "cat /proc/sys/net/ipv4/ip_forward";
-
-					//Para obtener las otras rutas de red
-					$RA[] = "ip route | sed '/default/ d' | cut -d ' ' -f1";
-					
-					//Se recorren los dispositivos sondeados
-					for ($j = 0; $j < sizeof($Info)-1; $j++){
-						//Se agregan en un array los dispositivos sondeados
-						$ArrayHosts[$i][$j] = trim($Info[$j]);
-
-						//Se aplica una conexion SSH al host
-						echo "Lo hace: ".$ArrayHosts[$i][$j]."<br/><br/>";
-
-						$this->FinalConnect($ArrayHosts[$i][$j], "network", "123");
-
-						//Se obtiene valores booleanos (0, 1 = enrutador)
-						$ip_forward = $this->RunLines(implode("\n", $RL));
-
-						//Se verifica si es enrutador
-						if ($ip_forward > 0){
-							//Si es enrutador, se le pregunta por las nuevas rutas de red
-							$AddrIPNext = trim(explode("\n", $this->RunLines(implode("\n", $RA)))[1+$i]);
-							//Si viene un resultado vacio, entonces no hay red siguiente
-							$AddrIPNext = empty($AddrIPNext) ? "-" : $AddrIPNext;
-
-							//Si hay red siguiente, entonces se agrega la siguiente red a la tabla de redes
-							if ($AddrIPNext != "-"){
-								$this->addNetwork($AddrIPNext);
-								//Si hay siguiente, este deberia pasar a la otra vuelta del ciclo
-								echo "Ya hay uno siguiente<br/>";
-								$Feliz = 1;
-							} else {
-								$Feliz = 0;
-							}
-							
-						} else {
-							//No es enrutador
-							$AddrIPNext = "-";
-						}
-
-						echo "<br/>Direccion de Red: ".$ArrayNetworkNext.", Host: ".$ArrayHosts[$i][$j].", Router: ".$ip_forward.", Siguiente: ".$AddrIPNext."<br/>";
-						
-						$this->addHost($ArrayNetworkNext, $ArrayHosts[$i][$j], $ip_forward, $AddrIPNext); 
-					}
-
-					$Feliz = 0;
-				}
-
-				// $Feliz = $this->getIPNetNext($ArrayNetwork[$i])->num_rows;
-				$i++;
-			} while ($Feliz != 0);
-
-			return array ($ArrayHosts, $ArrayNetwork);
 		}
 
 		public function getMemoryState(){

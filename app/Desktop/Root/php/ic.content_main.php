@@ -8,6 +8,11 @@
 ?>
 
 <div class="container_platform">
+
+    <input type="button" value="Mostrar usuarios" onclick="javascript: nuevallamada();" id="TestingShowUsersII" />
+    <div class="container_platform_savenewdata">
+        <p>Parrafo</p>
+    </div>
     <!-- Tour Activation Btn -->
     <!-- <button class="btn btn-primary" id="tour_start" type="button">Begin Tour</button> -->
 
