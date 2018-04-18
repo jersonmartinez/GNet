@@ -89,6 +89,7 @@
             <!-- Create Panel with required unique ID -->
             <div class="panel panel-dark" id="p1">
                 <div class="panel-heading">
+                    <span class="fa fa-info-circle"></span>
                     <span class="panel-title">Información básica del equipo</span>
                 </div>
                 <div class="panel-body" style="max-height: 300px;">
@@ -125,6 +126,7 @@
             <!-- Create Panel with required unique ID -->
             <div class="panel panel-dark" id="p3">
                 <div class="panel-heading">
+                    <i class="fa fa-battery-three-quarters" aria-hidden="true"></i>
                     <span class="panel-title">Estado de la batería</span>
                 </div>
                 <div class="panel-body">
@@ -154,6 +156,7 @@
             <!-- Create Panel with required unique ID -->
             <div class="panel panel-dark" id="p1">
                 <div class="panel-heading">
+                    <span class="fa fa-dashboard"></span>
                     <span class="panel-title">Interfaces de red y direcciones IP asignadas</span>
                 </div>
                 <div class="panel-body" style="max-height: 300px;">
@@ -188,6 +191,7 @@
             <!-- Create Panel with required unique ID -->
             <div class="panel panel-dark" id="p3">
                 <div class="panel-heading">
+                    <span class="fa fa-dashboard"></span>
                     <span class="panel-title">Puertos Abiertos</span>
                 </div>
                 <div class="panel-body" style="max-height: 300px; overflow: scroll;">
@@ -235,6 +239,7 @@
             <!-- Create Panel with required unique ID -->
             <div class="panel panel-dark" id="p1">
                 <div class="panel-heading">
+                    <span class="fa fa-users"></span>
                     <span class="panel-title">Usuarios con sesión iniciada</span>
                 </div>
                 <div class="panel-body" style="max-height: 300px;">
@@ -269,6 +274,7 @@
             <!-- Create Panel with required unique ID -->
             <div class="panel panel-dark" id="p3">
                 <div class="panel-heading">
+                    <i class="fa fa-tasks" aria-hidden="true"></i>
                     <span class="panel-title">Procesos iniciados</span>
                 </div>
                 <div class="panel-body" style="max-height: 300px; overflow: scroll;">
@@ -316,6 +322,7 @@
             <!-- Create Panel with required unique ID -->
             <div class="panel panel-dark" id="p1">
                 <div class="panel-heading">
+                    <span class="fa fa-server"></span>
                     <span class="panel-title">Servidor Web | Sitios virtuales</span>
                 </div>
                 <div class="panel-body" style="max-height: 300px;">
@@ -352,6 +359,7 @@
             <!-- Create Panel with required unique ID -->
             <div class="panel panel-dark" id="p3">
                 <div class="panel-heading">
+                    <span class="fa fa-server"></span>
                     <span class="panel-title">Monitorización del servidor web</span>
                 </div>
                 <div class="panel-body" style="max-height: 300px; overflow: scroll;">
