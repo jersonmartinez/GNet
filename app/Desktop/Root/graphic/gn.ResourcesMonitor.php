@@ -273,24 +273,24 @@
                 </div>
                 <div class="panel-body" style="max-height: 300px; overflow: scroll;">
                 	<table class="table">
-			    		<thead>
-				            <tr>
-				                <th>PID</th>
-				                <th>Nombre del proceso</th>
-				            </tr>
-				        </thead>
+			            <tr>
+			                <th>PID</th>
+			                <th>Nombre</th>
+                            <th>CPU</th>
+                            <th>Tiempo</th>
+			            </tr>
 						<?php
 							for ($i=0; $i < count($Procesos); $i++) { 
 								$Firts = explode(" ", $Procesos[$i]);
 
 								for ($j=0; $j < count($Firts); $j++) { 
 									?>
-										<tbody>
-											<tr>
-												<td><?php echo $Firts[$j]; ?></td>
-												<td><?php echo $Firts[$j+1]; $j++; ?></td>
-											</tr>
-										</tbody>
+										<tr>
+											<td><?php echo $Firts[$j]; ?></td>
+											<td><?php echo $Firts[$j+3]; $j++; ?></td>
+                                            <td><?php echo $Firts[$j]; $j++; ?></td>
+                                            <td><?php echo $Firts[$j]; $j++; ?></td>
+										</tr>
 									<?php
 								}
 							}

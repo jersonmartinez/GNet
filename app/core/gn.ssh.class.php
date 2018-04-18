@@ -486,7 +486,7 @@
 
 		public function getProcState(){
 			$filename = "getProcState.sh";
-			$ActionArray[] = "Proc=($(ps axo pid,cmd | sed '1d' | awk '{print $1 ,$2}'))";
+			$ActionArray[] = "Proc=($(ps axo pid,pcpu,time,cmd --sort -pcpu | sed '1d' | awk {'print $1 ,$2 ,$3 ,$4'}))";
 			array_push($ActionArray, 'echo "${Proc[*]},"');	
 			
 			$RL[] = $this->remote_path.$filename;

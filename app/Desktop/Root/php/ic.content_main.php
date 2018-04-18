@@ -126,6 +126,13 @@
                     <div class="panel-heading">
                         <span class="panel-icon"><i class="fa fa-tachometer"></i></span>
                         <span class="panel-title">Monitorizador de Recursos</span>
+
+                        <div class="container_options_controls" style="position: absolute; top: 0; right:100px;">
+                            <button style="padding: 9px;" class="filter btn btn-primary btn-sm active" data-filter="all">Mostrar todo</button>
+                            <button style="padding: 9px;" class="filter btn btn-primary btn-sm" data-filter=".category-1">Gráficos rendimiento</button>
+                            <button style="padding: 9px;" class="filter btn btn-info btn-sm" data-filter=".category-2">Información básica</button>
+                            <button style="padding: 9px;" class="filter btn btn-info btn-sm" data-filter=".category-3">Procesos</button>
+                            <button style="padding: 9px;" class="filter btn btn-info btn-sm" data-filter=".category-4">Información de red</button>
                     </div>
                     <div class="panel-body AdminPanel_ResourcesMonitor_PanelBody">
                         <!-- El contenido -->
