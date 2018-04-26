@@ -515,6 +515,28 @@
 			return getErrors();
 		}
 
+		public function getTableRoute(){
+			$filename = "getTableRoute.sh";
+			$ActionArray[] = "Net=$(ip route show | awk {'print $1'})";
+			array_push($ActionArray, 'for i in ${Net[*]}; do');
+			array_push($ActionArray, '	Comp=$(ip route show | grep -w "$i" | grep -w via)');
+			array_push($ActionArray, '	if [[ $Comp != "" ]]; then');
+			array_push($ActionArray, '		Int=$(ip route show | grep -w "$i" | cut -d " " -f5)');
+			array_push($ActionArray, '		Salt=$(ip route show | grep -w "$i" | cut -d " " -f3)');
+			array_push($ActionArray, '		echo "$i|$Int|$Salt,"');
+			array_push($ActionArray, '	else');
+			array_push($ActionArray, '		Int=$(ip route show | grep -w "$i" | cut -d " " -f3)');
+			array_push($ActionArray, '		echo "$i|$Int|-,"');
+			array_push($ActionArray, '	fi');
+			array_push($ActionArray, 'done');	
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
 		public function getPortsListen(){
 			$filename = "getPortsListen.sh";
 			$ActionArray[] = "Ports=($(lsof -i -nP | sed '1d' | egrep -v '(ESTAB|WAIT)' | awk {'print $9 ,$8 ,$5 ,$1'} | cut -d':' -f2 | uniq))";

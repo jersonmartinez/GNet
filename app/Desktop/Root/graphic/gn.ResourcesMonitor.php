@@ -19,6 +19,7 @@
     $DiskUsage      = explode(",", $ConnectSSH->getDiskState());
     $Procesos       = explode(",", $ConnectSSH->getProcState());
     $NetAddress     = explode(",", $ConnectSSH->getNetAddress());
+    $TableRoute     = explode(",", $ConnectSSH->getTableRoute());
     $PortsListen    = explode(",", $ConnectSSH->getPortsListen());
     $BatteryState   = explode(",", $ConnectSSH->getBatteryState());
     $InfoOS         = explode(",", $ConnectSSH->getInfoOS());
@@ -28,6 +29,9 @@
     $VirtualHost     = explode(",", explode("=", $ConnectSSH->getWebServer())[0]);
     $WebServer       = explode(",", explode("=", $ConnectSSH->getWebServer())[1]);
 
+    foreach ($TableRoute as $value) {
+        echo $value."";
+    }
     // Método para convertir a GB
     function ConvertUnit($InputValue) {
         if ($InputValue >= 1024) {
@@ -347,6 +351,75 @@
                                         //}
                                     ?>
                                 </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Column -->
+
+                </div>
+                <!-- End Row -->
+
+            </div>
+            <!-- End .admin-panels Wrapper -->
+
+            <!-- Required .admin-panels wrapper-->
+            <div class="admin-panels">
+                <!-- Create Row -->
+                <div class="row">
+                    <!-- Create Column with required .admin-grid class -->
+                    <div class="col-md-6 admin-grid">
+                        <!-- Create Panel with required unique ID -->
+                        <div class="panel panel-dark" id="p1">
+                            <div class="panel-heading">
+                                <span class="fa fa-dashboard"></span>
+                                <span class="panel-title">Tabla de enrutamiento</span>
+                            </div>
+                            <div class="panel-body" style="max-height: 300px;">
+                                <table class="table">
+                                    <tr>
+                                        <th>Red destino</th>
+                                        <th>Interfaz</th>
+                                        <th>Pasarela</th>
+                                    </tr>
+                                    <?php
+                                        for ($i=0; $i < count($TableRoute); $i++) { 
+                                            $Firts = explode("|", $TableRoute[$i]);
+
+                                            for ($j=0; $j < count($Firts); $j++) { 
+                                            ?>
+                                                <tr>
+                                                    <td>
+                                                        <?php 
+                                                            if ($Firts[$j] == "default") {
+                                                                $Firts[$j] = "0.0.0.0/0";
+                                                            }
+                                                            echo $Firts[$j]; 
+                                                        ?>     
+                                                    </td>
+                                                    <td><?php echo $Firts[$j+1]; $j++; ?></td>
+                                                    <td><?php echo $Firts[$j+1]; $j++; ?></td>
+                                                </tr>
+                                            <?php
+                                            }
+                                        }
+                                    ?>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Column -->
+
+                    <!-- Create Column with required .admin-grid class -->
+                    <div class="col-md-6 admin-grid">
+
+                        <!-- Create Panel with required unique ID -->
+                        <div class="panel panel-dark" id="p3">
+                            <div class="panel-heading">
+                                <span class="fa fa-dashboard"></span>
+                                <span class="panel-title">Puertos Abiertos</span>
+                            </div>
+                            <div class="panel-body" style="max-height: 300px; overflow: scroll;">
+                               
                             </div>
                         </div>
                     </div>
