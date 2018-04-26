@@ -126,6 +126,14 @@
                     <div class="panel-heading">
                         <span class="panel-icon"><i class="fa fa-tachometer"></i></span>
                         <span class="panel-title">Monitorizador de Recursos</span>
+
+                        <ul class="nav nav-tabs" role="tablist" style="float: right; padding: 4px; border: none;">
+                            <li role="presentation" class="active"><a href="#graficos" aria-controls="graficos" role="tab" data-toggle="tab" style="font-size: 12px;">USO DE RECURSOS</a></li>
+                            <li role="presentation"><a href="#system" aria-controls="system" role="tab" data-toggle="tab" style="font-size: 12px;">INFORMACIÓN BÁSICA</a></li>
+                            <li role="presentation"><a href="#process" aria-controls="process" role="tab" data-toggle="tab" style="font-size: 12px;">PROCESOS</a></li>
+                            <li role="presentation"><a href="#network" aria-controls="network" role="tab" data-toggle="tab" style="font-size: 12px;">CONEXIÓN EN RED</a></li>
+                            <li role="presentation"><a href="#server" aria-controls="server" role="tab" data-toggle="tab" style="font-size: 12px;">SERVICIO WEB</a></li>
+                        </ul>
                     </div>
                     <div class="panel-body AdminPanel_ResourcesMonitor_PanelBody">
                         <!-- El contenido -->

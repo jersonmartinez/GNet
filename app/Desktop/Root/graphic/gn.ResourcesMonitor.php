@@ -59,16 +59,7 @@
 
 
 <div role="tab-block">
-    <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#graficos" aria-controls="graficos" role="tab" data-toggle="tab">Uso de recursos</a></li>
-        <li role="presentation"><a href="#system" aria-controls="system" role="tab" data-toggle="tab">Información del equipo</a></li>
-        <li role="presentation"><a href="#process" aria-controls="process" role="tab" data-toggle="tab">Procesos</a></li>
-        <li role="presentation"><a href="#network" aria-controls="network" role="tab" data-toggle="tab">Red</a></li>
-        <li role="presentation"><a href="#server" aria-controls="server" role="tab" data-toggle="tab">Servidor web</a></li>
-    </ul>
-
     <!-- Tab Content Panes -->
-    <br>
     <div class="tab-content"> 
         <div role="tabpanel" class="tab-pane active" id="graficos">
             <div class="row mix category-1">
@@ -307,13 +298,13 @@
 
                                             for ($j=0; $j < count($Firts); $j++) { 
                                                 ?>
-                                                    <tr class="<?php echo $bg_row; ?>">
+                                                    <tr>
                                                         <td>
                                                             <?php 
                                                                 echo $Firts[$j]; 
-                                                                if ($Firts[$j] == "80") {
+                                                                /*if ($Firts[$j] == "80") {
                                                                     $bg_row = "bg_row";
-                                                                }
+                                                                }*/
                                                             ?>   
                                                         </td>
                                                         <td><?php echo $Firts[$j+1]; $j++; ?></td>
@@ -355,12 +346,6 @@
                                         //    }
                                         //}
                                     ?>
-                                    <style type="text/css">
-                                        .bg_row {
-                                            background-color: green;
-                                            color: red;
-                                        }
-                                    </style>
                                 </table>
                             </div>
                         </div>
