@@ -56,6 +56,21 @@
         }
     }
 
+    // Conversión: Uso de memoria de los procesos
+    function ConvertMemoryProc($MemoryProc) {
+        if ($MemoryProc >= 1024) {
+            $MemoryProc = ($MemoryProc / 1024);
+            if(is_float($MemoryProc)) {
+                $ValFloat = number_format($MemoryProc, 2, '.', '');
+                return $ValFloat." MB";   
+            } else {
+                return $MemoryProc." MB";
+            }
+        } else {
+            return $MemoryProc." KB";
+        }
+    }
+
 ?>
 
 
@@ -207,6 +222,7 @@
                                         <th>PID</th>
                                         <th>Nombre</th>
                                         <th>CPU</th>
+                                        <th>Memoria</th>
                                         <th>Tiempo</th>
                                     </tr>
                                     <?php
@@ -217,8 +233,9 @@
                                                 ?>
                                                     <tr>
                                                         <td><?php echo $Firts[$j]; ?></td>
-                                                        <td><?php echo $Firts[$j+3]; $j++; ?></td>
+                                                        <td><?php echo $Firts[$j+4]; $j++; ?></td>
                                                         <td><?php echo "$Firts[$j]%"; $j++; ?></td>
+                                                        <td><?php echo ConvertMemoryProc($Firts[$j]); $j++;#echo "$Firts[$j] kb"; $j++; ?></td>
                                                         <td><?php echo $Firts[$j]; $j++; ?></td>
                                                     </tr>
                                                 <?php
