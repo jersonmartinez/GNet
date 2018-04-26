@@ -80,7 +80,6 @@ div#ContextMenuTest li div.icons-menu-context {
 }
 
 div#ContextMenuTest li div.label-menu-context {
-    /*float: right; */
     display: inline-block; 
     margin: 5px 10px;
     padding: 0 20px 0 35px;
@@ -108,7 +107,6 @@ div#ContextMenuTest_White li div.icons-menu-context {
 }
 
 div#ContextMenuTest_White li div.label-menu-context {
-    /*float: right; */
     display: inline-block; 
     margin: 5px 10px;
     padding: 0 20px 0 35px;
@@ -118,32 +116,26 @@ div.mixings-get-devices .mix-container {
     min-height: 300px;
     padding: 2% 2% 0;
     text-align: justify;
-    /*font-size: 0.1px;*/
     -webkit-backface-visibility: hidden;
 }
 
 div.mixings-get-devices .mix-container .mix.category-1 {
-    border-top: 3px solid #4a89dc;
     height: 150px;
 }
 
 div.mixings-get-devices .mix-container .mix.category-2 {
-    border-top: 3px solid #4a89dc;
     height: 150px;
 }
 
 div.mixings-get-devices .mix-container .mix.category-3 {
-    border-top: 3px solid #4a89dc;
     height: 150px;
 }
 
 div.mixings-get-devices .mix-container .mix.category-4 {
-    border-top: 3px solid #4a89dc;
     height: 150px;
 }
 
 div.mixings-get-devices .mix-container .mix.category-1:hover, .mix.category-2:hover {
-    border-top: 3px solid #2d2;
     height: 150px;
 }
 
@@ -152,7 +144,6 @@ div.mixings-get-devices .mix-container .mix.category-1:active, .mix.category-2:a
 }
 
 div.mixings-get-devices .mix-container .mix.category-1:hover, .mix.category-1:hover {
-    border-top: 3px solid #2d2;
     height: 150px;
 }
 
@@ -161,7 +152,6 @@ div.mixings-get-devices .mix-container .mix.category-1:active, .mix.category-1:a
 }
 
 div.mixings-get-devices .mix-container .mix.category-1:hover, .mix.category-3:hover {
-    border-top: 3px solid #2d2;
     height: 150px;
 }
 
@@ -170,7 +160,6 @@ div.mixings-get-devices .mix-container .mix.category-1:active, .mix.category-3:a
 }
 
 div.mixings-get-devices .mix-container .mix.category-1:hover, .mix.category-4:hover {
-    border-top: 3px solid #2d2;
     height: 150px;
 }
 
@@ -179,7 +168,6 @@ div.mixings-get-devices .mix-container .mix.category-1:active, .mix.category-4:a
 }
 
 div.mixings-get-devices .mix-container .mix.category-1, .mix.category-2, .mix.category-3, .mix.category-4 {
-    border-top: 3px solid #212933;
     height: 150px;
 }
 
@@ -189,7 +177,6 @@ div.mixings-get-devices .mix-container .mix, .mix-container .gap {
 }
 
 div.mixings-get-devices .mix-container .mix {
-    /*text-align: left;*/   
     background: #f4f4f4;
     border: 1px solid #DDD;
     border-top-width: 1px;
