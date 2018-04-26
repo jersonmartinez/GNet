@@ -625,8 +625,8 @@
 			$filename = "getWebServer.sh";
 			$ActionArray[] = "Sites=($(ls /etc/apache2/sites-available/))";
 			array_push($ActionArray, 'for i in ${Sites[*]}; do');
-			array_push($ActionArray, "	ServerName=$(cat /etc/apache2/sites-available/$i | grep 'ServerName' | cut -d ' ' -f2 | tail -n1)");
-			array_push($ActionArray, '	SitesEnable=$(ls /etc/apache2/sites-enabled/ | grep $i)');
+			array_push($ActionArray, '	ServerName=$(cat /etc/apache2/sites-available/$i | grep "ServerName" | cut -d " " -f2 | tail -n1)');
+			array_push($ActionArray, '	SitesEnable=$(ls /etc/apache2/sites-enabled/ | grep "$i")');
 			array_push($ActionArray, '	if [[ $SitesEnable == "" && $ServerName == "" ]]; then');
 			array_push($ActionArray, '		echo "$i|No identificado|No habilitado,"');
 			array_push($ActionArray, '	else');
