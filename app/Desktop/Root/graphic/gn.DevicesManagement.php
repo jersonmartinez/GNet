@@ -32,7 +32,7 @@
                     /*Switch*/
 
                     ?>
-                        <div class="mix category-3" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #212933;">
+                        <div class="mix category-3" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; margin-top: 3px solid #7a7ade;">
                             <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/switchs/switchicon1.png" style="margin-left: 25%; height: 130px;" />
                             
                             <?php
@@ -73,16 +73,8 @@
                     if ((bool)$Restore['router']){
                         /*Router*/
                         $IDOrderHost = implode("", explode(".", $Restore['ip_host']));
-                        if (1!=1){
-                            ?>
-                                <div class="mix category-2 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
-                            <?php
-                        } else {
-                            ?>
-                                <div class="mix category-2 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="border-top: 3px solid #cc2e2e; display: inline-block;">
-                            <?php
-                        }
                         ?>
+                            <div class="mix category-2 host<?php echo $IDOrderHost; ?>" oncontextmenu="javascript: PruebaPingConnect(this);" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
                                 <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/routers/router4.png" style="margin-left: 25%; height: 130px;" />
                                 
                                 <?php
@@ -103,17 +95,8 @@
                         $IDOrderHost = implode("", explode(".", $Restore['ip_host']));
 
                         if ($getMyIPServer == $Restore['ip_host']){
-
-                            if (1!=1){
-                                ?>
-                                    <div class="mix category-4 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #4a89dc;">
-                                <?php
-                            } else {
-                                ?>
-                                    <div class="mix category-4 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #cc2e2e;">
-                                <?php
-                            }
                             ?>
+                                <div class="mix category-4 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
                                     <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/servers/server1.png" style="margin-left: 16%; height: 130px;" />
                                     
                                     <?php
@@ -130,18 +113,9 @@
                                 </div>
                             <?php
                         } else {
-
-                            if (1!=1){
-                                ?>
-                                    <div class="mix category-1 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #4a89dc;">
-                                <?php
-                            } else {
-                                ?>
-                                    <div class="mix category-1 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; border-top: 3px solid #cc2e2e;">
-                                <?php
-                            }
                             ?>
-                                        <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/computers/laptop1.png" style="margin-left: 25%; height: 130px;" />
+                                <div class="mix category-1 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
+                                   <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/computers/laptop1.png" style="margin-left: 25%; height: 130px;" />
                                     
                                     <?php
                                         if (!empty($Restore['alias'])){

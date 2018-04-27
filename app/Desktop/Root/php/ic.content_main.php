@@ -1,6 +1,8 @@
 <input type="hidden" id="title_sm" value="" />
 <input type="hidden" id="content_sm" value="" />
 
+<input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenDeviceManagementInit" />
+<input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenDeviceManagementFinish" />
 <?php
   #Agregando ventana modal, configuración de la red.
   include (PD_DESKTOP_ROOT."/graphic/ic.modal.config_network.php");
@@ -8,11 +10,6 @@
 ?>
 
 <div class="container_platform">
-
-    <input type="button" value="Mostrar usuarios" onclick="javascript: nuevallamada();" id="TestingShowUsersII" />
-    <div class="container_platform_savenewdata">
-        <p>Parrafo</p>
-    </div>
     <!-- Tour Activation Btn -->
     <!-- <button class="btn btn-primary" id="tour_start" type="button">Begin Tour</button> -->
 
@@ -40,7 +37,6 @@
 
     <!-- Wrap content in admin-panel class -->
     <div>
-
         <div class="row AdminPanel_DevicesManagement">
             <div class="col-md-12">
                  <!-- Create Panel with required unique ID -->
@@ -136,6 +132,10 @@
         </div>
     </div>
 </div>
+
+<?php
+    include (PD_DESKTOP_ROOT_PHP."/vis/gn.menu-context.php");
+?>
 
 
 <!-- <button type="hidden" class="AddRedactDocumentation" data-toggle="modal" data-target="#NowAddRedactDocumentation"></button> -->

@@ -1,6 +1,5 @@
 <!-- Este es el fichero de pie de página, donde se insertan los scripts escritos en JS -->
-<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery-1.11.1.min.js"></script>
-<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery_ui/jquery-ui.min.js"></script>
+<!-- JQuery esta arriba, agregado con el Preloader -->
 
 <!-- CanvasBG Plugin(creates mousehover effect) -->
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/canvasbg/canvasbg.js"></script>
@@ -166,7 +165,7 @@ jQuery(document).ready(function() {
         type: noteStyle,
         stack: Stacks[noteStack],
         width: findWidth(),
-        delay: 1400, 
+        delay: 5000, 
         success_icon: 'glyphicon glyphicon-ok-sign' 
       });
 
@@ -182,15 +181,6 @@ jQuery(document).ready(function() {
 
     // Init plugins used on this page
     // HighCharts, JvectorMap, Admin Panels
-
-    <?php
-        if (basename($_SERVER['SCRIPT_NAME']) == "index.php"){
-            ?>
-                // $(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
-                // $(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
-            <?php
-        }
-    ?>
 
      // Init Admin Panels on widgets inside the ".admin-panels" container
         $('.AdminPanel_TrackingNetwork').adminpanel({

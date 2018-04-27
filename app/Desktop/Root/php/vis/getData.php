@@ -217,7 +217,7 @@
                 if (valueSelection == 'Seleccionado: ' || valueSelection == ""){
                     popupMenux = document.getElementById("ContextMenuTest_White");
                     // document.getElementById("btn_tracking_b2").setAttribute("disabled", "disabled");
-                } else{
+                } else {
                     // document.getElementById("btn_tracking_b2").removeAttribute("disabled");
                     popupMenux = document.getElementById("ContextMenuTest");
                 }
@@ -242,10 +242,6 @@
         }, false);
     }
 
-    function getDataSelection(cn){
-        alert("Identificador del host: " + $("#selection").html() + " para: " + $(cn).attr("class"));
-    }
-
 </script>
 
 <input type="hidden" style="float: right" id="ClickSondeoFinal" onclick="javascript: draw();" value="Cambiar panorama" />
@@ -256,7 +252,3 @@
 <p id="selection"></p>
 <p id="stabilization"></p>
 <p id="testing_id"></p>
-
-<?php
-    include (PD_DESKTOP_ROOT_PHP."/vis/gn.menu-context.php");
-?>
