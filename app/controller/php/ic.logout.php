@@ -7,6 +7,9 @@
 	if (!isset($_SESSION['getConsts'])){
 		echo "Sesión expirada, presione F5 o CTRL + R";
 		$_SESSION['session_expired'] = true;
+
+		@session_destroy();
+		header("Location: ../../../");
 	}
 
 	include (@$_SESSION['getConsts']);
