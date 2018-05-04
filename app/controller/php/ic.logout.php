@@ -24,6 +24,7 @@
 			header("Location: ../../../");
 		} else {
 			echo "Ha ocurrido un problema al intentar cerrar sesión.";
+			@session_destroy();
 		}
 	} else {
 		@session_destroy();

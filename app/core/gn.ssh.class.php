@@ -486,7 +486,7 @@
 
 		public function getProcState(){
 			$filename = "getProcState.sh";
-			$ActionArray[] = "Proc=($(ps axo pid,cmd | sed '1d' | awk '{print $1 ,$2}'))";
+			$ActionArray[] = "Proc=($(ps axo pid,pcpu,size,time,cmd --sort -pcpu | sed '1d' | awk {'print $1 ,$2 ,$3 ,$4 ,$5'}))";
 			array_push($ActionArray, 'echo "${Proc[*]},"');	
 			
 			$RL[] = $this->remote_path.$filename;
@@ -506,6 +506,28 @@
 			array_push($ActionArray, 'else');
 			array_push($ActionArray, 'echo "$i|No tiene IP asignada,"');
 			array_push($ActionArray, 'fi');
+			array_push($ActionArray, 'done');	
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
+		public function getTableRoute(){
+			$filename = "getTableRoute.sh";
+			$ActionArray[] = "Net=$(ip route show | awk {'print $1'})";
+			array_push($ActionArray, 'for i in ${Net[*]}; do');
+			array_push($ActionArray, '	Comp=$(ip route show | grep -w "$i" | grep -w via)');
+			array_push($ActionArray, '	if [[ $Comp != "" ]]; then');
+			array_push($ActionArray, '		Int=$(ip route show | grep -w "$i" | cut -d " " -f5)');
+			array_push($ActionArray, '		Salt=$(ip route show | grep -w "$i" | cut -d " " -f3)');
+			array_push($ActionArray, '		echo "$i|$Int|$Salt,"');
+			array_push($ActionArray, '	else');
+			array_push($ActionArray, '		Int=$(ip route show | grep -w "$i" | cut -d " " -f3)');
+			array_push($ActionArray, '		echo "$i|$Int|-,"');
+			array_push($ActionArray, '	fi');
 			array_push($ActionArray, 'done');	
 			
 			$RL[] = $this->remote_path.$filename;
@@ -603,8 +625,8 @@
 			$filename = "getWebServer.sh";
 			$ActionArray[] = "Sites=($(ls /etc/apache2/sites-available/))";
 			array_push($ActionArray, 'for i in ${Sites[*]}; do');
-			array_push($ActionArray, "	ServerName=$(cat /etc/apache2/sites-available/$i | grep 'ServerName' | cut -d ' ' -f2 | tail -n1)");
-			array_push($ActionArray, '	SitesEnable=$(ls /etc/apache2/sites-enabled/ | grep $i)');
+			array_push($ActionArray, '	ServerName=$(cat /etc/apache2/sites-available/$i | grep "ServerName" | cut -d " " -f2 | tail -n1)');
+			array_push($ActionArray, '	SitesEnable=$(ls /etc/apache2/sites-enabled/ | grep "$i")');
 			array_push($ActionArray, '	if [[ $SitesEnable == "" && $ServerName == "" ]]; then');
 			array_push($ActionArray, '		echo "$i|No identificado|No habilitado,"');
 			array_push($ActionArray, '	else');
