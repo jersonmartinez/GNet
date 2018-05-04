@@ -1,15 +1,16 @@
 <?php
 	@session_start();
 
-	if ($_SESSION['session_expired'])
-		header("Location: ../../../");
+	if ($_SESSION['session_expired']){
+		CloseSession();
+		// header("Location: ../../../");
+	}
 
 	if (!isset($_SESSION['getConsts'])){
 		echo "Sesión expirada, presione F5 o CTRL + R";
 		$_SESSION['session_expired'] = true;
 
-		@session_destroy();
-		header("Location: ../../../");
+		CloseSession();
 	}
 
 	include (@$_SESSION['getConsts']);
@@ -23,12 +24,16 @@
 
 	if ($IC){
 		if (@$IC->query($Query)){
-			@session_destroy();
-			header("Location: ../../../");
+			CloseSession();
 		} else {
-			echo "Ha ocurrido un problema al intentar cerrar sesión.";
+			CloseSession();
+			// echo "Ha ocurrido un problema al intentar cerrar sesión.";
 		}
 	} else {
+		CloseSession();
+	}
+
+	function CloseSession(){
 		@session_destroy();
 		header("Location: ../../../");
 	}
