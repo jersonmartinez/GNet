@@ -10,7 +10,11 @@
 <!-- FullCalendar Plugin CSS -->
 <!-- <link rel="stylesheet" type="text/css" href="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.css"> -->
 
+<link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT_CSS; ?>/loader.css">
+
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_ASSETS_SKIN; ?>/default_skin/css/theme.css">
+
+<link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT_CSS; ?>/global.css">
 
 <!-- Admin Forms CSS -->
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_ASSETS_ADMINTOOLS; ?>/admin-forms/css/admin-forms.min.css">
@@ -22,7 +26,11 @@
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/ladda/ladda.min.css">
 
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT_CSS; ?>/battery.css">
+
 <link href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/bstour/bootstrap-tour.css" rel="stylesheet" type="text/css"> 
 
 <!-- Para los calendarios... -->
 <!-- <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datepicker/css/bootstrap-datetimepicker.css"> -->
+
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery-1.11.1.min.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery_ui/jquery-ui.min.js"></script>

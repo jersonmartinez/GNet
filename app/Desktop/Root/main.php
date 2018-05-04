@@ -1,3 +1,5 @@
+<?php include (PD_DESKTOP_ROOT_PHP."/gn.preloader.php"); ?>
+
 <body class="dashboard-page">
     <?php include (PD_DESKTOP_ROOT_PHP."/ic.panels.php"); ?>
 

@@ -121,14 +121,14 @@
 	                           			$SLogout = $IC->query($SelectLogout)->fetch_array(MYSQLI_ASSOC);
 
 										if ($SLogout['date_log_unix'] > (time() - 600)){
-											echo "Ha excedido el límite de intentos";
+											// echo "Ha excedido el límite de intentos";
 											goto Funcionamiento;
 										} else {
 											include (PD_GRAPHIC."/ic.SecurityAttack.php");
 										}	
 									}
 
-									echo "Está bloqueado, han intentado hacer un ataque";
+									// echo "Está bloqueado, han intentado hacer un ataque";
 
 								} else {
 									goto Funcionamiento;
@@ -156,7 +156,7 @@
 											#El simbolo (/) en esta columna significa que se ha cerrado la sesión recordada.
 
 											if ($GameResult['stop'] == "/"){
-												echo "Se ha hecho un ataque, sin embargo, no le he mostrado el ScreenLock";
+												// echo "Se ha hecho un ataque, sin embargo, no le he mostrado el ScreenLock";
 												include (PD_GRAPHIC."/ic.LoginDesign.php");
 											} else {
 												include (PD_GRAPHIC."/ic.ScreenLock.php");
@@ -179,7 +179,7 @@
 							include (PD_GRAPHIC."/ic.RunLogUser.php");
 						}
 					} else {
-						echo "<br/>"."Instalar DB";
+						// echo "<br/>"."Instalar DB";
 						#En caso de que no exista el usuario Root, se mostrará nuevamente el 
 						#formulario de instalación, de esta forma, los datos de usuario Root se registrarán.
 

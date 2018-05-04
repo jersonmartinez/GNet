@@ -1,6 +1,11 @@
 // $(".AddRedactDocumentation").hide();
 var xhr = null;
 
+function Finish_NProgress(){
+	NProgress.done();
+	NProgress.remove();
+}
+
 $("#ConfigNetwork").click(function(){
 	$(".ConfigNetwork").click();
 });
@@ -206,64 +211,145 @@ $(document).mousemove(function(event){
     }, 1000);
 });
 
+$("#BtnHiddenDeviceManagementInit").click(function(){
+	$("#title_sm").val("Verificando conexión");
+	$("#content_sm").val(respuesta.data.count + " dispositivos encontrados...");
+	
+	setTimeout(function(){
+		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-dark");
+	}, 50);
+});
+
+$("#BtnHiddenDeviceManagementFinish").click(function(){
+	$("#title_sm").val("Proceso de verificación");
+	$("#content_sm").val("Dispositivos verificados con éxito");
+
+	setTimeout(function(){
+		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-dark");
+		// $(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-success");
+	}, 50);
+});
+
+function LoadPNotifyDeviceManagement(condition){
+	if (condition){
+		$("#BtnHiddenDeviceManagementInit").click();
+	} else {
+		$("#BtnHiddenDeviceManagementFinish").click();
+	}
+}
+
 $("#sb_subitem_NetworkMap").click(function(){
 	$("#sb_item_TrackingNetwork").click();
 });
 
+var var_item_TrackingNetwork = false;
+
 //Tracking Network
 $("#sb_item_TrackingNetwork").click(function(){
-
 	HideAdminPanels();
 
 	NProgress.configure({parent: 'body'});
 	NProgress.start();
 
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeIn').show();
-	xhr = $.ajax({
-		url: "app/Desktop/Root/graphic/gn.TrackingNetwork.php",
-		success: function(data){
-			$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
-			draw();
-				
-			NProgress.done();
-		}
-	});
+	
+	if (!var_item_TrackingNetwork){
+		xhr = $.ajax({
+			url: "app/Desktop/Root/graphic/gn.TrackingNetwork.php",
+			success: function(data){
+				$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
+				draw();
+				var_item_TrackingNetwork = true;
+				Finish_NProgress();
+			}
+		});
+	} else {
+		Finish_NProgress();
+	}
 });
+
+$("#sb_item_TrackingNetwork").dblclick(function(){
+	var_item_TrackingNetwork = false;
+	$("#sb_item_TrackingNetwork").click();
+});
+
+var var_item_DevicesManagement = false;
 
 /*Gestionar dispositivos en red*/
 $("#sb_item_DevicesManagement").click(function(){
-
 	HideAdminPanels();
 	
 	NProgress.configure({parent: 'body'});
 	NProgress.start();
+
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeIn').show();
 
-	xhr = $.ajax({
-		url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
-		success: function(data){
-			$(".AdminPanel_DevicesManagement_PanelBody").addClass('animated fadeIn').html(data);
-			NProgress.done();
-		}
-	});
+	if ((typeof respuesta == "undefined") || (!var_item_DevicesManagement)){
+		$.ajax({
+			url: "app/Desktop/Root/graphic/gn.DevicesManagement.php",
+			success: function(data){
+				$(".AdminPanel_DevicesManagement_PanelBody").addClass('animated fadeIn').html(data);
+				Finish_NProgress();
+			}
+		});
+
+		$.ajax({
+			url: "app/Desktop/Root/php/gn.TestingShowUsers.php", 
+			type: "post", 
+			dataType: "json",
+		})
+		.done(function(response) {
+			var_item_DevicesManagement = true;
+			respuesta = response;
+			LoadPNotifyDeviceManagement(true);
+		})
+		.fail(function( jqXHR, textStatus, errorThrown ) {
+		     if ( console && console.log ) {
+		         console.log( "La solicitud a fallado: " +  textStatus);
+		     }
+		})
+		.then(function(){
+			console.log(respuesta);
+			CheckPingAjax();
+		});
+	} else {
+		Finish_NProgress();
+	}
 });
+
+$("#sb_item_DevicesManagement").dblclick(function(){
+	var_item_DevicesManagement = false;
+	$("#sb_item_DevicesManagement").click();
+});
+
+var var_item_ResourcesMonitor = false;
 
 /*Monitorizar recursos*/
 $("#sb_item_ResourcesMonitor").click(function(){
-
 	HideAdminPanels();
 	
 	NProgress.configure({parent: 'body'});
 	NProgress.start();
-	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
 
-	xhr = $.ajax({
-		url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
-		success: function(data){
-			$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html(data);
-			NProgress.done();
-		}
-	});
+	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
+	
+	if (!var_item_ResourcesMonitor){
+		xhr = $.ajax({
+			url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
+			success: function(data){
+				$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html(data);
+				Finish_NProgress();
+				var_item_ResourcesMonitor = true;
+			}
+		});
+	} else {
+		Finish_NProgress();
+	}
+});
+
+$("#sb_item_ResourcesMonitor").dblclick(function(){
+	var_item_ResourcesMonitor = false;
+	$("#sb_item_ResourcesMonitor").click();
 });
 
 var myVar = 0;
@@ -294,8 +380,6 @@ function LoadNetworkMap(){
 	    url: "app/Desktop/Root/php/vis/return.php",
 	    success: function(data){
 	    	$(".here_write").html(data);
-			// $(".btn_tracking span").html("SONDEAR INFRAESTRUCTURA DE RED");			
-			// $("#ClickSondeoFinal").click();
 			draw();
 	    }
 	});
@@ -467,7 +551,7 @@ $("#Btn_ADM_Save").click(function(){
 				$("#ADM_InsertAliasHost").val("");
 				$("#ADM_TB_IPNet_ID").val(" ");
 				$("#ADM_TB_IPHost_ID").val("");
-				NProgress.done();
+				Finish_NProgress();
 				$("#ModalCloseADMSave").click();
 			}
 		});
@@ -512,115 +596,7 @@ function CleanXHR(){
 		xhr.abort();
 }
 
-var respuesta;
-
-$("#TestingShowUsers").click(function(){
-	$.ajax({
-		url: "app/Desktop/Root/php/gn.TestingShowUsers.php", 
-		type: "post", 
-		dataType: "json",
-	})
-	.done(function(response) {
-		respuesta = response;
-	})
-	.fail(function( jqXHR, textStatus, errorThrown ) {
-	     if ( console && console.log ) {
-	         console.log( "La solicitud a fallado: " +  textStatus);
-	     }
-	})
-
-	.then(function(){
-		if (respuesta.success){
-            $.each(respuesta.data.hosts, function( key, value ) {
-                $.each( value, function ( userkey, uservalue) {
-                    if (userkey == "ip_host"){
-
-                    	var ClassParent = uservalue.split(".").slice(0,4).join("");
-
-                    	var parametros = {"ip_addr" : uservalue}
-
-						$.ajax({
-							url: "app/Desktop/Root/php/gn.CheckPing.php",
-							type: "post",
-							data: parametros,
-							beforeSend: function() {
-								NProgress.configure({ parent: '.host' + ClassParent });
-								NProgress.start();
-							}, 
-							success: function(data){
-								NProgress.done();
-							}
-						});
-                    }
-                });
-            });
-		}
-	});
-});
-
-$.ajax({
-	url: "app/Desktop/Root/php/gn.TestingShowUsers.php", 
-	type: "post", 
-	dataType: "json",
-})
-.done(function(response) {
-	respuesta = response;
-})
-.fail(function( jqXHR, textStatus, errorThrown ) {
-     if ( console && console.log ) {
-         console.log( "La solicitud a fallado: " +  textStatus);
-     }
-})
-.then(function(){
-	console.log(respuesta);
-});
-
-function promiseSqrt(value){
-    return new Promise(function (fulfill, reject){
-        console.log('START execution with value =', value);
-
-        setTimeout(function() {
-            fulfill({ value: value, result: value.split(".").slice(0,4).join("") });
-        }, 800 | Math.random() * 100);
-    });
-}
-
-function myCo(gen) {
-    var i = gen();
-    function sequent(result) {
-        var ret = i.next(result);
-        if (!ret.done) {
-            ret.value.then(sequent);
-        }
-    }
-    sequent();
-}
-
-function respuestarapida(){
-	if (respuesta.success){
-	    $.each(respuesta.data.hosts, function( key, value ) {
-	        $.each( value, function ( userkey, uservalue) {
-	            if (userkey == "ip_host"){
-					console.log(callmyCo(uservalue));
-	            }
-	        });
-	    });
-	}
-}
-
-function callmyCo(userkey){
-	return myCo(function* gen() {
-
-		var obj = yield promiseSqrt(userkey);
-		console.log('END execution with value =', obj.value, 'and result =', obj.result);
-
-	    // for (var n = 0; n <= 9; n++) {
-	    // }
-	}); 
-}
-
-
-function asyncSqrt(value, callback) {
+function CheckPingLoopAjax(value, callback) {
     console.log('START execution with value =', value);
     var ip_host = respuesta.data.hosts[value].ip_host;
     var parametros = {"ip_addr" : ip_host}
@@ -632,46 +608,75 @@ function asyncSqrt(value, callback) {
 		type: "post",
 		data: parametros,
 		success: function(data){
-        	NProgress.done();
-
-
+        	Finish_NProgress();
         	callback(value, {ip_host: ip_host, data: data});
 		}
 	});
 }
 
-var max;
-var cnt = 13;
+function CheckPingAjax(){
+	var max_host = respuesta.data.count;
+	var i_host = 0;
+	var request = null;
 
-function nuevallamada(){
-
-	max = respuesta.data.count;
-
-	asyncSqrt(cnt, function callback(value, result) {
-	    
+	NProgress.configure({parent: '.host' + respuesta.data.hosts[i_host].ip_host.split(".").slice(0,4).join("")});
+	CheckPingLoopAjax(i_host, function callback(value, result) {
 
 	    console.log('END execution with value =', value, 'and result =', result.ip_host, ' and status: ', result.data);
+	    
+	    request = ".host" + respuesta.data.hosts[i_host].ip_host.split(".").slice(0,4).join("");
 	    if (result.data == "1"){
-	    	var request = ".host" + respuesta.data.hosts[cnt-1].ip_host.split(".").slice(0,4).join("");
-	    	$(request).css("border-top", "3px solid blue");
+	    	$(request).css("border-top", "3px solid #89de64");
+	    } else {
+	    	$(request).css("border-top", "3px solid #e15d5d");
 	    }
 
-	    NProgress.configure({parent: '.host' + respuesta.data.hosts[cnt-1].ip_host.split(".").slice(0,4).join("")});
-	    if (cnt === max) {
-	        console.log('COMPLETED');
-	        cnt = 0;
-	    	NProgress.done();
+	    if (i_host === max_host-1) {
+	        console.log('COMPLETED Principal');
+	        i_host = 0;
+	    	Finish_NProgress();
+	    	LoadPNotifyDeviceManagement(false);
 	    } else {
 			// NProgress.start();
-	        asyncSqrt(cnt, callback);
+			if (i_host < max_host-1){
+	    		NProgress.configure({parent: '.host' + respuesta.data.hosts[++i_host].ip_host.split(".").slice(0,4).join("")});
+	        	CheckPingLoopAjax(i_host, callback);
+			}
 	    }
-
-	    cnt++;
-	    // NProgress.configure({parent: '.host' + respuesta.data.hosts[cnt].ip_host.split(".").slice(0,4).join("")});
 	});
 }
 
-// function ApplyChangesCall(cnt){
-// 	NProgress.configure({parent: '.host' + respuesta.data.hosts[cnt].ip_host.split(".").slice(0,4).join("")});
-// 	NProgress.start();
-// }
+
+function PruebaPingConnect(value){
+	// var offsetX;
+	// var offsetY;
+	value.addEventListener('contextmenu', function (e) {
+		var info = getCoordsPosition(e);
+
+		console.log("Posicion: x = " + info.x + "px, y = " + info.y + "px");
+
+		popupMenux = document.getElementById("ContextMenuTest");
+
+    	popupMenux.style.top = e.clientY - info.y + 'px';
+		popupMenux.style.left = e.clientX - info.x + 'px';
+		
+        popupMenux.style.visibility = "visible";
+
+	    e.preventDefault();
+	}, false);
+
+	// 	console.log("Valor ClIENT (" + "x: " + e.clientX + "px | y: " + e.clientY + "px)");
+    	
+	// 	popupMenux = document.getElementById("ContextMenuTest");
+
+ //    	popupMenux.style.top = e.clientY + 'px';
+	// 	popupMenux.style.left = e.clientY + 'px';
+		
+ //        popupMenux.style.visibility = "visible";
+
+	// 	console.log("Los atributos son: " + $(value).attr("class").split(" ")[2] + " Valor X: " + offsetX + ", Y: " + offsetY);
+
+	//     e.preventDefault();
+	// }, false);
+
+}
