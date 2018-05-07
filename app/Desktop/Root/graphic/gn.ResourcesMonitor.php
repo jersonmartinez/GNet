@@ -358,27 +358,38 @@
                             </div>
                             <div class="panel-body" style="max-height: 300px; overflow: scroll;">
                                 <table class="table">
-                                    <tr>
+                                    <tr style="background-color: #3b3f4f; color: #fff;">
                                         <th>Puerto</th>
                                         <th>Protocolo</th>
                                         <th>Tipo</th>   
                                         <th>Proceso</th>
                                     </tr>
+                                    <style type="text/css">
+                                        .bg_row {
+                                            color: #000;
+                                            background-color: #3c8dbc;
+                                        }
+
+                                        .nada {
+                                            background-color: #9fc7de;
+                                            color: #000;
+                                        }
+                                    </style>
                                     <?php
                                         for ($i=0; $i < count($PortsListen); $i++) { 
                                             $Firts = explode(" ", $PortsListen[$i]);
 
                                             for ($j=0; $j < count($Firts); $j++) { 
                                                 ?>
-                                                    <tr>
-                                                        <td>
-                                                            <?php 
-                                                                echo $Firts[$j]; 
-                                                                /*if ($Firts[$j] == "80") {
-                                                                    $bg_row = "bg_row";
-                                                                }*/
-                                                            ?>   
-                                                        </td>
+                                                    <?php 
+                                                       if ($Firts[$j] == "21" || $Firts[$j] == "22" || $Firts[$j] == "25" || $Firts[$j] == "53" || $Firts[$j] == "68" || $Firts[$j] == "80" || $Firts[$j] == "161" || $Firts[$j] == "162" || $Firts[$j] == "3306") {
+                                                            $bg_row = "bg_row";
+                                                        } else {
+                                                            $bg_row = "nada";
+                                                        }
+                                                    ?>   
+                                                    <tr class="<?php echo $bg_row; ?>">
+                                                        <td><?php echo $Firts[$j]; ?></td>
                                                         <td><?php echo $Firts[$j+1]; $j++; ?></td>
                                                         <td><?php echo $Firts[$j+1]; $j++; ?></td>
                                                         <td><?php echo $Firts[$j+1]; $j++; ?></td>
@@ -387,37 +398,6 @@
                                             }
                                         }
                                     ?> 
-                                    <?php
-                                        /* $bg_row = "bg_row";
-                                        for ($i=0; $i < count($PortsListen); $i++) { 
-                                            $Firts = explode(" ", $PortsListen[$i]);
-
-                                            for ($j=0; $j < count($Firts); $j++) { 
-                                             
-                                            echo '<tr class="'.$bg_row.'">';
-                                                echo '<td>'.$Firts[$j].'</td>';
-                                                echo '<td>'.$Firts[$j+1].'</td>'; $j++;
-                                                echo '<td>'.$Firts[$j+1].'</td>'; $j++;
-                                                echo '<td>'.$Firts[$j+1].'</td>'; $j++;
-                                            echo '</tr>'; */
-                                            ?>
-                                                <!-- <tr class="bg_row">
-                                                    <td>-->
-                                                        <?php 
-                                                            /*echo $Firts[$j];
-                                                            if ($Firts[$j] == "80") {
-                                                               $bg_row="bg_row";
-                                                            }*/
-                                                        ?>    
-                                                    <!--</td>
-                                                    <td><?php #echo $Firts[$j+1]; $j++; ?></td>
-                                                    <td><?php #echo $Firts[$j+1]; $j++; ?></td>
-                                                    <td><?php #echo $Firts[$j+1]; $j++; ?></td>
-                                                </tr>-->
-                                            <?php
-                                        //    }
-                                        //}
-                                    ?>
                                 </table>
                             </div>
                         </div>
