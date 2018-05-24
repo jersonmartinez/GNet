@@ -21,6 +21,9 @@
     $NetAddress     = explode(",", $ConnectSSH->getNetAddress());
     $TableRoute     = explode(",", $ConnectSSH->getTableRoute());
     $PortsListen    = explode(",", $ConnectSSH->getPortsListen());
+    $StatisticsIP   = explode(" ", explode("=", $ConnectSSH->getStatisticsNetwork())[0]);
+    $StatisticsTCP  = explode(" ", explode("=", $ConnectSSH->getStatisticsNetwork())[1]);
+    $StatisticsUDP  = explode(" ", explode("=", $ConnectSSH->getStatisticsNetwork())[2]);
     $BatteryState   = explode(",", $ConnectSSH->getBatteryState());
     $InfoOS         = explode(",", $ConnectSSH->getInfoOS());
     $UsersConnected = explode(",", $ConnectSSH->getUsersConnected());
@@ -254,6 +257,7 @@
             </div>
             <!-- End .admin-panels Wrapper -->
         </div>
+
         <div role="tabpanel" class="tab-pane" id="network">
             <!-- Required .admin-panels wrapper-->
             <div class="admin-panels">
@@ -336,7 +340,6 @@
                     </div>
                     <!-- End Column -->
 
-
                 </div>
                 <!-- End Row -->
 
@@ -411,15 +414,147 @@
                         <div class="panel panel-dark" id="p3">
                             <div class="panel-heading">
                                 <span class="fa fa-dashboard"></span>
-                                <span class="panel-title">Panel extra</span>
+                                <span class="panel-title">Estadísticas de red | protocolo IP</span>
                             </div>
                             <div class="panel-body" style="max-height: 300px; overflow: scroll;">
-                               <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                               quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                               consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                               cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                               proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                <table class="table">
+                                    <tr>
+                                        <td>Total de paquetes recibidos:</td>
+                                        <td><?php echo $StatisticsIP[0]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Con direcciones incorrectas:</td>
+                                        <td><?php echo $StatisticsIP[1]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paquetes reenviados:</td>
+                                        <td><?php echo $StatisticsIP[2]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paquetes entrantes desechados:</td>
+                                        <td><?php echo $StatisticsIP[3]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paquetes entrantes servidos:</td>
+                                        <td><?php echo $StatisticsIP[4]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Peticiones enviadas:</td>
+                                        <td><?php echo $StatisticsIP[5]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paquetes salientes descartados:</td>
+                                        <td><?php echo $StatisticsIP[6]; ?></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Column -->
+
+                </div>
+                <!-- End Row -->
+
+            </div>
+            <!-- End .admin-panels Wrapper -->
+
+            <!-- Required .admin-panels wrapper-->
+            <div class="admin-panels">
+                <!-- Create Row -->
+                <div class="row">
+                    <!-- Create Column with required .admin-grid class -->
+                    <div class="col-md-6 admin-grid">
+
+                        <!-- Create Panel with required unique ID -->
+                        <div class="panel panel-dark" id="p3">
+                            <div class="panel-heading">
+                                <span class="fa fa-dashboard"></span>
+                                <span class="panel-title">Estadísticas de red | protocolo TCP</span>
+                            </div>
+                            <div class="panel-body" style="max-height: 300px; overflow: scroll;">
+                                <table class="table">
+                                    <tr>
+                                        <td>Conexiones activas abiertas:</td>
+                                        <td><?php echo $StatisticsTCP[0]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conexiones pasivas abiertas:</td>
+                                        <td><?php echo $StatisticsTCP[1]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Intentos de conexión fallidos:</td>
+                                        <td><?php echo $StatisticsTCP[2]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reanudaciones de conexiones recibidas:</td>
+                                        <td><?php echo $StatisticsTCP[3]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Conexiones establecidas:</td>
+                                        <td><?php echo $StatisticsTCP[4]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Segmentos recibidos:</td>
+                                        <td><?php echo $StatisticsTCP[5]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Segmentos enviados:</td>
+                                        <td><?php echo $StatisticsTCP[6]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Segmentos retransmitidos:</td>
+                                        <td><?php echo $StatisticsTCP[7]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Segmentos incorrectos recibidos:</td>
+                                        <td><?php echo $StatisticsTCP[8]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reinicios enviados:</td>
+                                        <td><?php echo $StatisticsTCP[9]; ?></td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Column -->
+
+                    <!-- Create Column with required .admin-grid class -->
+                    <div class="col-md-6 admin-grid">
+
+                        <!-- Create Panel with required unique ID -->
+                        <div class="panel panel-dark" id="p3">
+                            <div class="panel-heading">
+                                <span class="fa fa-dashboard"></span>
+                                <span class="panel-title">Estadísticas de red | protocolo UDP</span>
+                            </div>
+                            <div class="panel-body" style="max-height: 300px; overflow: scroll;">
+                                <table class="table">
+                                    <tr>
+                                        <td>Total de paquetes recibidos:</td>
+                                        <td><?php echo $StatisticsUDP[0]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paquetes recibidos de puertos desconocidos:</td>
+                                        <td><?php echo $StatisticsUDP[1]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paquetes recibidos con errores:</td>
+                                        <td><?php echo $StatisticsUDP[2]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Paquetes enviados:</td>
+                                        <td><?php echo $StatisticsUDP[3]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Errores recibidos en buffer:</td>
+                                        <td><?php echo $StatisticsUDP[4]; ?></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Errores enviados en buffer:</td>
+                                        <td><?php echo $StatisticsUDP[5]; ?></td>
+                                    </tr>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -431,6 +566,7 @@
             </div>
             <!-- End .admin-panels Wrapper -->
         </div>
+        
         <div role="tabpanel" class="tab-pane" id="server">
             <!-- Required .admin-panels wrapper-->
             <div class="admin-panels">

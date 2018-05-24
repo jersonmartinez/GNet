@@ -549,6 +549,26 @@
 			return getErrors();
 		}	
 
+		public function getStatisticsNetwork(){
+			$filename = "getStatisticsNetwork.sh";
+			$ActionArray[] = "IP=($(netstat -s | grep -w Ip: -A8 | sed '1,2d' | awk {'print $1'}))";
+			// array_push($ActionArray, "ForwardIp=$(netstat -s | grep -w Ip: -A1 | sed '1d' | awk {'print $2'})");
+			array_push($ActionArray, 'echo "${IP[*]} "');
+			array_push($ActionArray, 'echo "="');
+			array_push($ActionArray, "TCP=($(netstat -s | grep -w Tcp: -A10 | sed '1d' | awk {'print $1'}))");
+			array_push($ActionArray, 'echo "${TCP[*]} "');
+			array_push($ActionArray, 'echo "="');
+			array_push($ActionArray, "UDP=($(netstat -s | grep -w Udp: -A6 | sed '1d' | awk {'print $1'}))");
+			array_push($ActionArray, 'echo "${UDP[*]} "');
+			array_push($ActionArray, 'echo "="');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $ActionArray));
+			return getErrors();
+		}
+
 		public function getBatteryState(){
 			$filename = "getBatteryState.sh";
 			$ActionArray[] = "Porcentaje=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk {'print $2'} | tr -d '%')";
