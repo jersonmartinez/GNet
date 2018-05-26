@@ -871,9 +871,9 @@
             type: 'pie',
             name: 'Porcentaje de CPU',
             data: [
-                ['En uso: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?>', <?php echo OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?>],
+                ['En uso: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?> %', <?php echo OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?>],
                 {
-                    name: 'Disponible: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?>',
+                    name: 'Disponible: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?> %',
                     y: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?>,
                     sliced: true,
                     selected: true
