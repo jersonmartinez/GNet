@@ -269,13 +269,14 @@
                         <div class="panel panel-dark" id="p1">
                             <div class="panel-heading">
                                 <span class="fa fa-dashboard"></span>
-                                <span class="panel-title">Interfaces de red y direcciones IP asignadas</span>
+                                <span class="panel-title">Interfaces de red y direcciones asignadas</span>
                             </div>
                             <div class="panel-body" style="max-height: 300px;">
                                 <table class="table">
                                     <tr>
                                         <th>Interfaz de red</th>
                                         <th>Dirección IP</th>   
+                                        <th>Dirección Ethernet</th> 
                                     </tr>
                                     <?php
                                         for ($i=0; $i < count($NetAddress); $i++) { 
@@ -285,6 +286,7 @@
                                             ?>
                                                 <tr>
                                                     <td><?php echo $Firts[$j]; ?></td>
+                                                    <td><?php echo $Firts[$j+1]; $j++; ?></td>
                                                     <td><?php echo $Firts[$j+1]; $j++; ?></td>
                                                 </tr>
                                             <?php

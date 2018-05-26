@@ -500,12 +500,13 @@
 			$filename = "getNetAddress.sh";
 			$ActionArray[] = 'Interfaces=($(ip addr show | egrep "[1-9]: " | cut -d ":" -f2 | tr -d " "))';
 			array_push($ActionArray, 'for i in ${Interfaces[*]}; do');
-			array_push($ActionArray, 'DirIP=$(ip addr show $i | grep -w inet | cut -d " " -f6 | cut -d "/" -f1)');
-			array_push($ActionArray, 'if [[ $DirIP != "" ]]; then');
-			array_push($ActionArray, 'echo "$i|$DirIP,"');
-			array_push($ActionArray, 'else');
-			array_push($ActionArray, 'echo "$i|No tiene IP asignada,"');
-			array_push($ActionArray, 'fi');
+			array_push($ActionArray, '	DirIP=$(ip addr show "$i" | grep -w inet | cut -d " " -f6 | cut -d "/" -f1)');
+			array_push($ActionArray, '	Ether=$(ip addr show "$i" | grep -w ether | cut -d " " -f6)');
+			array_push($ActionArray, '	if [[ $DirIP != "" ]]; then');
+			array_push($ActionArray, '		echo "$i|$DirIP|$Ether,"');
+			array_push($ActionArray, '	else');
+			array_push($ActionArray, '		echo "$i|No tiene IP asignada|$Ether,"');
+			array_push($ActionArray, '	fi');
 			array_push($ActionArray, 'done');	
 			
 			$RL[] = $this->remote_path.$filename;
