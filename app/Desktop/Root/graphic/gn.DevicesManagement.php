@@ -16,14 +16,16 @@
     // $R = $CN->getAllHost();
     $R = $CN->getHostWithOutInterfaces();
     $IPNet = $CN->getIPNet(); 
+
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/style.css">
 
 <div class="mixings-get-devices" data-example-id="contextual-panels">
     <!-- <hr class="alt short"> -->
-    <div id="mix-items" class="mix-container">
+    <div id="mix-items" class="mix-container box-wrap boxes blue">
 
+        <section class="box-wrap boxes blue">
         <?php
             if (@$R->num_rows > 0){
                 $R_Count = 1;
@@ -33,12 +35,16 @@
 
                     ?>
                         <div class="mix category-3" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block; margin-top: 3px solid #7a7ade;">
-                            <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/switchs/switchicon1.png" style="margin-left: 25%; height: 130px;" />
+                            <img onselectstart="return false" ondragstart="return false" src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/switchs/switchicon1.png" style="margin-left: 25%; height: 130px;" />
                             
                             <?php
                                 if (!empty($SwitchIPNet['alias'])){
                                     ?>
-                                        <p title="<?php echo $SwitchIPNet['ip_net']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $SwitchIPNet['ip_net']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $SwitchIPNet['alias']; ?></p>
+                                        <p title="<?php echo $SwitchIPNet['ip_net']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $SwitchIPNet['ip_net']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;">
+                                            <?php 
+                                                echo $CN->getStringFormatSize($SwitchIPNet['alias']);
+                                            ?>
+                                        </p>
                                     <?php
                                 } else {
                                     ?>
@@ -75,12 +81,16 @@
                         $IDOrderHost = implode("", explode(".", $Restore['ip_host']));
                         ?>
                             <div class="mix category-2 host<?php echo $IDOrderHost; ?>" oncontextmenu="javascript: PruebaPingConnect(this);" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
-                                <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/routers/router4.png" style="margin-left: 25%; height: 130px;" />
+                                <img onselectstart="return false" ondragstart="return false" src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/routers/router4.png" style="margin-left: 25%; height: 130px;" />
                                 
                                 <?php
                                     if (!empty($Restore['alias'])){
                                         ?>
-                                            <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['alias']; ?></p>
+                                            <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;">
+                                                <?php 
+                                                    echo $CN->getStringFormatSize($Restore['alias']);
+                                                ?>
+                                            </p>
                                         <?php
                                     } else {
                                         ?>
@@ -102,7 +112,13 @@
                                     <?php
                                         if (!empty($Restore['alias'])){
                                             ?>
-                                                <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;"><?php echo $Restore['alias']; ?></p>
+                                                <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;">
+                                                    
+                                                    <?php 
+                                                        echo $CN->getStringFormatSize($Restore['alias']);
+                                                    ?>
+
+                                                </p>
                                             <?php
                                         } else {
                                             ?>
@@ -115,12 +131,18 @@
                         } else {
                             ?>
                                 <div class="mix category-1 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
-                                   <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/computers/laptop1.png" style="margin-left: 25%; height: 130px;" />
+                                   <img onselectstart="return false" ondragstart="return false" src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/computers/laptop1.png" style="margin-left: 25%; height: 130px;" />
                                     
                                     <?php
                                         if (!empty($Restore['alias'])){
                                             ?>
-                                                <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;" class="xedit-virtual_machine"><?php echo $Restore['alias']; ?></p>
+                                                <p title="<?php echo $Restore['ip_host']; ?>" id="getIdDeviceManagement<?php echo $R_Count; ?>" ip_addr="<?php echo $Restore['ip_host']; ?>" style="margin-top: -10px; text-align: center; font-size: 16px;" class="xedit-virtual_machine">
+                                                
+                                                <?php 
+                                                    echo $CN->getStringFormatSize($Restore['alias']); 
+                                                ?>
+                                                
+                                                </p>
                                             <?php
                                         } else {
                                             ?>
@@ -154,7 +176,8 @@
                 }
             }
         ?>
-        
+        </section>
+
         <div class="gap"></div>
         <div class="gap"></div>
     </div>
