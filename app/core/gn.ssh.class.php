@@ -677,6 +677,13 @@
 			$this->db_prefix = $X;
 		}
 
+		public function getStringFormatSize($str){
+	        if (strlen($str) >= 28)
+	            $str = substr($str, 0, 25)."...";
+
+	        echo $str;
+		}
+
 	}
 	// echo (new ConnectSSH("192.168.100.2", "network", "123"))->getDHCPShowAssignIP();
 

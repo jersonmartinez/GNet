@@ -6,7 +6,7 @@
     <div id="main">
         <?php include (PD_DESKTOP_ROOT_PHP."/ic.headers.php"); ?>
 
-        <aside id="sidebar_left" class="nano nano-light affix">
+        <aside id="sidebar_left" style="z-index: 2" class="nano nano-light affix">
             <div class="sidebar-left-content nano-content">
                 <?php include (PD_DESKTOP_ROOT_PHP."/ic.sidebar-header.php"); ?>
                 <?php include (PD_DESKTOP_ROOT_PHP."/ic.sidebar_menu.php"); ?>

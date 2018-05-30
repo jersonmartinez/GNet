@@ -14,6 +14,8 @@
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highcharts/solid-gauge.js"></script>
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highcharts/highcharts-more.js"></script>
 
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/selection/selection.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/selection/selection_implement.js"></script>
 <!-- PNotify -->
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/pnotify/pnotify.js"></script>
 
