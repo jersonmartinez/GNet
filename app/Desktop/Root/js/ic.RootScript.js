@@ -646,7 +646,6 @@ function CheckPingAjax(){
 	});
 }
 
-
 function PruebaPingConnect(value){
 	// var offsetX;
 	// var offsetY;
@@ -661,6 +660,7 @@ function PruebaPingConnect(value){
 		popupMenux.style.left = e.clientX - info.x + 'px';
 		
         popupMenux.style.visibility = "visible";
+		console.log("Los atributos son: " + $(value).attr("class").split(" ")[2] + " Valor X: " + offsetX + ", Y: " + offsetY);
 
 	    e.preventDefault();
 	}, false);
@@ -674,9 +674,45 @@ function PruebaPingConnect(value){
 		
  //        popupMenux.style.visibility = "visible";
 
-	// 	console.log("Los atributos son: " + $(value).attr("class").split(" ")[2] + " Valor X: " + offsetX + ", Y: " + offsetY);
 
 	//     e.preventDefault();
 	// }, false);
+}
 
+$(".AdminPanel_DevicesManagement").click(function(){
+	document.getElementById("ContextMenuTest").style.visibility = "hidden";
+    document.getElementById("ContextMenuTest_White").style.visibility = "hidden";
+});
+
+
+$(".AdminPanel_DevicesManagement").on('contextmenu', function(e){
+	var info = getCoordsPosition(e);
+
+	console.log("Posicion: getPosition(x: " + info.x + "px, y: " + info.y + "px" + "| Client(x: " + e.clientX + "px, y: "+ e.clientY +"px) | offset(x: " + e.offsetX + "px, y: " + e.offsetY + "px)");
+
+	var popupMenux = document.getElementById("ContextMenuTest");
+
+	var offsetX = e.offsetX;
+    var offsetY = e.offsetY;
+
+    if( e.target != this ){ // 'this' is our HTMLElement
+        offsetX = e.target.offsetLeft + e.offsetX;
+        offsetY = e.target.offsetTop + e.offsetY;
+    }
+
+	popupMenux.style.top = info.y + 'px';
+	popupMenux.style.left = offsetX + 'px';
+	
+    popupMenux.style.visibility = "visible";
+	// console.log("Los atributos son: " + $(value).attr("class").split(" ")[2] + " Valor X: " + offsetX + ", Y: " + offsetY);
+
+    e.preventDefault();
+});
+
+$("#content_wrapper").contextmenu(function(){
+	console.log("");
+});
+
+function getDataSelection(value){
+	console.log("La clase seleccionada es: " + $(value).attr("class"));
 }

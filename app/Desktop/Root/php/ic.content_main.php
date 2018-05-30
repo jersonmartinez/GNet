@@ -1,3 +1,4 @@
+
 <input type="hidden" id="title_sm" value="" />
 <input type="hidden" id="content_sm" value="" />
 
@@ -40,8 +41,35 @@
       </div>
     </div> -->
 
+    <style type="text/css">
+            
+        .box-wrap::after {
+          display: block;
+          content: '';
+          clear: both;
+        }
+
+        .boxes div.selected {
+          -webkit-box-shadow: 0 0.45em 0.6em 0 rgba(0, 0, 0, 0.2);
+                  box-shadow: 0 0.45em 0.6em 0 rgba(0, 0, 0, 0.2);
+
+            border-radius: 4px;
+                  /*background-color: red;*/
+        }
+        .selection {
+          /*background: rgba(0, 0, 255, 0.1);*/
+          background: rgba(0, 0, 0,.2);
+          border-radius: 0.1em;
+          /*border: 0.05em solid rgba(0, 0, 255, 0.2);*/
+          border: 0.05em solid rgba(0, 0, 0, 0.4);
+        }
+
+    </style>
+
+
     <!-- Wrap content in admin-panel class -->
     <div>
+
         <div class="row AdminPanel_DevicesManagement">
             <div class="col-md-12">
                  <!-- Create Panel with required unique ID -->
@@ -75,9 +103,13 @@
                             </div>
                         </div>
                     </div>
-                    <div class="panel-body AdminPanel_DevicesManagement_PanelBody">
-                        <!-- Content -->
-                    </div>
+
+                    <!-- <section class="box-wrap boxes blue"> -->
+                        <div class="panel-body AdminPanel_DevicesManagement_PanelBody">
+                            <!-- Content -->
+                        </div>
+                    <!-- </section> -->
+
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-<div id="ContextMenuTest" style="visibility:hidden; z-index: 10000;">
+<div id="ContextMenuTest" style="visibility:hidden; z-index: 10000; position: absolute;">
     <li class="console" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
             <i class="fa fa-tachometer"></i>
@@ -71,7 +71,7 @@
     </li> -->
 </div>
 
-<div id="ContextMenuTest_White" style="visibility:hidden; z-index: 10001;">
+<div id="ContextMenuTest_White" style="visibility:hidden; z-index: 10001; position: absolute;">
     <li class="refresh" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
             <i class="fa fa-desktop"></i>
