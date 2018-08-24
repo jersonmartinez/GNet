@@ -112,28 +112,34 @@
     </li> -->
 
 
-  <li class="sidebar-label pt15">Otras configuraciones</li>
-  <li>
-    <a class="accordion-toggle" href="#">
-      <span class="glyphicon glyphicon-fire"></span>
-      <span class="sidebar-title">...</span>
-      <span class="caret"></span>
-    </a>
-    <ul class="nav sub-nav">
-      <li>
-        <a href="admin_plugins-panels.html">
-          <span class="glyphicon glyphicon-book"></span>Crear usuario</a>
-      </li>
-      <li>
-        <a href="admin_plugins-modals.html">
-          <span class="glyphicon glyphicon-modal-window"></span>Actualizar datos</a>
-      </li>
-      <li>
-        <a href="admin_plugins-dock.html">
-          <span class="glyphicon glyphicon-equalizer"></span>Cambiar contraseña </a>
-      </li>
-    </ul>
-  </li>
+  <?php
+    if (REM_NOTIFY_NECESSARY){
+      ?>
+        <li class="sidebar-label pt15">Otras configuraciones</li>
+          <li>
+            <a class="accordion-toggle" href="#">
+              <span class="glyphicon glyphicon-fire"></span>
+              <span class="sidebar-title">...</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+              <li>
+                <a href="admin_plugins-panels.html">
+                  <span class="glyphicon glyphicon-book"></span>Crear usuario</a>
+              </li>
+              <li>
+                <a href="admin_plugins-modals.html">
+                  <span class="glyphicon glyphicon-modal-window"></span>Actualizar datos</a>
+              </li>
+              <li>
+                <a href="admin_plugins-dock.html">
+                  <span class="glyphicon glyphicon-equalizer"></span>Cambiar contraseña </a>
+              </li>
+            </ul>
+          </li>
+      <?php
+    }
+  ?>
 
   <!-- <li>
     <a class="accordion-toggle" href="#">

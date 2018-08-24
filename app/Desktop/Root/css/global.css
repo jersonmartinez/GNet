@@ -105,3 +105,20 @@ div#ContextMenuTest_White li div.label-menu-context {
     margin: 5px 10px;
     padding: 0 20px 0 35px;
 }
+
+
+/*
+  Style of InputSearch
+*/
+
+.form-navbar-buscador {
+  width: 280px;
+}
+
+.form-group-navbar-buscador {
+  width: 100%;
+}
+
+.form-control-group-navbar-buscador {
+  width: 100% !important;
+}

@@ -87,4 +87,7 @@
 		define ("PDS_SRC_PLUGINS_VENDOR_JQ", "app/controller/src/plugins/vendor/jquery");
 		define ("PDS_SRC_PLUGINS_VENDOR_PLUGINS", "app/controller/src/plugins/vendor/plugins");
 
+
+	#Remove notifications area and all unnecessary
+	define ("REM_NOTIFY_NECESSARY", false);
 ?>
