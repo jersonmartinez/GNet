@@ -1,5 +1,5 @@
 # GNet (Monitorización y control de red)
-Web System of Network Management, Servers and Firewalls under GNU/Linux. 
+Proyecto Web OpenSource, para la Gestión de Red y dispositivos informáticos (Servers, Firewalls) bajo GNU/Linux.
 
 ### Prerrequisitos
 Para utilizar este proyecto deberá tener instalado los siguientes servicios y herramientas.
