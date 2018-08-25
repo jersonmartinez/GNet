@@ -500,12 +500,13 @@
 			$filename = "getNetAddress.sh";
 			$ActionArray[] = 'Interfaces=($(ip addr show | egrep "[1-9]: " | cut -d ":" -f2 | tr -d " "))';
 			array_push($ActionArray, 'for i in ${Interfaces[*]}; do');
-			array_push($ActionArray, 'DirIP=$(ip addr show $i | grep -w inet | cut -d " " -f6 | cut -d "/" -f1)');
-			array_push($ActionArray, 'if [[ $DirIP != "" ]]; then');
-			array_push($ActionArray, 'echo "$i|$DirIP,"');
-			array_push($ActionArray, 'else');
-			array_push($ActionArray, 'echo "$i|No tiene IP asignada,"');
-			array_push($ActionArray, 'fi');
+			array_push($ActionArray, '	DirIP=$(ip addr show "$i" | grep -w inet | cut -d " " -f6 | cut -d "/" -f1)');
+			array_push($ActionArray, '	Ether=$(ip addr show "$i" | grep -w ether | cut -d " " -f6)');
+			array_push($ActionArray, '	if [[ $DirIP != "" ]]; then');
+			array_push($ActionArray, '		echo "$i|$DirIP|$Ether,"');
+			array_push($ActionArray, '	else');
+			array_push($ActionArray, '		echo "$i|No tiene IP asignada|$Ether,"');
+			array_push($ActionArray, '	fi');
 			array_push($ActionArray, 'done');	
 			
 			$RL[] = $this->remote_path.$filename;
@@ -548,6 +549,26 @@
 				return $this->RunLines(implode("\n", $ActionArray));
 			return getErrors();
 		}	
+
+		public function getStatisticsNetwork(){
+			$filename = "getStatisticsNetwork.sh";
+			$ActionArray[] = "IP=($(netstat -s | grep -w Ip: -A8 | sed '1,2d' | awk {'print $1'}))";
+			// array_push($ActionArray, "ForwardIp=$(netstat -s | grep -w Ip: -A1 | sed '1d' | awk {'print $2'})");
+			array_push($ActionArray, 'echo "${IP[*]} "');
+			array_push($ActionArray, 'echo "="');
+			array_push($ActionArray, "TCP=($(netstat -s | grep -w Tcp: -A10 | sed '1d' | awk {'print $1'}))");
+			array_push($ActionArray, 'echo "${TCP[*]} "');
+			array_push($ActionArray, 'echo "="');
+			array_push($ActionArray, "UDP=($(netstat -s | grep -w Udp: -A6 | sed '1d' | awk {'print $1'}))");
+			array_push($ActionArray, 'echo "${UDP[*]} "');
+			array_push($ActionArray, 'echo "="');
+			
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $ActionArray));
+			return getErrors();
+		}
 
 		public function getBatteryState(){
 			$filename = "getBatteryState.sh";
