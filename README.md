@@ -101,6 +101,9 @@ El siguiente formulario es sobre rellenar las credenciales del usuario con privi
 
 Pasando de este punto, apareceré el login, ahí es donde te debes loguear. Sólo aquellos usuarios de confianza son permitidos, aunque claro, la pista está en el código.
 
+### Habilitar la conexión SSH con el usuario Root
+Para proceder a habilitar el usuario Root para la conexión SSH, por favor, [acceda a este documento](https://github.com/SideMasterGM/GNet/wiki/Habilitar-el-usuario-Root-con-SSH).
+
 ## Documentación de Aplicaciones
 ### Las prácticas en desarrollo son las siguientes: 
 ```
@@ -111,30 +114,24 @@ Pasando de este punto, apareceré el login, ahí es donde te debes loguear. Sól
 5. Recolección de Logs
 6. Backups y Restores (Base de datos y configuración de servicios)
 ```
-Fuente: https://github.com/SideMasterGM/GNet/wiki/Desarrollos
+Fuente: [Acceder a los desarrollos](https://github.com/SideMasterGM/GNet/wiki/Desarrollos)
 
-Tracking Network (Autodescubrimiento de dispositivos interconectados en Red): https://github.com/SideMasterGM/GNet/wiki/Tracking-Network-(Autodescubrimiento-de-dispositivos-interconectados-en-Red)
+Tracking Network (Autodescubrimiento de dispositivos interconectados en Red): [acceda a este documento](https://github.com/SideMasterGM/GNet/wiki/Tracking-Network-(Autodescubrimiento-de-dispositivos-interconectados-en-Red))
 
 ### Incrustar nuevo código
-Desarrollar nuevo espacio de trabajo (Dashboard): https://github.com/SideMasterGM/GNet/wiki/Desarrollar-nuevo-espacio-de-trabajo-(Dashboard)
+Desarrollar nuevo espacio de trabajo (Dashboard): [acceda a este documento](https://github.com/SideMasterGM/GNet/wiki/Desarrollar-nuevo-espacio-de-trabajo-(Dashboard)).
 
 ### Conexiones SSH
-Habilitar el usuario Root para conexiones SSH: https://github.com/SideMasterGM/GNet/wiki/Habilitar-el-usuario-Root-con-SSH
+Habilitar el usuario Root para conexiones SSH: [acceda a este documento](https://github.com/SideMasterGM/GNet/wiki/Habilitar-el-usuario-Root-con-SSH)
 
 ## Authors
 
-* **Jerson A. Martínez M.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn]
-https://www.linkedin.com/in/jersonmartinezsm/
+* **Jerson A. Martínez M.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn - JersonMartinezSM](https://www.linkedin.com/in/jersonmartinezsm/)
 
-* **Frankier Y. Flores Z.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn]
-https://www.linkedin.com/in/frankier-flores-4b9b94108/
+* **Frankier Y. Flores Z.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn - FrankierFlores](https://www.linkedin.com/in/frankier-flores-4b9b94108/)
 
 ### YouTube Channels
 
-* **Side Master** - *Formador en YouTube | Canal de contenido variado sobre Informática (Shell Script, Programación, Hacking, Networking, etc.)* - [Channel 1]
+* **Side Master** - *Formador en YouTube | Canal de contenido variado sobre Informática (Shell Script, Programación, Hacking, Networking, etc.)* - [Channel - Side Master](https://www.youtube.com/user/sidemastersupremo/)
 
-https://www.youtube.com/user/sidemastersupremo/
-
-* **Core Stack** - *Formador en YouTube | Canal de contenido variado sobre Informática (Shell Script, Programación, Hacking, Networking, etc.)* - [Channel 2]
-
-https://www.youtube.com/user/gvideosmtutorialesgm
+* **Core Stack** - *Formador en YouTube | Canal de contenido variado sobre Informática (Shell Script, Programación, Hacking, Networking, etc.)* - [Channel - Core Stack](https://www.youtube.com/user/gvideosmtutorialesgm)
