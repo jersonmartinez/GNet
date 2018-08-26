@@ -22,39 +22,39 @@
         <div class="tab-content p20 ptn pb15">
           <div role="tabpanel" class="tab-pane active" id="toolbox-header">
             <form id="toolbox-header-skin">
-              <h4 class="mv20">Header Skins</h4>
+              <h4 class="mv20">Encabezado</h4>
               <div class="skin-toolbox-swatches">
                 <div class="checkbox-custom checkbox-disabled fill mb5">
                   <input type="radio" name="headerSkin" id="headerSkin8" checked value="">
-                  <label for="headerSkin8">Light</label>
+                  <label for="headerSkin8">Claro</label>
                 </div>
                 <div class="checkbox-custom fill checkbox-primary mb5">
                   <input type="radio" name="headerSkin" id="headerSkin1" value="bg-primary">
-                  <label for="headerSkin1">Primary</label>
+                  <label for="headerSkin1">Azul</label>
                 </div>
                 <div class="checkbox-custom fill checkbox-info mb5">
                   <input type="radio" name="headerSkin" id="headerSkin3" value="bg-info">
-                  <label for="headerSkin3">Info</label>
+                  <label for="headerSkin3">Azul Cielo</label>
                 </div>
                 <div class="checkbox-custom fill checkbox-warning mb5">
                   <input type="radio" name="headerSkin" id="headerSkin4" value="bg-warning">
-                  <label for="headerSkin4">Warning</label>
+                  <label for="headerSkin4">Naranja</label>
                 </div>
                 <div class="checkbox-custom fill checkbox-danger mb5">
                   <input type="radio" name="headerSkin" id="headerSkin5" value="bg-danger">
-                  <label for="headerSkin5">Danger</label>
+                  <label for="headerSkin5">Rojo</label>
                 </div>
                 <div class="checkbox-custom fill checkbox-alert mb5">
                   <input type="radio" name="headerSkin" id="headerSkin6" value="bg-alert">
-                  <label for="headerSkin6">Alert</label>
+                  <label for="headerSkin6">Púrpura</label>
                 </div>
                 <div class="checkbox-custom fill checkbox-system mb5">
                   <input type="radio" name="headerSkin" id="headerSkin7" value="bg-system">
-                  <label for="headerSkin7">System</label>
+                  <label for="headerSkin7">Verde</label>
                 </div>
                 <div class="checkbox-custom fill checkbox-success mb5">
                   <input type="radio" name="headerSkin" id="headerSkin2" value="bg-success">
-                  <label for="headerSkin2">Success</label>
+                  <label for="headerSkin2">Lima</label>
                 </div>
                 <div class="checkbox-custom fill mb5">
                   <input type="radio" name="headerSkin" id="headerSkin9" value="bg-dark">
@@ -65,19 +65,19 @@
           </div>
           <div role="tabpanel" class="tab-pane" id="toolbox-sidebar">
             <form id="toolbox-sidebar-skin">
-              <h4 class="mv20">Sidebar Skins</h4>
+              <h4 class="mv20">Barra lateral</h4>
               <div class="skin-toolbox-swatches">
                 <div class="checkbox-custom fill mb5">
                   <input type="radio" name="sidebarSkin" checked id="sidebarSkin3" value="">
-                  <label for="sidebarSkin3">Dark</label>
+                  <label for="sidebarSkin3">Oscuro</label>
                 </div>
                 <div class="checkbox-custom fill checkbox-disabled mb5">
                   <input type="radio" name="sidebarSkin" id="sidebarSkin1" value="sidebar-light">
-                  <label for="sidebarSkin1">Light</label>
+                  <label for="sidebarSkin1">Claro</label>
                 </div>
                 <div class="checkbox-custom fill checkbox-light mb5">
                   <input type="radio" name="sidebarSkin" id="sidebarSkin2" value="sidebar-light light">
-                  <label for="sidebarSkin2">Lighter</label>
+                  <label for="sidebarSkin2">Más claro</label>
                 </div>
               </div>
             </form>
@@ -97,7 +97,7 @@
                   <label for="sidebar-option">Barra lateral fija</label>
                 </div>
               </div>
-              <div class="form-group">
+              <!-- <div class="form-group">
                 <div class="checkbox-custom fill mb5">
                   <input type="checkbox" id="breadcrumb-option">
                   <label for="breadcrumb-option">Fixed Breadcrumbs</label>
@@ -108,7 +108,7 @@
                   <input type="checkbox" id="breadcrumb-hidden">
                   <label for="breadcrumb-hidden">Hide Breadcrumbs</label>
                 </div>
-              </div>
+              </div> -->
               <h4 class="mv20">Opciones de diseño</h4>
               <div class="form-group">
                 <div class="radio-custom mb5">

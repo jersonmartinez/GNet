@@ -219,33 +219,49 @@
                                 <i class="fa fa-tasks" aria-hidden="true"></i>
                                 <span class="panel-title">Procesos iniciados</span>
                             </div>
-                            <div class="panel-body" style="max-height: 300px; overflow: scroll;">
-                                <table class="table">
-                                    <tr>
-                                        <th>PID</th>
-                                        <th>Nombre</th>
-                                        <th>CPU</th>
-                                        <th>Memoria</th>
-                                        <th>Tiempo</th>
-                                    </tr>
-                                    <?php
-                                        for ($i=0; $i < count($Procesos); $i++) { 
-                                            $Firts = explode(" ", $Procesos[$i]);
+                            <div class="panel-body">
+                                <table class="display" id="tb_proc">
+                                <style type="text/css">
+                                    #tb_proc {
+                                        width: 100% !important;
+                                    }
+                                    .display: {
+                                        width: 100% !important;
+                                    }
+                                </style>
+                                    <thead>
+                                        <tr>
+                                            <th>PID</th>
+                                            <th>Nombre</th>
+                                            <th>CPU</th>
+                                            <th>Memoria</th>
+                                            <th>Tiempo</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            for ($i=0; $i < count($Procesos); $i++) { 
+                                                $Firts = explode(" ", $Procesos[$i]);
 
-                                            for ($j=0; $j < count($Firts); $j++) { 
-                                                ?>
-                                                    <tr>
-                                                        <td><?php echo $Firts[$j]; ?></td>
-                                                        <td><?php echo $Firts[$j+4]; $j++; ?></td>
-                                                        <td><?php echo "$Firts[$j]%"; $j++; ?></td>
-                                                        <td><?php echo ConvertMemoryProc($Firts[$j]); $j++;#echo "$Firts[$j] kb"; $j++; ?></td>
-                                                        <td><?php echo $Firts[$j]; $j++; ?></td>
-                                                    </tr>
-                                                <?php
+                                                for ($j=0; $j < count($Firts); $j++) { 
+                                                    ?>
+                                                        <tr>
+                                                            <td><?php echo $Firts[$j]; ?></td>
+                                                            <td><?php echo $Firts[$j+4]; $j++; ?></td>
+                                                            <td><?php echo "$Firts[$j]%"; $j++; ?></td>
+                                                            <td><?php echo ConvertMemoryProc($Firts[$j]); $j++;#echo "$Firts[$j] kb"; $j++; ?></td>
+                                                            <td><?php echo $Firts[$j]; $j++; ?></td>
+                                                        </tr>
+                                                    <?php
+                                                }
                                             }
-                                        }
-                                    ?>
+                                        ?>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr></tr>
+                                    </tfoot>
                                 </table>
+                                
                             </div>
                         </div>
                     </div>
@@ -921,14 +937,12 @@
         $('#myTab a:last').tab('show')
     })*/
 
-    $('#mix-items').mixItUp();
+    /*$('#mix-items').mixItUp();*/
 
-    /*$(document).ready(function() {
-        $('#tb_procesos').DataTable( {
-            "scrollY":        "200px",
-            "scrollCollapse": true,
-            "paging":         false
-        });
-    });*/
+    $('#tb_proc').DataTable( {
+        scrollY:        '200px',
+        scrollCollapse: true,
+        paging:         false
+    });
 
 </script>

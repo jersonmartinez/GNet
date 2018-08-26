@@ -16988,7 +16988,7 @@ ol.timeline-list li.timeline-item .timeline-date {
   max-width: 80px !important;
 }
 .mw100 {
-  max-width: 100px !important;
+  max-width: 100px;
 }
 .mw140 {
   max-width: 140px !important;
@@ -17059,7 +17059,7 @@ on tables, feel free to add more*/
   width: 75px !important;
 }
 .w100 {
-  width: 100px !important;
+  width: 100px;
 }
 .w125 {
   width: 125px !important;
@@ -17116,7 +17116,7 @@ on tables, feel free to add more*/
   min-width: 75px !important;
 }
 .mnw100 {
-  min-width: 100px !important;
+  min-width: 100px;
 }
 .mnw125 {
   min-width: 125px !important;
