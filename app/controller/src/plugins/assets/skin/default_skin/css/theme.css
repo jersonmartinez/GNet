@@ -14736,10 +14736,10 @@ ol.timeline-list li.timeline-item .timeline-date {
   /* tagcloud widget labels */
 }
 .tagcloud-widget .panel-body .label {
-  display: inline-block;
+/*display: inline-block;
   margin-right: 5px;
   margin-bottom: 8px;
-  line-height: 15px;
+  line-height: 15px;*/
 }
 /*==================================================
   Modals
@@ -16988,7 +16988,7 @@ ol.timeline-list li.timeline-item .timeline-date {
   max-width: 80px !important;
 }
 .mw100 {
-  max-width: 100px;
+  max-width: 100px !important;
 }
 .mw140 {
   max-width: 140px !important;
@@ -17059,7 +17059,7 @@ on tables, feel free to add more*/
   width: 75px !important;
 }
 .w100 {
-  width: 100px;
+  width: 100px !important;
 }
 .w125 {
   width: 125px !important;
@@ -17116,7 +17116,7 @@ on tables, feel free to add more*/
   min-width: 75px !important;
 }
 .mnw100 {
-  min-width: 100px;
+  min-width: 100px !important;
 }
 .mnw125 {
   min-width: 125px !important;
