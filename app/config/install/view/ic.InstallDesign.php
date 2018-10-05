@@ -13,6 +13,19 @@
     <section id="content" class="animated fadeInLeft">
 
       <div class="admin-form theme-info" id="login1" style="max-width: 700px;">
+        <!-- <label>Instalación de base de datos</label> -->
+        <div class="row">
+          <div class="col-xs-8">
+            <a href="./">
+              <img src="app/controller/src/logo/logo.png" class="img-responsive w150">
+            </a>
+          </div>
+
+          <div class="col-xs-4">
+            <label style="color: #fff; font-size: 17px; margin-top: 20px;"><i class="fa fa-database"></i> Servidor de base de datos</label>
+          </div>
+        </div>
+
         <div class="panel panel-info mt5 br-n">
           <div class="panel-heading heading-border bg-white"></div>
           <!-- end .form-header section -->
@@ -24,7 +37,7 @@
                   <div class="col-xs-6">
                      <label for="password" class="field-label text-muted fs18 mb10">Dirección del servidor</label>
                     <label for="password" class="field prepend-icon">
-                    <input type="text" name="host" id="InstallHost" class="form-control" placeholder="Locahost : 127.0.0.1" data-toggle="tooltip" data-placement="left" data-original-title="Dirección IP del servidor" required autofocus/>
+                    <input type="text" name="host" id="InstallHost" class="form-control" placeholder="[localhost | 127.0.0.1] [Servidor remoto]" data-toggle="tooltip" data-placement="left" data-original-title="Dirección IP del servidor" required autofocus/>
                       <label for="password" class="field-icon"> 
                         <i class="fa fa-desktop"></i>
                       </label>
@@ -93,7 +106,7 @@
              
               <!-- Button trigger modal -->
               <button type="button" class="btn btn-primary btn-lg animated-delay" data-animate='["1700", "fadeInUp"]' data-toggle="modal" data-target="#myModal">
-                Terminos de Licencia
+                ¡Necesito ayuda!
               </button>
 
               <button type="hidden" id="InstallValidation" class="btn btn-primary btn-lg animated-delay" data-animate='["1700", "fadeInUp"]' data-toggle="modal" data-target="#ValidationOfTheData">

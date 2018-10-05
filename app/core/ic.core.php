@@ -22,7 +22,6 @@
 
 			$Config = new ConfigFile(); #Instancia de la clase ConfigFile
 			
-
 			#Verificación de la existencia del fichero de configuración. 
 			if (file_exists(PF_CONFIG)){
 				// echo "Existe el fichero de configuracion";
@@ -35,6 +34,10 @@
 					
 					#Código de error 1049: La base de datos desconocida.
 					$ArrayError = explode("'", $MessageError);
+					
+					if ($CodeError == 0){
+						RefreshPage();
+					}
 					
 					// echo "<br/>"."Hay error en conexion";
 

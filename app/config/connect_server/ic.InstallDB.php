@@ -111,14 +111,12 @@
 		('Frankenstain','".$password."');";
 
 	if ($IC->query($Privilege)){
-		echo "Creado privilege...";
+		// echo "Creado privilege...";
 		if ($IC->query($UserRootInfo)){
-			echo "Creado user info...";
+			// echo "Creado user info...";
 			if ($IC->query($UserRoot)){
-				echo "\nSe han creado <b>".($cont - $errors)."</b> tablas de manera correcta!.\n";
+				// echo "\nSe han creado <b>".($cont - $errors)."</b> tablas de manera correcta!.\n";
 			}
 		}
 	}
-
-	$error = false;
-?>
+$error = false;

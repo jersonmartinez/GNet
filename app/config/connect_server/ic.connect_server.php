@@ -16,8 +16,6 @@
 		$t = $_SERVER['DOCUMENT_ROOT']."/app/config/Config.tcb";
 	}
 
-	// echo "Connect Server: ".$t;
-
 	#Se captura el estado de la variable error.
 	$error = false;
 

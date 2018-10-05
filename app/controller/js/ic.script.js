@@ -260,7 +260,8 @@ function compruebaTecla(evt){
 }
 
 function GoHome(){
-	window.location.reload();
+	window.location.href="./";
+	// return false;
 }
 
 function BackInstallation(){

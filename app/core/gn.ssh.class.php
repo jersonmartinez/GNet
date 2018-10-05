@@ -776,8 +776,15 @@
 		}*/
 
 		public function ConnectDB($H, $U, $P, $D, $X){
+			$FirstConnect = new mysqli($H, $U, $P);
+
+			if (!$FirstConnect->connect_error)
+				$FirstConnect->query("CREATE DATABASE ".$D.";");
+
 			$this->db_connect = new GNet($H, $U, $P, $D);
 			$this->db_prefix = $X;
+		
+			$FirstConnect->close();
 		}
 
 		public function getStringFormatSize($str){
