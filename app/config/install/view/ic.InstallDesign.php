@@ -129,32 +129,32 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" title="Licencia de GNet" id="ModalAgreements">Terminos de licencia | GNet (Gestión de Red)</h4>
+        <h4 class="modal-title" title="Licencia de GNet" id="ModalAgreements">Guia de instalación | GNet (Gestión de Red)</h4>
       </div>
       <div class="modal-body">
-        <p><b>Algún título por aquí de prueba</b></p>
+        <p><b>Dirección del servidor</b></p>
+        <p>Para conectarse al sistema gestor de base de datos (SGDB), se necesita conocer la dirección del host, ya sea si está local (localhost | 127.0.0.1) o remoto (en una LAN o en la nube).</p>
+        <br/>
+        <p><b>Nombre de usuario</b></p>
+        <p>Todo SGDB debe tener un usuario por omisión (root), o bien, algunos previamente configurados, así que tendrá que facilitarlo para tener permisos necesarios al SGDB.</p>
+        <br/>
+      
+        <p><b>Contraseña</b></p>
+        <p>La clave de acceso es necesaria para acceder al SGDB de acuerdo al usuario facilitado, normalmente MySQL | MariaDB tiene un usuario por omisión (root), sin embargo, ninguna clave.</p>
+        <br/>
+      
+        <p><b>Base de datos</b></p>
+        <p>Agregue el nombre de la base de datos para volcar las tablas que utilizará GNet, para ello, es opcional que haga la base de datos de forma manual, ya que el sistema lo crea automáticamente.</p>
+        <br/>
 
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, doloribus ab. Aliquid incidunt quibusdam aut nisi dolores, sapiente, recusandae accusantium, quam reiciendis ab eum consectetur numquam nesciunt obcaecati ad provident.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore quisquam ratione voluptates, quibusdam saepe quidem quod, reiciendis, iusto ipsum deserunt architecto consequatur qui est iure deleniti ad. Quaerat architecto, atque.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore quisquam ratione voluptates, quibusdam saepe quidem quod, reiciendis, iusto ipsum deserunt architecto consequatur qui est iure deleniti ad. Quaerat architecto, atque.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore quisquam ratione voluptates, quibusdam saepe quidem quod, reiciendis, iusto ipsum deserunt architecto consequatur qui est iure deleniti ad. Quaerat architecto, atque.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore quisquam ratione voluptates, quibusdam saepe quidem quod, reiciendis, iusto ipsum deserunt architecto consequatur qui est iure deleniti ad. Quaerat architecto, atque.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore quisquam ratione voluptates, quibusdam saepe quidem quod, reiciendis, iusto ipsum deserunt architecto consequatur qui est iure deleniti ad. Quaerat architecto, atque.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore quisquam ratione voluptates, quibusdam saepe quidem quod, reiciendis, iusto ipsum deserunt architecto consequatur qui est iure deleniti ad. Quaerat architecto, atque.</p>
-
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Labore quisquam ratione voluptates, quibusdam saepe quidem quod, reiciendis, iusto ipsum deserunt architecto consequatur qui est iure deleniti ad. Quaerat architecto, atque.</p>
-        
+        <p><b>Prefijo de tablas</b></p>
+        <p>Este prefijo simplemente es para evitar las confusiones entre diferentes etapas del proyecto sobre la misma base de datos y que sea fácil de respaldar.</p>
+        <br/>
       </div>
 
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">De acuerdo</button>
+        <!-- <button type="button" class="btn btn-primary" data-dismiss="modal">De acuerdo</button> -->
       </div>
     </div>
   </div>

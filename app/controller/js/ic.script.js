@@ -169,9 +169,17 @@ function start(){
 	});
 }
 
+// Capture Event Enter
 $("#InstallationCompleteNow").keypress(function(event){
 	if (event.which == 13){
 		$("#ConfigureInstallation").click();
+		event.preventDefault();
+	}
+});
+
+$("#InstallationUserAdmin").keypress(function(event){
+	if (event.which == 13){
+		$("#FinishAndGoHome").click();
 		event.preventDefault();
 	}
 });

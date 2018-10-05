@@ -41,46 +41,46 @@
 
               </div>
               <!-- end .form-body section -->
-              <div class="panel-footer p25 pv15">
+              <div class="panel-footer p25 pv15" id="InstallationUserAdmin">
                   <div class="section mn">
 
-                  <div class="smart-widget sm-right smr-120">
-                    <label for="text" class="field prepend-icon">
-                      <input type="text" name="admin_username" id="admin_username" class="gui-input" placeholder="Nombre de usuario" required autofocus>
-                      <label for="text" class="field-icon">
-                        <i class="fa fa-user"></i>
-                      </label>
-                    </label>
-                    <label for="text" class="button">Administrador</label>
-                  </div>
-                  <br/>
-                  <div class="row">
-                    <div class="col-xs-6">
-                      <div class="smart-widget sm-right">
-                        <label for="password" class="field prepend-icon">
-                          <input type="password" name="admin_password" id="admin_password" class="gui-input" placeholder="Contraseña" required />
-                          <label for="password" class="field-icon">
-                            <i class="fa fa-lock"></i>
-                          </label>
+                    <div class="smart-widget sm-right smr-120">
+                        <label for="text" class="field prepend-icon">
+                            <input type="text" name="admin_username" id="admin_username" class="gui-input" placeholder="Nombre de usuario" required autofocus>
+                            <label for="text" class="field-icon">
+                                <i class="fa fa-user"></i>
+                            </label>
                         </label>
-                      </div>
-                      
+                        <label for="text" class="button">Administrador</label>
                     </div>
-                    <div class="col-xs-6">
-                      <div class="smart-widget sm-right">
-                        <label for="repeat_password" class="field prepend-icon">
-                          <input type="password" name="admin_repeat_password" id="admin_repeat_password" class="gui-input" placeholder="Repetir contraseña" required />
-                          <label for="repeat_password" class="field-icon">
-                            <i class="fa fa-lock"></i>
-                          </label>
-                        </label>
-                      </div>
+                    
+                    <br/>
+                    
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div class="smart-widget sm-right">
+                                <label for="password" class="field prepend-icon">
+                                    <input type="password" name="admin_password" id="admin_password" class="gui-input" placeholder="Contraseña" required />
+                                    <label for="password" class="field-icon">
+                                        <i class="fa fa-lock"></i>
+                                    </label>
+                                </label>
+                            </div>
                       
-                    </div>
-                  </div>
-
-                </div>        
-              </div>
+                        </div>
+                            <div class="col-xs-6">
+                                <div class="smart-widget sm-right">
+                                    <label for="repeat_password" class="field prepend-icon">
+                                        <input type="password" name="admin_repeat_password" id="admin_repeat_password" class="gui-input" placeholder="Repetir contraseña" required />
+                                        <label for="repeat_password" class="field-icon">
+                                            <i class="fa fa-lock"></i>
+                                        </label>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>        
+                </div>
               <!-- end .form-footer section -->
 
               <div class="panel-body p15 pt25">
@@ -95,7 +95,7 @@
                   <button type="button" class="btn btn-dark dark" data-toggle="tooltip" data-placement="top" data-original-title="Limpiar cajas" onclick="javascript: CleanFields();">
                     <i class="fa fa-times-circle"></i>
                   </button>
-                  <button type="button" class="btn btn-dark" data-toggle="tooltip" data-placement="right" data-original-title="Registrarme ahora" onclick="javascript: InsertUsernameAdmin();">
+                  <button type="button" class="btn btn-dark" id="FinishAndGoHome" data-toggle="tooltip" data-placement="right" data-original-title="Registrarme ahora" onclick="javascript: InsertUsernameAdmin();">
                     <i class="fa fa-home"></i> Terminar e ir a casa
                   </button>
                 </div>
