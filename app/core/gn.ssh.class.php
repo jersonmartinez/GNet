@@ -4,6 +4,7 @@
 		private $username;
 		private $password;
 		public $connect;
+		public $CN = false;
 		private $stream;
 		private $errors = array();
 		private $local_path = "/var/www/html/NetworkAdmin/php/";
@@ -29,6 +30,7 @@
 					$this->username 	= $username;
 					$this->password 	= $password;
 					$this->remote_path 	= "/home/";
+					$this->CN 			= true;
 		        }
 		    }
 		}
@@ -266,6 +268,30 @@
 			return false;
 		}
 
+		public function addCredentialsLocalMachine($user, $pass){
+			$query = "INSERT INTO ".$this->db_prefix."credentials_local_machine (username, password) VALUES ('".$user."', '".$pass."');";
+			
+			if ($this->db_connect->query($query))
+				return true;
+
+			return false;
+		}
+
+		public function getCountCredentialsLocalMachine(){
+			return @(int)$this->db_connect->query("SELECT count(*) AS 'count' FROM ".$this->db_prefix."credentials_local_machine;")->fetch_array()['count'];
+		}
+
+		public function getCredentialsLocalMachine(){
+			return $this->db_connect->query("SELECT username, password FROM ".$this->db_prefix."credentials_local_machine;")->fetch_array();
+		}
+
+		public function truncateCredentialsLocalMachine(){
+			if ($this->db_connect->query("TRUNCATE TABLE ".$this->db_prefix."credentials_local_machine;"))
+				return true;
+		
+			return false;
+		}
+
 		public function getIPNetFromIPHost($ip_host){
 			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE ip_host='".$ip_host."' LIMIT 1;");
 		}
@@ -363,20 +389,75 @@
 			$this->InitTables();
 
 			do {
-				if (@!$this->getCountNetwork())
-					@$this->addNetwork($this->getIpRouteLocal());
+				if (@!$this->getCountNetwork()){ #No hay redes [0]
+					@$this->addNetwork($this->getIpRouteLocal()); #Agrega la IP Local: 100.0
+				}
+
+				// break;
 
 				if ($this->getAllNetworkChecked()->num_rows > 0){
+					#Accedemos acá ya que existen redes no escaneadas.
+
 					$Network = $this->getAllNetworkChecked()->fetch_array(MYSQLI_ASSOC)['ip_net'];
+					#Se toma una red no escaneada y se obtiene la dirección de red.
+
+
 					$D = $this->SondearRed($Network);
-					unset($D[count($D) - 1]);
+					#$D = Array
+					// 192.168.100.1
+					// 192.168.100.6 --
+
+					$iD = 0;
+
+					foreach ($D as $v) {
+						echo $v." ";
+
+						if ($v == $this->getMyIPServer())
+							unset($D[$iD]); # Elimino el servidor actual.
+
+						$iD++;
+					}
+
+					// #$D = Array
+					// 192.168.100.1 --
+					// 192.168.100.4
+					
 
 					foreach ($D as $value) {
-						$ip_forward = @$this->IsRouter($value);
+						#192.168.100.1 --, 192.168.100.4
+						$ip_forward = @$this->IsRouter($value); #Es Router (100.1 = yes)
+						
+						if ($ip_forward){
+							echo "<br/>La direccion: ",$value," es enrutador";
+						} else {
+							echo "<br/>La direccion: ",$value," no es enrutador";
+						}
+
 						$ArrayNets = @explode("\n", $this->getIpRouteRemote($value));
 						
-						$NextNet = $ArrayNets[0];
+						#ArrayNets: 192.168.100.1
+						#				192.168.100.0/24 [0]
+						# 				192.168.101.0/24 [1]
+						# 				192.168.103.0/24 [2]
+
+						echo "<br/>";
+						
+						unset($ArrayNets[count($ArrayNets)-1]); #Elimino el ultimo estado vacio.
+
+						$iter = 0;
+						foreach ($ArrayNets as $values) {
+							echo "[",$iter++,"] IP Net: ",$values;
+							echo "<br/>";
+						}
+
+
+						$NextNet = $ArrayNets[0]; #192.168.100.0/24
 						$NextNet = "-";
+
+						echo "Network: ",$Network," |  Value: ",$value," | IP Forward: ",$ip_forward," | Next Net: ",$NextNet;
+						
+						break;
+						exit;
 
 						if ($ip_forward){
 							$NextNet = $ArrayNets[1];
@@ -387,6 +468,7 @@
 							}
 						}
 
+						# (192.168.100.0/24)
 						$this->addHost($Network, $value, $ip_forward, $NextNet);
 		    		}
 

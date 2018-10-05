@@ -8,7 +8,21 @@
 	/*Se incluye una clase que contiene los métodos 
 	necesarios para realizar las operaciones 
 	de configuración*/
-	include (PD_CONTROLLER_PHP."/ic.config.class.php");
+
+	// if (file_exists($_SESSION['getConsts'])){
+	// 	echo "Consts Existe> ".$_SESSION['getConsts'];
+	// } else {
+	// 	echo "Consts No existe";
+	// }
+
+	// if (file_exists(PD_CTL_PHP."/ic.config.class.php")){
+	// 	echo "Config Class existe";
+	// } else {
+	// 	echo "Config Class no existe: ".PD_CONTROLLER_PHP."/ic.config.class.php";
+	// }
+
+	include (PD_CTL_PHP."/ic.config.class.php");
+	// include (PD_CONTROLLER_PHP."/ic.config.class.php");
 	
 	/*Se crea un objeto Config, 
 	instanciando la clase ConfigFile*/
@@ -17,6 +31,7 @@
 	/*Se crea el fichero, se le pasa por 
 	parámetros la ruta del fichero y los datos.*/
 	$Config->CreateFile(PF_CONFIG, $_POST);
+
 
 	/*Se confirma el fichero en dicha ruta*/
 	$Config->ConfirmFile(PF_CONFIG);

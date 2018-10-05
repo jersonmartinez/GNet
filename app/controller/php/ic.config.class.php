@@ -85,7 +85,5 @@
 	        #Si ha llegado hasta acá, re retorna la dirección IP que contiene REMOTE_ADDR.
 	        return @$_SERVER['REMOTE_ADDR'];
 	    }
-
 	}
-
 ?>

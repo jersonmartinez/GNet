@@ -1,4 +1,5 @@
 <?php
+
 	@session_start();
 	
 	#Inclusión de constantes que contienen las rutas de acceso. 
