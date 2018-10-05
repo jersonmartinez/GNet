@@ -169,6 +169,14 @@ function start(){
 	});
 }
 
+$("#InstallationCompleteNow").keypress(function(event){
+	if (event.which == 13){
+		$("#ConfigureInstallation").click();
+		event.preventDefault();
+	}
+});
+
+
 var totalTiempo = Math.floor($("#TimeRestHope").val());
 
 function ExecTimerSession(){

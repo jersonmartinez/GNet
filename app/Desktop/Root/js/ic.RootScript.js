@@ -811,3 +811,10 @@ $("#content_wrapper").contextmenu(function(){
 function getDataSelection(value){
 	console.log("La clase seleccionada es: " + $(value).attr("class"));
 }
+
+$("#DivACLMKeyPress").keypress(function(event){
+	if (event.which == 13){
+		$("#Btn_ACLM_Save").click();
+		event.preventDefault();
+	}
+});

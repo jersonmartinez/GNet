@@ -45,13 +45,13 @@
                   <div class="section mn">
 
                   <div class="smart-widget sm-right smr-120">
-                    <label for="email" class="field prepend-icon">
+                    <label for="text" class="field prepend-icon">
                       <input type="text" name="admin_username" id="admin_username" class="gui-input" placeholder="Nombre de usuario" required autofocus>
-                      <label for="email" class="field-icon">
+                      <label for="text" class="field-icon">
                         <i class="fa fa-user"></i>
                       </label>
                     </label>
-                    <label for="email" class="button">Administrador</label>
+                    <label for="text" class="button">Administrador</label>
                   </div>
                   <br/>
                   <div class="row">
