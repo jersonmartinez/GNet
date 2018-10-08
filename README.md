@@ -18,6 +18,7 @@ Es necesario instalar lo siguientes paquetes, para eso dejaré las instrucciones
 
 ### Repositorio
 ```
+sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
 ```
