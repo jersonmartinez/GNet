@@ -23,7 +23,8 @@ sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
 ```
 
-** Instalación en Debian **
+### Instalación en Debian
+
 [Instalación de PHP7.2 con sus extensiones de Apache en Debian](https://github.com/SideMasterGM/GNet/wiki/Instalaci%C3%B3n-de-PHP7.2-con-sus-extensiones-de-Apache-en-Debian)
 
 ### Apache 2 (Web Server)
@@ -124,9 +125,6 @@ Tracking Network (Autodescubrimiento de dispositivos interconectados en Red): [a
 
 ### Incrustar nuevo código
 Desarrollar nuevo espacio de trabajo (Dashboard): [acceda a este documento](https://github.com/SideMasterGM/GNet/wiki/Desarrollar-nuevo-espacio-de-trabajo-(Dashboard)).
-
-### Conexiones SSH
-Habilitar el usuario Root para conexiones SSH: [acceda a este documento](https://github.com/SideMasterGM/GNet/wiki/Habilitar-el-usuario-Root-con-SSH)
 
 ## Authors
 
