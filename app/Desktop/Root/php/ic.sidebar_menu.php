@@ -258,19 +258,19 @@
         </div>
       </div>
     </a>
-  </li>
+  </li> -->
   <li class="sidebar-stat">
     <a href="#projectOne" class="fs11">
       <span class="fa fa-dropbox text-warning"></span>
       <span class="sidebar-title text-muted">Remote Server</span>
-      <span class="pull-right mr20 text-muted">62%</span>
+      <span class="pull-right mr20 text-muted">100%</span>
       <div class="progress progress-bar-xs mh20">
         <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 62%">
           <span class="sr-only">62% Complete</span>
         </div>
       </div>
     </a>
-  </li> -->
+  </li>
 </ul>
 <!-- End: Sidebar Menu -->
 

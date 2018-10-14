@@ -126,9 +126,9 @@ Habilitar el usuario Root para conexiones SSH: [acceda a este documento](https:/
 
 ## Authors
 
-* **Jerson A. Martínez M.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn - JersonMartinezSM](https://www.linkedin.com/in/jersonmartinezsm/)
+* **Jerson A. Martínez M.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn - Jerson Martinez](https://www.linkedin.com/in/jersonmartinezsm/)
 
-* **Frankier Y. Flores Z.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn - FrankierFlores](https://www.linkedin.com/in/frankier-flores-4b9b94108/)
+* **Frankier Y. Flores Z.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn - Frankier Flores](https://www.linkedin.com/in/frankier-flores-4b9b94108/)
 
 ### YouTube Channels
 
