@@ -392,7 +392,8 @@ $("#sb_item_ResourcesMonitor").click(function(){
 								$("#BtnHiddenNotifyACLMError").click();
 							} else {
 								// $(".NAC_SB_ID").append($(".SB_Medida_RAM").html());
-								$(".SB_Medida_RAM").css("visibility", "visible")
+								$(".SB_Medida_RAM").css("visibility", "visible");
+								$(".SB_Medida_CPU").css("visibility", "visible");
 								$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html(data);
 							}
 
