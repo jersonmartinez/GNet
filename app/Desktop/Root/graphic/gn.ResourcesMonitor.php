@@ -2,12 +2,22 @@
     #Importar constantes.
     @session_start();
     include (@$_SESSION['getConsts']); 
-
     include (PF_CONNECT_SERVER);
-    
     include (PF_SSH);
 
-    $ConnectSSH = new ConnectSSH("127.0.0.1", "root", "123");
+    $CN = new ConnectSSH();
+    $Otro = $CN->ConnectDB($H, $U, $P, $D, $X);
+
+    // Credentials Local Machine
+    $CLMUser = $CN->getCredentialsLocalMachine()['username'];
+    $CLMPass = $CN->getCredentialsLocalMachine()['password'];
+
+    $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
+
+    if (!$ConnectSSH->CN){
+        echo "Fail";
+        exit();
+    }
 
     /*foreach ($CpuState as $value) {
         echo $value."";

@@ -18,9 +18,14 @@ Es necesario instalar lo siguientes paquetes, para eso dejaré las instrucciones
 
 ### Repositorio
 ```
+sudo apt-get install software-properties-common
 sudo add-apt-repository ppa:ondrej/php
 sudo apt-get update
 ```
+
+### Instalación en Debian
+
+[Instalación de PHP7.2 con sus extensiones de Apache en Debian](https://github.com/SideMasterGM/GNet/wiki/Instalaci%C3%B3n-de-PHP7.2-con-sus-extensiones-de-Apache-en-Debian)
 
 ### Apache 2 (Web Server)
 ```
@@ -52,7 +57,7 @@ mysql_secure_installation
 ### MySQL | MariaDB para soportar PHP
 ```
 apt-cache search php7.0
-apt-get -y install php7.0-mysql php7.0-curl php7.0-gd php7.0-intl php-pear php-imagick php7.0-imap php7.0-mcrypt php-memcache  php7.0-pspell php7.0-recode php7.0-sqlite3 php7.0-tidy php7.0-xmlrpc php7.0-xsl php7.0-mbstring php-gettext
+apt-get install -y php7.0-{mysql,curl,gd,intl,pear,imagick,imap,mcrypt,memcache,pspell,recode,sqlite3,tidy,xmlrpc,xsl,mbstring,gettext}
 ```
 
 ### phpMyAdmin
@@ -120,9 +125,6 @@ Tracking Network (Autodescubrimiento de dispositivos interconectados en Red): [a
 
 ### Incrustar nuevo código
 Desarrollar nuevo espacio de trabajo (Dashboard): [acceda a este documento](https://github.com/SideMasterGM/GNet/wiki/Desarrollar-nuevo-espacio-de-trabajo-(Dashboard)).
-
-### Conexiones SSH
-Habilitar el usuario Root para conexiones SSH: [acceda a este documento](https://github.com/SideMasterGM/GNet/wiki/Habilitar-el-usuario-Root-con-SSH)
 
 ## Authors
 

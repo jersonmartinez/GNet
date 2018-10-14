@@ -4,10 +4,18 @@
 
 <input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenDeviceManagementInit" />
 <input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenDeviceManagementFinish" />
+
+<!-- Add Credentials Local Machine Notifications -->
+<input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenNotifyACLMEmpty" />
+<input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenNotifyACLMOk" />
+<input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenNotifyACLMFail" />
+<input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenNotifyACLMError" />
+
 <?php
   #Agregando ventana modal, configuración de la red.
   include (PD_DESKTOP_ROOT."/graphic/ic.modal.config_network.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddDevicesManagement.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddCredentialsLocalMachine.php");
 ?>
 
 <div class="container_platform">
@@ -170,6 +178,8 @@
                     </div>
                     <div class="panel-body AdminPanel_ResourcesMonitor_PanelBody">
                         <!-- El contenido -->
+
+
                     </div>
                 </div>
             </div>
@@ -182,6 +192,18 @@
     include (PD_DESKTOP_ROOT_PHP."/vis/gn.menu-context.php");
 ?>
 
+
+<div class="panel" id="MessageFailCheckCredentialsLocalMachine" style="visibility: hidden;">
+    <div class="panel-heading">
+        <span class="panel-title">Credenciales del servidor web</span>
+    </div>
+
+    <div class="panel-body">
+        Hemos encontrado un problema con las credenciales anteriormente almacenadas, por favor, actualice las credenciales, nombre de usuario y contraseña de este servidor.
+    </div>
+
+    <div class="panel-footer"><button type="button" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales</button></div>
+</div>
 
 <!-- <button type="hidden" class="AddRedactDocumentation" data-toggle="modal" data-target="#NowAddRedactDocumentation"></button> -->
 

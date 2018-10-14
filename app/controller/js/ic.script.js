@@ -169,6 +169,22 @@ function start(){
 	});
 }
 
+// Capture Event Enter
+$("#InstallationCompleteNow").keypress(function(event){
+	if (event.which == 13){
+		$("#ConfigureInstallation").click();
+		event.preventDefault();
+	}
+});
+
+$("#InstallationUserAdmin").keypress(function(event){
+	if (event.which == 13){
+		$("#FinishAndGoHome").click();
+		event.preventDefault();
+	}
+});
+
+
 var totalTiempo = Math.floor($("#TimeRestHope").val());
 
 function ExecTimerSession(){
@@ -260,7 +276,8 @@ function compruebaTecla(evt){
 }
 
 function GoHome(){
-	window.location.reload();
+	window.location.href="./";
+	// return false;
 }
 
 function BackInstallation(){

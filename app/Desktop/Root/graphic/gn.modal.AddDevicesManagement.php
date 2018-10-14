@@ -1,5 +1,5 @@
 <?php
-    $R_ADM = $CN_Global->getIPNet();    
+    $R_ADM = $CN_Global->getIPNet();
 ?>
 
 <button type="hidden" class="AddDeviceManagement" data-toggle="modal" data-target="#NowAddDeviceManagement"></button>

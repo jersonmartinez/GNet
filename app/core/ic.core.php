@@ -22,22 +22,21 @@
 
 			$Config = new ConfigFile(); #Instancia de la clase ConfigFile
 			
-
 			#Verificación de la existencia del fichero de configuración. 
 			if (file_exists(PF_CONFIG)){
 				// echo "Existe el fichero de configuracion";
 
 				#Verificar si existen errores, la variable error es originaria de 
 				# el fichero de conexión.
-				if ($error == true){					
+				if ($error == true){		
 					$CodeError = @$IC->connect_errno;
 					$MessageError = @$IC->connect_error;
 					
 					#Código de error 1049: La base de datos desconocida.
 					$ArrayError = explode("'", $MessageError);
 					
-					// echo "<br/>"."Hay error en conexion";
-
+					if ($CodeError == 0)
+						RefreshPage();
 
 					if ($CodeError == 1049){
 
@@ -59,7 +58,7 @@
 					}
 
 					#Código de error 2002: Host desconocido
-					if ($CodeError == 2002){
+					if ($CodeError == 2002 || $CodeError == 1045){
 
 						#Se hacen las misma verificaciones que en la condicional
 						#anterior, elección de instalación en modo gráfico o texto.

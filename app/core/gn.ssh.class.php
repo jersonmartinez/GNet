@@ -4,6 +4,7 @@
 		private $username;
 		private $password;
 		public $connect;
+		public $CN = false;
 		private $stream;
 		private $errors = array();
 		private $local_path = "/var/www/html/NetworkAdmin/php/";
@@ -29,6 +30,7 @@
 					$this->username 	= $username;
 					$this->password 	= $password;
 					$this->remote_path 	= "/home/";
+					$this->CN 			= true;
 		        }
 		    }
 		}
@@ -263,6 +265,30 @@
 			if ($this->db_connect->query($query))
 				return true;
 
+			return false;
+		}
+
+		public function addCredentialsLocalMachine($user, $pass){
+			$query = "INSERT INTO ".$this->db_prefix."credentials_local_machine (username, password) VALUES ('".$user."', '".$pass."');";
+			
+			if ($this->db_connect->query($query))
+				return true;
+
+			return false;
+		}
+
+		public function getCountCredentialsLocalMachine(){
+			return @(int)$this->db_connect->query("SELECT count(*) AS 'count' FROM ".$this->db_prefix."credentials_local_machine;")->fetch_array()['count'];
+		}
+
+		public function getCredentialsLocalMachine(){
+			return $this->db_connect->query("SELECT username, password FROM ".$this->db_prefix."credentials_local_machine;")->fetch_array();
+		}
+
+		public function truncateCredentialsLocalMachine(){
+			if ($this->db_connect->query("TRUNCATE TABLE ".$this->db_prefix."credentials_local_machine;"))
+				return true;
+		
 			return false;
 		}
 
@@ -750,8 +776,15 @@
 		}*/
 
 		public function ConnectDB($H, $U, $P, $D, $X){
+			$FirstConnect = new mysqli($H, $U, $P);
+
+			if (!$FirstConnect->connect_error)
+				$FirstConnect->query("CREATE DATABASE ".$D.";");
+
 			$this->db_connect = new GNet($H, $U, $P, $D);
 			$this->db_prefix = $X;
+		
+			$FirstConnect->close();
 		}
 
 		public function getStringFormatSize($str){

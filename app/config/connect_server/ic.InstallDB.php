@@ -77,6 +77,11 @@
 			router INT UNSIGNED,
 			net_next VARCHAR(20),
 			alias VARCHAR(30)
+		);",
+		#Tabla de credenciales para monitorizar el host local
+		$X.'host' => "CREATE TABLE ".$X."credentials_local_machine (
+			username VARCHAR(50) NOT NULL, 
+			password VARCHAR(50) NOT NULL
 		);"
 	);
 
@@ -106,14 +111,12 @@
 		('Frankenstain','".$password."');";
 
 	if ($IC->query($Privilege)){
-		echo "Creado privilege...";
+		// echo "Creado privilege...";
 		if ($IC->query($UserRootInfo)){
-			echo "Creado user info...";
+			// echo "Creado user info...";
 			if ($IC->query($UserRoot)){
-				echo "\nSe han creado <b>".($cont - $errors)."</b> tablas de manera correcta!.\n";
+				// echo "\nSe han creado <b>".($cont - $errors)."</b> tablas de manera correcta!.\n";
 			}
 		}
 	}
-
-	$error = false;
-?>
+$error = false;

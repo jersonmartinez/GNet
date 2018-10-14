@@ -8,10 +8,13 @@
 	</head>
 		<?php
 			#En caso que sea Root, se muestra el main.php del Root.
-			if (@$_SESSION['p'] == "root")
+			if (@$_SESSION['p'] == "root"){
 				include (PD_DESKTOP_ROOT."/main.php");
-			else if (@$_SESSION['p'] == "admin")
-				include (PD_DESKTOP_ADMIN."/main.php");
+			} else if (@$_SESSION['p'] == "admin"){
+				/*Temporalmente, para acceder al Root, será con el usuario Administrador*/
+				// include (PD_DESKTOP_ADMIN."/main.php");
+				include (PD_DESKTOP_ROOT."/main.php");
+			}
 		?>
 	<div>
 		<?php

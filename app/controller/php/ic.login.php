@@ -6,6 +6,8 @@
 	$pw = trim($_POST['password']);
 	$tb = trim($_POST['privilege']);
 
+	$rm = 0;
+
 	if (isset($_POST['remember']))
 		$rm = 1;
 

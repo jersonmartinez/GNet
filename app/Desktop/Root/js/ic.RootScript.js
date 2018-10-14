@@ -211,6 +211,7 @@ $(document).mousemove(function(event){
     }, 1000);
 });
 
+// Devices Management
 $("#BtnHiddenDeviceManagementInit").click(function(){
 	$("#title_sm").val("Verificando conexión");
 	$("#content_sm").val(respuesta.data.count + " dispositivos encontrados...");
@@ -227,6 +228,43 @@ $("#BtnHiddenDeviceManagementFinish").click(function(){
 	setTimeout(function(){
 		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-dark");
 		// $(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-success");
+	}, 50);
+});
+
+// Credentials Local Machine
+$("#BtnHiddenNotifyACLMEmpty").click(function(){
+	$("#title_sm").val("Credenciales del servidor");
+	$("#content_sm").val("Por favor, rellene los campos!");
+	
+	setTimeout(function(){
+		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-dark");
+	}, 50);
+});
+
+$("#BtnHiddenNotifyACLMOk").click(function(){
+	$("#title_sm").val("Credenciales del servidor");
+	$("#content_sm").val("¡Estupendo, ha sido actulizado!");
+	
+	setTimeout(function(){
+		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-success");
+	}, 50);
+});
+
+$("#BtnHiddenNotifyACLMFail").click(function(){
+	$("#title_sm").val("Credenciales del servidor");
+	$("#content_sm").val("Lo sentimos, ha ocurrido un error, inténtelo más tarde");
+	
+	setTimeout(function(){
+		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-error");
+	}, 50);
+});
+
+$("#BtnHiddenNotifyACLMError").click(function(){
+	$("#title_sm").val("Credenciales del servidor");
+	$("#content_sm").val("Lo sentimos, nombre de usuario y contraseña inválidos");
+	
+	setTimeout(function(){
+		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-dark");
 	}, 50);
 });
 
@@ -326,31 +364,88 @@ var var_item_ResourcesMonitor = false;
 
 /*Monitorizar recursos*/
 $("#sb_item_ResourcesMonitor").click(function(){
-	HideAdminPanels();
 	
-	NProgress.configure({parent: 'body'});
-	NProgress.start();
+	xhr = $.ajax({
+		url: "app/Desktop/Root/php/gn.CheckCredentialsLocalMachine.php",
+		type: "post",
+		success: function(data){
+			if (data == "Ok"){
 
-	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
-	
-	if (!var_item_ResourcesMonitor){
-		xhr = $.ajax({
-			url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
-			success: function(data){
-				$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html(data);
-				Finish_NProgress();
-				var_item_ResourcesMonitor = true;
+				HideAdminPanels();
+				
+				NProgress.configure({parent: 'body'});
+				NProgress.start();
+
+				$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
+				
+				if (!var_item_ResourcesMonitor){
+					xhr = $.ajax({
+						url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
+						success: function(data){
+							if (data == "Fail"){
+								$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachine").html());
+								$("#BtnHiddenNotifyACLMError").click();
+							} else {
+								$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html(data);
+							}
+
+							Finish_NProgress();
+							var_item_ResourcesMonitor = true;
+
+						}
+					});
+				} else {
+					Finish_NProgress();
+				}
+				
+			} else if (data == "Fail"){
+				getModalCredentialsLocalMachine();
 			}
-		});
-	} else {
-		Finish_NProgress();
-	}
+		}
+	});
 });
 
 $("#sb_item_ResourcesMonitor").dblclick(function(){
 	var_item_ResourcesMonitor = false;
 	$("#sb_item_ResourcesMonitor").click();
 });
+
+
+function getModalCredentialsLocalMachine(){
+	$(".AddCredentialsLocalMachine").click();
+}
+
+/*Registrar las credenciales del host actual que monitoriza*/
+$("#Btn_ACLM_Save").click(function(){
+	let user = $("#CredentialLocalMachineUsername").val(), 
+		pass = $("#CredentialLocalMachinePassword").val();
+
+	if (user != "" && pass != ""){
+		NProgress.configure({parent: 'body'});
+		NProgress.start();
+
+		xhr = $.ajax({
+			url: "app/Desktop/Root/php/gn.AddCredentialsLocalMachine.php",
+			type: "post",
+			data: $("#Form_ACLM").serialize(),
+			success: function(data){
+				if (data == "Ok")
+					$("#BtnHiddenNotifyACLMOk").click();
+				else if (data == "Fail")
+					$("#BtnHiddenNotifyACLMFail").click();
+
+				setTimeout(function(){
+					Finish_NProgress();
+					$("#ModalCloseACLM").click();
+					$("#sb_item_ResourcesMonitor").dblclick();
+				}, 200);
+			}
+		});
+	} else {
+		$("#BtnHiddenNotifyACLMEmpty").click();
+	}
+});
+
 
 var myVar = 0;
 
@@ -423,6 +518,7 @@ $("#ddt_SelectTypeDeviceOptionRouter").click(function(){
 });
 
 $(".AddDeviceManagement").hide();
+$(".AddCredentialsLocalMachine").hide();
 
 /*Admin Panels*/
 function HideAdminPanels(){
@@ -560,7 +656,6 @@ $("#Btn_ADM_Save").click(function(){
 	} else if (ADM_Value == "ADM_Router"){
 		alert("Intenta agregar un enrutador");
 	}
-
 });
 
 $(".btn_main_logo").click(function(){
@@ -716,3 +811,10 @@ $("#content_wrapper").contextmenu(function(){
 function getDataSelection(value){
 	console.log("La clase seleccionada es: " + $(value).attr("class"));
 }
+
+$("#DivACLMKeyPress").keypress(function(event){
+	if (event.which == 13){
+		$("#Btn_ACLM_Save").click();
+		event.preventDefault();
+	}
+});
