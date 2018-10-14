@@ -14736,10 +14736,10 @@ ol.timeline-list li.timeline-item .timeline-date {
   /* tagcloud widget labels */
 }
 .tagcloud-widget .panel-body .label {
-  display: inline-block;
+/*display: inline-block;
   margin-right: 5px;
   margin-bottom: 8px;
-  line-height: 15px;
+  line-height: 15px;*/
 }
 /*==================================================
   Modals
