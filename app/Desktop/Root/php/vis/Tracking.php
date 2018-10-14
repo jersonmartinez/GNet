@@ -18,7 +18,6 @@
 
 	$CN->SpaceTest();
 
-	exit();
 	include (PD_DESKTOP_ROOT_PHP."/vis/images.php");
 
 	$time_end = microtime(true);

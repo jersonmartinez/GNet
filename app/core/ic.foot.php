@@ -58,7 +58,6 @@
 <!-- Importants Scripts -->
 <script src="<?php echo PDS_CTL_JS; ?>/ic.script.js"></script>
 <script src="<?php echo PDS_DESKTOP_ROOT_JS; ?>/ic.RootScript.js"></script>
-<script type="text/javascript" src="<?php echo PDS_DESKTOP_ROOT_JS; ?>/gn.TrackingNetwork.js"></script>
 
 <script type="text/javascript">
 

@@ -297,16 +297,16 @@ $("#sb_item_TrackingNetwork").click(function(){
 			success: function(data){
 				let posicion = data.indexOf("Fail");
 
+				var_item_TrackingNetwork = true;
 				if (posicion != -1){
 					$(".AdminPanel_TrackingNetwork_PanelBody").addClass('animated fadeIn').html($("#MessageFailCheckTrackingNetwork").html());
 				} else {
-					$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
+					$(".AdminPanel_TrackingNetwork_PanelBody").addClass('animated fadeIn').html(data);
 					// $(".AdminPanel_TrackingNetwork_PanelBody").html(data);
 					draw();
-					var_item_TrackingNetwork = true;
+					Finish_NProgress();
 				}
 
-				Finish_NProgress();
 			}
 		});
 	} else {
@@ -819,7 +819,7 @@ $(".AdminPanel_DevicesManagement").on('contextmenu', function(e){
 });
 
 $("#content_wrapper").contextmenu(function(){
-	console.log("");
+	console.log("Funcionando");
 });
 
 function getDataSelection(value){
