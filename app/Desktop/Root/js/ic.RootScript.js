@@ -295,10 +295,15 @@ $("#sb_item_TrackingNetwork").click(function(){
 		xhr = $.ajax({
 			url: "app/Desktop/Root/graphic/gn.TrackingNetwork.php",
 			success: function(data){
-				$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
-				draw();
-				var_item_TrackingNetwork = true;
+				if (data == "Fail"){
+					$(".AdminPanel_TrackingNetwork_PanelBody").addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachine").html());
+				} else {
+					$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
+					draw();
+					var_item_TrackingNetwork = true;
+				}
 				Finish_NProgress();
+
 			}
 		});
 	} else {

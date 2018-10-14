@@ -2,6 +2,7 @@
     #Importar constantes.
     @session_start();
     include (@$_SESSION['getConsts']); 
+
     include (PF_CONNECT_SERVER);
     include (PF_SSH);
 
