@@ -295,21 +295,28 @@ $("#sb_item_TrackingNetwork").click(function(){
 		xhr = $.ajax({
 			url: "app/Desktop/Root/graphic/gn.TrackingNetwork.php",
 			success: function(data){
-				if (data == "Fail"){
-					$(".AdminPanel_TrackingNetwork_PanelBody").addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachine").html());
+				let posicion = data.indexOf("Fail");
+
+				if (posicion != -1){
+					$(".AdminPanel_TrackingNetwork_PanelBody").addClass('animated fadeIn').html($("#MessageFailCheckTrackingNetwork").html());
 				} else {
 					$(".AdminPanel_TrackingNetwork_PanelBody").html(data);
+					// $(".AdminPanel_TrackingNetwork_PanelBody").html(data);
 					draw();
 					var_item_TrackingNetwork = true;
 				}
-				Finish_NProgress();
 
+				Finish_NProgress();
 			}
 		});
 	} else {
 		Finish_NProgress();
 	}
 });
+
+function btn_action_tn(){
+	$(".btn_action_tn").click();
+}
 
 $("#sb_item_TrackingNetwork").dblclick(function(){
 	var_item_TrackingNetwork = false;
