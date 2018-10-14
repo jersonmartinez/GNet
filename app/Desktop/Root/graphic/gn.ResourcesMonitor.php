@@ -747,6 +747,7 @@
                 data: [
                     ['En uso: <?php echo ConvertUnit($MemoryState[1]); ?>', <?php echo $MemoryState[1]; ?>],
                     ['Disponible: <?php echo ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[2]; ?>],
+                    //['Disponible: <?php echo ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[0] - $MemoryState[1]; ?>]
                 ]
             }]
         });
@@ -928,7 +929,7 @@
         stDiv.setAttribute('green','');
     }
 
-    var dataStatus = "<?php echo $BatteryState[1] ?>";
+    var dataStatus = "<?php echo $BatteryState[1]; ?>";
     
     if (dataStatus == "charging" && dataPercent < 100) {
         $(charging_text).html("Cargando...");   
@@ -939,8 +940,8 @@
     }
 
     $('#myTab a').click(function (e) {
-        e.preventDefault()
-        $(this).tab('show')
+        e.preventDefault();
+        $(this).tab('show');
     })
 
     /*$(function () {
