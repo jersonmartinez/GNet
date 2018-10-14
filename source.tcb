@@ -1,7 +1,6 @@
 <?php
 
 	@session_start();
-	
 	#Inclusión de constantes que contienen las rutas de acceso. 
 	@$_SESSION['getConsts'] = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."app/core/ic.const.php";
 	
