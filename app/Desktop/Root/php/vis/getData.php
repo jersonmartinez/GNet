@@ -1,5 +1,5 @@
 <?php
-    // @session_start();
+    @session_start();
     include (@$_SESSION['getConsts']);
     
     // echo "<br/><b>getData: </b>",PDS_DESKTOP_ROOT;
@@ -248,9 +248,7 @@
 </script>
 
 <input type="hidden" style="float: right" id="ClickSondeoFinal" onclick="javascript: draw();" value="Cambiar panorama" />
-<div ondblclick="javascript: draw();" id="mynetwork" style="width: 100%; height:470px;">
-    
-</div>
+<div ondblclick="javascript: draw();" id="mynetwork" style="width: 100%; height:470px;"></div>
 
 <p id="selection"></p>
 <p id="stabilization"></p>

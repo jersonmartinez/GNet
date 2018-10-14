@@ -79,7 +79,7 @@
 			alias VARCHAR(30)
 		);",
 		#Tabla de credenciales para monitorizar el host local
-		$X.'host' => "CREATE TABLE ".$X."credentials_local_machine (
+		$X.'credentials_local_machine' => "CREATE TABLE ".$X."credentials_local_machine (
 			username VARCHAR(50) NOT NULL, 
 			password VARCHAR(50) NOT NULL
 		);"

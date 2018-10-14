@@ -143,7 +143,7 @@
                             <!-- <button type="button" id="btn_tracking_b2" class="btn btn-dark btn_tracking_device" disabled="disabled">Consola</button> -->
                             <!-- <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Historial</button> -->
 
-                            <button type="button" class="btn btn-primary ladda-button progress-button" data-style="expand-right">
+                            <button type="button" class="btn btn-primary ladda-button progress-button btn_action_tn" data-style="expand-right">
                                 <span class="ladda-label">Rastrear</span>
                             </button>
                         </div>
@@ -205,41 +205,14 @@
     <div class="panel-footer"><button type="button" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales</button></div>
 </div>
 
-<!-- <button type="hidden" class="AddRedactDocumentation" data-toggle="modal" data-target="#NowAddRedactDocumentation"></button> -->
-
-<!-- <!- Modal -->
-<!-- <div class="modal fade" id="NowAddRedactDocumentation" tabindex="-1" role="dialog" aria-labelledby="ModalRedactionDocument" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="ModalRedactionDocument">Redactar el documento</h4>
-      </div>
-      <div class="modal-body">
-	
-			<script src="app/controller/src/plugins/ckeditor/ckeditor.js"></script>
-			<script src="app/controller/src/plugins/ckeditor/samples/js/sample.js"></script>
-			<link href="app/controller/src/plugins/ckeditor/plugins/codesnippet/lib/highlight/styles/monokai_sublime.css" rel="stylesheet">
-
-			<div class="adjoined-bottom">
-				<div class="grid-container">
-					<div class="grid-width-100">
-						<div id="editor">
-							<h1>¡Escribe tu documento!</h1>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<script>
-				initSample();
-			</script>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-lg btn-primary savechange" data-placement="bottom" data-dismiss="" data-toggle="popover" title="Mensaje de acción" data-content="Los cambios han sido guardados con éxito!.">Guardar cambios</button>
-      </div>
+<div class="panel" id="MessageFailCheckTrackingNetwork" style="visibility: hidden;">
+    <div class="panel-heading">
+        <span class="panel-title">Tracking Network</span>
     </div>
-  </div>
-</div> -->
+
+    <div class="panel-body">
+        No existen ninguna infraestructura de red registrada para mostrar su mapa de red. Por favor, aplique un sondeo de red, o bien, agregue manualmente los dispositivos.
+    </div>
+
+    <div class="panel-footer"><button type="button" onclick="javascript: btn_action_tn();" class="btn btn-dark">Sondear ahora</button></div>
+</div>

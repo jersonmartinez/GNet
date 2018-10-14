@@ -380,42 +380,44 @@
 			return @(int)$this->db_connect->query("SELECT DISTINCT count(*) AS 'count' FROM ".$this->db_prefix."network WHERE checked='0';")->fetch_array()['count'];
 		}
 
-		public function getAllNetworkChecked(){
+		#Obtiene una sola red por la que no se ha sondeado.
+		public function getOnlyOneNetworkChecked(){
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE checked='0' LIMIT 1;");
 		}
 
 		#Rastreo de Red
 		public function SpaceTest(){
+			#Limpiar las tabalas: network, host.
 			$this->InitTables();
 
 			do {
+				#Verificar si hay redes escritas en la tabla: network.
 				if (@!$this->getCountNetwork()){ #No hay redes [0]
+					#Si no hay redes, se agrega la local.
 					@$this->addNetwork($this->getIpRouteLocal()); #Agrega la IP Local: 100.0
 				}
 
-				// break;
+				#Obtiene una sola red por la que no se ha sondeado.
+				if ($this->getOnlyOneNetworkChecked()->num_rows > 0){
 
-				if ($this->getAllNetworkChecked()->num_rows > 0){
-					#Accedemos acá ya que existen redes no escaneadas.
-
-					$Network = $this->getAllNetworkChecked()->fetch_array(MYSQLI_ASSOC)['ip_net'];
-					#Se toma una red no escaneada y se obtiene la dirección de red.
-
-
-					$D = $this->SondearRed($Network);
+					#Se obtiene la dirección de red no escaneada.
+					$Network = $this->getOnlyOneNetworkChecked()->fetch_array(MYSQLI_ASSOC)['ip_net'];
+					
+					#Se toma una red no escaneada y se aplica el sondeo de dispositivos.
+					$ArrayIPAddress = $this->SondearRed($Network);
 					#$D = Array
 					// 192.168.100.1
 					// 192.168.100.6 --
 
-					$iD = 0;
+					$Index = 0;
 
-					foreach ($D as $v) {
-						echo $v." ";
+					foreach ($ArrayIPAddress as $value) {
+						echo $value." ";
 
-						if ($v == $this->getMyIPServer())
-							unset($D[$iD]); # Elimino el servidor actual.
+						if ($value == $this->getMyIPServer())
+							unset($ArrayIPAddress[$Index]); # Elimino el servidor actual.
 
-						$iD++;
+						$Index++;
 					}
 
 					// #$D = Array
@@ -423,7 +425,7 @@
 					// 192.168.100.4
 					
 
-					foreach ($D as $value) {
+					foreach ($ArrayIPAddress as $value) {
 						#192.168.100.1 --, 192.168.100.4
 						$ip_forward = @$this->IsRouter($value); #Es Router (100.1 = yes)
 						
@@ -456,8 +458,8 @@
 
 						echo "Network: ",$Network," |  Value: ",$value," | IP Forward: ",$ip_forward," | Next Net: ",$NextNet;
 						
-						break;
-						exit;
+						// break;
+						// exit;
 
 						if ($ip_forward){
 							$NextNet = $ArrayNets[1];
