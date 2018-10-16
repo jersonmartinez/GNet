@@ -40,7 +40,6 @@
 		define ("PDS_CTL_PHP", 			"app/controller/php");
 
 	define ("PD_CORE", 		$Path."/app/core");
-		define ("PD_CORE_SERVICES", $Path."/app/core/Services");
 		
 		define ("PF_CORE_HEAD", 		$Path."/app/core/ic.head.php");
 		define ("PF_CORE", 				$Path."/app/core/ic.core.php");
