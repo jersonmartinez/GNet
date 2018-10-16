@@ -4,6 +4,22 @@
 		<?php
 			#Agregando fichero head del core.
 			include (PF_CORE_HEAD); 
+
+			#Esta confirmación se hace con el propósito de que en casos que esté logueado y 
+			#la base de datos se de por eliminada, se retorne a la instalación.
+			if ($IC){
+				$QueryUserSecure = $IC->query("SELECT username FROM ".$X.$_SESSION['p']." WHERE username='".$_SESSION['username']."';");
+				
+				if ($QueryUserSecure->num_rows == 0)
+					SecureReload();
+			} else {
+				SecureReload();
+			}
+
+			function SecureReload(){
+				@$_SESSION['login'] = false;
+				header("Location: ", PF_LOGOUT);
+			}
 		?>
 	</head>
 		<?php
