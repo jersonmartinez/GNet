@@ -261,20 +261,26 @@
   </li> -->
 
 <?php 
-  $CN = new ConnectSSH();
-    $Otro = $CN->ConnectDB($H, $U, $P, $D, $X);
+    $StyleHidden = "visibility: hidden;";
+    $CN = new ConnectSSH();
+    
+    if ($CN->ConnectDB($H, $U, $P, $D, $X)->db_connect){
+        // Credentials Local Machine
 
-    // Credentials Local Machine
-    $CLMUser = $CN->getCredentialsLocalMachine()['username'];
-    $CLMPass = $CN->getCredentialsLocalMachine()['password'];
+        if ($CN->getCountCredentialsLocalMachine() > 0){
+            $CLMUser = $CN->getCredentialsLocalMachine()['username'];
+            $CLMPass = $CN->getCredentialsLocalMachine()['password'];
 
-    $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
+            $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
 
-    if (!$ConnectSSH->CN){
-        $StyleHidden = "visibility: hidden;";
-    } else {
-        $StyleHidden = "visibility: visible;";
-      }
+            if (!$ConnectSSH->CN){
+                $StyleHidden = "visibility: hidden;";
+            } else {
+                $StyleHidden = "visibility: visible;";
+            }
+        }
+    }
+
 ?>
 
 <li class="sidebar-stat SB_Medida_RAM" style="<?php echo @$StyleHidden; ?>">
