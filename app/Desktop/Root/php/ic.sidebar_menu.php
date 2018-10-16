@@ -59,8 +59,88 @@
         </a>
     </li>
 
-    <!-- Gestionar servicios de red -->
-    <li>
+
+
+  <?php
+    if (REM_NOTIFY_NECESSARY){
+      ?>
+        <li class="sidebar-label pt15">Otras configuraciones</li>
+          <li>
+            <a class="accordion-toggle" href="#">
+              <span class="glyphicon glyphicon-fire"></span>
+    
+              <span class="sidebar-title">...</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+              <li>
+                <a href="admin_plugins-panels.html">
+                  <span class="glyphicon glyphicon-book"></span>Crear usuario</a>
+              </li>
+              <li>
+                <a href="admin_plugins-modals.html">
+                  <span class="glyphicon glyphicon-modal-window"></span>Actualizar datos</a>
+              </li>
+              <li>
+                <a href="admin_plugins-dock.html">
+                  <span class="glyphicon glyphicon-equalizer"></span>Cambiar contraseña </a>
+              </li>
+            </ul>
+          </li>
+      <?php
+    }
+  ?>
+
+  <?php 
+    $StyleHidden = "visibility: hidden;";
+    $CN = new ConnectSSH();
+    
+    if ($CN->ConnectDB($H, $U, $P, $D, $X)->db_connect){
+        // Credentials Local Machine
+
+        if ($CN->getCountCredentialsLocalMachine() > 0){
+            $CLMUser = $CN->getCredentialsLocalMachine()['username'];
+            $CLMPass = $CN->getCredentialsLocalMachine()['password'];
+
+            $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
+
+            if (!$ConnectSSH->CN){
+                $StyleHidden = "visibility: hidden;";
+            } else {
+                $StyleHidden = "visibility: visible;";
+            }
+        }
+    }
+
+?>
+
+<li class="sidebar-stat SB_Medida_RAM" style="<?php echo @$StyleHidden; ?>">
+  <a href="#projectOne" class="fs11">
+    <span class="fa fa-dropbox text-warning"></span>
+    <span class="sidebar-title text-muted">Remote Server</span>
+    <span class="pull-right mr20 text-muted">100%</span>
+    <div class="progress progress-bar-xs mh20">
+      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
+        <span class="sr-only">62% Complete</span>
+      </div>
+    </div>
+  </a>
+</li>
+  
+</ul>
+<!-- End: Sidebar Menu -->
+
+
+<!-- Start: Sidebar Collapse Button -->
+<div class="sidebar-toggle-mini">
+  <a href="#">
+    <span class="fa fa-sign-out"></span>
+  </a>
+</div>
+<!-- End: Sidebar Collapse Button -->
+
+  <!-- Gestionar servicios de red -->
+    <!-- <li>
         <a class="accordion-toggle" href="#">
             <span class="glyphicon glyphicon-book"></span>
             <span class="sidebar-title">Servicios de red</span>
@@ -83,7 +163,7 @@
                 </a>
             </li>      
         </ul>
-    </li>
+    </li> -->
 
     <!-- <li>
         <a class="accordion-toggle" href="#">
@@ -110,36 +190,6 @@
           
         </ul>
     </li> -->
-
-
-  <?php
-    if (REM_NOTIFY_NECESSARY){
-      ?>
-        <li class="sidebar-label pt15">Otras configuraciones</li>
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="glyphicon glyphicon-fire"></span>
-              <span class="sidebar-title">...</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a href="admin_plugins-panels.html">
-                  <span class="glyphicon glyphicon-book"></span>Crear usuario</a>
-              </li>
-              <li>
-                <a href="admin_plugins-modals.html">
-                  <span class="glyphicon glyphicon-modal-window"></span>Actualizar datos</a>
-              </li>
-              <li>
-                <a href="admin_plugins-dock.html">
-                  <span class="glyphicon glyphicon-equalizer"></span>Cambiar contraseña </a>
-              </li>
-            </ul>
-          </li>
-      <?php
-    }
-  ?>
 
   <!-- <li>
     <a class="accordion-toggle" href="#">
@@ -259,51 +309,3 @@
       </div>
     </a>
   </li> -->
-
-<?php 
-    $StyleHidden = "visibility: hidden;";
-    $CN = new ConnectSSH();
-    
-    if ($CN->ConnectDB($H, $U, $P, $D, $X)->db_connect){
-        // Credentials Local Machine
-
-        if ($CN->getCountCredentialsLocalMachine() > 0){
-            $CLMUser = $CN->getCredentialsLocalMachine()['username'];
-            $CLMPass = $CN->getCredentialsLocalMachine()['password'];
-
-            $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
-
-            if (!$ConnectSSH->CN){
-                $StyleHidden = "visibility: hidden;";
-            } else {
-                $StyleHidden = "visibility: visible;";
-            }
-        }
-    }
-
-?>
-
-<li class="sidebar-stat SB_Medida_RAM" style="<?php echo @$StyleHidden; ?>">
-  <a href="#projectOne" class="fs11">
-    <span class="fa fa-dropbox text-warning"></span>
-    <span class="sidebar-title text-muted">Remote Server</span>
-    <span class="pull-right mr20 text-muted">100%</span>
-    <div class="progress progress-bar-xs mh20">
-      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-        <span class="sr-only">62% Complete</span>
-      </div>
-    </div>
-  </a>
-</li>
-  
-</ul>
-<!-- End: Sidebar Menu -->
-
-
-<!-- Start: Sidebar Collapse Button -->
-<div class="sidebar-toggle-mini">
-  <a href="#">
-    <span class="fa fa-sign-out"></span>
-  </a>
-</div>
-<!-- End: Sidebar Collapse Button -->
