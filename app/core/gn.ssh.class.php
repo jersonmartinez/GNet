@@ -756,6 +756,20 @@
 			return getErrors();
 		}
 
+		public function PercentageCPU($UsoUser, $UsoSystem) {        
+	        return ($UsoUser + $UsoSystem);
+	    }
+
+	    public function PercenMemory($MemUsed) {
+	        $MemUsed = ($MemUsed * 100) / 1998;
+	        if(is_float($MemUsed)) {
+	          $PercenFloat = number_format($MemUsed, 2, '.', '');
+	          return $PercenFloat;   
+	        } 
+	        
+	        return $MemUsed;
+	    }
+
 		/*public function getDHCPServer(){
 			$filename = "getDHCPServer.sh";
 			$ActionArray[] = 'IntListen=($(cat /etc/default/isc-dhcp-server | grep INTERFACES | cut -d " -f2))';
@@ -785,7 +799,7 @@
 
 			$this->db_connect = new GNet($H, $U, $P, $D);
 			$this->db_prefix = $X;
-		
+
 			$FirstConnect->close();
 		}
 

@@ -94,39 +94,76 @@
   <?php 
     $StyleHidden = "visibility: hidden;";
     $CN = new ConnectSSH();
+    $CN->ConnectDB($H, $U, $P, $D, $X);
     
-    if ($CN->ConnectDB($H, $U, $P, $D, $X)->db_connect){
+    if ($CN->db_connect){
         // Credentials Local Machine
 
+        ?>
+            <script type="text/javascript">
+                console.log("Si hay credenciales");
+            </script>
+        <?php
         if ($CN->getCountCredentialsLocalMachine() > 0){
+
+
             $CLMUser = $CN->getCredentialsLocalMachine()['username'];
             $CLMPass = $CN->getCredentialsLocalMachine()['password'];
 
             $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
 
-            if (!$ConnectSSH->CN){
-                $StyleHidden = "visibility: hidden;";
-            } else {
+            if ($ConnectSSH->CN){
                 $StyleHidden = "visibility: visible;";
+            } else {
+                $StyleHidden = "visibility: hidden;";
             }
+
+            $CPUStatus    = explode(",", $ConnectSSH->getCpuState());
+            $MemoryStatus = explode(",", $ConnectSSH->getMemoryState());
+
+            $CPUPercentaje      = $ConnectSSH->PercentageCPU($CPUStatus[1], $CPUStatus[2]);
+            $MemoryPercentaje   = $ConnectSSH->PercenMemory($MemoryStatus[1]);
+
         }
+    } else {
+        ?>
+            <script type="text/javascript">
+                console.log("No hay conexion");
+            </script>
+        <?php
     }
 
 ?>
+    <li class="sidebar-label pt25 pb10 SB_Medida_Label" style="<?php echo @$StyleHidden; ?>">
+        Estadísticas del servidor
+    </li>
 
-<li class="sidebar-stat SB_Medida_RAM" style="<?php echo @$StyleHidden; ?>">
-  <a href="#projectOne" class="fs11">
-    <span class="fa fa-dropbox text-warning"></span>
-    <span class="sidebar-title text-muted">Remote Server</span>
-    <span class="pull-right mr20 text-muted">100%</span>
-    <div class="progress progress-bar-xs mh20">
-      <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-        <span class="sr-only">62% Complete</span>
-      </div>
-    </div>
-  </a>
-</li>
-  
+    <li class="sidebar-stat SB_Medida_CPU" style="<?php echo @$StyleHidden; ?>" title="Uso de CPU">
+        <a href="#" class="fs11">
+            <span class="fa fa-dropbox text-warning"></span>
+            <span class="sidebar-title text-muted">Procesador</span>
+            <span class="pull-right mr20 text-muted"><?php echo @$CPUPercentaje; ?>%</span>
+            <div class="progress progress-bar-xs mh20">
+                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$CPUPercentaje; ?>%">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li class="sidebar-stat SB_Medida_RAM" style="<?php echo @$StyleHidden; ?>" title="Uso de RAM">
+        <a href="#" class="fs11">
+            <span class="fa fa-dropbox text-warning"></span>
+            <span class="sidebar-title text-muted">Memoria RAM</span>
+            <span class="pull-right mr20 text-muted"><?php echo @$MemoryPercentaje; ?>%</span>
+            <div class="progress progress-bar-xs mh20">
+                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$MemoryPercentaje; ?>%">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+        </a>
+    </li>
+
 </ul>
 <!-- End: Sidebar Menu -->
 
