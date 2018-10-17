@@ -16,10 +16,11 @@
     $CN_Global->ConnectDB($H, $U, $P, $D, $X);
 	
 	if ($CN_Global->db_connect){
-		if (@$_SESSION['login'] == true)
+		if (@$_SESSION['login'] == true){
 			include (PF_DESKTOP);
-		else
+		} else {
 			include (PF_CORE);
+		}
 	} else {
 		session_destroy();
 	}

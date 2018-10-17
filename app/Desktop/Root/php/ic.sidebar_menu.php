@@ -59,8 +59,106 @@
         </a>
     </li>
 
-    <!-- Gestionar servicios de red -->
-    <li>
+
+
+  <?php
+    if (REM_NOTIFY_NECESSARY){
+      ?>
+        <li class="sidebar-label pt15">Otras configuraciones</li>
+          <li>
+            <a class="accordion-toggle" href="#">
+              <span class="glyphicon glyphicon-fire"></span>
+    
+              <span class="sidebar-title">...</span>
+              <span class="caret"></span>
+            </a>
+            <ul class="nav sub-nav">
+              <li>
+                <a href="admin_plugins-panels.html">
+                  <span class="glyphicon glyphicon-book"></span>Crear usuario</a>
+              </li>
+              <li>
+                <a href="admin_plugins-modals.html">
+                  <span class="glyphicon glyphicon-modal-window"></span>Actualizar datos</a>
+              </li>
+              <li>
+                <a href="admin_plugins-dock.html">
+                  <span class="glyphicon glyphicon-equalizer"></span>Cambiar contraseña </a>
+              </li>
+            </ul>
+          </li>
+      <?php
+    }
+  ?>
+
+  <?php 
+    $StyleHidden = "visibility: hidden;";
+    $CN = new ConnectSSH();
+    $CN->ConnectDB($H, $U, $P, $D, $X);
+    
+    if ($CN->db_connect){
+        // Credentials Local Machine
+        if ($CN->getCountCredentialsLocalMachine() > 0){
+
+            $CLMUser = $CN->getCredentialsLocalMachine()['username'];
+            $CLMPass = $CN->getCredentialsLocalMachine()['password'];
+
+            $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
+
+            if ($ConnectSSH->CN)
+                $StyleHidden = "visibility: visible;";
+
+            $CPUPercentaje      = $ConnectSSH->PercentageCPU();
+            $MemoryPercentaje   = $ConnectSSH->PercentageMemory();
+
+        }
+    }
+
+?>
+    <li class="sidebar-label pt25 pb10 SB_Medida_Label" style="<?php echo @$StyleHidden; ?>">
+        Estadísticas del servidor
+    </li>
+
+    <li class="sidebar-stat SB_Medida_CPU" style="<?php echo @$StyleHidden; ?>" title="Uso de CPU">
+        <a href="#" class="fs11">
+            <span class="fa fa-dropbox text-warning"></span>
+            <span class="sidebar-title text-muted">Procesador</span>
+            <span class="pull-right mr20 text-muted ShowInfoPercentageCPUPull"><?php echo @$CPUPercentaje; ?>%</span>
+            <div class="progress progress-bar-xs mh20">
+                <div class="progress-bar progress-bar-warning ShowInfoPercentageCPUProgress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$CPUPercentaje; ?>%">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+    <li class="sidebar-stat SB_Medida_RAM" style="<?php echo @$StyleHidden; ?>" title="Uso de RAM">
+        <a href="#" class="fs11">
+            <span class="fa fa-dropbox text-warning"></span>
+            <span class="sidebar-title text-muted">Memoria RAM</span>
+            <span class="pull-right mr20 text-muted ShowInfoPercentageRAMPull"><?php echo @$MemoryPercentaje; ?>%</span>
+            <div class="progress progress-bar-xs mh20">
+                <div class="progress-bar progress-bar-warning ShowInfoPercentageRAMProgress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$MemoryPercentaje; ?>%">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+        </a>
+    </li>
+
+</ul>
+<!-- End: Sidebar Menu -->
+
+
+<!-- Start: Sidebar Collapse Button -->
+<div class="sidebar-toggle-mini">
+  <a href="#">
+    <span class="fa fa-sign-out"></span>
+  </a>
+</div>
+<!-- End: Sidebar Collapse Button -->
+
+  <!-- Gestionar servicios de red -->
+    <!-- <li>
         <a class="accordion-toggle" href="#">
             <span class="glyphicon glyphicon-book"></span>
             <span class="sidebar-title">Servicios de red</span>
@@ -83,7 +181,7 @@
                 </a>
             </li>      
         </ul>
-    </li>
+    </li> -->
 
     <!-- <li>
         <a class="accordion-toggle" href="#">
@@ -110,36 +208,6 @@
           
         </ul>
     </li> -->
-
-
-  <?php
-    if (REM_NOTIFY_NECESSARY){
-      ?>
-        <li class="sidebar-label pt15">Otras configuraciones</li>
-          <li>
-            <a class="accordion-toggle" href="#">
-              <span class="glyphicon glyphicon-fire"></span>
-              <span class="sidebar-title">...</span>
-              <span class="caret"></span>
-            </a>
-            <ul class="nav sub-nav">
-              <li>
-                <a href="admin_plugins-panels.html">
-                  <span class="glyphicon glyphicon-book"></span>Crear usuario</a>
-              </li>
-              <li>
-                <a href="admin_plugins-modals.html">
-                  <span class="glyphicon glyphicon-modal-window"></span>Actualizar datos</a>
-              </li>
-              <li>
-                <a href="admin_plugins-dock.html">
-                  <span class="glyphicon glyphicon-equalizer"></span>Cambiar contraseña </a>
-              </li>
-            </ul>
-          </li>
-      <?php
-    }
-  ?>
 
   <!-- <li>
     <a class="accordion-toggle" href="#">
@@ -244,85 +312,3 @@
       <span class="sidebar-title">Una opción más.</span>
     </a>
   </li> -->
-
-
-<?php 
-  $CN = new ConnectSSH();
-  $Otro = $CN->ConnectDB($H, $U, $P, $D, $X);
-
-  // Credentials Local Machine
-  $CLMUser = $CN->getCredentialsLocalMachine()['username'];
-  $CLMPass = $CN->getCredentialsLocalMachine()['password'];
-
-  $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
-  
-  if (!$ConnectSSH->CN){
-      $StyleHidden = "visibility: hidden;";
-  } else {
-      $StyleHidden = "visibility: visible;";
-  }
-
-  $CpuStatus    = explode(",", $ConnectSSH->getCpuState());
-  $MemoryStatus = explode(",", $ConnectSSH->getMemoryState());
-
-  function PercentageCPU($UsoUser, $UsoSystem) {
-    $cpuUsage = $UsoUser + $UsoSystem;
-    return $cpuUsage."%";   
-  }
-
-  function PercenMemory($MemUsed) {
-    $MemUsed = ($MemUsed * 100) / 1998;
-    if(is_float($MemUsed)) {
-      $PercenFloat = number_format($MemUsed, 2, '.', '');
-      return $PercenFloat."%";   
-    } 
-    
-    return $MemUsed."%";
-  }
-
-
-  /*function getServerCpuUsage(){
-    $load = sys_getloadavg();
-    return $load[0];
-  }*/
-?>
-
-  <!-- sidebar progress bars -->
-  <li class="sidebar-label pt25 pb10">Estadísticas del servidor</li>
-  <li class="sidebar-stat SB_Medida_CPU" style="<?php echo @$StyleHidden; ?>">
-    <a href="#projectOne" class="fs11">
-      <span class="fa fa-adjust text-info"></span>
-      <span class="sidebar-title text-muted">Uso de CPU</span>
-      <span class="pull-right mr20 text-muted"><?php echo PercentageCPU($CpuStatus[1], $CpuStatus[2]);?></span>
-      <div class="progress progress-bar-xs mh20 mb10">
-        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo PercentageCPU($CpuStatus[1], $CpuStatus[2]);?>">
-          <span class="sr-only"></span>
-        </div>
-      </div>
-    </a>
-  </li>
-
-  <li class="sidebar-stat SB_Medida_RAM" style="<?php echo @$StyleHidden; ?>">
-    <a href="#projectOne" class="fs11">
-      <span class="fa fa-random text-warning"></span>
-      <span class="sidebar-title text-muted">Uso de memoria</span>
-      <span class="pull-right mr20 text-muted"><?php echo PercenMemory($MemoryStatus[1]); ?></span>
-      <div class="progress progress-bar-xs mh20">
-        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo PercenMemory($MemoryStatus[1]); ?> ">
-          <span class="sr-only"></span>
-        </div>
-      </div>
-    </a>
-  </li>
-  
-</ul>
-<!-- End: Sidebar Menu -->
-
-
-<!-- Start: Sidebar Collapse Button -->
-<div class="sidebar-toggle-mini">
-  <a href="#">
-    <span class="fa fa-sign-out"></span>
-  </a>
-</div>
-<!-- End: Sidebar Collapse Button -->
