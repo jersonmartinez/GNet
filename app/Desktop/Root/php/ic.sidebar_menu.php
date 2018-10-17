@@ -106,23 +106,16 @@
         <?php
         if ($CN->getCountCredentialsLocalMachine() > 0){
 
-
             $CLMUser = $CN->getCredentialsLocalMachine()['username'];
             $CLMPass = $CN->getCredentialsLocalMachine()['password'];
 
             $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
 
-            if ($ConnectSSH->CN){
+            if ($ConnectSSH->CN)
                 $StyleHidden = "visibility: visible;";
-            } else {
-                $StyleHidden = "visibility: hidden;";
-            }
 
-            $CPUStatus    = explode(",", $ConnectSSH->getCpuState());
-            $MemoryStatus = explode(",", $ConnectSSH->getMemoryState());
-
-            $CPUPercentaje      = $ConnectSSH->PercentageCPU($CPUStatus[1], $CPUStatus[2]);
-            $MemoryPercentaje   = $ConnectSSH->PercenMemory($MemoryStatus[1]);
+            $CPUPercentaje      = $ConnectSSH->PercentageCPU();
+            $MemoryPercentaje   = $ConnectSSH->PercentageMemory();
 
         }
     } else {
@@ -142,9 +135,9 @@
         <a href="#" class="fs11">
             <span class="fa fa-dropbox text-warning"></span>
             <span class="sidebar-title text-muted">Procesador</span>
-            <span class="pull-right mr20 text-muted"><?php echo @$CPUPercentaje; ?>%</span>
+            <span class="pull-right mr20 text-muted ShowInfoPercentageCPUPull"><?php echo @$CPUPercentaje; ?>%</span>
             <div class="progress progress-bar-xs mh20">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$CPUPercentaje; ?>%">
+                <div class="progress-bar progress-bar-warning ShowInfoPercentageCPUProgress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$CPUPercentaje; ?>%">
                     <span class="sr-only"></span>
                 </div>
             </div>
@@ -155,9 +148,9 @@
         <a href="#" class="fs11">
             <span class="fa fa-dropbox text-warning"></span>
             <span class="sidebar-title text-muted">Memoria RAM</span>
-            <span class="pull-right mr20 text-muted"><?php echo @$MemoryPercentaje; ?>%</span>
+            <span class="pull-right mr20 text-muted ShowInfoPercentageRAMPull"><?php echo @$MemoryPercentaje; ?>%</span>
             <div class="progress progress-bar-xs mh20">
-                <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$MemoryPercentaje; ?>%">
+                <div class="progress-bar progress-bar-warning ShowInfoPercentageRAMProgress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$MemoryPercentaje; ?>%">
                     <span class="sr-only"></span>
                 </div>
             </div>

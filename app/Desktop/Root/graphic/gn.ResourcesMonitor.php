@@ -87,6 +87,8 @@
 
 ?>
 
+<input type="hidden" id="InputHiddenPercentageCPU" value="<?php echo $ConnectSSH->PercentageCPU(); ?>"/>
+<input type="hidden" id="InputHiddenPercentageRAM" value="<?php echo $ConnectSSH->PercentageMemory(); ?>"/>
 
 <div role="tab-block">
     <!-- Tab Content Panes -->
