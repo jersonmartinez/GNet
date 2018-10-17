@@ -15,8 +15,7 @@
 
     // $R = $CN->getAllHost();
     $R = $CN->getHostWithOutInterfaces();
-    $IPNet = $CN->getIPNet(); 
-
+    $IPNet = $CN->getIPNet();
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/style.css">

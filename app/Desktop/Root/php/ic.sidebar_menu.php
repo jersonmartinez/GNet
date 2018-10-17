@@ -98,12 +98,6 @@
     
     if ($CN->db_connect){
         // Credentials Local Machine
-
-        ?>
-            <script type="text/javascript">
-                console.log("Si hay credenciales");
-            </script>
-        <?php
         if ($CN->getCountCredentialsLocalMachine() > 0){
 
             $CLMUser = $CN->getCredentialsLocalMachine()['username'];
@@ -118,12 +112,6 @@
             $MemoryPercentaje   = $ConnectSSH->PercentageMemory();
 
         }
-    } else {
-        ?>
-            <script type="text/javascript">
-                console.log("No hay conexion");
-            </script>
-        <?php
     }
 
 ?>
