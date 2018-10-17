@@ -756,6 +756,26 @@
 			return getErrors();
 		}
 
+		public function PercentageCPU() {
+			$CPUStatus = explode(",", $this->getCpuState());
+	        
+	        return ($CPUStatus[1] + $CPUStatus[2]);
+	    }
+
+	    public function PercentageMemory() {
+	    	$MemoryStatus = explode(",", $this->getMemoryState());
+	        
+	        $MemoryStatus[1] = ($MemoryStatus[1] * 100) / 1998;
+	        
+	        if(is_float($MemoryStatus[1])) {
+	          $PercenFloat = number_format($MemoryStatus[1], 2, '.', '');
+	          
+	          return $PercenFloat;
+	        }
+	        
+	        return $MemoryStatus[1];
+	    }
+
 		/*public function getDHCPServer(){
 			$filename = "getDHCPServer.sh";
 			$ActionArray[] = 'IntListen=($(cat /etc/default/isc-dhcp-server | grep INTERFACES | cut -d " -f2))';
@@ -785,7 +805,7 @@
 
 			$this->db_connect = new GNet($H, $U, $P, $D);
 			$this->db_prefix = $X;
-		
+
 			$FirstConnect->close();
 		}
 

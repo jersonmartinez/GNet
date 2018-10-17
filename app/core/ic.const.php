@@ -33,13 +33,13 @@
 		define ("PD_CTL_JS", 	$Path."/app/controller/js");
 		define ("PD_CTL_PHP", 	$Path."/app/controller/php");
 		define ("PD_CTL_SRC", 	$Path."/app/controller/src");
+			define ("PF_LOGOUT", 	$Path."/app/controller/php/ic.logout.php");
 
 		define ("PDS_CTL_SRC", 			"app/controller/src");
 		define ("PDS_CTL_JS", 			"app/controller/js");
 		define ("PDS_CTL_PHP", 			"app/controller/php");
 
 	define ("PD_CORE", 		$Path."/app/core");
-		define ("PD_CORE_SERVICES", $Path."/app/core/Services");
 		
 		define ("PF_CORE_HEAD", 		$Path."/app/core/ic.head.php");
 		define ("PF_CORE", 				$Path."/app/core/ic.core.php");
