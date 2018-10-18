@@ -7,7 +7,7 @@
 		public $CN = false;
 		private $stream;
 		private $errors = array();
-		private $local_path = "/var/www/html/NetworkAdmin/php/";
+		private $local_path = "/var/www/html/GNet/";
 		private $remote_path;
 		private $filename;
 
@@ -50,7 +50,7 @@
 					$this->ip_host 		= $ip_host;
 					$this->username 	= $username;
 					$this->password 	= $password;
-					$this->remote_path 	= "/home/".$username."/";
+					$this->remote_path 	= "/home/";
 		        }
 		    }
 

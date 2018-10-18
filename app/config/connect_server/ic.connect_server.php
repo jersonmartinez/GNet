@@ -36,7 +36,8 @@
 			$X = rtrim($ArrayFileConfig[4]);
 
 		#Se verifica el tamaño de la dirección Local, IP.
-		if (strlen($H) == 12){
+		//echo "<br/><br/><br/>Host original: ", $H, "<br/><br/><br/>";
+		if (strlen($H) == 12 && ($H == "localhost" || $H == "127.0.0.1")){
 			@$H = substr($H, 3); #Se aplica una subcadena en caso de tener 12 caracteres.
 		}
 
