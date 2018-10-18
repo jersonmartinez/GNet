@@ -13,7 +13,7 @@
     $CLMUser = $CN->getCredentialsLocalMachine()['username'];
     $CLMPass = $CN->getCredentialsLocalMachine()['password'];
 
-    $ConnectSSH = new ConnectSSH("10.0.100.101", $CLMUser, $CLMPass);
+    $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
 
     if (!$ConnectSSH->CN){
         echo "Fail";
