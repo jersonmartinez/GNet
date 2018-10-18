@@ -6,8 +6,8 @@
 	include (@$_SESSION['getConsts']);
 
 	if (file_exists(PF_CONFIG)){
-		#Cambiamos el modo a rwx-r---r--
-		if (@chmod(PF_CONFIG, 0744)){
+		#Cambiamos el modo
+		if (@chmod(PF_CONFIG, 0777)){
 			#Se elimina el fichero de configuración
 			if (@unlink(PF_CONFIG)){
 				echo "OK"; //En caso de que se haya eliminado con éxito, se devuelve OK.

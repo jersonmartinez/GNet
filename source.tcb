@@ -1,4 +1,48 @@
 <?php
+	/*@session_start();
+	#Inclusión de constantes que contienen las rutas de acceso. 
+	@$_SESSION['getConsts'] = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."app/core/ic.const.php";
+	
+	if (!file_exists(@$_SESSION['getConsts']))
+		@$_SESSION['getConsts'] = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php";
+
+	$cn = new mysqli("10.0.100.102", "root", "root", "gnet");
+
+	include (@$_SESSION['getConsts']);
+	echo "Path consts: ", $_SESSION['getConsts'], "<br/>";
+	echo "PF_CONNECT_SERVER: ", PF_CONNECT_SERVER, "<br/>";
+	echo "PF_SSH: ", PF_SSH, "<br/>";
+
+	if ($cn->connect_error){
+		echo "No hay conexión";
+	} else {
+		echo "Todo bien conectado!";
+	}
+
+	include (PF_CONNECT_SERVER);
+	include (PF_SSH);
+	
+	$CN_Global = new ConnectSSH();
+    $CN_Global->ConnectDB($H, $U, $P, $D, $X);
+
+	echo "<br/><br/><b>Conexion CN_GLOBAL: </b><br/>";
+	echo "<br/>Host: ", $H, " ~ User: ", $U, " ~ Pass: ", $P, " ~ DB: ", $D, " ~ Prefix: ", $X, "<br/>";
+	if ($CN_Global->db_connect){
+		echo "Todo bien conectado!";
+	} else {
+		echo "No hay conexión";
+	}
+
+	echo "<br/><br/><b>Conexion IC: </b><br/>";
+	if ($IC->connect_error){
+		echo "No hay conexión";
+	} else {
+		echo "Todo bien conectado!";
+	}
+	
+	//phpinfo();
+	exit();
+*/
 
 	@session_start();
 	#Inclusión de constantes que contienen las rutas de acceso. 
