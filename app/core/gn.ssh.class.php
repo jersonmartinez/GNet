@@ -7,7 +7,7 @@
 		public $CN = false;
 		private $stream;
 		private $errors = array();
-		private $local_path = "/var/www/html/GNet/";
+		private $local_path = "/var/www/html/GNet/app/scripts/";
 		private $remote_path;
 		private $filename;
 
