@@ -45,20 +45,3 @@ This Code of Conduct is adapted from the [Contributor Covenant][homepage], versi
 [homepage]: http://contributor-covenant.org
 [version]: http://contributor-covenant.org/version/1/4/
 
-## Contacto de los autores
-
-* **Jerson A. Martínez M.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn]
-https://www.linkedin.com/in/jersonmartinezsm/
-
-* **Frankier Y. Flores Z.** - *Ing. Telemática (Redes, Telecomunicaciones y Desarrollo de Software)* - [LinkedIn]
-https://www.linkedin.com/in/frankier-flores-4b9b94108/
-
-### YouTube Channels
-
-* **Side Master** - *Formador en YouTube | Canal de contenido variado sobre Informática (Shell Script, Programación, Hacking, Networking, etc.)* - [Channel 1]
-
-https://www.youtube.com/user/sidemastersupremo/
-
-* **Core Stack** - *Formador en YouTube | Canal de contenido variado sobre Informática (Shell Script, Programación, Hacking, Networking, etc.)* - [Channel 2]
-
-https://www.youtube.com/user/gvideosmtutorialesgm
