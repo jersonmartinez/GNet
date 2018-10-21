@@ -77,6 +77,25 @@
 
     <!-- Wrap content in admin-panel class -->
     <div>
+        <div class="row AdminPanel_ProffileSettings">
+
+            <!-- Create Column with required .admin-grid class -->
+            <div class="col-md-12">
+
+                <!-- Create Panel with required unique ID -->
+                <div class="panel" id="pUnique_ProfileSetting">
+                    <div class="panel-heading">
+                        <span class="panel-icon"><i class="fa fa-tachometer"></i></span>
+                        <span class="panel-title">Configuración de perfil</span>   
+                    </div>
+                    <div class="panel-body AdminPanel_ProfileSetting_PanelBody">
+                        <!-- El contenido -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Column -->
+        </div>
 
         <div class="row AdminPanel_DevicesManagement">
             <div class="col-md-12">

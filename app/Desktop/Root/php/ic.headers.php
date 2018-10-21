@@ -143,7 +143,7 @@
               }
             ?>
 
-            <li class="list-group-item">
+            <li class="list-group-item" id="ConfigureProfile">
               <a href="#" class="animated animated-short fadeInUp">
                 <span class="fa fa-gear"></span> Configuración </a>
             </li>

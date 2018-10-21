@@ -42,6 +42,29 @@ $("#LogoutRoot").click(function(){
 	window.location.href="app/controller/php/ic.logout.php";
 });
 
+$("#ConfigureProfile").click(function(){
+	alert("Configurar Perfil");
+	$.ajax({
+		url: "app/Desktop/Root/graphic/gn.ProfileSettings.php",
+		type: "post",
+		success: function(data){
+			//if (data == 'OK') {
+				HideAdminPanels();
+			
+				NProgress.configure({parent: 'body'});
+				NProgress.start();
+
+				$(".AdminPanel_ProffileSettings").addClass('animated fadeIn').show();
+
+				$(".AdminPanel_ProfileSetting_PanelBody").addClass('animated fadeIn').html(data);
+			//} else if (data == 'Fail') {
+			Finish_NProgress();
+			//}
+				
+		}
+	});
+});
+
 function AddNetwork(){
 	xhr = $.ajax({
 		url: "app/Desktop/Root/php/ic.AddNet.php",
@@ -551,6 +574,7 @@ function HideAdminPanels(){
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
 	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeOut').hide();
+	$(".AdminPanel_ProffileSettings").addClass('animated fadeOut').hide();
 }
 
 function HideADM(which){
