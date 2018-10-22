@@ -43,24 +43,17 @@ $("#LogoutRoot").click(function(){
 });
 
 $("#ConfigureProfile").click(function(){
-	alert("Configurar Perfil");
 	$.ajax({
 		url: "app/Desktop/Root/graphic/gn.ProfileSettings.php",
 		type: "post",
 		success: function(data){
-			//if (data == 'OK') {
-				HideAdminPanels();
-			
-				NProgress.configure({parent: 'body'});
-				NProgress.start();
-
-				$(".AdminPanel_ProffileSettings").addClass('animated fadeIn').show();
-
-				$(".AdminPanel_ProfileSetting_PanelBody").addClass('animated fadeIn').html(data);
-			//} else if (data == 'Fail') {
+			HideAdminPanels();		
+			NProgress.configure({parent: 'body'});
+			NProgress.start();
+			$(".AdminPanel_ProffileSettings").addClass('animated fadeIn').show();
+			$(".AdminPanel_ProfileSetting_PanelBody").addClass('animated fadeIn').html(data);
+			draw();
 			Finish_NProgress();
-			//}
-				
 		}
 	});
 });

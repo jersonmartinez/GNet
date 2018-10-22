@@ -85,8 +85,8 @@
                 <!-- Create Panel with required unique ID -->
                 <div class="panel" id="pUnique_ProfileSetting">
                     <div class="panel-heading">
-                        <span class="panel-icon"><i class="fa fa-tachometer"></i></span>
-                        <span class="panel-title">Configuración de perfil</span>   
+                        <span class="panel-icon"><i class="fa fa-user"></i></span>
+                        <span class="panel-title">Configuración de la cuenta del usuario</span>   
                     </div>
                     <div class="panel-body AdminPanel_ProfileSetting_PanelBody">
                         <!-- El contenido -->
