@@ -1,8 +1,3 @@
-<?php 
-    @session_start();
-    include (@$_SESSION['getConsts']); 
-?>
-
 <!-- Begin: Content -->
 <section id="content" class="table-layout animated fadeIn" style="width: 80%;">
 
@@ -89,7 +84,7 @@
                         <i class="fa fa-user"></i>
                       </label>
                     </label>
-                    <label for="username" class="button">
+                    <label for="username" class="button" id="btnChangeUserName">
                       <i class="fa fa-pencil"></i>
                     </label>
                   </div>

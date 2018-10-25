@@ -47,16 +47,18 @@ $("#ConfigureProfile").click(function(){
 		url: "app/Desktop/Root/graphic/gn.ProfileSettings.php",
 		type: "post",
 		success: function(data){
-			HideAdminPanels();		
-			NProgress.configure({parent: 'body'});
-			NProgress.start();
+			HideAdminPanels();	
 			$(".AdminPanel_ProffileSettings").addClass('animated fadeIn').show();
 			$(".AdminPanel_ProfileSetting_PanelBody").addClass('animated fadeIn').html(data);
-			draw();
-			Finish_NProgress();
+			
+			$("#btnChangeUserName").click(function(){
+				$(".ChangeUserName").click();
+			});
 		}
 	});
 });
+
+
 
 function AddNetwork(){
 	xhr = $.ajax({
@@ -561,6 +563,7 @@ $("#ddt_SelectTypeDeviceOptionRouter").click(function(){
 
 $(".AddDeviceManagement").hide();
 $(".AddCredentialsLocalMachine").hide();
+$(".ChangeUserName").hide();
 
 /*Admin Panels*/
 function HideAdminPanels(){
