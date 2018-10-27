@@ -1,5 +1,8 @@
+<?php  
+  @session_start();
+?>
 <!-- Begin: Content -->
-<section id="content" class="table-layout animated fadeIn" style="width: 80%;">
+<section id="content" class="table-layout animated fadeIn" style="width: 80%; margin: 0px auto;">
 
   <!-- begin: .tray-center -->
   <div class="tray tray-center">
@@ -25,7 +28,7 @@
               <div class="fileupload fileupload-new admin-form" data-provides="fileupload">
                 <div class="fileupload-preview thumbnail mb15">
                   <!-- <img data-src="holder.js/100%x147" alt="Imagen de relleno"> -->
-                  <img src="app/Desktop/Root/src/user1.png" alt="Avatar" style="width: 70%; height: 147px;">
+                  <img src="app/Desktop/Root/src/user1.png" alt="Avatar" style="width: 75%; height: 147px;">
                 </div>
                 <span class="button btn-system btn-file btn-block ph5">
                   <span class="fileupload-new">Cargar imagen</span>
@@ -36,7 +39,7 @@
             </div>
             <div class="col-md-9">
               <div class="section row mbn">
-              <div class="col-md-9 pl15">
+              <div class="col-md-12 pl15">
                 <div class="section row mb15">
                     <label for="name1" class="field prepend-icon">
                       <input type="text" name="name1" id="name1" class="event-name gui-input br-light light" placeholder="Nombre">
@@ -73,13 +76,12 @@
           </div>
 
           <div id="tab1_2" class="tab-pane">
-
             <div class="section row mbn">
               <div class="col-md-9 pl15">
                 <div class="section row mb15">
                   <div class="smart-widget sm-right smr-120">
                     <label for="username" class="field prepend-icon">
-                      <input type="text" name="username" id="username" class="gui-input" placeholder="Nombre de usuario">
+                      <input type="text" name="username" id="username" class="gui-input" placeholder="Nombre de usuario" value="Tu nombre de usuario es <?php echo @$_SESSION['username']; ?>">
                       <label for="username" class="field-icon">
                         <i class="fa fa-user"></i>
                       </label>

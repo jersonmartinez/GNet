@@ -765,7 +765,7 @@
 	    public function PercentageMemory() {
 	    	$MemoryStatus = explode(",", $this->getMemoryState());
 	        
-	        $MemoryStatus[1] = ($MemoryStatus[1] * 100) / 1998;
+	        $MemoryStatus[1] = ($MemoryStatus[1] * 100) / $MemoryStatus[0];
 	        
 	        if(is_float($MemoryStatus[1])) {
 	          $PercenFloat = number_format($MemoryStatus[1], 2, '.', '');

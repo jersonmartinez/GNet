@@ -155,7 +155,7 @@
                         <!-- Create Panel with required unique ID -->
                         <div class="panel panel-dark" id="p3">
                             <div class="panel-heading">
-                                <i class="fa fa-battery-full" aria-hidden="true"></i>
+                                <i class="fa fa-fw fa-battery-full" aria-hidden="true"></i>
                                 <span class="panel-title">Estado de la batería</span>
                             </div>
                             <div class="panel-body">

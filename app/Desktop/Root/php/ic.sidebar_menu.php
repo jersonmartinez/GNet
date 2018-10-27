@@ -4,7 +4,7 @@
 
     <li>
         <a href="#" id="sb_item_ResourcesMonitor">
-            <span class="fa fa-tachometer"></span>
+            <span class="fa fa-stack-exchange"></span>
             <span class="sidebar-title">Mi servidor</span>
         </a>
     </li>
@@ -116,16 +116,16 @@
 
 ?>
     <li class="sidebar-label pt25 pb10 SB_Medida_Label" style="<?php echo @$StyleHidden; ?>">
-        Estadísticas del servidor
+      Rendimiento del servidor
     </li>
 
     <li class="sidebar-stat SB_Medida_CPU" style="<?php echo @$StyleHidden; ?>" title="Uso de CPU">
         <a href="#" class="fs11">
-            <span class="fa fa-dropbox text-warning"></span>
-            <span class="sidebar-title text-muted">Procesador</span>
+            <span class="fa fa-adjust text-info"></span>
+            <span class="sidebar-title text-muted">CPU</span>
             <span class="pull-right mr20 text-muted ShowInfoPercentageCPUPull"><?php echo @$CPUPercentaje; ?>%</span>
             <div class="progress progress-bar-xs mh20">
-                <div class="progress-bar progress-bar-warning ShowInfoPercentageCPUProgress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$CPUPercentaje; ?>%">
+                <div class="progress-bar progress-bar-info ShowInfoPercentageCPUProgress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$CPUPercentaje; ?>%">
                     <span class="sr-only"></span>
                 </div>
             </div>
@@ -134,8 +134,8 @@
 
     <li class="sidebar-stat SB_Medida_RAM" style="<?php echo @$StyleHidden; ?>" title="Uso de RAM">
         <a href="#" class="fs11">
-            <span class="fa fa-dropbox text-warning"></span>
-            <span class="sidebar-title text-muted">Memoria RAM</span>
+            <span class="fa fa-ticket text-warning"></span>
+            <span class="sidebar-title text-muted">RAM</span>
             <span class="pull-right mr20 text-muted ShowInfoPercentageRAMPull"><?php echo @$MemoryPercentaje; ?>%</span>
             <div class="progress progress-bar-xs mh20">
                 <div class="progress-bar progress-bar-warning ShowInfoPercentageRAMProgress" role="progressbar" aria-valuenow="45" aria-valuemin="0" aria-valuemax="100" style="width: <?php echo @$MemoryPercentaje; ?>%">

@@ -58,8 +58,6 @@ $("#ConfigureProfile").click(function(){
 	});
 });
 
-
-
 function AddNetwork(){
 	xhr = $.ajax({
 		url: "app/Desktop/Root/php/ic.AddNet.php",

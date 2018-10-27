@@ -55,7 +55,8 @@
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/jvectormap/jquery.jvectormap.min.js"></script>
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/jvectormap/assets/jquery-jvectormap-us-lcc-en.js"></script> 
 
-<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/holder/holder.min.js"></script> 
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/fileupload/fileupload.js"></script>
+<!-- <script src="<?php #echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/holder/holder.min.js"></script> -->  
 
 <!-- Importants Scripts -->
 <script src="<?php echo PDS_CTL_JS; ?>/ic.script.js"></script>
