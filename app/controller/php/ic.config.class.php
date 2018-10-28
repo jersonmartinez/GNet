@@ -7,9 +7,8 @@
 			/*Se crea el fichero*/
 			touch($fn);
 
-			/*Se le asignan permisos al fichero
-			0-rwx-r-x-r-x*/
-			chmod($fn, 0744);
+			/* Se le asignan permisos al fichero */
+			chmod($fn, 0777);
 
 			/*Puntero de tipo fichero, $MyFile apunta al fichero*/
 			$MyFile = @fopen($fn, "w");
@@ -53,7 +52,7 @@
 			@touch($fn);
 
 			#Asignar permisos al fichero $fn.
-			@chmod($fn, 0744);
+			@chmod($fn, 0777);
 
 			#Se apertura el fichero en modo escritura, de esto sale un puntero.
 			$rf = @fopen($fn, "w");
