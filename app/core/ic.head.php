@@ -36,3 +36,5 @@
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery_ui/jquery-ui.min.js"></script>
 
 <link href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+
+<link href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/vis.css" rel="stylesheet" type="text/css" />

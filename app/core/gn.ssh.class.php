@@ -320,6 +320,14 @@
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host;");
 		}
 
+		public function getHostCheckNetNext($NetNext){
+			if (strlen($NextNet) > 6 && strlen($NextNet) < 19){
+				return ($this->db_connect->query("SELECT * FROM ".$this->db_prefix."host WHERE net_next='".$NetNext."';")->num_rows > 0);
+			}
+
+			return false;
+		}
+
 		public function getHostWithOutInterfaces(){
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE NOT (router='1' AND net_next='-');");
 		}
@@ -382,7 +390,7 @@
 
 		#Obtiene una sola red por la que no se ha sondeado.
 		public function getOnlyOneNetworkChecked(){
-			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE checked='0' LIMIT 1;");
+			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network WHERE checked='0' ORDER BY ip_net ASC LIMIT 1;");
 		}
 
 		#Rastreo de Red
@@ -407,23 +415,28 @@
 					$ArrayIPAddress = $this->SondearRed($Network);
 					#$D = Array
 					// 192.168.100.1
-					// 192.168.100.6 --
+					// 192.168.100.4
+					// 192.168.100.6 
+					// 192.168.100.20
+					// --
+
+					# Se elimina el último elemento del array (este se encuentra vacío)
+					unset($ArrayIPAddress[count($ArrayIPAddress)-1]);
 
 					$Index = 0;
 
+					# Se recorren todas direcciones IP almacenadas en el Array.
 					foreach ($ArrayIPAddress as $value) {
-						echo $value." ";
-
+						# Elimina el host (servidor de monitorizaciòn) actual. 
 						if ($value == $this->getMyIPServer())
-							unset($ArrayIPAddress[$Index]); # Elimino el servidor actual.
+							// unset($ArrayIPAddress[$Index]);
 
 						$Index++;
 					}
 
 					// #$D = Array
 					// 192.168.100.1 --
-					// 192.168.100.4
-					
+
 
 					foreach ($ArrayIPAddress as $value) {
 						#192.168.100.1 --, 192.168.100.4
@@ -434,26 +447,39 @@
 						} else {
 							echo "<br/>La direccion: ",$value," no es enrutador";
 						}
+					
+						// exit();
 
 						$ArrayNets = @explode("\n", $this->getIpRouteRemote($value));
 						
-						#ArrayNets: 192.168.100.1
+						# En caso de ser un enrutador
+						# ArrayNets: 192.168.100.1
 						#				192.168.100.0/24 [0]
 						# 				192.168.101.0/24 [1]
 						# 				192.168.103.0/24 [2]
 
-						echo "<br/>";
+						#Elimino el ultimo estado vacio.
+						unset($ArrayNets[count($ArrayNets)-1]); 
 						
-						unset($ArrayNets[count($ArrayNets)-1]); #Elimino el ultimo estado vacio.
+						// echo " Para el host: ", $value, "[";						
+						// foreach ($ArrayNets as $key) {
+						// 	echo $key, ", ";
+						// }
+						// echo "] -- Cantidad: ", count($ArrayNets), " ";
 
-						$iter = 0;
-						foreach ($ArrayNets as $values) {
-							echo "[",$iter++,"] IP Net: ",$values;
-							echo "<br/>";
-						}
+						// echo "<br/>";
+
+						// $iter = 0;
+						// foreach ($ArrayNets as $values) {
+						// 	echo "[",$iter++,"] IP Net: ",$values;
+						// 	echo "<br/>";
+						// }
 
 
-						$NextNet = $ArrayNets[0]; #192.168.100.0/24
+						# Eliminar la posición del array donde este comparta la misma dirección de red.
+						# Agregar las direcciones de red distintas en la DB.
+
+						// $NextNet = $ArrayNets[0]; #192.168.100.0/24
 						$NextNet = "-";
 
 						echo "Network: ",$Network," |  Value: ",$value," | IP Forward: ",$ip_forward," | Next Net: ",$NextNet;
@@ -461,17 +487,44 @@
 						// break;
 						// exit;
 
+						$CountArrayNets = count($ArrayNets);
+
 						if ($ip_forward){
-							$NextNet = $ArrayNets[1];
-							if (trim($Network) == trim($NextNet)){
-								$NextNet = "-";
-							} else {
-								$this->addNetwork($NextNet);
-							}
+							// if ($CountArrayNets > 1){
+								for ($i = 0; $i < $CountArrayNets; $i++){
+									
+									// if (trim($Network) == trim($NextNet)){
+									// 	$NextNet = "-";
+									// } else {
+									// 	$this->addNetwork($NextNet);
+									// }
+
+									if (!$this->checkNetwork($ArrayNets[$i])){
+										$this->addNetwork($ArrayNets[$i]);
+									}
+								}
+							// }	
 						}
 
+						$NextNet = $ArrayNets[1];
+						if (trim($Network) == trim($NextNet)){
+							$NextNet = "-";
+						}
+
+
+						// if ($ip_forward){
+						// 	$NextNet = $ArrayNets[1];
+						// 	if (trim($Network) == trim($NextNet)){
+						// 		$NextNet = "-";
+						// 	} else {
+						// 		$this->addNetwork($NextNet);
+						// 	}
+						// }
+
 						# (192.168.100.0/24)
-						$this->addHost($Network, $value, $ip_forward, $NextNet);
+						if (!$this->getHostCheckNetNext($NextNet)){
+							$this->addHost($Network, $value, $ip_forward, $NextNet);
+						}
 		    		}
 
 					$this->updateNetwork($Network, 1);					
@@ -503,11 +556,11 @@
 		}
 
 		public function SondearRed($IPNet){
-			return explode("\n", shell_exec("nmap ".$IPNet." -n -sP | grep report | awk '{print $5}'"));
+			return explode("\n", shell_exec("nmap ".$IPNet." --host-timeout 95s -n -sP | grep report | awk '{print $5}'"));
 		}
 
 		public function RastreoTotal($IPNet){
-			return explode("\n", shell_exec("nmap ".$IPNet." -n -sP"));
+			return explode("\n", shell_exec("nmap ".$IPNet." --host-timeout 95s -n -sP"));
 		}
 
 		public function SrMartinez(){
@@ -797,6 +850,47 @@
 			return getErrors();
 		}*/
 
+		/**
+			* Método que verifica las credenciales de logueo de un usuario.
+			*@param: $usr (Nombre de usuario), $pwd (Contraseña), $prefix (Prefijo de tabla), $privilege (Privilegio del usuario).
+		*/
+		public function UserLogin($usr, $pwd, $prefix, $privilege){
+	    	$usr = $this->CleanString($usr);
+	    	$pwd = trim($pwd);
+
+	    	if (!get_magic_quotes_gpc())
+				$usr = addslashes($usr);
+
+			$Query = $this->db_connect->query("SELECT * FROM ".$prefix.$privilege." WHERE username='".$usr."';");
+	    	
+			while (@$Check = $Query->fetch_array(MYSQLI_ASSOC)){
+				if (password_verify($pwd, $Check['password'])){
+					return true;
+				}
+			}
+
+	    	return false;
+	    }
+
+	    /**
+			* Método que actualiza el nombre de usuario.
+			*@param: $new_usr (Nuevo nombre de usuario), $usr (Nombre de usuario), $pwd (Contraseña), $prefix (Prefijo de tabla), $privilege (Privilegio del usuario).
+		*/
+	    public function UserUpdateUN($new_usr, $usr, $pwd, $prefix, $privilege){
+	    	@session_start();
+
+	    	$new_usr = $this->CleanString($new_usr);
+
+	    	if ($this->UserLogin($usr, $pwd, $prefix, $privilege)){
+	    		if ($this->db_connect->query("UPDATE ".$prefix.$privilege." SET username='".$new_usr."' WHERE username='".$usr."';")){
+	    			@$_SESSION['username'] = $new_usr;
+	    			return true;
+	    		}
+	    	}
+
+	    	return false;
+	    }
+
 		public function ConnectDB($H, $U, $P, $D, $X){
 			$FirstConnect = new mysqli($H, $U, $P);
 
@@ -814,6 +908,67 @@
 	            $str = substr($str, 0, 25)."...";
 
 	        echo $str;
+		}
+
+		public function CleanString($str) {
+ 			
+ 			#Se limpian los espacios de inicio y de fin.
+		    $str = trim($str);
+		 	
+		 	#Reemplaza todas las apariciones del string buscado con el string de reemplazo.
+		 	#str_replace: http://php.net/manual/es/function.str-replace.php
+		    #--------------------------------------------------------------------------------
+
+		    $str = str_replace(
+		        array('á', 'à', 'ä', 'â', 'ª', 'Á', 'À', 'Â', 'Ä'),
+		        array('a', 'a', 'a', 'a', 'a', 'A', 'A', 'A', 'A'),
+		        $str
+		    );
+		 	
+		 	#--------------------------------------------------------------------------------
+
+		    $str = str_replace(
+		        array('é', 'è', 'ë', 'ê', 'É', 'È', 'Ê', 'Ë'),
+		        array('e', 'e', 'e', 'e', 'E', 'E', 'E', 'E'),
+		        $str
+		    );
+		 
+		    #--------------------------------------------------------------------------------
+
+		    $str = str_replace(
+		        array('í', 'ì', 'ï', 'î', 'Í', 'Ì', 'Ï', 'Î'),
+		        array('i', 'i', 'i', 'i', 'I', 'I', 'I', 'I'),
+		        $str
+		    );
+		 
+		    #--------------------------------------------------------------------------------
+
+		    $str = str_replace(
+		        array('ó', 'ò', 'ö', 'ô', 'Ó', 'Ò', 'Ö', 'Ô'),
+		        array('o', 'o', 'o', 'o', 'O', 'O', 'O', 'O'),
+		        $str
+		    );
+		 
+		    #--------------------------------------------------------------------------------
+
+		    $str = str_replace(
+		        array('ú', 'ù', 'ü', 'û', 'Ú', 'Ù', 'Û', 'Ü'),
+		        array('u', 'u', 'u', 'u', 'U', 'U', 'U', 'U'),
+		        $str
+		    );
+		 
+		    #--------------------------------------------------------------------------------
+
+		    $str = str_replace(
+		        array('ñ', 'Ñ', 'ç', 'Ç'),
+		        array('n', 'N', 'c', 'C',),
+		        $str
+		    );
+
+		    #--------------------------------------------------------------------------------
+		 
+		    #Se retorna el nuevo string.
+		    return $str;
 		}
 
 	}

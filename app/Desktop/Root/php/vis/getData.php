@@ -8,7 +8,8 @@
     // include ($_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/core/ic.const.php");
 ?>
 
-<link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/style.css">
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/vis.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/style.css"> -->
 
 <script type="text/javascript">
     var nodes = null;
@@ -16,9 +17,14 @@
     var network = null;
     var popupMenu = undefined;
 
+    var clusterIndex = 0;
+    var clusters = [];
+    var lastClusterZoomLevel = 0;
+    var clusterFactor = 0.9;
+
     function destroy() {
         if (network !== null) {
-            network.destroy();
+            network.destroy();  
             network = null;
         }
     }
@@ -61,7 +67,7 @@
 
                     if ($Switches->num_rows >= 1){
                         ?>
-                            nodes.push({id: <?php echo $RIPValue; ?>, label: "<?php echo $RIPValue_Alias; ?>", image: DIR + 'switchs/switchicon1.png', shape: 'image'});
+                            nodes.push({id: <?php echo $RIPValue; ?>, label: "<?php echo $RIPValue_Alias; ?>", image: DIR + 'switchs/switchicon1.png', shape: 'image', group: "IPNet"});
                         <?php
                     }
                 }
@@ -80,7 +86,7 @@
                     $RIPValueRouter_Alias = !empty($RRouter['alias']) ? $RRouter['alias'] : $RRouter['ip_host'];
 
                     ?>
-                        nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo $RIPValueRouter_Alias; ?>", image: DIR + 'routers/router2.png', shape: 'image'});
+                        nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo $RIPValueRouter_Alias; ?>", image: DIR + 'routers/router2.png', shape: 'image', group: "Routers"});
                     <?php                    
                 }
             }
@@ -101,7 +107,7 @@
                     <?php
                 } else {
                     ?>
-                        nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $RMValue_Alias; ?>", image: DIR + 'computers/laptop1.png', shape: 'image'});
+                        nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $RMValue_Alias; ?>", image: DIR + 'computers/laptop1.png', shape: 'image', group: "Devices"});
                     <?php
                 }
             }
@@ -180,9 +186,104 @@
         };
        
         // var options = {};
-        var options = {physics:{stabilization:false}};
+        var options = {
+            autoResize: true,
+            height: '100%',
+            width: '100%',
+            nodes: {
+                shadow:true
+            },
+            edges: {
+                width: 2,
+                shadow:true
+            },
+            physics:{stabilization:false},
+            layout: {randomSeed: 8},
+            physics:{adaptiveTimestep:false},
+            interaction: {
+                navigationButtons: true,
+                keyboard: true
+            }
+        };
         network = new vis.Network(container, data, options);
     
+        // set the first initial zoom level
+        network.once('initRedraw', function() {
+            if (lastClusterZoomLevel === 0) {
+                lastClusterZoomLevel = network.getScale();
+            }
+        });
+
+        // we use the zoom event for our clustering
+        network.on('zoom', function (params) {
+            if (params.direction == '-') {
+                if (params.scale < lastClusterZoomLevel*clusterFactor) {
+                    makeClusters(params.scale);
+                    lastClusterZoomLevel = params.scale;
+                }
+            }
+            else {
+                openClusters(params.scale);
+            }
+        });
+
+        // if we click on a node, we want to open it up!
+        network.on("selectNode", function (params) {
+            if (params.nodes.length == 1) {
+                if (network.isCluster(params.nodes[0]) == true) {
+                    network.openCluster(params.nodes[0])
+                }
+            }
+        });
+
+        // make the clusters
+        function makeClusters(scale) {
+            var clusterOptionsByData = {
+                processProperties: function (clusterOptions, childNodes) {
+                    clusterIndex = clusterIndex + 1;
+                    var childrenCount = 0;
+                    for (var i = 0; i < childNodes.length; i++) {
+                        childrenCount += childNodes[i].childrenCount || 1;
+                    }
+                    clusterOptions.childrenCount = childrenCount;
+                    clusterOptions.label = "# " + childrenCount + "";
+                    clusterOptions.font = {size: childrenCount*5+15}
+                    clusterOptions.id = 'cluster:' + clusterIndex;
+                    clusters.push({id:'cluster:' + clusterIndex, scale:scale});
+                    return clusterOptions;
+                },
+                clusterNodeProperties: {borderWidth: 3, image: DIR + 'computers/Cloud-Network.png', shape: 'image', font: {size: 30}}
+            }
+            network.clusterOutliers(clusterOptionsByData);
+            if (document.getElementById('stabilizeCheckbox').checked === true) {
+                // since we use the scale as a unique identifier, we do NOT want to fit after the stabilization
+                network.setOptions({physics:{stabilization:{fit: false}}});
+                network.stabilize();
+            }
+        }
+
+        // open them back up!
+        function openClusters(scale) {
+            var newClusters = [];
+            var declustered = false;
+            for (var i = 0; i < clusters.length; i++) {
+                if (clusters[i].scale < scale) {
+                    network.openCluster(clusters[i].id);
+                    lastClusterZoomLevel = scale;
+                    declustered = true;
+                }
+                else {
+                    newClusters.push(clusters[i])
+                }
+            }
+            clusters = newClusters;
+            if (declustered === true && document.getElementById('stabilizeCheckbox').checked === true) {
+                // since we use the scale as a unique identifier, we do NOT want to fit after the stabilization
+                network.setOptions({physics:{stabilization:{fit: false}}});
+                network.stabilize();
+            }
+        }
+
         // add event listeners
         $(container).click(function(){
             document.getElementById("ContextMenuTest").style.visibility = "hidden";

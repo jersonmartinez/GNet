@@ -4,7 +4,7 @@
 // });
 
 // Bind progress buttons and simulate loading progress. Still requires ".ladda-button" class.
-Ladda.bind('.progress-button', {
+Ladda.bind('.btn_action_tn', {
     callback: function(instance) {
         StartTracking();
 

@@ -299,14 +299,14 @@ $("#sb_item_TrackingNetwork").click(function(){
 
 				var_item_TrackingNetwork = true;
 				if (posicion != -1){
-					$(".AdminPanel_TrackingNetwork_PanelBody").addClass('animated fadeIn').html($("#MessageFailCheckTrackingNetwork").html());
+					$(".AdminPanel_TrackingNetwork_PanelBody").addClass('animated fadeIn').html(data);
+					$(".here_write").html($("#MessageFailCheckTrackingNetwork").html());
 				} else {
 					$(".AdminPanel_TrackingNetwork_PanelBody").addClass('animated fadeIn').html(data);
 					// $(".AdminPanel_TrackingNetwork_PanelBody").html(data);
 					draw();
-					Finish_NProgress();
 				}
-
+				Finish_NProgress();
 			}
 		});
 	} else {
@@ -411,8 +411,6 @@ $("#sb_item_ResourcesMonitor").click(function(){
 									$(".SB_Medida_RAM").addClass('animated fadeIn').css("visibility", "visible");
 									$(".SB_Medida_Label").addClass('animated fadeIn').css("visibility", "visible");
 								}, 500);
-
-								
 							}
 
 							Finish_NProgress();
