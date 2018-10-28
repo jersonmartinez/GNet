@@ -910,6 +910,32 @@
 	    	return false;
 	    }
 
+	    /**
+			* Método que obtiene el nombre, puede ser primero o segundo.
+			*@param: $usr (Nombre de usuario), $prefix (Prefijo de tabla), $privilege (Privilegio del usuario).
+		*/
+	    public function UserGetFirstname($usr, $prefix, $privilege){
+	    	$Firstname = $this->db_connect->query("SELECT firstname FROM ".$prefix.$privilege." WHERE username='".$usr."';");
+
+	    	if ($Firstname->num_rows > 0)
+	    		return $Firstname->fetch_array(MYSQLI_ASSOC)['firstname'];
+
+	    	return false;
+	    }
+
+	    /**
+			* Método que obtiene el apellido, puede ser primero o segundo.
+			*@param: $usr (Nombre de usuario), $prefix (Prefijo de tabla), $privilege (Privilegio del usuario).
+		*/
+	    public function UserGetLastname($usr, $prefix, $privilege){
+	    	$Lastname = $this->db_connect->query("SELECT lastname FROM ".$prefix.$privilege." WHERE username='".$usr."';");
+
+	    	if ($Lastname->num_rows > 0)
+	    		return $Lastname->fetch_array(MYSQLI_ASSOC)['lastname'];
+
+	    	return false;
+	    }
+
 		public function ConnectDB($H, $U, $P, $D, $X){
 			$FirstConnect = new mysqli($H, $U, $P);
 
