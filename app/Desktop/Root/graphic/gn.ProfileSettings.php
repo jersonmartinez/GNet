@@ -123,22 +123,20 @@
                 </div>
 
                 <form id="FormChangeUserName">
-                  <input type="hidden" id="P_InputUserName" name="<?php echo @$_SESSION['username']; ?>" />
-                  <input type="hidden" id="UN_InputPrefixTable" name="<?php echo @$_SESSION['prefix']; ?>" />chp
-                  <input type="hidden" id="UN_InputPriveligeUser" name="<?php echo @$_SESSION['p'] ?>" />
-                  <input type="hidden" id="UN_InputCurrentUserName" name="CurrentUserName" />
-                  <input type="hidden" id="UN_InputNewUserName" name="NewUserName" />
-                  <input type="hidden" id="UN_InputVerificationPassword" name="VerificationPassword" />
+                  <input type="hidden" id="U_InputUserName" value="<?php echo @$_SESSION['username']; ?>" name="U_CurrentUser" />
+                  <input type="hidden" id="U_InputPrefixTable" value="<?php echo @$_SESSION['prefix']; ?>" name="U_PrefixTable" />
+                  <input type="hidden" id="U_InputPriveligeUser" value="<?php echo @$_SESSION['p'] ?>" name="U_PrivilegeUser" />
+                  <input type="hidden" id="U_InputNewUserName" name="NewUserName" />
+                  <input type="hidden" id="U_InputVerificationPassword" name="VerificationPassword" />
                 </form>
 
                 <form id="FormChangePassword">
-                  <input type="hidden" id="P_InputUserName" name="<?php echo @$_SESSION['username']; ?>" />
-                  <input type="hidden" id="P_InputPrefixTable" name="<?php echo @$_SESSION['prefix']; ?>" />chp
-                  <input type="hidden" id="P_InputPriveligeUser" name="<?php echo @$_SESSION['p'] ?>" />
+                  <input type="hidden" id="P_InputUserName" value="<?php echo @$_SESSION['username']; ?>" name="P_CurrentUser" />
+                  <input type="hidden" id="P_InputPrefixTable" value="<?php echo @$_SESSION['prefix']; ?>" name="P_PrefixTable" />
+                  <input type="hidden" id="P_InputPriveligeUser" value="<?php echo @$_SESSION['p'] ?>" name="P_PrivilegeUser" />
                   <input type="hidden" id="P_InputCurrentPassword" name="CurrentPassword" />
                   <input type="hidden" id="P_InputCurrentPassword" name="CurrentPassword" />
                   <input type="hidden" id="P_InputNewPassword" name="NewPassword" />
-                  <input type="hidden" id="P_InputConfirmPassword" name="ConfirmPassword" />
                 </form>
               </div>
             </div>

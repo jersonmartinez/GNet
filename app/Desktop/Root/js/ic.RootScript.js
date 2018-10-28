@@ -450,31 +450,28 @@ $("#ConfigureProfile").click(function(){
 			});
 
 			$("#btnChangePassword").click(function(){
-				alert("Cambiar contraseña");	
+				$("#P_InputUserName").val();
+				$("#P_InputPrefixTable").val();
+				$("#P_InputPriveligeUser").val();
+
+				var current = $("#password1").val(),
+					newPass = $("#password2").val(),
+					confirm = $("#password3").val();
+				// $("#P_InputCurrentPassword").val($("#password1").val());
+				if (current != "" && newPass != "" && confirm != ""){
+					$.ajax({
+						url: url = "app/Desktop/Root/php/gn.ModifyUserAccount.php",
+						type: "post",
+						data: $("#FormChangePassword").serialize(),
+						success: function(data){
+							
+						}
+					});						
+				}
 			});
 		}
 	});
 });
-
-// function ChangePassword() {
-// 	var current = $("#password1").val();
-// 	var newPass = $("#password2").val();
-// 	var confirm = $("#password3").val();
-
-// 	//$.ajax ({
-
-// 	//});
-// }
-
-function ChangePassword() {
-	var current = $("#password1").val();
-	var newPass = $("#password2").val();
-	var confirm = $("#password3").val();
-
-	//$.ajax ({
-
-	//});
-}
 
 
 function getModalCredentialsLocalMachine(){
