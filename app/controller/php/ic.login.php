@@ -23,27 +23,42 @@
 	
 	include ($Local);
 	include (PF_CONNECT_SERVER);
+	include (PF_SSH);
+
+	$CN = new ConnectSSH();
+    $CN->ConnectDB($H, $U, $P, $D, $X);
 
 	$un = $IC->real_escape_string($un);
 
 	if ($tb == ""){
 		$Val = false;
 	} else {
-		$Query = "SELECT * FROM ".$X.$tb." WHERE username='".$un."';";
-		$R = $IC->query($Query);
+		// $Query = "SELECT * FROM ".$X.$tb." WHERE username='".$un."';";
+		// $R = $IC->query($Query);
 		
 		@session_start();
-		while (@$Check = $R->fetch_array(MYSQLI_ASSOC)){
-			if (password_verify($pw, $Check['password'])){
-				@$_SESSION['login'] = true;
-				@$_SESSION['p'] = $tb;
-				@$_SESSION['username'] = $un;
-				@$_SESSION['prefix'] = $X;
-				@$_SESSION['rmb'] = $rm;
-				$Val = true;
-			}
+
+		if ($CN->UserLogin($un, $pw, $X, $tb)){
+			@$_SESSION['login'] = true;
+			@$_SESSION['p'] = $tb;
+			@$_SESSION['username'] = $un;
+			@$_SESSION['prefix'] = $X;
+			@$_SESSION['rmb'] = $rm;
+			$Val = true;
 			$ExistUser = true;
 		}
+
+		// while (@$Check = $R->fetch_array(MYSQLI_ASSOC)){
+		// 	if (password_verify($pw, $Check['password'])){
+		// 		@$_SESSION['login'] = true;
+		// 		@$_SESSION['p'] = $tb;
+		// 		@$_SESSION['username'] = $un;
+		// 		@$_SESSION['prefix'] = $X;
+		// 		@$_SESSION['rmb'] = $rm;
+		// 		$Val = true;
+		// 	}
+		// 	$ExistUser = true;
+		// }
 	}
 
 	if ($ExistUser){

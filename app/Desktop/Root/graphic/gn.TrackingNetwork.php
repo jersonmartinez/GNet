@@ -16,16 +16,24 @@
     $R = $CN->getAllHost();
 
     ?>
-        <script type="text/javascript" src="<?php echo PDS_DESKTOP_ROOT_JS; ?>/gn.TrackingNetwork.js"></script>
         <label style="display: none; position: absolute; right: 50px;" id="retardo_temporal">...</label>
-        <div class="here_write">
+        
     <?php
 
     if (!$R->num_rows > 0){
-        echo "Fail";
-
+        ?>
+            <div class="here_write"><?php echo "Fail"; ?>
+            </div>
+        <?php
+        
     } else {
-        include (PD_DESKTOP_ROOT_PHP."/vis/images.php");
+        ?>
+            <div class="here_write">
+                <?php 
+                    include (PD_DESKTOP_ROOT_PHP."/vis/images.php"); 
+                ?>
+            </div>
+        <?php
+        
     }
 ?>
-</div>

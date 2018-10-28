@@ -9,7 +9,7 @@
 	include (PF_CONNECT_SERVER);
 	include (PF_SSH);
 
-	echo PF_SSH;
+	// echo PF_SSH;
 
 	$CN = new ConnectSSH();
 	$CN->ConnectDB($H, $U, $P, $D, $X);
