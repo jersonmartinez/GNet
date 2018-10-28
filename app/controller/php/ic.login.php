@@ -39,11 +39,13 @@
 		@session_start();
 
 		if ($CN->UserLogin($un, $pw, $X, $tb)){
-			@$_SESSION['login'] = true;
-			@$_SESSION['p'] = $tb;
-			@$_SESSION['username'] = $un;
-			@$_SESSION['prefix'] = $X;
-			@$_SESSION['rmb'] = $rm;
+			@$_SESSION['login'] 	= true;
+			@$_SESSION['p'] 		= $tb;
+			@$_SESSION['username'] 	= $un;
+			@$_SESSION['firstname'] = $CN->UserGetFirstname($un, $X, $tb);
+			@$_SESSION['lastname'] 	= $CN->UserGetLastname($un, $X, $tb);
+			@$_SESSION['prefix'] 	= $X;
+			@$_SESSION['rmb'] 		= $rm;
 			$Val = true;
 			$ExistUser = true;
 		}

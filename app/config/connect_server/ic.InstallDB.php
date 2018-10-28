@@ -1,6 +1,8 @@
 <?php
 	$tables = array($X.'root_info' => "CREATE TABLE ".$X."root_info (
 			username VARCHAR(50) NOT NULL, 
+			firstname VARCHAR(50) NOT NULL, 
+			lastname VARCHAR(50) NOT NULL, 
 			date_log DATE NOT NULL, 
 			date_log_unix VARCHAR(100) NOT NULL, 
 			PRIMARY KEY (username)
@@ -17,6 +19,8 @@
 		);",
 		$X.'admin_info' => "CREATE TABLE ".$X."admin_info (
 			username VARCHAR(50) NOT NULL, 
+			firstname VARCHAR(50) NOT NULL, 
+			lastname VARCHAR(50) NOT NULL, 
 			date_log DATE NOT NULL, 
 			date_log_unix VARCHAR(100) NOT NULL, 
 			PRIMARY KEY (username)

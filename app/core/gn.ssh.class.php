@@ -891,6 +891,51 @@
 	    	return false;
 	    }
 
+	    /**
+			* Método que actualiza o agrega un nombre y apellido de un respectivo usuario.
+			*@param: $usr (Nombre de usuario), $firstname (Nombre/s), $lastname (Apellido/s), $prefix (Prefijo de tabla), $privilege (Privilegio del usuario).
+		*/
+	    public function UserAddOrUpdateFirstAndLastName($usr, $firstname, $lastname, $prefix, $privilege){
+	    	@session_start();
+
+	    	$firstname 	= $this->CleanString($firstname);
+	    	$lastname 	= $this->CleanString($lastname);
+
+	    	if ($this->db_connect->query("UPDATE ".$prefix.$privilege." SET firstname='".$firstname."' AND lastname='".$lastname."' WHERE username='".$usr."';")){
+	    		@$_SESSION['usr_firstname'] = $firstname;
+	    		@$_SESSION['usr_lastname'] 	= $lastname;
+	    		return true;
+	    	}
+
+	    	return false;
+	    }
+
+	    /**
+			* Método que obtiene el nombre, puede ser primero o segundo.
+			*@param: $usr (Nombre de usuario), $prefix (Prefijo de tabla), $privilege (Privilegio del usuario).
+		*/
+	    public function UserGetFirstname($usr, $prefix, $privilege){
+	    	$Firstname = $this->db_connect->query("SELECT firstname FROM ".$prefix.$privilege." WHERE username='".$usr."';");
+
+	    	if ($Firstname->num_rows > 0)
+	    		return $Firstname->fetch_array(MYSQLI_ASSOC)['firstname'];
+
+	    	return false;
+	    }
+
+	    /**
+			* Método que obtiene el apellido, puede ser primero o segundo.
+			*@param: $usr (Nombre de usuario), $prefix (Prefijo de tabla), $privilege (Privilegio del usuario).
+		*/
+	    public function UserGetLastname($usr, $prefix, $privilege){
+	    	$Lastname = $this->db_connect->query("SELECT lastname FROM ".$prefix.$privilege." WHERE username='".$usr."';");
+
+	    	if ($Lastname->num_rows > 0)
+	    		return $Lastname->fetch_array(MYSQLI_ASSOC)['lastname'];
+
+	    	return false;
+	    }
+
 		public function ConnectDB($H, $U, $P, $D, $X){
 			$FirstConnect = new mysqli($H, $U, $P);
 
