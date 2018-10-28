@@ -123,15 +123,22 @@
                 </div>
 
                 <form id="FormChangeUserName">
-                  <input type="hidden" id="InputCurrentUserName" name="CurrentUserName" />
-                  <input type="hidden" id="InputNewUserName" name="NewUserName" />
-                  <input type="hidden" id="InputVerificationPassword" name="VerificationPassword" />
+                  <input type="hidden" id="P_InputUserName" name="<?php echo @$_SESSION['username']; ?>" />
+                  <input type="hidden" id="UN_InputPrefixTable" name="<?php echo @$_SESSION['prefix']; ?>" />chp
+                  <input type="hidden" id="UN_InputPriveligeUser" name="<?php echo @$_SESSION['p'] ?>" />
+                  <input type="hidden" id="UN_InputCurrentUserName" name="CurrentUserName" />
+                  <input type="hidden" id="UN_InputNewUserName" name="NewUserName" />
+                  <input type="hidden" id="UN_InputVerificationPassword" name="VerificationPassword" />
                 </form>
 
                 <form id="FormChangePassword">
-                  <input type="hidden" id="InputCurrentPassword" name="CurrentPassword" />
-                  <input type="hidden" id="InputNewPassword" name="NewPassword" />
-                  <input type="hidden" id="InputConfirmPassword" name="ConfirmPassword" />
+                  <input type="hidden" id="P_InputUserName" name="<?php echo @$_SESSION['username']; ?>" />
+                  <input type="hidden" id="P_InputPrefixTable" name="<?php echo @$_SESSION['prefix']; ?>" />chp
+                  <input type="hidden" id="P_InputPriveligeUser" name="<?php echo @$_SESSION['p'] ?>" />
+                  <input type="hidden" id="P_InputCurrentPassword" name="CurrentPassword" />
+                  <input type="hidden" id="P_InputCurrentPassword" name="CurrentPassword" />
+                  <input type="hidden" id="P_InputNewPassword" name="NewPassword" />
+                  <input type="hidden" id="P_InputConfirmPassword" name="ConfirmPassword" />
                 </form>
               </div>
             </div>
