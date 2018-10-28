@@ -58,7 +58,7 @@
                 </div>
                 <div class="section row mb15">
                   <label for="email" class="field prepend-icon">
-                    <input type="text" name="email" id="email" class="event-name gui-input br-light bg-light" placeholder="Dirección de correo eletrónico">
+                    <input type="text" name="email" id="email" class="event-name gui-input br-light light" placeholder="Dirección de correo eletrónico">
                     <label for="email" class="field-icon">
                       <i class="fa fa-envelope"></i>
                     </label>
@@ -94,7 +94,7 @@
                 
                 <div class="section row mb15">
                     <label for="password" class="field prepend-icon">
-                      <input type="password" name="password" id="password" class="event-name gui-input br-light light" placeholder="Escribe tu contraseña actual">
+                      <input type="password" name="password" id="password1" class="event-name gui-input br-light light" placeholder="Escribe tu contraseña actual">
                       <label for="password" class="field-icon">
                         <i class="fa fa-unlock"></i>
                       </label>
@@ -102,15 +102,15 @@
                 </div>
                 <div class="section row mb15">
                     <label for="password2" class="field prepend-icon">
-                      <input type="password2" name="password2" id="password2" class="event-name gui-input br-light light" placeholder="Escribe tu nueva contraseña">
+                      <input type="password" name="password2" id="password2" class="event-name gui-input br-light light" placeholder="Escribe tu nueva contraseña">
                       <label for="password2" class="field-icon">
                         <i class="fa fa-unlock-alt"></i>
                       </label>
                     </label>
                 </div>
                 <div class="section row mb15">
-                  <label for="password3" class="field prepend-icon">
-                    <input type="password3" name="password3" id="password3" class="event-name gui-input br-light light" placeholder="Confirma tu nueva contraseña">
+                  <label for="password" class="field prepend-icon">
+                    <input type="password" name="password3" id="password3" class="event-name gui-input br-light light" placeholder="Confirma tu nueva contraseña">
                     <label for="password3" class="field-icon">
                       <i class="fa fa-lock"></i>
                     </label>
@@ -118,9 +118,21 @@
                 </div>
                 <div class="section row mb15">
                   <div class="panel-footer clearfix">
-                    <button type="submit" class="button btn-primary pull-right">Cambiar contraseña</button>
+                    <button type="submit" class="button btn-primary pull-right" id="btnChangePassword">Cambiar contraseña</button>
                   </div>
                 </div>
+
+                <form id="FormChangeUserName">
+                  <input type="hidden" id="InputCurrentUserName" name="CurrentUserName" />
+                  <input type="hidden" id="InputNewUserName" name="NewUserName" />
+                  <input type="hidden" id="InputVerificationPassword" name="VerificationPassword" />
+                </form>
+
+                <form id="FormChangePassword">
+                  <input type="hidden" id="InputCurrentPassword" name="CurrentPassword" />
+                  <input type="hidden" id="InputNewPassword" name="NewPassword" />
+                  <input type="hidden" id="InputConfirmPassword" name="ConfirmPassword" />
+                </form>
               </div>
             </div>
           </div>

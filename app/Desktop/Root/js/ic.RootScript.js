@@ -42,22 +42,6 @@ $("#LogoutRoot").click(function(){
 	window.location.href="app/controller/php/ic.logout.php";
 });
 
-$("#ConfigureProfile").click(function(){
-	$.ajax({
-		url: "app/Desktop/Root/graphic/gn.ProfileSettings.php",
-		type: "post",
-		success: function(data){
-			HideAdminPanels();	
-			$(".AdminPanel_ProffileSettings").addClass('animated fadeIn').show();
-			$(".AdminPanel_ProfileSetting_PanelBody").addClass('animated fadeIn').html(data);
-			
-			$("#btnChangeUserName").click(function(){
-				$(".ChangeUserName").click();
-			});
-		}
-	});
-});
-
 function AddNetwork(){
 	xhr = $.ajax({
 		url: "app/Desktop/Root/php/ic.AddNet.php",
@@ -451,6 +435,48 @@ $("#sb_item_ResourcesMonitor").dblclick(function(){
 	var_item_ResourcesMonitor = false;
 	$("#sb_item_ResourcesMonitor").click();
 });
+
+// Configuraciòn de cuenta y perfil del usuario
+
+$("#ConfigureProfile").click(function(){
+	$.ajax({
+		url: "app/Desktop/Root/graphic/gn.ProfileSettings.php",
+		type: "post",
+		success: function(data){
+			HideAdminPanels();	
+			$(".AdminPanel_ProffileSettings").addClass('animated fadeIn').show();
+			$(".AdminPanel_ProfileSetting_PanelBody").addClass('animated fadeIn').html(data);
+			
+			$("#btnChangeUserName").click(function(){
+				$(".ChangeUserName").click();
+			});
+
+			$("#btnChangePassword").click(function(){
+				alert("Cambiar contraseña");	
+			});
+		}
+	});
+});
+
+// function ChangePassword() {
+// 	var current = $("#password1").val();
+// 	var newPass = $("#password2").val();
+// 	var confirm = $("#password3").val();
+
+// 	//$.ajax ({
+
+// 	//});
+// }
+
+function ChangePassword() {
+	var current = $("#password1").val();
+	var newPass = $("#password2").val();
+	var confirm = $("#password3").val();
+
+	//$.ajax ({
+
+	//});
+}
 
 
 function getModalCredentialsLocalMachine(){
