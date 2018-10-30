@@ -305,7 +305,7 @@
 		}
 
 		public function getHostTypeRouter(){
-			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='1';");
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='1' ORDER BY ip_net ASC;");
 		}
 
 		public function getHostTypeSwitch($IPNet){
@@ -313,7 +313,7 @@
 		}
 
 		public function getHostTypeHost(){
-			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='0';");
+			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE router='0' ORDER BY ip_net ASC;");
 		}
 
 		public function getAllHost(){
@@ -334,7 +334,7 @@
 
 		//Extrae todas las direcciones de red.
 		public function getIPNet(){
-			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network;");
+			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network ORDER BY ip_net ASC;");
 		}
 
 		public function getIPNetNext($ip_net){
