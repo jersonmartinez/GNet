@@ -65,7 +65,7 @@
                   </label>
                 </div>
                 <div class="section row mb15">
-                  <button type="submit" class="button btn-primary pull-right">Guardar</button>
+                  <button type="submit" class="button btn-primary pull-right" id="btnUpdateUserInfo">Guardar</button>
                 </div>
               </div>
               
@@ -122,19 +122,19 @@
                   </div>
                 </div>
 
-                <form id="FormChangeUserName">
-                  <input type="hidden" id="U_InputUserName" value="<?php echo @$_SESSION['username']; ?>" name="U_CurrentUser" />
-                  <input type="hidden" id="U_InputPrefixTable" value="<?php echo @$_SESSION['prefix']; ?>" name="U_PrefixTable" />
-                  <input type="hidden" id="U_InputPriveligeUser" value="<?php echo @$_SESSION['p'] ?>" name="U_PrivilegeUser" />
-                  <input type="hidden" id="U_InputNewUserName" name="NewUserName" />
-                  <input type="hidden" id="U_InputVerificationPassword" name="VerificationPassword" />
+                <form id="FormUpdateUserInfo">
+                  <input type="hidden" id="G_InputUserName" value="<?php echo @$_SESSION['username']; ?>" name="G_CurrentUser" />
+                  <input type="hidden" id="G_InputPrefixTable" value="<?php echo @$_SESSION['prefix']; ?>" name="G_PrefixTable" />
+                  <input type="hidden" id="G_InputPriveligeUser" value="<?php echo @$_SESSION['p'] ?>" name="G_PrivilegeUser" />
+                  <input type="hidden" id="G_InputFirstName" name="G_FirstName" />
+                  <input type="hidden" id="G_InputLastName" name="G_LastName" />
+                  <input type="hidden" id="G_MailAddress" name="G_MailAddress" />
                 </form>
 
                 <form id="FormChangePassword">
                   <input type="hidden" id="P_InputUserName" value="<?php echo @$_SESSION['username']; ?>" name="P_CurrentUser" />
                   <input type="hidden" id="P_InputPrefixTable" value="<?php echo @$_SESSION['prefix']; ?>" name="P_PrefixTable" />
                   <input type="hidden" id="P_InputPriveligeUser" value="<?php echo @$_SESSION['p'] ?>" name="P_PrivilegeUser" />
-                  <input type="hidden" id="P_InputCurrentPassword" name="CurrentPassword" />
                   <input type="hidden" id="P_InputCurrentPassword" name="CurrentPassword" />
                   <input type="hidden" id="P_InputNewPassword" name="NewPassword" />
                 </form>

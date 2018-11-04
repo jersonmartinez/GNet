@@ -434,7 +434,9 @@ $("#sb_item_ResourcesMonitor").dblclick(function(){
 	$("#sb_item_ResourcesMonitor").click();
 });
 
+// ----------------------------------------------
 // Configuraciòn de cuenta y perfil del usuario
+// ----------------------------------------------
 
 $("#ConfigureProfile").click(function(){
 	$.ajax({
@@ -444,31 +446,138 @@ $("#ConfigureProfile").click(function(){
 			HideAdminPanels();	
 			$(".AdminPanel_ProffileSettings").addClass('animated fadeIn').show();
 			$(".AdminPanel_ProfileSetting_PanelBody").addClass('animated fadeIn').html(data);
+
+			$("#btnUpdateUserInfo").click(function(){
+				UpdateUserInformation();
+			});
 			
 			$("#btnChangeUserName").click(function(){
 				$(".ChangeUserName").click();
 			});
 
-			$("#btnChangePassword").click(function(){
-				$("#P_InputUserName").val();
-				$("#P_InputPrefixTable").val();
-				$("#P_InputPriveligeUser").val();
-
-				var current = $("#password1").val(),
-					newPass = $("#password2").val(),
-					confirm = $("#password3").val();
-				// $("#P_InputCurrentPassword").val($("#password1").val());
-				if (current != "" && newPass != "" && confirm != ""){
-					$.ajax({
-						url: url = "app/Desktop/Root/php/gn.ModifyUserAccount.php",
-						type: "post",
-						data: $("#FormChangePassword").serialize(),
-						success: function(data){
-							
-						}
-					});						
-				}
+			$("#btnSaveNewUser").click(function(){
+				ChangeUserName();
 			});
+
+			$("#btnChangePassword").click(function(){
+				ChangePassword();
+			});
+
+			$("#UpdateUserName,#PasswordUserName").keypress(enterChangeUserName);
+			$("#name1,#name2,#email").keypress(enterUpdateUserInfo);
+			$("#password1,#password2,#password3").keypress(enterChangePassword);
+
+			function UpdateUserInformation() {
+				var FirstName = $("#name1").val(),
+					LastName = $("#name2").val(),
+					Email = $("#email").val();
+
+				$("#U_InputUserName").val();
+				$("#U_InputPrefixTable").val();
+				$("#U_InputPrivilegeUser").val();
+				$("#U_InputNewUserName").val(FirstName);
+				$("#U_InputPasswordUserName").val(LastName);
+				$("#U_MailAddress").val(Email);
+				
+				if (FirstName != "" && LastName != ""){
+					$.ajax({
+						url: "app/Desktop/Root/php/gn.UpdateUserInfo.php",
+						type: "post",
+						data: $("#FormUpdateUserInfo").serialize(),
+						success: function(data){
+							if (data == "Ok") {
+								alert("Se ha modificado la información del usuario");
+							} else if (data == "Fail") {
+								alert("Ha ocurrido un error");
+							}
+						}
+					});
+				} else {
+					alert("Rellene los campos");
+				}
+			}
+
+			function enterUpdateUserInfo(event){
+				var e = event || window.event;
+				if (e.keyCode == 13) {
+					UpdateUserInformation();
+				}
+			}
+
+			function ChangeUserName() {
+				var UserName = $("#UpdateUserName").val(),
+					Password = $("#PasswordUserName").val();
+
+				$("#U_InputUserName").val();
+				$("#U_InputPrefixTable").val();
+				$("#U_InputPrivilegeUser").val();
+				$("#U_InputNewUserName").val(UserName);
+				$("#U_InputPasswordUserName").val(Password);
+				
+				if (UserName != "" && Password != ""){
+					$.ajax({
+						url: "app/Desktop/Root/php/gn.ModifyUserAccount.php",
+						type: "post",
+						data: $("#FormChangeUserName").serialize(),
+						success: function(data){
+							if (data == "Ok") {
+								alert("Se ha modificado el usuario");
+							} else if (data == "Fail") {
+								alert("Ha ocurrido un error");
+							}
+						}
+					});
+				} else {
+					alert("Rellene los campos");
+				}
+			}
+
+			function enterChangeUserName(event){
+				var e = event || window.event;
+				if (e.keyCode == 13) {
+					ChangeUserName();
+				}
+			}
+
+			function ChangePassword() {
+				var password1 = $("#password1").val(),
+					password2 = $("#password2").val()
+					password3 = $("#password3").val();
+
+				if (password2 == password3) {
+					$("#P_InputUserName").val();
+					$("#P_InputPrefixTable").val();
+					$("#P_InputPrivilegeUser").val();
+					$("#P_InputCurrentPassword").val(password1);
+					$("#P_InputNewPassword").val(password3);
+					
+					if (password1 != "" && password2 != "" && password3 != ""){
+						$.ajax({
+							url: "app/Desktop/Root/php/gn.ChangePassword.php",
+							type: "post",
+							data: $("#FormChangePassword").serialize(),
+							success: function(data){
+								if (data == "Ok") {
+									alert("Se ha modificado la contraseña" + data);
+								} else if (data == "Fail") {
+									alert("Ha ocurrido un error");
+								}
+							}
+						});
+					} else {
+						alert("Rellene los campos");
+					}
+				} else {
+					alert("Las contraseñas no coinciden");
+				}		
+			}
+
+			function enterChangePassword(event){
+				var e = event || window.event;
+				if (e.keyCode == 13) {
+					ChangePassword();
+				}
+			}
 		}
 	});
 });

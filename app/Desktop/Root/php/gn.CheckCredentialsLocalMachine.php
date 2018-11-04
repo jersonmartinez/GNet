@@ -12,3 +12,4 @@
         echo "Ok";
     else 
         echo "Fail";
+?>
