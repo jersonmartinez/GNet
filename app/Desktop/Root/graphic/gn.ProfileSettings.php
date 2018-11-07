@@ -128,15 +128,15 @@
                   <input type="hidden" id="G_InputPriveligeUser" value="<?php echo @$_SESSION['p'] ?>" name="G_PrivilegeUser" />
                   <input type="hidden" id="G_InputFirstName" name="G_FirstName" />
                   <input type="hidden" id="G_InputLastName" name="G_LastName" />
-                  <input type="hidden" id="G_MailAddress" name="G_MailAddress" />
+                  <input type="hidden" id="G_InputMailAddress" name="G_MailAddress" />
                 </form>
 
                 <form id="FormChangePassword">
                   <input type="hidden" id="P_InputUserName" value="<?php echo @$_SESSION['username']; ?>" name="P_CurrentUser" />
                   <input type="hidden" id="P_InputPrefixTable" value="<?php echo @$_SESSION['prefix']; ?>" name="P_PrefixTable" />
                   <input type="hidden" id="P_InputPriveligeUser" value="<?php echo @$_SESSION['p'] ?>" name="P_PrivilegeUser" />
-                  <input type="hidden" id="P_InputCurrentPassword" name="CurrentPassword" />
-                  <input type="hidden" id="P_InputNewPassword" name="NewPassword" />
+                  <input type="hidden" id="P_InputCurrentPassword" name="P_CurrentPassword" />
+                  <input type="hidden" id="P_InputNewPassword" name="P_NewPassword" />
                 </form>
               </div>
             </div>

@@ -472,29 +472,25 @@ $("#ConfigureProfile").click(function(){
 					LastName = $("#name2").val(),
 					Email = $("#email").val();
 
-				$("#U_InputUserName").val();
-				$("#U_InputPrefixTable").val();
-				$("#U_InputPrivilegeUser").val();
-				$("#U_InputNewUserName").val(FirstName);
-				$("#U_InputPasswordUserName").val(LastName);
-				$("#U_MailAddress").val(Email);
+				$("#G_InputUserName").val();
+				$("#G_InputPrefixTable").val();
+				$("#G_InputPrivilegeUser").val();
+				$("#G_InputFirstName").val(FirstName);
+				$("#G_InputLastName").val(LastName);
+				$("#G_InputMailAddress").val(Email);
 				
-				if (FirstName != "" && LastName != ""){
-					$.ajax({
-						url: "app/Desktop/Root/php/gn.UpdateUserInfo.php",
-						type: "post",
-						data: $("#FormUpdateUserInfo").serialize(),
-						success: function(data){
-							if (data == "Ok") {
-								alert("Se ha modificado la información del usuario");
-							} else if (data == "Fail") {
-								alert("Ha ocurrido un error");
-							}
+				$.ajax({
+					url: "app/Desktop/Root/php/gn.UpdateUserInfo.php",
+					type: "post",
+					data: $("#FormUpdateUserInfo").serialize(),
+					success: function(data){
+						if (data == "Ok") {
+							alert("Se ha modificado la información del usuario");
+						} else if (data == "Fail") {
+							alert("Ha ocurrido un error");
 						}
-					});
-				} else {
-					alert("Rellene los campos");
-				}
+					}
+				});
 			}
 
 			function enterUpdateUserInfo(event){
@@ -552,18 +548,22 @@ $("#ConfigureProfile").click(function(){
 					$("#P_InputNewPassword").val(password3);
 					
 					if (password1 != "" && password2 != "" && password3 != ""){
-						$.ajax({
-							url: "app/Desktop/Root/php/gn.ChangePassword.php",
-							type: "post",
-							data: $("#FormChangePassword").serialize(),
-							success: function(data){
-								if (data == "Ok") {
-									alert("Se ha modificado la contraseña" + data);
-								} else if (data == "Fail") {
-									alert("Ha ocurrido un error");
+						if (password2 == password3) {
+							$.ajax({
+								url: "app/Desktop/Root/php/gn.ChangePassword.php",
+								type: "post",
+								data: $("#FormChangePassword").serialize(),
+								success: function(data){
+									if (data == "Ok") {
+										alert("Se ha modificado la contraseña" + data);
+									} else if (data == "Fail") {
+										alert("Ha ocurrido un error");
+									}
 								}
-							}
-						});
+							});
+						} else {
+							alert("Las contraseñas no coinciden");
+						}						
 					} else {
 						alert("Rellene los campos");
 					}
