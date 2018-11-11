@@ -8,11 +8,11 @@
     $CN = new ConnectSSH();
     $CN->ConnectDB($H, $U, $P, $D, $X);
 
-    $newuser    = $_POST['U_CurrentUser'];
-    $prefix     = $_POST['U_PrefixTable'];
-    $privilege  = $_POST['U_PrivilegeUser'];
-    $password   = $_POST['U_NewPassword'];
-    $current    = $_POST['U_CurrentPassword'];
+    $newuser    = $_POST['P_CurrentUser'];
+    $prefix     = $_POST['P_PrefixTable'];
+    $privilege  = $_POST['P_PrivilegeUser'];
+    $password   = $_POST['P_NewPassword'];
+    $current    = $_POST['P_CurrentPassword'];
 
     if ($CN->UserUpdateUN($newuser, $current, $password, $prefix, $privilege)){
         echo "Ok";
