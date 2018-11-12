@@ -434,6 +434,12 @@ $("#sb_item_ResourcesMonitor").dblclick(function(){
 	$("#sb_item_ResourcesMonitor").click();
 });
 
+$(".tab_btn_process").click(function(){
+	$(".sorting").addClass('animated fadeIn').click();
+	setTimeout(function(){
+		$(".sorting_asc").addClass('animated fadeIn').click();
+	}, 100);
+});
 
 function getModalCredentialsLocalMachine(){
 	$(".AddCredentialsLocalMachine").click();
