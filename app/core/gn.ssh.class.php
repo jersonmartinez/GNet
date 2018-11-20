@@ -556,7 +556,7 @@
 
 				return trim($AddrIPNext[0]);
 			} else {
-				$this->FinalConnect($IPHost, "network", "123");
+				$this->FinalConnect($IPHost, "root", "123");
 				$RA[] = "ip route | sed '/default/ d' | cut -d ' ' -f1";
 
 				$AddrIPNext = explode("\n", $this->RunLines(implode("\n", $RA)));
