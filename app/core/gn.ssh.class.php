@@ -357,7 +357,7 @@
 			$this->db_connect->query("TRUNCATE ".$this->db_prefix."host;");
 		}
 
-		public function IsRouter($IPHost, $user = "network", $pass = "123"){
+		public function IsRouter($IPHost, $user = "root", $pass = "123"){
 			$this->FinalConnect($IPHost, $user, $pass);
 
 			$RL[] = "cat /proc/sys/net/ipv4/ip_forward";
@@ -369,10 +369,10 @@
 		}
 
 		public function getIpRouteLocal(){
-			return trim(explode("\n", trim(shell_exec($this->CommandIpRoute)))[0]);
+			return  shell_exec($this->CommandIpRoute);
 		}
 
-		public function getIpRouteRemote($IPHost, $user = "network", $pass = "123"){
+		public function getIpRouteRemote($IPHost, $user = "root", $pass = "123"){
 			$this->FinalConnect($IPHost, $user, $pass);
 
 			$RA[] = $this->CommandIpRoute;
@@ -402,8 +402,20 @@
 				#Verificar si hay redes escritas en la tabla: network.
 				if (@!$this->getCountNetwork()){ #No hay redes [0]
 					#Si no hay redes, se agrega la local.
-					@$this->addNetwork($this->getIpRouteLocal()); #Agrega la IP Local: 100.0
+					$getIPRouterLocalVals = $this->getIpRouteLocal();
+
+					// var_dump(explode("\n", trim($getIPRouterLocalVals)));
+
+					$getIPRouterLocalVals = explode("\n", trim($getIPRouterLocalVals));
+
+					if (is_array($getIPRouterLocalVals)){
+						foreach ($getIPRouterLocalVals as $ValTemp){
+							@$this->addNetwork($ValTemp);
+						}
+					}
 				}
+
+				// exit();
 
 				#Obtiene una sola red por la que no se ha sondeado.
 				if ($this->getOnlyOneNetworkChecked()->num_rows > 0){
@@ -416,7 +428,7 @@
 					#$D = Array
 					// 192.168.100.1
 					// 192.168.100.4
-					// 192.168.100.6 
+					// 192.168.100.6
 					// 192.168.100.20
 					// --
 
@@ -507,6 +519,10 @@
 						}
 
 						$NextNet = $ArrayNets[1];
+						// echo "Cantidad del arreglo: ", count($ArrayNets), "; deberían ser 3";
+						foreach ($ArrayNets as $side){
+							echo $side, ", ";
+						}
 						if (trim($Network) == trim($NextNet)){
 							$NextNet = "-";
 						}
