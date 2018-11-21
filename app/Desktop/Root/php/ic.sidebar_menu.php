@@ -59,6 +59,30 @@
         </a>
     </li>
 
+    <!-- Gestión de eventos -->
+    <li>
+        <a class="accordion-toggle" href="#">
+            <span class="fa fa-bell"></span>
+            <span class="sidebar-title">Gestión de eventos</span>         
+            <span class="caret"></span>
+        </a>
+    
+        <ul class="nav sub-nav">
+            <li>
+                <a href="#" id="sb_item_LogManagement">
+                    <span class="fa fa-dashboard"></span>
+                    Gestionar Logs
+                </a>
+            </li>
+
+            <li>
+                <a href="#" id="sb_item_ConfigureSyslog">
+                    <span class="fa fa-cogs"></span>
+                    Configurar Syslog
+                </a>
+            </li>    
+        </ul>
+    </li>
 
 
   <?php

@@ -677,6 +677,10 @@ $("#sb_item_AddDeviceManagement").click(function(){
 	$("#ADM_InsertAliasHost").focus();
 });
 
+$("#sb_item_ConfigureSyslog").click(function(){
+	$(".ConfigureSyslog").click();
+});
+
 $("#ddt_SelectTypeDeviceOptionFinalHost").click(function(){
     $(".ddt_SelectTypeDevice").html("Ordenador <span class='caret'></span>");
 });
@@ -690,6 +694,7 @@ $("#ddt_SelectTypeDeviceOptionRouter").click(function(){
 });
 
 $(".AddDeviceManagement").hide();
+$(".ConfigureSyslog").hide();
 $(".AddCredentialsLocalMachine").hide();
 $(".ChangeUserName").hide();
 

@@ -15,6 +15,7 @@
   #Agregando ventana modal, configuración de la red.
   include (PD_DESKTOP_ROOT."/graphic/ic.modal.config_network.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddDevicesManagement.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.ConfigureSyslog.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddCredentialsLocalMachine.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.ChangeUserName.php");
 ?>
