@@ -22,9 +22,10 @@ vagrant up
 ```
 
 Ficheros de vital importancia
+
 |Nº | Nombre   | Descripción       |
 |----- | ------- | -------------------- |
-|`1` | [Vagrantfile](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/Vagrantfile)  | Configuración del entorno sobre la infraestructura de red |
+|`1` | [Vagrantfile](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/Vagrantfile) | Configuración del entorno sobre la infraestructura de red |
 |`2` | [db](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/db.sh) | Prepara el servidor de base de datos   |
 |`3` | [web](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/web.sh) | Prepara el servidor de monitorización |
 
