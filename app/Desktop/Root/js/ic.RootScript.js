@@ -834,12 +834,23 @@ $(".AdminPanel_DevicesManagement").on('contextmenu', function(e){
     e.preventDefault();
 });
 
-$("#content_wrapper").contextmenu(function(){
-	console.log("Funcionando");
-});
+// $("#content_wrapper").contextmenu(function(){
+// 	console.log("Funcionando");
+// });
 
 function getDataSelection(value){
-	console.log("La clase seleccionada es: " + $(value).attr("class"));
+	let final_value = $(value).attr("class");
+
+	if (final_value == "monitor"){
+		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
+	} else if (final_value == "processes"){
+		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
+	} else if (final_value == "services"){
+		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
+	} else if (final_value == "properties"){
+		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
+	}
+
 }
 
 $("#DivACLMKeyPress").keypress(function(event){

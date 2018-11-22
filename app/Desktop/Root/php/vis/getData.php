@@ -84,9 +84,10 @@
                     $RIPValueSwitch = implode("", explode("/", implode("", explode(".", $RRouter['ip_net']))));
                     
                     $RIPValueRouter_Alias = !empty($RRouter['alias']) ? $RRouter['alias'] : $RRouter['ip_host'];
+                    $RIPValueRouterAddr = $RRouter['ip_host'];
 
                     ?>
-                        nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo $RIPValueRouter_Alias; ?>", image: DIR + 'routers/router2.png', shape: 'image', group: "Routers"});
+                        nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo $RIPValueRouter_Alias; ?>", ip_addr: "<?php echo $RIPValueRouterAddr; ?>", image: DIR + 'routers/router2.png', shape: 'image', group: "Routers"});
                     <?php                    
                 }
             }
@@ -100,14 +101,15 @@
                 $RMValueSwitch  = implode("", explode("/", implode("", explode(".", $rm['ip_net']))));
 
                 $RMValue_Alias = !empty($rm['alias']) ? $rm['alias'] : $rm['ip_host'];
+                $RMValue_Addr = $rm['ip_host'];
 
                 if ($CN->getMyIPServer() == $rm['ip_host']){
                     ?>
-                        nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $RMValue_Alias; ?>", image: DIR + 'servers/server1.png', shape: 'image'});
+                        nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $RMValue_Alias; ?>", ip_addr: "<?php echo $RMValue_Addr; ?>", image: DIR + 'servers/server1.png', shape: 'image'});
                     <?php
                 } else {
                     ?>
-                        nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $RMValue_Alias; ?>", image: DIR + 'computers/laptop1.png', shape: 'image', group: "Devices"});
+                        nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $RMValue_Alias; ?>", ip_addr: "<?php echo $RMValue_Addr; ?>", image: DIR + 'computers/laptop1.png', shape: 'image', group: "Devices"});
                     <?php
                 }
             }
@@ -288,9 +290,9 @@
         $(container).click(function(){
             document.getElementById("ContextMenuTest").style.visibility = "hidden";
             document.getElementById("ContextMenuTest_White").style.visibility = "hidden";
-            valueSelection = document.getElementById('selection').innerHTML;
+            valueSelection = document.getElementById('Topology_host_selected_ip_host').innerHTML;
 
-            if (valueSelection == 'Seleccionado: ' || valueSelection == ""){
+            if (valueSelection == ""){
                 // document.getElementById("btn_tracking_b2").setAttribute("disabled", "disabled");
                 $(".btn_tracking_device").attr("disabled", "disabled");
             } else{
@@ -300,11 +302,22 @@
         });
 
         network.on('select', function(params) {
-            document.getElementById('selection').innerHTML = 'Seleccionado: ' + params.nodes;
+            // document.getElementById('selection').innerHTML = 'Seleccionado: ' + params.nodes;
+            // ip_addr = this.body.nodes[params.nodes[0]].options.ip_addr;
             if (popupMenu !== undefined) {
                 popupMenu.parentNode.removeChild(popupMenu);
                 popupMenu = undefined;
             }
+            
+            var nodeID = params.nodes[0];
+            if (nodeID) {
+                var clickedNode = this.body.nodes[nodeID];
+                // $("#selection").html(params.nodes);
+                $("#Topology_host_selected_id").html(params.nodes);
+                $("#Topology_host_selected_ip_host").html(clickedNode.options.ip_addr);
+            }            
+            // if (ip_addr != "undefined"){
+            // }
         });
 
         network.on('stabilized', function (params) {
@@ -317,8 +330,8 @@
       
         container.addEventListener('contextmenu', function(e) {
                 // getCoords = getCoordsPosition(e);
-                valueSelection = document.getElementById('selection').innerHTML;
-                if (valueSelection == 'Seleccionado: ' || valueSelection == ""){
+                valueSelection = document.getElementById('Topology_host_selected_ip_host').innerHTML;
+                if (valueSelection == ""){
                     popupMenux = document.getElementById("ContextMenuTest_White");
                     // document.getElementById("btn_tracking_b2").setAttribute("disabled", "disabled");
                 } else {
@@ -351,6 +364,7 @@
 <input type="hidden" style="float: right" id="ClickSondeoFinal" onclick="javascript: draw();" value="Cambiar panorama" />
 <div ondblclick="javascript: draw();" id="mynetwork" style="width: 100%; height:470px;"></div>
 
-<p id="selection"></p>
-<p id="stabilization"></p>
+<p style="visibility: hidden;" id="Topology_host_selected_id"></p>
+<p style="visibility: hidden;" id="Topology_host_selected_ip_host"></p>
+<p style="visibility: hidden;" id="stabilization"></p>
 <p id="testing_id"></p>
