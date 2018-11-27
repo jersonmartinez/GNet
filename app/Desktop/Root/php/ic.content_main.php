@@ -16,6 +16,7 @@
   include (PD_DESKTOP_ROOT."/graphic/ic.modal.config_network.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddDevicesManagement.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddCredentialsLocalMachine.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.Monitor.php");
 ?>
 
 <div class="container_platform">
@@ -77,7 +78,6 @@
 
     <!-- Wrap content in admin-panel class -->
     <div>
-
         <div class="row AdminPanel_DevicesManagement">
             <div class="col-md-12">
                  <!-- Create Panel with required unique ID -->
@@ -178,8 +178,6 @@
                     </div>
                     <div class="panel-body AdminPanel_ResourcesMonitor_PanelBody">
                         <!-- El contenido -->
-
-
                     </div>
                 </div>
             </div>

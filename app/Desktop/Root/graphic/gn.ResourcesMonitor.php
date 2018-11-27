@@ -13,7 +13,9 @@
     $CLMUser = $CN->getCredentialsLocalMachine()['username'];
     $CLMPass = $CN->getCredentialsLocalMachine()['password'];
 
-    $ConnectSSH = new ConnectSSH("127.0.0.1", $CLMUser, $CLMPass);
+    $host = isset($_POST['host']) ? $_POST['host'] : "127.0.0.1";
+
+    $ConnectSSH = new ConnectSSH($host, $CLMUser, $CLMPass);
 
     if (!$ConnectSSH->CN){
         echo "Fail";

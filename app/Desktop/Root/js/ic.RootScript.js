@@ -1,5 +1,6 @@
 // $(".AddRedactDocumentation").hide();
 var xhr = null;
+var var_item_ResourcesMonitorModal = false;
 
 function Finish_NProgress(){
 	NProgress.done();
@@ -376,61 +377,118 @@ var var_item_ResourcesMonitor = false;
 
 /*Monitorizar recursos*/
 $("#sb_item_ResourcesMonitor").click(function(){
-	
+
+	var params = {
+		"name" : "GNet",
+		"host" : "127.0.0.1",
+		"container_return" :  "AdminPanel_ResourcesMonitor_PanelBody", 
+		"NProgress" : "body"
+	};
+
+	getResourcesMonitor(params);
+});
+
+function getResourcesMonitor(params){
 	xhr = $.ajax({
 		url: "app/Desktop/Root/php/gn.CheckCredentialsLocalMachine.php",
 		type: "post",
 		success: function(data){
 			if (data == "Ok"){
-
 				HideAdminPanels();
 				
-				NProgress.configure({parent: 'body'});
+				if (params['name'] == "GNet"){
+					NProgress.configure({parent: params['NProgress']});
+				} else {
+					var_item_ResourcesMonitorModal = true;
+					NProgress.configure({parent: params['NProgress']});
+				}
+
 				NProgress.start();
 
-				$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
-				
-				if (!var_item_ResourcesMonitor){
+				if (params['name'] == "GNet"){
+					$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
+					
+					if (!var_item_ResourcesMonitor){
+						xhr = $.ajax({
+							data: params,
+							url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
+							type: "post",
+							success: function(data){
+								if (data == "Fail"){
+									$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachine").html());
+									$("#BtnHiddenNotifyACLMError").click();
+								} else {
+									$("." + params['container_return']).addClass('animated fadeIn').html(data);
+									
+									setTimeout(function(){
+										$(".ShowInfoPercentageCPUPull").text($("#InputHiddenPercentageCPU").val() + "%");
+										$(".ShowInfoPercentageCPUProgress").css("width", $("#InputHiddenPercentageCPU").val() + "%");
+	
+										$(".ShowInfoPercentageRAMPull").text($("#InputHiddenPercentageRAM").val() + "%");
+										$(".ShowInfoPercentageRAMProgress").css("width", $("#InputHiddenPercentageRAM").val() + "%");
+	
+										$(".SB_Medida_CPU").addClass('animated fadeIn').css("visibility", "visible");
+										$(".SB_Medida_RAM").addClass('animated fadeIn').css("visibility", "visible");
+										$(".SB_Medida_Label").addClass('animated fadeIn').css("visibility", "visible");
+									}, 500);
+								}
+	
+								Finish_NProgress();
+								var_item_ResourcesMonitor = true;
+							}
+						});
+					} else {
+						if (var_item_ResourcesMonitorModal){
+							var_item_ResourcesMonitor = false;
+
+							$("#sb_item_ResourcesMonitor").dblclick();
+						}
+						Finish_NProgress();
+					}
+				} else {
 					xhr = $.ajax({
+						data: params,
 						url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
+						type: "post",
 						success: function(data){
 							if (data == "Fail"){
-								$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachine").html());
+								alert("Fail -> No existen credenciales de usuario y contraseña para este host");
 								$("#BtnHiddenNotifyACLMError").click();
 							} else {
-								$(".AdminPanel_ResourcesMonitor_PanelBody").addClass('animated fadeIn').html(data);
-								
-								setTimeout(function(){
-									$(".ShowInfoPercentageCPUPull").text($("#InputHiddenPercentageCPU").val() + "%");
-									$(".ShowInfoPercentageCPUProgress").css("width", $("#InputHiddenPercentageCPU").val() + "%");
 
-									$(".ShowInfoPercentageRAMPull").text($("#InputHiddenPercentageRAM").val() + "%");
-									$(".ShowInfoPercentageRAMProgress").css("width", $("#InputHiddenPercentageRAM").val() + "%");
+								if (var_item_ResourcesMonitor){
+									$(".AdminPanel_ResourcesMonitor_PanelBody").html("");
+								}
 
-									$(".SB_Medida_CPU").addClass('animated fadeIn').css("visibility", "visible");
-									$(".SB_Medida_RAM").addClass('animated fadeIn').css("visibility", "visible");
-									$(".SB_Medida_Label").addClass('animated fadeIn').css("visibility", "visible");
-								}, 500);
+								$("." + params['container_return']).addClass('animated fadeIn').html(data);
 							}
-
 							Finish_NProgress();
-							var_item_ResourcesMonitor = true;
-
 						}
 					});
-				} else {
-					Finish_NProgress();
 				}
 				
+				
+				
 			} else if (data == "Fail"){
-				getModalCredentialsLocalMachine();
+				if (params['name'] == "GNet"){
+					getModalCredentialsLocalMachine();
+				} else {
+					alert("No existen credenciales de usuario y contraseña para este host");
+				}
+
 			}
 		}
 	});
-});
+}
 
 $("#sb_item_ResourcesMonitor").dblclick(function(){
 	var_item_ResourcesMonitor = false;
+
+	if (var_item_ResourcesMonitorModal){
+		var_item_ResourcesMonitorModal = false;
+		$(".AdminPanel_ResourcesMonitor_PanelBodyModal").html("");
+	}
+
 	$("#sb_item_ResourcesMonitor").click();
 });
 
@@ -443,6 +501,10 @@ $(".tab_btn_process").click(function(){
 
 function getModalCredentialsLocalMachine(){
 	$(".AddCredentialsLocalMachine").click();
+}
+
+function getModalMonitor(){
+	$(".ModalMonitor").click();
 }
 
 /*Registrar las credenciales del host actual que monitoriza*/
@@ -549,6 +611,7 @@ $("#ddt_SelectTypeDeviceOptionRouter").click(function(){
 
 $(".AddDeviceManagement").hide();
 $(".AddCredentialsLocalMachine").hide();
+$(".ModalMonitor").hide();
 
 /*Admin Panels*/
 function HideAdminPanels(){
@@ -842,6 +905,17 @@ function getDataSelection(value){
 	let final_value = $(value).attr("class");
 
 	if (final_value == "monitor"){
+		getModalMonitor();
+
+		var params = {
+			"name" : "Unknown",
+			"host" : $("#Topology_host_selected_ip_host").html(),
+			"container_return" : "AdminPanel_ResourcesMonitor_PanelBodyModal", 
+			"NProgress" : ".AdminPanel_ResourcesMonitor_PanelBodyModal"
+		};
+	
+		getResourcesMonitor(params);
+
 		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
 	} else if (final_value == "processes"){
 		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());

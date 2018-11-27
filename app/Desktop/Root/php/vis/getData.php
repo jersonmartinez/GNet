@@ -342,7 +342,7 @@
                 var offsetX = e.offsetX;
                 var offsetY = e.offsetY;
 
-                if( e.target != this ){ // 'this' is our HTMLElement
+                if (e.target != this){ // 'this' is our HTMLElement
                     offsetX = e.target.offsetLeft + e.offsetX;
                     offsetY = e.target.offsetTop + e.offsetY;
                 }
