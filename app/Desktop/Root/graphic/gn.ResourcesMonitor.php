@@ -45,6 +45,7 @@
     $AccessWebServer = explode(",", $ConnectSSH->getAccessWebServer());
 
     // Método para convertir a GB
+    $MemoryFree = $MemoryState[0] - $MemoryState[1];
     function ConvertUnit($InputValue) {
         if ($InputValue >= 1024) {
             $InputValue = ($InputValue / 1024);
@@ -789,7 +790,7 @@
                 name: 'Porcentaje de memoria',
                 data: [
                     ['En uso: <?php echo ConvertUnit($MemoryState[1]); ?>', <?php echo $MemoryState[1]; ?>],
-                    ['Disponible: <?php echo ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[2]; ?>],
+                    ['Disponible: <?php echo ConvertUnit($MemoryFree); ?>', <?php echo $MemoryFree; ?>],
                     //['Disponible: <?php echo ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[0] - $MemoryState[1]; ?>]
                 ]
             }]
