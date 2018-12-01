@@ -87,6 +87,35 @@
 			username VARCHAR(50) NOT NULL, 
 			password VARCHAR(50) NOT NULL
 		);"
+
+		# Tabla para el almacenamiento de Logs
+		$X.'syslog' => "CREATE TABLE ".$X."syslog (
+			ID int(10) unsigned NOT NULL AUTO_INCREMENT,
+			CustomerID bigint(20) DEFAULT NULL,
+			ReceivedAt datetime DEFAULT NULL,
+			DeviceReportedTime datetime DEFAULT NULL,
+			Facility smallint(6) DEFAULT NULL,
+			Priority smallint(6) DEFAULT NULL,
+			FromHost varchar(60) DEFAULT NULL,
+			Message text,
+			NTSeverity int(11) DEFAULT NULL,
+			Importance int(11) DEFAULT NULL,
+			EventSource varchar(60) DEFAULT NULL,
+			EventUser varchar(60) DEFAULT NULL,
+			EventCategory int(11) DEFAULT NULL,
+			EventID int(11) DEFAULT NULL,
+			EventBinaryData text,
+			MaxAvailable int(11) DEFAULT NULL,
+			CurrUsage int(11) DEFAULT NULL,
+			MinUsage int(11) DEFAULT NULL,
+			MaxUsage int(11) DEFAULT NULL,
+			InfoUnitID int(11) DEFAULT NULL,
+			SysLogTag varchar(60) DEFAULT NULL,
+			EventLogType varchar(60) DEFAULT NULL,
+			GenericFileName varchar(60) DEFAULT NULL,
+			SystemID int(11) DEFAULT NULL,
+			PRIMARY KEY (ID)
+		);"
 	);
 
 	$cont = 0; //$errors = 0; 
@@ -107,12 +136,12 @@
 
 	$UserRootInfo = "INSERT INTO ".$X."root_info (username, date_log, date_log_unix) 
 		VALUES ('Side Master','".date('Y-n-j')."','".time()."'), 
-		('Frankenstain','".date('Y-n-j')."','".time()."');";
+		('Frankenstein','".date('Y-n-j')."','".time()."');";
 	
 	$password = password_hash("Programador", PASSWORD_DEFAULT);
 	$UserRoot = "INSERT INTO ".$X."root (username, password) 
 		VALUES ('Side Master','".$password."'), 
-		('Frankenstain','".$password."');";
+		('Frankenstein','".$password."');";
 
 	if ($IC->query($Privilege)){
 		// echo "Creado privilege...";

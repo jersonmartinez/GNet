@@ -44,8 +44,10 @@
     $NetworkServices = explode(",", $ConnectSSH->getNetworkServices());
     $VirtualHost     = explode(",", explode("=", $ConnectSSH->getWebServer())[0]);
     $WebServer       = explode(",", explode("=", $ConnectSSH->getWebServer())[1]);
+    $AccessWebServer = explode(",", $ConnectSSH->getAccessWebServer());
 
     // Método para convertir a GB
+    $MemoryFree = $MemoryState[0] - $MemoryState[1];
     function ConvertUnit($InputValue) {
         if ($InputValue >= 1024) {
             $InputValue = ($InputValue / 1024);
@@ -157,7 +159,7 @@
                         <!-- Create Panel with required unique ID -->
                         <div class="panel panel-dark" id="p3">
                             <div class="panel-heading">
-                                <i class="fa fa-battery-full" aria-hidden="true"></i>
+                                <i class="fa fa-fw fa-battery-full" aria-hidden="true"></i>
                                 <span class="panel-title">Estado de la batería</span>
                             </div>
                             <div class="panel-body">
@@ -601,6 +603,45 @@
         </div>
         
         <div role="tabpanel" class="tab-pane" id="server">
+            <div class="col-xs-12">
+                <div id="container_webserver"></div>
+                <div id="button">
+                    <button id="plain">Plain</button>
+                    <button id="inverted">Invertido</button>
+                    <button id="polar">Polar</button>
+                </div>
+            </div>
+            <style type="text/css">
+                #container_webserver {
+                    min-width: 320px;
+                    /* max-width: 600px; */
+                    margin: 0 auto;
+                }
+                #button {
+                    margin-bottom: 1.5em;
+                }
+                #button > button {
+                    font-size: 12px;
+                    line-height: 1;
+                    display: inline-block;
+                    text-transform: uppercase;
+                    font-weight: bolder;
+                    padding: 13px 18px;
+                    letter-spacing: 1px;
+                    background-color: #90ef7f;
+                    color: #313131;
+                    border: 0;
+                    border-radius: 2px;
+                    margin: 1px;
+                    text-align: center;
+                }
+
+                #button > button:hover {
+                    background-color: #71DB5F;
+                    color: #fff;
+                }
+            </style>
+
             <!-- Required .admin-panels wrapper-->
             <div class="admin-panels">
                 <!-- Create Row -->
@@ -751,7 +792,7 @@
                 name: 'Porcentaje de memoria',
                 data: [
                     ['En uso: <?php echo ConvertUnit($MemoryState[1]); ?>', <?php echo $MemoryState[1]; ?>],
-                    ['Disponible: <?php echo ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[2]; ?>],
+                    ['Disponible: <?php echo ConvertUnit($MemoryFree); ?>', <?php echo $MemoryFree; ?>],
                     //['Disponible: <?php echo ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[0] - $MemoryState[1]; ?>]
                 ]
             }]
@@ -912,6 +953,67 @@
                 }
             ]
         }]
+    });
+
+    // Gráfico que representa el número de acceso por hora al servidor web
+    var chart = Highcharts.chart('container_webserver', {
+        credits: false,
+        title: {
+            text: 'Número de accesos por hora al servidor web'
+        },
+
+        subtitle: {
+            text: 'Apache'
+        },
+
+        xAxis: {
+            categories: ['0:00', '1:00', '2:00', '3:00', '4:00', '5:00', '6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00', '20:00', '21:00', '22:00', '23:00']
+        },
+
+        series: [{
+            name: 'Accesos',
+            type: 'column',
+            colorByPoint: true,
+            data: [<?php echo $AccessWebServer[0] ?>, <?php echo $AccessWebServer[1] ?>, <?php echo $AccessWebServer[2] ?>, <?php echo $AccessWebServer[3] ?>, <?php echo $AccessWebServer[4] ?>, <?php echo $AccessWebServer[5] ?>, <?php echo $AccessWebServer[6] ?>, <?php echo $AccessWebServer[7] ?>, <?php echo $AccessWebServer[8] ?>, <?php echo $AccessWebServer[9] ?>, <?php echo $AccessWebServer[10] ?>, <?php echo $AccessWebServer[11] ?>, <?php echo $AccessWebServer[12] ?>, <?php echo $AccessWebServer[13] ?>, <?php echo $AccessWebServer[14] ?>, <?php echo $AccessWebServer[15] ?>, <?php echo $AccessWebServer[16] ?>, <?php echo $AccessWebServer[17] ?>, <?php echo $AccessWebServer[18] ?>, <?php echo $AccessWebServer[19] ?>, <?php echo $AccessWebServer[20] ?>, <?php echo $AccessWebServer[21] ?>, <?php echo $AccessWebServer[22] ?>, <?php echo $AccessWebServer[23] ?>],
+            showInLegend: false
+        }]
+    });
+
+
+    $('#plain').click(function () {
+        chart.update({
+            chart: {
+                inverted: false,
+                polar: false
+            },
+            subtitle: {
+                text: 'Apache'
+            }
+        });
+    });
+
+    $('#inverted').click(function () {
+        chart.update({
+            chart: {
+                inverted: true,
+                polar: false
+            },
+            subtitle: {
+                text: 'Apache'
+            }
+        });
+    });
+
+    $('#polar').click(function () {
+        chart.update({
+            chart: {
+                inverted: false,
+                polar: true
+            },
+            subtitle: {
+                text: 'Apache'
+            }
+        });
     });
 
     // Estado de la batería

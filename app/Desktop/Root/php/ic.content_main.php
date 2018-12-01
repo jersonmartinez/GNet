@@ -15,8 +15,11 @@
   #Agregando ventana modal, configuración de la red.
   include (PD_DESKTOP_ROOT."/graphic/ic.modal.config_network.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddDevicesManagement.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.ConfigureSyslog.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddCredentialsLocalMachine.php");
+
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.Monitor.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.ChangeUserName.php");
 ?>
 
 <div class="container_platform">
@@ -78,6 +81,26 @@
 
     <!-- Wrap content in admin-panel class -->
     <div>
+        <div class="row AdminPanel_ProffileSettings">
+
+            <!-- Create Column with required .admin-grid class -->
+            <div class="col-md-12">
+
+                <!-- Create Panel with required unique ID -->
+                <div class="panel" id="pUnique_ProfileSetting">
+                    <div class="panel-heading">
+                        <span class="panel-icon"><i class="fa fa-user"></i></span>
+                        <span class="panel-title">Configuración de la cuenta del usuario</span>   
+                    </div>
+                    <div class="panel-body AdminPanel_ProfileSetting_PanelBody">
+                        <!-- El contenido -->
+
+                    </div>
+                </div>
+            </div>
+            <!-- End Column -->
+        </div>
+
         <div class="row AdminPanel_DevicesManagement">
             <div class="col-md-12">
                  <!-- Create Panel with required unique ID -->

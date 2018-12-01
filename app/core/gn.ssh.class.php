@@ -825,6 +825,33 @@
 			return getErrors();
 		}
 
+		public function getAccessWebServer(){
+			$filename = "getAccessWebServer.sh";
+			// $ActionArray[] = addslashes('p="/var/log/apache2/access.log"');
+			$ActionArray[] = 'hs=(0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)';
+			// array_push($ActionArray, 'hs=(0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0)');
+			array_push($ActionArray, "for h in $(cat /var/log/apache2/access.log | cut -d '[' -f2 | cut -d ']' -f1 | cut -d ' ' -f1 | cut -d ':' -f2 | sed 's/^0//'); do");
+			array_push($ActionArray, '	(( hs[$h]++ ))');
+			array_push($ActionArray, 'done');
+			array_push($ActionArray, 'hora="0"');
+			array_push($ActionArray, 'for h3 in ${hs[@]}; do');
+			// array_push($ActionArray, '	if [[ $hora == "0" ]]; then');
+			// array_push($ActionArray, '		echo "0"');
+			// array_push($ActionArray, '	else');
+			// array_push($ActionArray, '		echo "$hora"');
+			// array_push($ActionArray, "	fi");
+			// array_push($ActionArray, '	echo ":00,"');
+			array_push($ActionArray, '	echo "$h3,"');
+			array_push($ActionArray, "	(( hora++ ))");
+			array_push($ActionArray, "done");
+
+			$RL[] = $this->remote_path.$filename;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			return getErrors();
+		}
+
 		public function PercentageCPU() {
 			$CPUStatus = explode(",", $this->getCpuState());
 	        
@@ -834,7 +861,7 @@
 	    public function PercentageMemory() {
 	    	$MemoryStatus = explode(",", $this->getMemoryState());
 	        
-	        $MemoryStatus[1] = ($MemoryStatus[1] * 100) / 1998;
+	        $MemoryStatus[1] = ($MemoryStatus[1] * 100) / $MemoryStatus[0];
 	        
 	        if(is_float($MemoryStatus[1])) {
 	          $PercenFloat = number_format($MemoryStatus[1], 2, '.', '');

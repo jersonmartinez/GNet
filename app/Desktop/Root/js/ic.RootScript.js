@@ -498,6 +498,154 @@ $(".tab_btn_process").click(function(){
 		$(".sorting_asc").addClass('animated fadeIn').click();
 	}, 100);
 });
+// ----------------------------------------------
+// Configuraciòn de cuenta y perfil del usuario
+// ----------------------------------------------
+
+$("#ConfigureProfile").click(function(){
+	$.ajax({
+		url: "app/Desktop/Root/graphic/gn.ProfileSettings.php",
+		type: "post",
+		success: function(data){
+			HideAdminPanels();	
+			$(".AdminPanel_ProffileSettings").addClass('animated fadeIn').show();
+			$(".AdminPanel_ProfileSetting_PanelBody").addClass('animated fadeIn').html(data);
+
+			$("#btnUpdateUserInfo").click(function(){
+				UpdateUserInformation();
+			});
+			
+			$("#btnChangeUserName").click(function(){
+				$(".ChangeUserName").click();
+			});
+
+			$("#btnSaveNewUser").click(function(){
+				ChangeUserName();
+			});
+
+			$("#btnChangePassword").click(function(){
+				ChangePassword();
+			});
+
+			$("#UpdateUserName,#PasswordUserName").keypress(enterChangeUserName);
+			$("#name1,#name2,#email").keypress(enterUpdateUserInfo);
+			$("#password1,#password2,#password3").keypress(enterChangePassword);
+
+			function UpdateUserInformation() {
+				var FirstName = $("#name1").val(),
+					LastName = $("#name2").val(),
+					Email = $("#email").val();
+
+				$("#G_InputUserName").val();
+				$("#G_InputPrefixTable").val();
+				$("#G_InputPrivilegeUser").val();
+				$("#G_InputFirstName").val(FirstName);
+				$("#G_InputLastName").val(LastName);
+				$("#G_InputMailAddress").val(Email);
+				
+				$.ajax({
+					url: "app/Desktop/Root/php/gn.UpdateUserInfo.php",
+					type: "post",
+					data: $("#FormUpdateUserInfo").serialize(),
+					success: function(data){
+						if (data == "Ok") {
+							alert("Se ha modificado la información del usuario");
+						} else if (data == "Fail") {
+							alert("Ha ocurrido un error");
+						}
+					}
+				});
+			}
+
+			function enterUpdateUserInfo(event){
+				var e = event || window.event;
+				if (e.keyCode == 13) {
+					UpdateUserInformation();
+				}
+			}
+
+			function ChangeUserName() {
+				var UserName = $("#UpdateUserName").val(),
+					Password = $("#PasswordUserName").val();
+
+				$("#U_InputUserName").val();
+				$("#U_InputPrefixTable").val();
+				$("#U_InputPrivilegeUser").val();
+				$("#U_InputNewUserName").val(UserName);
+				$("#U_InputPasswordUserName").val(Password);
+				
+				if (UserName != "" && Password != ""){
+					$.ajax({
+						url: "app/Desktop/Root/php/gn.ModifyUserAccount.php",
+						type: "post",
+						data: $("#FormChangeUserName").serialize(),
+						success: function(data){
+							if (data == "Ok") {
+								alert("Se ha modificado el usuario");
+							} else if (data == "Fail") {
+								alert("Ha ocurrido un error");
+							}
+						}
+					});
+				} else {
+					alert("Rellene los campos");
+				}
+			}
+
+			function enterChangeUserName(event){
+				var e = event || window.event;
+				if (e.keyCode == 13) {
+					ChangeUserName();
+				}
+			}
+
+			function ChangePassword() {
+				var password1 = $("#password1").val(),
+					password2 = $("#password2").val()
+					password3 = $("#password3").val();
+
+				if (password2 == password3) {
+					$("#P_InputUserName").val();
+					$("#P_InputPrefixTable").val();
+					$("#P_InputPrivilegeUser").val();
+					$("#P_InputCurrentPassword").val(password1);
+					$("#P_InputNewPassword").val(password3);
+					
+					if (password1 != "" && password2 != "" && password3 != ""){
+						if (password2 == password3) {
+							$.ajax({
+								url: "app/Desktop/Root/php/gn.ChangePassword.php",
+								type: "post",
+								data: $("#FormChangePassword").serialize(),
+								success: function(data){
+									if (data == "Ok") {
+										alert("Se ha modificado la contraseña" + data);
+									} else if (data == "Fail") {
+										alert("Ha ocurrido un error");
+									}
+								}
+							});
+						} else {
+							alert("Las contraseñas no coinciden");
+						}						
+					} else {
+						alert("Rellene los campos");
+					}
+				} else {
+					alert("Las contraseñas no coinciden");
+				}		
+			}
+
+			function enterChangePassword(event){
+				var e = event || window.event;
+				if (e.keyCode == 13) {
+					ChangePassword();
+				}
+			}
+		}
+	});
+});
+
 
 function getModalCredentialsLocalMachine(){
 	$(".AddCredentialsLocalMachine").click();
@@ -597,6 +745,10 @@ $("#sb_item_AddDeviceManagement").click(function(){
 	$("#ADM_InsertAliasHost").focus();
 });
 
+$("#sb_item_ConfigureSyslog").click(function(){
+	$(".ConfigureSyslog").click();
+});
+
 $("#ddt_SelectTypeDeviceOptionFinalHost").click(function(){
     $(".ddt_SelectTypeDevice").html("Ordenador <span class='caret'></span>");
 });
@@ -610,14 +762,17 @@ $("#ddt_SelectTypeDeviceOptionRouter").click(function(){
 });
 
 $(".AddDeviceManagement").hide();
+$(".ConfigureSyslog").hide();
 $(".AddCredentialsLocalMachine").hide();
 $(".ModalMonitor").hide();
+$(".ChangeUserName").hide();
 
 /*Admin Panels*/
 function HideAdminPanels(){
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
 	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeOut').hide();
+	$(".AdminPanel_ProffileSettings").addClass('animated fadeOut').hide();
 }
 
 function HideADM(which){
