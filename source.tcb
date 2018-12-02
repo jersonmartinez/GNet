@@ -44,6 +44,10 @@
 	exit();
 */
 
+	ini_set('display_errors', 1);
+	ini_set('display_startup_errors', 1);
+	error_reporting(E_ALL);
+
 	@session_start();
 	#Inclusión de constantes que contienen las rutas de acceso. 
 	@$_SESSION['getConsts'] = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."app/core/ic.const.php";

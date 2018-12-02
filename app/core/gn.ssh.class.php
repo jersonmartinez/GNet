@@ -14,16 +14,16 @@
 		public $db_connect;
 		public $db_prefix;
 
-		function __construct($ip_host, $username, $password){
+		function __construct($ip_host = "127.0.0.1", $username = "root", $password = "123"){			
 			if (!function_exists("ssh2_connect")) {
         		array_push($this->errors, "La función ssh2_connect no existe");
 			}
 
-        	if(!($this->connect = @ssh2_connect($ip_host, 22))){
+        	if(!(@$this->connect = @ssh2_connect($ip_host, 22))){
 				$this->ip_host = $ip_host;
         		array_push($this->errors, "No hay conexión con al dirección IP: " . $ip_host);
 		    } else {
-		        if(!ssh2_auth_password($this->connect, $username, $password)) {
+		        if(@!ssh2_auth_password($this->connect, $username, $password)) {
         			array_push($this->errors, "Autenticación invalida");
 		        } else {
 					$this->ip_host 		= $ip_host;
@@ -60,8 +60,10 @@
 		public function RunLines($RL){
 			if(!($this->stream = ssh2_exec($this->connect, $RL)))
 		        return "Falló: El comando no se ha podido ejecutar.";
+				
+			$data = "";	
 			stream_set_blocking($this->stream, true);
-            while ($buf = fread($this->stream, 4096))
+			while ($buf = fread($this->stream, 4096))
                 $data .= $buf;
             
             if (fclose($this->stream))
@@ -78,7 +80,7 @@
 		}
 
 		public function sendFile($filename){
-			$scp = ssh2_scp_send($this->connect, $this->local_path.$filename, $this->remote_path.$filename, 0777);
+			$scp = @ssh2_scp_send($this->connect, $this->local_path.$filename, $this->remote_path.$filename, 0777);
 			if (!$scp){
 				return false;
 			} else {
@@ -122,7 +124,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getDNSFileZones(){
@@ -141,7 +144,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getNetworkIPLocal(){
@@ -187,9 +191,9 @@
 			}
 		}
 		
-		public function getErrors(){
-			return implode("<br/>", $this->errors);
-		}
+		// public function getErrors(){
+		// 	return implode("<br/>", $this->errors);
+		// }
 
 		public function testing(){
 			return "Okay";
@@ -592,7 +596,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getSwapState(){
@@ -604,7 +609,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getCpuState(){
@@ -622,7 +628,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getDiskState(){
@@ -634,7 +641,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getProcState(){
@@ -646,7 +654,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getNetAddress(){
@@ -666,7 +675,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getTableRoute(){
@@ -688,7 +698,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getPortsListen(){
@@ -700,7 +711,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $ActionArray));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}	
 
 		public function getStatisticsNetwork(){
@@ -720,7 +732,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $ActionArray));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getBatteryState(){
@@ -733,7 +746,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getInfoOS(){
@@ -749,7 +763,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getUsersConnected(){
@@ -761,7 +776,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getNetworkServices() {
@@ -792,7 +808,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getWebServer(){
@@ -822,7 +839,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function getAccessWebServer(){
@@ -849,27 +867,33 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}
 
 		public function PercentageCPU() {
 			$CPUStatus = explode(",", $this->getCpuState());
-	        
-	        return ($CPUStatus[1] + $CPUStatus[2]);
+			
+			if (isset($CPUStatus[1]) && isset($CPUStatus[2]))
+				return ($CPUStatus[1] + $CPUStatus[2]);
+
+			return false;
 	    }
 
 	    public function PercentageMemory() {
 	    	$MemoryStatus = explode(",", $this->getMemoryState());
-	        
-	        $MemoryStatus[1] = ($MemoryStatus[1] * 100) / $MemoryStatus[0];
-	        
-	        if(is_float($MemoryStatus[1])) {
-	          $PercenFloat = number_format($MemoryStatus[1], 2, '.', '');
-	          
-	          return $PercenFloat;
-	        }
-	        
-	        return $MemoryStatus[1];
+			
+			if (isset($MemoryStatus[0]) && isset($MemoryStatus[1])) {
+				$MemoryStatus[1] = ($MemoryStatus[1] * 100) / $MemoryStatus[0];
+
+				if (is_float($MemoryStatus[1])) {
+					$PercenFloat = number_format($MemoryStatus[1], 2, '.', '');
+					
+					return $PercenFloat;
+				}
+			}
+			
+			return false;
 	    }
 
 		/*public function getDHCPServer(){
@@ -890,7 +914,8 @@
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
 			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
 				return $this->RunLines(implode("\n", $RL));
-			return getErrors();
+			// return getErrors();
+			return false;
 		}*/
 
 		/**

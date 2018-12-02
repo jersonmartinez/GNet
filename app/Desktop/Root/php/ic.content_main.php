@@ -1,4 +1,28 @@
 
+<div class="panel" id="MessageFailCheckCredentialsLocalMachine" style="visibility: hidden;">
+    <div class="panel-heading">
+        <span class="panel-title">Credenciales del servidor web</span>
+    </div>
+
+    <div class="panel-body">
+        Hemos encontrado un problema con las credenciales anteriormente almacenadas, por favor, actualice las credenciales, nombre de usuario y contraseña de este servidor.
+    </div>
+
+    <div class="panel-footer"><button type="button" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales</button></div>
+</div>
+
+<div class="panel" id="MessageFailCheckTrackingNetwork" style="visibility: hidden;">
+    <div class="panel-heading">
+        <span class="panel-title">Tracking Network</span>
+    </div>
+
+    <div class="panel-body">
+        No existen ninguna infraestructura de red registrada para mostrar su mapa de red. Por favor, aplique un sondeo de red, o bien, agregue manualmente los dispositivos.
+    </div>
+
+    <div class="panel-footer"><button type="button" onclick="javascript: btn_action_tn();" class="btn btn-dark">Sondear ahora</button></div>
+</div>
+
 <input type="hidden" id="title_sm" value="" />
 <input type="hidden" id="content_sm" value="" />
 
@@ -212,28 +236,3 @@
 <?php
     include (PD_DESKTOP_ROOT_PHP."/vis/gn.menu-context.php");
 ?>
-
-
-<div class="panel" id="MessageFailCheckCredentialsLocalMachine" style="visibility: hidden;">
-    <div class="panel-heading">
-        <span class="panel-title">Credenciales del servidor web</span>
-    </div>
-
-    <div class="panel-body">
-        Hemos encontrado un problema con las credenciales anteriormente almacenadas, por favor, actualice las credenciales, nombre de usuario y contraseña de este servidor.
-    </div>
-
-    <div class="panel-footer"><button type="button" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales</button></div>
-</div>
-
-<div class="panel" id="MessageFailCheckTrackingNetwork" style="visibility: hidden;">
-    <div class="panel-heading">
-        <span class="panel-title">Tracking Network</span>
-    </div>
-
-    <div class="panel-body">
-        No existen ninguna infraestructura de red registrada para mostrar su mapa de red. Por favor, aplique un sondeo de red, o bien, agregue manualmente los dispositivos.
-    </div>
-
-    <div class="panel-footer"><button type="button" onclick="javascript: btn_action_tn();" class="btn btn-dark">Sondear ahora</button></div>
-</div>
