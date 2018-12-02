@@ -122,3 +122,26 @@ div#ContextMenuTest_White li div.label-menu-context {
 .form-control-group-navbar-buscador {
   width: 100% !important;
 }
+
+/* Box-Wrap */
+.box-wrap::after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+.boxes div.selected {
+    -webkit-box-shadow: 0 0.45em 0.6em 0 rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0.45em 0.6em 0 rgba(0, 0, 0, 0.2);
+
+      border-radius: 4px;
+            /*background-color: red;*/
+}
+
+.selection {
+    /*background: rgba(0, 0, 255, 0.1);*/
+    background: rgba(0, 0, 0,.2);
+    border-radius: 0.1em;
+    /*border: 0.05em solid rgba(0, 0, 255, 0.2);*/
+    border: 0.05em solid rgba(0, 0, 0, 0.4);
+}

@@ -475,7 +475,6 @@ function getResourcesMonitor(params){
 				} else {
 					alert("No existen credenciales de usuario y contraseña para este host");
 				}
-
 			}
 		}
 	});

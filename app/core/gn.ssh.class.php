@@ -458,11 +458,11 @@
 						#192.168.100.1 --, 192.168.100.4
 						$ip_forward = @$this->IsRouter($value); #Es Router (100.1 = yes)
 						
-						if ($ip_forward){
-							echo "<br/>La direccion: ",$value," es enrutador";
-						} else {
-							echo "<br/>La direccion: ",$value," no es enrutador";
-						}
+						// if ($ip_forward){
+						// 	echo "<br/>La direccion: ",$value," es enrutador";
+						// } else {
+						// 	echo "<br/>La direccion: ",$value," no es enrutador";
+						// }
 					
 						// exit();
 
@@ -498,7 +498,7 @@
 						// $NextNet = $ArrayNets[0]; #192.168.100.0/24
 						$NextNet = "-";
 
-						echo "Network: ",$Network," |  Value: ",$value," | IP Forward: ",$ip_forward," | Next Net: ",$NextNet;
+						// echo "Network: ",$Network," |  Value: ",$value," | IP Forward: ",$ip_forward," | Next Net: ",$NextNet;
 						
 						// break;
 						// exit;
@@ -524,9 +524,9 @@
 
 						$NextNet = $ArrayNets[1];
 						// echo "Cantidad del arreglo: ", count($ArrayNets), "; deberían ser 3";
-						foreach ($ArrayNets as $side){
-							echo $side, ", ";
-						}
+						// foreach ($ArrayNets as $side){
+						// 	echo $side, ", ";
+						// }
 						if (trim($Network) == trim($NextNet)){
 							$NextNet = "-";
 						}
@@ -877,7 +877,7 @@
 			if (isset($CPUStatus[1]) && isset($CPUStatus[2]))
 				return ($CPUStatus[1] + $CPUStatus[2]);
 
-			return false;
+			return 0;
 	    }
 
 	    public function PercentageMemory() {
@@ -886,14 +886,11 @@
 			if (isset($MemoryStatus[0]) && isset($MemoryStatus[1])) {
 				$MemoryStatus[1] = ($MemoryStatus[1] * 100) / $MemoryStatus[0];
 
-				if (is_float($MemoryStatus[1])) {
-					$PercenFloat = number_format($MemoryStatus[1], 2, '.', '');
-					
-					return $PercenFloat;
-				}
+				if (is_float($MemoryStatus[1]))
+					return number_format($MemoryStatus[1], 2, '.', '');
 			}
 			
-			return false;
+			return 0;
 	    }
 
 		/*public function getDHCPServer(){

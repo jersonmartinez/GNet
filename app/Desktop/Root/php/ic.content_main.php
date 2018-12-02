@@ -1,28 +1,4 @@
 
-<div class="panel" id="MessageFailCheckCredentialsLocalMachine" style="visibility: hidden;">
-    <div class="panel-heading">
-        <span class="panel-title">Credenciales del servidor web</span>
-    </div>
-
-    <div class="panel-body">
-        Hemos encontrado un problema con las credenciales anteriormente almacenadas, por favor, actualice las credenciales, nombre de usuario y contraseña de este servidor.
-    </div>
-
-    <div class="panel-footer"><button type="button" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales</button></div>
-</div>
-
-<div class="panel" id="MessageFailCheckTrackingNetwork" style="visibility: hidden;">
-    <div class="panel-heading">
-        <span class="panel-title">Tracking Network</span>
-    </div>
-
-    <div class="panel-body">
-        No existen ninguna infraestructura de red registrada para mostrar su mapa de red. Por favor, aplique un sondeo de red, o bien, agregue manualmente los dispositivos.
-    </div>
-
-    <div class="panel-footer"><button type="button" onclick="javascript: btn_action_tn();" class="btn btn-dark">Sondear ahora</button></div>
-</div>
-
 <input type="hidden" id="title_sm" value="" />
 <input type="hidden" id="content_sm" value="" />
 
@@ -47,62 +23,6 @@
 ?>
 
 <div class="container_platform">
-    <!-- <input type="button" value="Mostrar usuarios" onclick="javascript: nuevallamada();" id="TestingShowUsersII" />
-    <div class="container_platform_savenewdata">
-        <p>Parrafo</p>
-    </div> -->
-
-    <!-- Tour Activation Btn -->
-    <!-- <button class="btn btn-primary" id="tour_start" type="button">Begin Tour</button> -->
-
-    <!-- Tour Steps -->
-    <!-- <div class="row">
-      <div class="col-md-6">
-        <div class="panel" id="tour-item1">
-            <div class="panel-heading">
-              <span class="panel-title"> Panel 1</span>
-            </div>    
-            <div class="panel-body" style="min-height: 100px;">
-            </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="panel" id="tour-item2">
-            <div class="panel-heading">
-              <span class="panel-title"> Panel 2</span>
-            </div>    
-            <div class="panel-body" style="min-height: 100px;">
-            </div>
-        </div>
-      </div>
-    </div> -->
-
-    <style type="text/css">
-            
-        .box-wrap::after {
-          display: block;
-          content: '';
-          clear: both;
-        }
-
-        .boxes div.selected {
-          -webkit-box-shadow: 0 0.45em 0.6em 0 rgba(0, 0, 0, 0.2);
-                  box-shadow: 0 0.45em 0.6em 0 rgba(0, 0, 0, 0.2);
-
-            border-radius: 4px;
-                  /*background-color: red;*/
-        }
-        .selection {
-          /*background: rgba(0, 0, 255, 0.1);*/
-          background: rgba(0, 0, 0,.2);
-          border-radius: 0.1em;
-          /*border: 0.05em solid rgba(0, 0, 255, 0.2);*/
-          border: 0.05em solid rgba(0, 0, 0, 0.4);
-        }
-
-    </style>
-
-
     <!-- Wrap content in admin-panel class -->
     <div>
         <div class="row AdminPanel_ProffileSettings">
@@ -176,7 +96,7 @@
             <div class="col-md-12">
 
                 <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUnique_TrackingNetworks">
+                <div class="panel" id="pUniquesd_TrackingNetwork">
                     <div class="panel-heading">
 
                         <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
@@ -236,3 +156,27 @@
 <?php
     include (PD_DESKTOP_ROOT_PHP."/vis/gn.menu-context.php");
 ?>
+
+<div class="panel" id="MessageFailCheckCredentialsLocalMachine" style="display: none;">
+    <div class="panel-heading">
+        <span class="panel-title">Credenciales del servidor web</span>
+    </div>
+
+    <div class="panel-body">
+        Hemos encontrado un problema con las credenciales anteriormente almacenadas, por favor, actualice las credenciales, nombre de usuario y contraseña de este servidor.
+    </div>
+
+    <div class="panel-footer"><button type="button" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales</button></div>
+</div>
+
+<div class="panel" id="MessageFailCheckTrackingNetwork" style="display: none;">
+    <div class="panel-heading">
+        <span class="panel-title">Tracking Network</span>
+    </div>
+
+    <div class="panel-body">
+        No existen ninguna infraestructura de red registrada para mostrar su mapa de red. Por favor, aplique un sondeo de red, o bien, agregue manualmente los dispositivos.
+    </div>
+
+    <div class="panel-footer"><button type="button" onclick="javascript: btn_action_tn();" class="btn btn-dark">Sondear ahora</button></div>
+</div>
