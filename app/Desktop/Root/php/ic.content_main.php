@@ -53,6 +53,29 @@
       </div>
     </div> -->
 
+    <style>
+        div.ejecutando_pruebas_syslog {
+            background-color: #2d2a22;
+            color: #fff;
+            padding: 30px
+        }
+
+        div.ejecutando_pruebas_syslog input[type="button"] {
+            background-color: black;
+            padding: 8px 15px;
+            border: 0px;
+            margin-left: 50px;
+        }
+    </style>
+
+    <div class="ejecutando_pruebas_syslog">
+        <label for="datos">Datos: {IP_GNet: "192.168.0.20", Severidad: "error"}</label>
+        <input type="button" id="btn_syslog_test" value="Enviar datos" />
+        
+        <div class="retorno_de_datos">
+        </div>
+    </div>
+
     <style type="text/css">
             
         .box-wrap::after {

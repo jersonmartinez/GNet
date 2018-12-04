@@ -1088,3 +1088,21 @@ $("#DivACLMKeyPress").keypress(function(event){
 		event.preventDefault();
 	}
 });
+
+$("#btn_syslog_test").click(function(){
+	
+	var Paquete_de_datos = {
+		IP_GNet: "192.168.0.20", 
+		Severidad: "error"	
+	}
+
+	xhr = $.ajax({
+		url: "app/Desktop/Root/php/gn.SyslogConfig.php",
+		type: "post",
+		data: Paquete_de_datos,
+		success: function(data){
+			$(".retorno_de_datos").html(data);
+		}
+	});
+
+});

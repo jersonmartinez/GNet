@@ -101,6 +101,22 @@
 			return true;
 		}
 
+		public function SyslogConfig($IP_GNet, $Severidad){
+			$filename = "SyslogConfig.sh";
+
+			# Este script deberá el que configure syslog.
+			$ActionArray[] = 'echo " | Nombre del script: " $0';
+			array_push($ActionArray, 'echo " | IP recibida: " $1');
+			array_push($ActionArray, 'echo " | Serveridad recibida: " $2');
+
+			$RL[] = $this->remote_path.$filename." ".$IP_GNet." ".$Severidad;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			
+			return false;
+		}
+
 		public function getDHCPShowAssignIP(){
 			$filename = "getDHCPShowAssignIP.sh";
 			$ActionArray[] = 'echo "="';
