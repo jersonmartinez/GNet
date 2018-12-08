@@ -57,7 +57,7 @@
         div.ejecutando_pruebas_syslog {
             background-color: #2d2a22;
             color: #fff;
-            padding: 30px
+            padding: 30px;
         }
 
         div.ejecutando_pruebas_syslog input[type="button"] {
