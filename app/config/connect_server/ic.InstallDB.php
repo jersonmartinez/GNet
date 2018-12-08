@@ -86,7 +86,7 @@
 		$X.'credentials_local_machine' => "CREATE TABLE ".$X."credentials_local_machine (
 			username VARCHAR(50) NOT NULL, 
 			password VARCHAR(50) NOT NULL
-		);"
+		);",
 
 		# Tabla para el almacenamiento de Logs
 		$X.'syslog' => "CREATE TABLE ".$X."syslog (

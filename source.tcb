@@ -44,9 +44,9 @@
 	exit();
 */
 
-	ini_set('display_errors', 1);
-	ini_set('display_startup_errors', 1);
-	error_reporting(E_ALL);
+	// ini_set('display_errors', 1);
+	// ini_set('display_startup_errors', 1);
+	// error_reporting(E_ALL);
 
 	@session_start();
 	#Inclusión de constantes que contienen las rutas de acceso. 
@@ -58,13 +58,13 @@
 	include (@$_SESSION['getConsts']);
 
 	include (PF_CONNECT_SERVER);
-    include (PF_SSH);
-
-    $CN_Global = new ConnectSSH();
-    $CN_Global->ConnectDB($H, $U, $P, $D, $X);
+	include (PF_SSH);
+	
+	$CN_Global = new ConnectSSH();
+	$CN_Global->ConnectDB($H, $U, $P, $D, $X);
 	
 	if ($CN_Global->db_connect){
-		if (@$_SESSION['login'] == true){
+		if (isset($_SESSION['login']) && $_SESSION['login'] == true){
 			include (PF_DESKTOP);
 		} else {
 			include (PF_CORE);

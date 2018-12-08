@@ -6,14 +6,25 @@
 		}
 	}
 
+	$Path = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1];
+	if (explode("/", $_SERVER['REQUEST_URI'])[1] != "GNet"){
+		$Path = $_SERVER['DOCUMENT_ROOT'];
+	}
+
 	#Creamos una ruta absoluta y accedemos al fichero de Configuración.
-	$t = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/config/Config.tcb";
+	$t = $Path."/app/config/Config.tcb";
+	// $t = $_SERVER['DOCUMENT_ROOT']."/".explode("/", $_SERVER['REQUEST_URI'])[1]."/app/config/Config.tcb";
 
 	#Verificando la inexistencia del fichero de configuración.
 	if (!file_exists($t)){
 		#En caso de no existir este podría estar en otra ubicación, 
 		#de tal forma que se escribe una nueva ruta.
-		$t = $_SERVER['DOCUMENT_ROOT']."/app/config/Config.tcb";
+		// $t = $_SERVER['DOCUMENT_ROOT']."/app/config/Config.tcb";
+		$H = null;
+		$U = null;
+		$P = null;
+		$D = null;
+		$X = null;
 	}
 
 	#Se captura el estado de la variable error.

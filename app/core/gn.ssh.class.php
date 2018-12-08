@@ -1001,16 +1001,16 @@
 	    	return false;
 	    }
 
-		public function ConnectDB($H, $U, $P, $D, $X){
-			$FirstConnect = new mysqli($H, $U, $P);
+		public function ConnectDB($H = null, $U = null, $P = null, $D = null, $X = null){
+			@$FirstConnect = new mysqli($H, $U, $P);
 
 			if (!$FirstConnect->connect_error)
 				$FirstConnect->query("CREATE DATABASE ".$D.";");
 
-			$this->db_connect = new GNet($H, $U, $P, $D);
+			@$this->db_connect = new GNet($H, $U, $P, $D);
 			$this->db_prefix = $X;
 
-			$FirstConnect->close();
+			@$FirstConnect->close();
 		}
 
 		public function getStringFormatSize($str){
