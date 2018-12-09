@@ -8,21 +8,21 @@
         </div>
     </li>
 
+    <li class="network" onclick="javascript: getDataSelection(this);">
+        <div class="icons-menu-context">
+            <i class="fa fa-desktop"></i>
+        </div>
+        <div class="label-menu-context">
+            Red
+        </div>
+    </li>
+
     <li class="processes" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
             <i class="glyphicon glyphicon-tasks"></i>
         </div>
         <div class="label-menu-context">
             Procesos
-        </div>
-    </li>
-
-    <li class="services" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Servicios
         </div>
     </li>
 
@@ -34,44 +34,18 @@
             Propiedades
         </div>
     </li>
-    <!-- <li class="settings" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Configurar
-        </div>
-    </li> -->
-
-    <!-- <li class="start" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Iniciar
-        </div>
-    </li>
-
-    <li class="stop" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Detener
-        </div>
-    </li>
-
-    <li class="shutdown" onclick="javascript: getDataSelection(this);">
-        <div class="icons-menu-context">
-            <i class="fa fa-desktop"></i>
-        </div>
-        <div class="label-menu-context">
-            Apagar
-        </div>
-    </li> -->
 </div>
 
 <div id="ContextMenuTest_White" style="visibility:hidden; z-index: 10001; position: absolute;">
+<li class="tracking" onclick="javascript: getDataSelection(this);">
+        <div class="icons-menu-context">
+            <i class="fa fa-desktop"></i>
+        </div>
+        <div class="label-menu-context">
+            Sondear
+        </div>
+    </li>
+
     <li class="refresh" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
             <i class="fa fa-desktop"></i>
@@ -90,12 +64,12 @@
         </div>
     </li>
 
-    <li class="properties" onclick="javascript: getDataSelection(this);">
+    <li class="information" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
             <i class="fa fa-desktop"></i>
         </div>
         <div class="label-menu-context">
-            Propiedades
+            Información
         </div>
     </li>
 </div>

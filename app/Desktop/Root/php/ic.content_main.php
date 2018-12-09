@@ -12,13 +12,16 @@
 <input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenNotifyACLMError" />
 
 <?php
-  #Agregando ventana modal, configuración de la red.
+  #Load Windows Modals
   include (PD_DESKTOP_ROOT."/graphic/ic.modal.config_network.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddDevicesManagement.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.ConfigureSyslog.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddCredentialsLocalMachine.php");
 
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.Monitor.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.MonitorNetwork.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.MonitorProcess.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.MonitorProperties.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.ChangeUserName.php");
 ?>
 

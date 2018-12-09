@@ -364,7 +364,7 @@
 <input type="hidden" style="float: right" id="ClickSondeoFinal" onclick="javascript: draw();" value="Cambiar panorama" />
 <div ondblclick="javascript: draw();" id="mynetwork" style="width: 100%; height:470px;"></div>
 
-<p style="visibility: hidden;" id="Topology_host_selected_id"></p>
-<p style="visibility: hidden;" id="Topology_host_selected_ip_host"></p>
-<p style="visibility: hidden;" id="stabilization"></p>
-<p id="testing_id"></p>
+<p style="display: none;" id="Topology_host_selected_id"></p>
+<p style="display: none;" id="Topology_host_selected_ip_host"></p>
+<p style="display: none;" id="stabilization"></p>
+<p style="display: none;" id="testing_id"></p>

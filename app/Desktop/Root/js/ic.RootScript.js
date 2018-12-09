@@ -110,12 +110,10 @@ $("#dropdown-Network").click(function(){
 
 $("#dropdown-Network").click(function(){
 	if ($("#SwitchNetwork").val() == "Off"){
-		
 
 		// $("#SwitchNetwork").val();
-		
-		
 	} else if ($("#SwitchNetwork").val() == "On"){
+		// 
 	}
 });
 
@@ -394,9 +392,9 @@ function getResourcesMonitor(params){
 		type: "post",
 		success: function(data){
 			if (data == "Ok"){
-				HideAdminPanels();
 				
 				if (params['name'] == "GNet"){
+					HideAdminPanels();
 					NProgress.configure({parent: params['NProgress']});
 				} else {
 					var_item_ResourcesMonitorModal = true;
@@ -654,6 +652,18 @@ function getModalMonitor(){
 	$(".ModalMonitor").click();
 }
 
+function getModalMonitorNetwork(){
+	$(".ModalMonitorNetwork").click();
+}
+
+function getModalMonitorProcess(){
+	$(".ModalMonitorProcess").click();
+}
+
+function getModalMonitorProperties(){
+	$(".ModalMonitorProperties").click();
+}
+
 /*Registrar las credenciales del host actual que monitoriza*/
 $("#Btn_ACLM_Save").click(function(){
 	let user = $("#CredentialLocalMachineUsername").val(), 
@@ -764,6 +774,9 @@ $(".AddDeviceManagement").hide();
 $(".ConfigureSyslog").hide();
 $(".AddCredentialsLocalMachine").hide();
 $(".ModalMonitor").hide();
+$(".ModalMonitorNetwork").hide();
+$(".ModalMonitorProcess").hide();
+$(".ModalMonitorProperties").hide();
 $(".ChangeUserName").hide();
 
 /*Admin Panels*/
@@ -1071,11 +1084,14 @@ function getDataSelection(value){
 		getResourcesMonitor(params);
 
 		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
-	} else if (final_value == "processes"){
+	} else if (final_value == "network"){
+		getModalMonitorNetwork();
 		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
-	} else if (final_value == "services"){
+	} else if (final_value == "processes"){
+		getModalMonitorProcess();
 		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
 	} else if (final_value == "properties"){
+		getModalMonitorProperties();
 		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
 	}
 

@@ -11,7 +11,7 @@
 
             <div class="modal-body">        
                 <!-- Modal Monitor -->
-                <form id="Form_ModalMonitor">
+                <!-- <form id="Form_ModalMonitor"> -->
                     <div class="row">
                         <!-- Create Column with required .admin-grid class -->
                         <div class="col-md-12">
@@ -33,13 +33,13 @@
                         </div>
                         <!-- End Column -->
                     </div>
-                </form>
+                <!-- </form> -->
                 <br>
             </div>
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="BtnCloseModalMonitor" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-default btn-primary" id="Btn_ModalMonitorSave">Agregar</button>
+                <!-- <button type="button" class="btn btn-default btn-primary" id="Btn_ModalMonitorSave">Agregar</button> -->
             </div>
         </div>
     </div>
