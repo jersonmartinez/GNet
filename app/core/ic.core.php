@@ -14,7 +14,8 @@
 		<?php
 
 			function RefreshPage(){
-				header("Refresh:0 url=".$_SERVER['PHP_SELF']."");
+				header("Refresh:0 url='./'");
+				// header("Refresh:0 url=".$_SERVER['PHP_SELF']."");
 			}
 
 			#Se incluye el fichero de conexión, siguiendo la clase ConfigFile.
