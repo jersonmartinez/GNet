@@ -8,6 +8,7 @@
 
 			#Se agrega el head del core, utilizando la constante PF_CORE_HEAD.
 			include (PF_CORE_HEAD);
+			include (PD_DESKTOP_ROOT_PHP."/gn.preloader.php");
 		?>
 	</head>
 	<body class="external-page sb-l-c sb-r-c">
@@ -52,9 +53,9 @@
 								include (PD_GRAPHIC."/ic.message.unknowndb.php");
 						} else {
 							#Instalación manual en modo texto.
-							@exec("leafpad ".PF_CONFIG);
+							// @exec("leafpad ".PF_CONFIG);
 							// @exec("start notepad ".PF_CONFIG);
-							RefreshPage();
+							// RefreshPage();
 						}
 					}
 
@@ -72,9 +73,9 @@
 								include (PD_GRAPHIC."/ic.message.unknowndb.php");
 								//include (PD_GRAPHIC."/ic.message.errorfatal.php");
 						} else {
-							@exec("leafpad ".PF_CONFIG);
+							// @exec("leafpad ".PF_CONFIG);
 							// @exec("start notepad ".PF_CONFIG);
-							RefreshPage();
+							// RefreshPage();
 						}
 					}
 				} else {
@@ -208,11 +209,11 @@
 					$Config->CFC(PF_CONFIG);
 
 					#Ejecuta el fichero para reemplazar el contenido inútil por la configuración.
-					@exec("leafpad ".PF_CONFIG);
+					// @exec("leafpad ".PF_CONFIG);
 
 					#Se duerme por 1 segundo y recarga la raíz.
-					sleep(1);
-					RefreshPage();
+					// sleep(1);
+					// RefreshPage();
 				}
 			}
 		?>

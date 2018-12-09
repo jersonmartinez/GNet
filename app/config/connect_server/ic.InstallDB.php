@@ -117,7 +117,6 @@
 		);"
 	);
 
-
 	$cont = 0; $errors = 0; 
 	foreach ($tables as $key => $value){
 		if (!$IC->query($tables[$key])){
