@@ -16,7 +16,7 @@
                         <!-- Create Column with required .admin-grid class -->
                         <div class="col-md-12">
                             <div class="panel-heading">
-                                
+                                <p>Nombre del host</p>
                             </div>
 
                             <div class="panel-body AdminPanel_ResourcesMonitorNetwork_PanelBodyModal">
