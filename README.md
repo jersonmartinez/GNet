@@ -6,35 +6,57 @@ Proyecto Web OpenSource, para la Gestión de Red y dispositivos informáticos (S
 **Desde Vagrant**
 
 Realizar un clón del proyecto Vagrant de Git y cambiarse al directorio [Vagrant-GNet](https://github.com/SideMasterGM/Vagrant/tree/master/Vagrant-GNet).
-```
+```bash
 git clone https://github.com/SideMasterGM/Vagrant.git
 cd Vagrant-GNet/
 ```
 
 Realizar un clone GNet: 
-```
+```bash
 git clone https://github.com/SideMasterGM/GNet.git
 ```
 
 Correr el proyecto
-```
+```bash
 vagrant up
 ```
 
 Ficheros de vital importancia
 
-|Nº | Nombre   | Descripción       |
-|----- | ------- | -------------------- |
-|`1` | [Vagrantfile](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/Vagrantfile) | Configuración del entorno sobre la infraestructura de red |
-|`2` | [db](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/db.sh) | Prepara el servidor de base de datos   |
-|`3` | [web](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/web.sh) | Prepara el servidor de monitorización |
-|`4` | [dns](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/dns.sh) | Prepara el servidor DNS |
+|Nº | Nombre   | Descripción       | Dirección IP |
+|----- | ------- | -------------------- | ------ |
+|`1` | [Vagrantfile](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/Vagrantfile) | Configuración del entorno sobre la infraestructura de red | 192.168.0.0/24 |
+|`2` | [db](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/db.sh) | Prepara el servidor de base de datos   | 192.168.0.10 |
+|`3` | [web](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/web.sh) | Prepara el servidor de monitorización | 192.168.0.20 |
+|`4` | [dns](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/dns.sh) | Prepara el servidor DNS (gnet.local - db.gnet.local) | 192.168.0.30 |
+
+**Configurar DNS en la máquina anfitriona** 
+
+Asignar la dirección IP DNS al adaptador de red que creó el proveedor de virtualización.
+
+**``Desde la consola de Windows: ``**
+```bash
+netsh interface ipv4 set dns "VirtualBox Host-Only Network #2" static 192.168.0.30 > nul
+```
+
+**``Desde Linux (Ejmp: Debian)``**
+
+Modificar como root el fichero `/etc/network/interfaces` y agregar la directiva:
+```
+dns-nameservers 192.168.0.30
+```
+
+Modificar el fichero `/etc/resolv.conf` agregando la directiva: `nameserver 192.168.0.30`
+
+Para ambos OS, hacer el test: `nslookup gnet.local && nslookup db.gnet.local`
 
 - - -
 
 **Instalación manual**
 
-Siga todos los pasos correspondientes que se muestran en el siguiente enlace sobre [cómo realizar la instalación manual](https://github.com/SideMasterGM/GNet/wiki/Principal---Instalaci%C3%B3n-manual).
+Para este caso, la mejor opción es tomar los scripts [db](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/db.sh), [web](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/web.sh), [dns](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/dns.sh) e instalarlos, ya sea en una infraestructura con sistema distribuido o general.
+
+Si desea entender y correr paso a paso, siga los pasos correspondientes que se muestran en el siguiente enlace sobre [cómo realizar la instalación manual](https://github.com/SideMasterGM/GNet/wiki/Principal---Instalaci%C3%B3n-manual).
 
 - - -
 ### Authors
