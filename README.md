@@ -111,6 +111,7 @@ Gestión de dispositivos que han sido almacenados en el banco de datos.
     * Clasificación de dispositivos: `Enrutadores `, `Conmutadores  `, `Dispositivoss finales`, etc. 
     * Capacidad de monitorización: `Información completa` (similar a la información que se obtiene de la monitorización del servidor web), `Red`, `Procesos`, `Propiedades del equipo`, etc. 
     * Verificación de actividad: `PING`, `TCP`, `UDP`, `SSH`.
+    * Configurar alias en los dispositivos.
 
 ![Machines](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Machines.JPG)
 
