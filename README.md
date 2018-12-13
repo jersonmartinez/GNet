@@ -16,10 +16,7 @@ Realizar un clone GNet:
 git clone https://github.com/SideMasterGM/GNet.git
 ```
 
-Correr el proyecto
-```bash
-vagrant up
-```
+¿Listo?, ¡estupendo!, empieza por hacer el `vagrant up` de Vagrant.
 
 Plugin que puede llegar a necesitar por si requiere realizar una sincronización bidireccional, utilizando `vagrant rsync-auto` o bien, `vagrant rsync-back` instalando el plugin [rsync-back](https://github.com/SideMasterGM/Vagrant/wiki/Plugins).
 
