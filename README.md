@@ -86,6 +86,14 @@ Información sobre las conexiones de red
 
 ![My Server 2](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer2.JPG)
 
+Información sobre las conexiones de red
+
+**`Breve descripción`**
+* Servicio Web
+    * Gráfico sobre número de accesos al servicio.
+    * Servidor web y sitios virtuales: `Sitio Virtual `, `Nombre del dominio `, `Estado `.
+    * Monitorización del servicio web: `Número de accesos `, `Conexiones establecidas `, `Conexiones en espera `, etc. 
+
 ![My Server 3](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer3.JPG)
 
 ![Topology](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Topology.JPG)
