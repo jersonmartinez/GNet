@@ -67,11 +67,11 @@ Monitorización sobre los recursos del servidor web actual.
 
 **`Breve descripción`**
 * Sobre el uso de recursos
-    * Obtiene gráficos que representan: `Estado de la memoria `, `Área de intercambio (Swap) `, `Uso de disco `, `Uso de la CPU`.
+    * Obtiene gráficos que representan: `Estado de la memoria`, `Área de intercambio (Swap)`, `Uso de disco`, `Uso de la CPU`.
 * Obtiene información básica
-    * `Información básica del sistema `, `sesiones iniciadas `, `Estado de batería `.
+    * `Información básica del sistema`, `sesiones iniciadas`, `Estado de batería`.
 * Procesos
-    * Todo los procesos inciados, expulsando información tal como: `PID `, `Nombre `, `CPU `, `Memoria `, `Tiempo `. 
+    * Todo los procesos inciados, expulsando información tal como: `PID`, `Nombre`, `CPU`, `Memoria`, `Tiempo`. 
 
 ![My Server 1](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer1.JPG)
 
@@ -79,10 +79,10 @@ Información sobre las conexiones de red
 
 **`Breve descripción`**
 * Conexión de red
-    * Interfaz de redes y direcciones asignadas: `Interfaz de red `, `Dirección IP `, `Dirección MAC `.
-    * Tabla de enrutamiento: `Red destino `, `Interfaz `, `Pasarela `.
-    * Puertos abiertos: `Puerto `, `Protocolo `, `Tipo `, `Proceso `.
-    * Estadísticas de red sobre los protocolos: `IP `, `TCP `, `UDP `.
+    * Interfaz de redes y direcciones asignadas: `Interfaz de red`, `Dirección IP`, `Dirección MAC`.
+    * Tabla de enrutamiento: `Red destino`, `Interfaz`, `Pasarela`.
+    * Puertos abiertos: `Puerto`, `Protocolo`, `Tipo`, `Proceso`.
+    * Estadísticas de red sobre los protocolos: `IP`, `TCP`, `UDP`.
 
 ![My Server 2](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer2.JPG)
 
@@ -91,8 +91,8 @@ Información sobre las conexiones de red
 **`Breve descripción`**
 * Servicio Web
     * Gráfico sobre número de accesos al servicio.
-    * Servidor web y sitios virtuales: `Sitio Virtual `, `Nombre del dominio `, `Estado `.
-    * Monitorización del servicio web: `Número de accesos `, `Conexiones establecidas `, `Conexiones en espera `, etc. 
+    * Servidor web y sitios virtuales: `Sitio Virtual`, `Nombre del dominio`, `Estado`.
+    * Monitorización del servicio web: `Número de accesos`, `Conexiones establecidas`, `Conexiones en espera`, etc. 
 
 ![My Server 3](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer3.JPG)
 
@@ -100,13 +100,26 @@ Monitorización y sondeo de los dispositivos interconectados en la infraestructu
 
 **`Breve descripción`**
 * Mapa de Red: 
-    * Tracking Network (Aplica un sondeo en la red para encontrar dispositivos), sondeando en: `Redes privadas `, `Redes públicas `; refiriéndose así, a autodescubrir dentro de las posibilidades de los adaptadores que tenga instalado el sistema. 
-    * Topología: `Autogenerada `, `Configurable `, `Usabilidad con cluster de redes `, etc. 
-    * Capacidad de monitorización: `Información completa ` (similar a la información que se obtiene de la monitorización del servidor web), `Red `, `Procesos `, `Propiedades del equipo `, etc. 
+    * Tracking Network (Aplica un sondeo en la red para encontrar dispositivos), sondeando en: `Redes privadas`, `Redes públicas`; refiriéndose así, a autodescubrir dentro de las posibilidades de los adaptadores que tenga instalado el sistema. 
+    * Topología: `Autogenerada`, `Configurable`, `Usabilidad con clusters de red`, etc. 
+    * Capacidad de monitorización: `Información completa` (similar a la información que se obtiene de la monitorización del servidor web), `Red`, `Procesos`, `Propiedades del equipo`, etc. 
 
 ![Topology](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Topology.JPG)
 
+Gestión de dispositivos que han sido almacenados en el banco de datos.
+
+**`Breve descripción`**
+* Gestión de dispositivos: 
+    * Vista gráfica y selección: `Menú contextual`
+    * Clasificación de dispositivos: `Enrutadores `, `Conmutadores  `, `Dispositivoss finales`, etc. 
+    * Capacidad de monitorización: `Información completa` (similar a la información que se obtiene de la monitorización del servidor web), `Red`, `Procesos`, `Propiedades del equipo`, etc. 
+    * Verificación de actividad: `PING`, `TCP`, `UDP`, `SSH`.
+
 ![Machines](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Machines.JPG)
+
+Estas han sido algunas represenaciones gráficas que se muestran ante el SysAdmin o DevOps o el respectivo responsable de estar al tanto de la infraestructura a cargo de GNet.
+
+Es un proyecto en desarrollo (Open Source) y si deseas colaborar, te invitamos a que empieces por hacer fork.
 
 - - -
 ### Authors
