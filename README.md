@@ -60,6 +60,17 @@ Para este caso, la mejor opción es tomar los scripts [db](https://github.com/Si
 
 Si desea entender y correr paso a paso, siga los pasos correspondientes que se muestran en el siguiente enlace sobre [cómo realizar la instalación manual](https://github.com/SideMasterGM/GNet/wiki/Principal---Instalaci%C3%B3n-manual).
 
+### Interfaz
+![My Server 1](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer1.JPG)
+
+![My Server 2](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer2.JPG)
+
+![My Server 3](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer3.JPG)
+
+![Topology](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Topology.JPG)
+
+![Machines](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Machines.JPG)
+
 - - -
 ### Authors
 
