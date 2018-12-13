@@ -21,7 +21,9 @@ Correr el proyecto
 vagrant up
 ```
 
-Ficheros de vital importancia
+Plugin que puede llegar a necesitar por si requiere realizar una sincronización bidireccional, utilizando `vagrant rsync-auto` o bien, `vagrant rsync-back` instalando el plugin [rsync-back](https://github.com/SideMasterGM/Vagrant/wiki/Plugins).
+
+**Scripts de vital importancia**
 
 |Nº | Nombre   | Descripción       | Dirección IP |
 |----- | ------- | -------------------- | ------ |
