@@ -96,6 +96,14 @@ Información sobre las conexiones de red
 
 ![My Server 3](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer3.JPG)
 
+Monitorización y sondeo de los dispositivos interconectados en la infraestructura de red.
+
+**`Breve descripción`**
+* Mapa de Red: 
+    * Tracking Network (Aplica un sondeo en la red para encontrar dispositivos), sondeando en: `Redes privadas `, `Redes públicas `; refiriéndose así, a autodescubrir dentro de las posibilidades de los adaptadores que tenga instalado el sistema. 
+    * Topología: `Autogenerada `, `Configurable `, `Usabilidad con cluster de redes `, etc. 
+    * Capacidad de monitorización: `Información completa ` (similar a la información que se obtiene de la monitorización del servidor web), `Red `, `Procesos `, `Propiedades del equipo `, etc. 
+
 ![Topology](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Topology.JPG)
 
 ![Machines](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Machines.JPG)
