@@ -60,7 +60,9 @@ Para este caso, la mejor opción es tomar los scripts [db](https://github.com/Si
 
 Si desea entender y correr paso a paso, siga los pasos correspondientes que se muestran en el siguiente enlace sobre [cómo realizar la instalación manual](https://github.com/SideMasterGM/GNet/wiki/Principal---Instalaci%C3%B3n-manual).
 
-### Interfaz
+- - -
+
+### **GNet** `Interfaz gráfica`
 Monitorización sobre los recursos del servidor web actual. 
 
 **`Breve descripción`**
@@ -72,6 +74,15 @@ Monitorización sobre los recursos del servidor web actual.
     * Todo los procesos inciados, expulsando información tal como: `PID `, `Nombre `, `CPU `, `Memoria `, `Tiempo `. 
 
 ![My Server 1](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer1.JPG)
+
+Información sobre las conexiones de red
+
+**`Breve descripción`**
+* Conexión de red
+    * Interfaz de redes y direcciones asignadas: `Interfaz de red `, `Dirección IP `, `Dirección MAC `.
+    * Tabla de enrutamiento: `Red destino `, `Interfaz `, `Pasarela `.
+    * Puertos abiertos: `Puerto `, `Protocolo `, `Tipo `, `Proceso `.
+    * Estadísticas de red sobre los protocolos: `IP `, `TCP `, `UDP `.
 
 ![My Server 2](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer2.JPG)
 
