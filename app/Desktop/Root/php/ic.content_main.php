@@ -160,6 +160,22 @@
     include (PD_DESKTOP_ROOT_PHP."/vis/gn.menu-context.php");
 ?>
 
+<div class="panel" id="MessageFailCheckCredentialsLocalMachineDeviceNotFound" style="display: none;">
+    <div class="panel-heading">
+        <span class="panel-title">Credenciales del host</span>
+    </div>
+
+    <div class="panel-body">
+        <p>Hemos detectado que el host no es parte de la DMZ o del sistema distribuido controlado.</p>
+        <p>Si desea confirmar las credenciales globales para acceder a los dispositivos, por favor, actualice el nombre de usuario y contraseña.
+    </div>
+
+    <div class="panel-footer">
+        <button data-dismiss="modal" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales</button>
+        <button class="btn btn-dark" onclick="javascript: getMonitorNMapOnThisHost();" >Sólo monitorizar</button>
+    </div>
+</div>
+
 <div class="panel" id="MessageFailCheckCredentialsLocalMachine" style="display: none;">
     <div class="panel-heading">
         <span class="panel-title">Credenciales del servidor web</span>

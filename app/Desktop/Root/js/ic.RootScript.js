@@ -451,10 +451,9 @@ function getResourcesMonitor(params){
 						type: "post",
 						success: function(data){
 							if (data == "Fail"){
-								alert("Fail -> No existen credenciales de usuario y contraseña para este host");
+								$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachineDeviceNotFound").html());
 								$("#BtnHiddenNotifyACLMError").click();
 							} else {
-								
 								if (var_item_ResourcesMonitor){
 									$(".AdminPanel_ResourcesMonitor_PanelBody").html("");
 								}
@@ -465,9 +464,6 @@ function getResourcesMonitor(params){
 						}
 					});
 				}
-				
-				
-				
 			} else if (data == "Fail"){
 				if (params['name'] == "GNet"){
 					getModalCredentialsLocalMachine();
@@ -495,25 +491,14 @@ function getResourcesMonitorNetwork(params){
 					type: "post",
 					success: function(data){
 						if (data == "Fail"){
-							alert("Fail -> No existen credenciales de usuario y contraseña para este host");
+							$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachineDeviceNotFound").html());
 							$("#BtnHiddenNotifyACLMError").click();
 						} else {
-
-							// if (var_item_ResourcesMonitor){
-							// 	$(".AdminPanel_ResourcesMonitor_PanelBody").html("");
-							// }
-
 							$("." + params['container_return']).addClass('animated fadeIn').html(data);
 						}
 						Finish_NProgress();
 					}
 				});
-				// if (params['name'] == "GNet"){
-					// HideAdminPanels();
-					// NProgress.configure({parent: params['NProgress']});
-				// } else {
-				// }
-				
 			} else if (data == "Fail"){
 				if (params['name'] == "GNet"){
 					getModalCredentialsLocalMachine();
@@ -541,7 +526,7 @@ function getResourcesMonitorProcess(params){
 					type: "post",
 					success: function(data){
 						if (data == "Fail"){
-							alert("Fail -> No existen credenciales de usuario y contraseña para este host");
+							$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachineDeviceNotFound").html());
 							$("#BtnHiddenNotifyACLMError").click();
 						} else {
 							$("." + params['container_return']).addClass('animated fadeIn').html(data);
@@ -576,7 +561,7 @@ function getResourcesMonitorProperties(params){
 					type: "post",
 					success: function(data){
 						if (data == "Fail"){
-							alert("Fail -> No existen credenciales de usuario y contraseña para este host");
+							$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachineDeviceNotFound").html());
 							$("#BtnHiddenNotifyACLMError").click();
 						} else {
 							$("." + params['container_return']).addClass('animated fadeIn').html(data);
