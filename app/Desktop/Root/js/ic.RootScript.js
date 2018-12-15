@@ -560,6 +560,41 @@ function getResourcesMonitorProcess(params){
 	});
 }
 
+function getResourcesMonitorProperties(params){
+	xhr = $.ajax({
+		url: "app/Desktop/Root/php/gn.CheckCredentialsLocalMachine.php",
+		type: "post",
+		success: function(data){
+			if (data == "Ok"){
+				// var_item_ResourcesMonitorModal = true;
+				NProgress.configure({parent: params['NProgress']});
+				NProgress.start();
+				
+				xhr = $.ajax({
+					data: params,
+					url: "app/Desktop/Root/graphic/gn.ResourcesMonitorProperties.php",
+					type: "post",
+					success: function(data){
+						if (data == "Fail"){
+							alert("Fail -> No existen credenciales de usuario y contraseña para este host");
+							$("#BtnHiddenNotifyACLMError").click();
+						} else {
+							$("." + params['container_return']).addClass('animated fadeIn').html(data);
+						}
+						Finish_NProgress();
+					}
+				});
+			} else if (data == "Fail"){
+				if (params['name'] == "GNet"){
+					getModalCredentialsLocalMachine();
+				} else {
+					alert("No existen credenciales de usuario y contraseña para este host");
+				}
+			}
+		}
+	});
+}
+
 $("#sb_item_ResourcesMonitor").dblclick(function(){
 	var_item_ResourcesMonitor = false;
 	
@@ -1192,10 +1227,19 @@ function getDataSelection(value){
 
 		getResourcesMonitorProcess(params);
 
-
 		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
 	} else if (final_value == "properties"){
 		getModalMonitorProperties();
+
+		var params = {
+			"name" : "Unknown",
+			"host" : $("#Topology_host_selected_ip_host").html(),
+			"container_return" : "AdminPanel_ResourcesMonitorProperties_PanelBodyModal", 
+			"NProgress" : ".AdminPanel_ResourcesMonitorProperties_PanelBodyModal"
+		};
+
+		getResourcesMonitorProperties(params);
+
 		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
 	}
 
