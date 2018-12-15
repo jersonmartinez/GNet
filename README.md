@@ -120,11 +120,11 @@ Estas han sido algunas represenaciones gráficas que se muestran ante el SysAdmi
 Es un proyecto en desarrollo (Open Source) y si deseas colaborar, te invitamos a que empieces por hacer fork.
 
 - - -
-### Authors
+### Autores
 
 * **Jerson A. Martínez M.** - *Ing. Telemática* - [LinkedIn - Jerson Martinez](https://www.linkedin.com/in/jersonmartinezsm/)
 
 * **Frankier Y. Flores Z.** - *Ing. Telemática* - [LinkedIn - Frankier Flores](https://www.linkedin.com/in/frankier-flores-4b9b94108/)
 
-#### YouTube Channels
+#### Canales de YouTube
 * [**Side Master**](https://www.youtube.com/user/sidemastersupremo/) & [**Core Stack**](https://www.youtube.com/user/gvideosmtutorialesgm)

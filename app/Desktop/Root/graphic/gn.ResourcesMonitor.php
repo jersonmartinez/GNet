@@ -22,10 +22,6 @@
         exit();
     }
 
-    /*foreach ($CpuState as $value) {
-        echo $value."";
-    }*/
-
     $MemoryState    = explode(",", $ConnectSSH->getMemoryState());
     $SwapState      = explode(",", $ConnectSSH->getSwapState());
     $CpuState       = explode(",", $ConnectSSH->getCpuState());
@@ -48,47 +44,6 @@
 
     // Método para convertir a GB
     $MemoryFree = $MemoryState[0] - $MemoryState[1];
-    function ConvertUnit($InputValue) {
-        if ($InputValue >= 1024) {
-            $InputValue = ($InputValue / 1024);
-            if(is_float($InputValue)) {
-                $ValueFloat = number_format($InputValue, 2, '.', '');
-                return $ValueFloat." GB";
-            } else {
-                return $InputValue." GB";
-            }
-        } else {
-            $InputValue = $InputValue;
-            return $InputValue." MB";
-        }
-    }
-
-    // Método para calcular el uso de la CPU
-    function OperacionCPU($UsoUser, $UsoSystem, $Operacion) {
-        $UsoTotal = $UsoUser + $UsoSystem;
-        if ($Operacion == "uso") {
-            return $UsoTotal;   
-        } else if ($Operacion == "disponible") {
-            $Disponible = 100 - $UsoTotal;
-            return $Disponible;
-        }
-    }
-
-    // Conversión: Uso de memoria de los procesos
-    function ConvertMemoryProc($MemoryProc) {
-        if ($MemoryProc >= 1024) {
-            $MemoryProc = ($MemoryProc / 1024);
-            if(is_float($MemoryProc)) {
-                $ValFloat = number_format($MemoryProc, 2, '.', '');
-                return $ValFloat." MB";   
-            } else {
-                return $MemoryProc." MB";
-            }
-        } else {
-            return $MemoryProc." KB";
-        }
-    }
-
 ?>
 
 <input type="hidden" id="InputHiddenPercentageCPU" value="<?php echo $ConnectSSH->PercentageCPU(); ?>"/>
@@ -266,7 +221,7 @@
                                                             <td><?php echo $Firts[$j]; ?></td>
                                                             <td><?php echo $Firts[$j+4]; $j++; ?></td>
                                                             <td><?php echo "$Firts[$j]%"; $j++; ?></td>
-                                                            <td><?php echo ConvertMemoryProc($Firts[$j]); $j++;#echo "$Firts[$j] kb"; $j++; ?></td>
+                                                            <td><?php echo $ConnectSSH->ConvertMemoryProc($Firts[$j]); $j++;#echo "$Firts[$j] kb"; $j++; ?></td>
                                                             <td><?php echo $Firts[$j]; $j++; ?></td>
                                                         </tr>
                                                     <?php
@@ -764,7 +719,7 @@
                 text: "Estado de la memoria"
             },
             subtitle: {
-                text: 'Memoria Total: <?php echo ConvertUnit($MemoryState[0]); ?>'
+                text: 'Memoria Total: <?php echo $ConnectSSH->ConvertUnit($MemoryState[0]); ?>'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -791,9 +746,9 @@
                 type: 'pie',
                 name: 'Porcentaje de memoria',
                 data: [
-                    ['En uso: <?php echo ConvertUnit($MemoryState[1]); ?>', <?php echo $MemoryState[1]; ?>],
-                    ['Disponible: <?php echo ConvertUnit($MemoryFree); ?>', <?php echo $MemoryFree; ?>],
-                    //['Disponible: <?php echo ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[0] - $MemoryState[1]; ?>]
+                    ['En uso: <?php echo $ConnectSSH->ConvertUnit($MemoryState[1]); ?>', <?php echo $MemoryState[1]; ?>],
+                    ['Disponible: <?php echo $ConnectSSH->ConvertUnit($MemoryFree); ?>', <?php echo $MemoryFree; ?>],
+                    //['Disponible: <?php echo $ConnectSSH->ConvertUnit($MemoryState[2]); ?>', <?php echo $MemoryState[0] - $MemoryState[1]; ?>]
                 ]
             }]
         });
@@ -817,7 +772,7 @@
                 text: "Área de intercambio | Swap"
             },
             subtitle: {
-                text: 'Espacio total: <?php echo ConvertUnit($SwapState[0]); ?>'
+                text: 'Espacio total: <?php echo $ConnectSSH->ConvertUnit($SwapState[0]); ?>'
             },
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
@@ -845,8 +800,8 @@
                 name: 'Memoria Swap',
                 data: [
 
-                    ['En uso: <?php echo ConvertUnit($SwapState[1]); ?>', <?php echo $SwapState[1]; ?>],
-                    ['Disponible: <?php echo ConvertUnit($SwapState[2]); ?>', <?php echo $SwapState[2]; ?>],
+                    ['En uso: <?php echo $ConnectSSH->ConvertUnit($SwapState[1]); ?>', <?php echo $SwapState[1]; ?>],
+                    ['Disponible: <?php echo $ConnectSSH->ConvertUnit($SwapState[2]); ?>', <?php echo $SwapState[2]; ?>],
                 ]
             }]
         });
@@ -944,10 +899,10 @@
             type: 'pie',
             name: 'Porcentaje de CPU',
             data: [
-                ['En uso: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?> %', <?php echo OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?>],
+                ['En uso: <?php echo $ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?> %', <?php echo $ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?>],
                 {
-                    name: 'Disponible: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?> %',
-                    y: <?php echo OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?>,
+                    name: 'Disponible: <?php echo $ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?> %',
+                    y: <?php echo $ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?>,
                     sliced: true,
                     selected: true
                 }

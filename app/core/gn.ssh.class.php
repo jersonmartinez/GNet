@@ -891,7 +891,48 @@
 			}
 			
 			return 0;
-	    }
+		}
+		
+		public function ConvertUnit($InputValue) {
+			if ($InputValue >= 1024) {
+				$InputValue = ($InputValue / 1024);
+				if(is_float($InputValue)) {
+					$ValueFloat = number_format($InputValue, 2, '.', '');
+					return $ValueFloat." GB";
+				} else {
+					return $InputValue." GB";
+				}
+			} else {
+				$InputValue = $InputValue;
+				return $InputValue." MB";
+			}
+		}
+	
+		// Método para calcular el uso de la CPU
+		public function OperacionCPU($UsoUser, $UsoSystem, $Operacion) {
+			$UsoTotal = $UsoUser + $UsoSystem;
+			if ($Operacion == "uso") {
+				return $UsoTotal;   
+			} else if ($Operacion == "disponible") {
+				$Disponible = 100 - $UsoTotal;
+				return $Disponible;
+			}
+		}
+	
+		// Conversión: Uso de memoria de los procesos
+		public function ConvertMemoryProc($MemoryProc) {
+			if ($MemoryProc >= 1024) {
+				$MemoryProc = ($MemoryProc / 1024);
+				if(is_float($MemoryProc)) {
+					$ValFloat = number_format($MemoryProc, 2, '.', '');
+					return $ValFloat." MB";   
+				} else {
+					return $MemoryProc." MB";
+				}
+			} else {
+				return $MemoryProc." KB";
+			}
+		}
 
 		/*public function getDHCPServer(){
 			$filename = "getDHCPServer.sh";

@@ -11,7 +11,6 @@
 
             <div class="modal-body">        
                 <!-- Modal Monitor -->
-                <!-- <form id="Form_ModalMonitor"> -->
                     <div class="row">
                         <!-- Create Column with required .admin-grid class -->
                         <div class="col-md-12">

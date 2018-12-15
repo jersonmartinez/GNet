@@ -386,6 +386,99 @@ $("#sb_item_ResourcesMonitor").click(function(){
 	getResourcesMonitor(params);
 });
 
+
+function getResourcesMonitor(params){
+	xhr = $.ajax({
+		url: "app/Desktop/Root/php/gn.CheckCredentialsLocalMachine.php",
+		type: "post",
+		success: function(data){
+			if (data == "Ok"){
+				
+				if (params['name'] == "GNet"){
+					HideAdminPanels();
+					NProgress.configure({parent: params['NProgress']});
+				} else {
+					var_item_ResourcesMonitorModal = true;
+					NProgress.configure({parent: params['NProgress']});
+				}
+
+				NProgress.start();
+
+				if (params['name'] == "GNet"){
+					$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
+					
+					if (!var_item_ResourcesMonitor){
+						xhr = $.ajax({
+							data: params,
+							url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
+							type: "post",
+							success: function(data){
+								if (data == "Fail"){
+									$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachine").html());
+									$("#BtnHiddenNotifyACLMError").click();
+								} else {
+									$("." + params['container_return']).addClass('animated fadeIn').html(data);
+									
+									setTimeout(function(){
+										$(".ShowInfoPercentageCPUPull").text($("#InputHiddenPercentageCPU").val() + "%");
+										$(".ShowInfoPercentageCPUProgress").css("width", $("#InputHiddenPercentageCPU").val() + "%");
+										
+										$(".ShowInfoPercentageRAMPull").text($("#InputHiddenPercentageRAM").val() + "%");
+										$(".ShowInfoPercentageRAMProgress").css("width", $("#InputHiddenPercentageRAM").val() + "%");
+										
+										$(".SB_Medida_CPU").addClass('animated fadeIn').css("visibility", "visible");
+										$(".SB_Medida_RAM").addClass('animated fadeIn').css("visibility", "visible");
+										$(".SB_Medida_Label").addClass('animated fadeIn').css("visibility", "visible");
+									}, 500);
+								}
+								
+								Finish_NProgress();
+								var_item_ResourcesMonitor = true;
+							}
+						});
+					} else {
+						if (var_item_ResourcesMonitorModal){
+							var_item_ResourcesMonitor = false;
+							
+							$("#sb_item_ResourcesMonitor").dblclick();
+						}
+						Finish_NProgress();
+					}
+				} else {
+					xhr = $.ajax({
+						data: params,
+						url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
+						type: "post",
+						success: function(data){
+							if (data == "Fail"){
+								alert("Fail -> No existen credenciales de usuario y contraseña para este host");
+								$("#BtnHiddenNotifyACLMError").click();
+							} else {
+								
+								if (var_item_ResourcesMonitor){
+									$(".AdminPanel_ResourcesMonitor_PanelBody").html("");
+								}
+								
+								$("." + params['container_return']).addClass('animated fadeIn').html(data);
+							}
+							Finish_NProgress();
+						}
+					});
+				}
+				
+				
+				
+			} else if (data == "Fail"){
+				if (params['name'] == "GNet"){
+					getModalCredentialsLocalMachine();
+				} else {
+					alert("No existen credenciales de usuario y contraseña para este host");
+				}
+			}
+		}
+	});
+}
+
 function getResourcesMonitorNetwork(params){
 	xhr = $.ajax({
 		url: "app/Desktop/Root/php/gn.CheckCredentialsLocalMachine.php",
@@ -432,87 +525,30 @@ function getResourcesMonitorNetwork(params){
 	});
 }
 
-function getResourcesMonitor(params){
+function getResourcesMonitorProcess(params){
 	xhr = $.ajax({
 		url: "app/Desktop/Root/php/gn.CheckCredentialsLocalMachine.php",
 		type: "post",
 		success: function(data){
 			if (data == "Ok"){
-				
-				if (params['name'] == "GNet"){
-					HideAdminPanels();
-					NProgress.configure({parent: params['NProgress']});
-				} else {
-					var_item_ResourcesMonitorModal = true;
-					NProgress.configure({parent: params['NProgress']});
-				}
-
+				// var_item_ResourcesMonitorModal = true;
+				NProgress.configure({parent: params['NProgress']});
 				NProgress.start();
-
-				if (params['name'] == "GNet"){
-					$(".AdminPanel_ResourcesMonitor").addClass('animated fadeIn').show();
-					
-					if (!var_item_ResourcesMonitor){
-						xhr = $.ajax({
-							data: params,
-							url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
-							type: "post",
-							success: function(data){
-								if (data == "Fail"){
-									$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachine").html());
-									$("#BtnHiddenNotifyACLMError").click();
-								} else {
-									$("." + params['container_return']).addClass('animated fadeIn').html(data);
-									
-									setTimeout(function(){
-										$(".ShowInfoPercentageCPUPull").text($("#InputHiddenPercentageCPU").val() + "%");
-										$(".ShowInfoPercentageCPUProgress").css("width", $("#InputHiddenPercentageCPU").val() + "%");
-	
-										$(".ShowInfoPercentageRAMPull").text($("#InputHiddenPercentageRAM").val() + "%");
-										$(".ShowInfoPercentageRAMProgress").css("width", $("#InputHiddenPercentageRAM").val() + "%");
-	
-										$(".SB_Medida_CPU").addClass('animated fadeIn').css("visibility", "visible");
-										$(".SB_Medida_RAM").addClass('animated fadeIn').css("visibility", "visible");
-										$(".SB_Medida_Label").addClass('animated fadeIn').css("visibility", "visible");
-									}, 500);
-								}
-	
-								Finish_NProgress();
-								var_item_ResourcesMonitor = true;
-							}
-						});
-					} else {
-						if (var_item_ResourcesMonitorModal){
-							var_item_ResourcesMonitor = false;
-
-							$("#sb_item_ResourcesMonitor").dblclick();
+				
+				xhr = $.ajax({
+					data: params,
+					url: "app/Desktop/Root/graphic/gn.ResourcesMonitorProcess.php",
+					type: "post",
+					success: function(data){
+						if (data == "Fail"){
+							alert("Fail -> No existen credenciales de usuario y contraseña para este host");
+							$("#BtnHiddenNotifyACLMError").click();
+						} else {
+							$("." + params['container_return']).addClass('animated fadeIn').html(data);
 						}
 						Finish_NProgress();
 					}
-				} else {
-					xhr = $.ajax({
-						data: params,
-						url: "app/Desktop/Root/graphic/gn.ResourcesMonitor.php",
-						type: "post",
-						success: function(data){
-							if (data == "Fail"){
-								alert("Fail -> No existen credenciales de usuario y contraseña para este host");
-								$("#BtnHiddenNotifyACLMError").click();
-							} else {
-
-								if (var_item_ResourcesMonitor){
-									$(".AdminPanel_ResourcesMonitor_PanelBody").html("");
-								}
-
-								$("." + params['container_return']).addClass('animated fadeIn').html(data);
-							}
-							Finish_NProgress();
-						}
-					});
-				}
-				
-				
-				
+				});
 			} else if (data == "Fail"){
 				if (params['name'] == "GNet"){
 					getModalCredentialsLocalMachine();
@@ -526,7 +562,7 @@ function getResourcesMonitor(params){
 
 $("#sb_item_ResourcesMonitor").dblclick(function(){
 	var_item_ResourcesMonitor = false;
-
+	
 	if (var_item_ResourcesMonitorModal){
 		var_item_ResourcesMonitorModal = false;
 		$(".AdminPanel_ResourcesMonitor_PanelBodyModal").html("");
@@ -1146,6 +1182,17 @@ function getDataSelection(value){
 		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
 	} else if (final_value == "processes"){
 		getModalMonitorProcess();
+
+		var params = {
+			"name" : "Unknown",
+			"host" : $("#Topology_host_selected_ip_host").html(),
+			"container_return" : "AdminPanel_ResourcesMonitorProcess_PanelBodyModal", 
+			"NProgress" : ".AdminPanel_ResourcesMonitorProcess_PanelBodyModal"
+		};
+
+		getResourcesMonitorProcess(params);
+
+
 		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
 	} else if (final_value == "properties"){
 		getModalMonitorProperties();

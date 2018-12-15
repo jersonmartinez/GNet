@@ -9,7 +9,7 @@
                 <h4 class="modal-title" id="ModalMonitorNetwork"><span class="fa fa-keyboard-o"></span> Monitorización - Red</h4>
             </div>
 
-            <div class="modal-body">        
+            <div class="modal-body">
                 <!-- Modal Monitor -->
                 <!-- <form id="Form_ModalMonitor"> -->
                     <div class="row">
