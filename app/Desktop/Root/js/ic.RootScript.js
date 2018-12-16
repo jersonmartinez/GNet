@@ -545,6 +545,41 @@ function getResourcesMonitorProcess(params){
 	});
 }
 
+function getResourcesMonitorScanning(params){
+	xhr = $.ajax({
+		url: "app/Desktop/Root/php/gn.CheckCredentialsLocalMachine.php",
+		type: "post",
+		success: function(data){
+			if (data == "Ok"){
+				// var_item_ResourcesMonitorModal = true;
+				NProgress.configure({parent: params['NProgress']});
+				NProgress.start();
+				
+				xhr = $.ajax({
+					data: params,
+					url: "app/Desktop/Root/graphic/gn.OnlyMonitoring.php",
+					type: "post",
+					success: function(data){
+						if (data == "Fail"){
+							$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachineDeviceNotFound").html());
+							$("#BtnHiddenNotifyACLMError").click();
+						} else {
+							$("." + params['container_return']).addClass('animated fadeIn').html(data);
+						}
+						Finish_NProgress();
+					}
+				});
+			} else if (data == "Fail"){
+				if (params['name'] == "GNet"){
+					getModalCredentialsLocalMachine();
+				} else {
+					alert("No existen credenciales de usuario y contraseña para este host");
+				}
+			}
+		}
+	});
+}
+
 function getResourcesMonitorProperties(params){
 	xhr = $.ajax({
 		url: "app/Desktop/Root/php/gn.CheckCredentialsLocalMachine.php",
@@ -808,6 +843,10 @@ function getModalMonitorProperties(){
 	$(".ModalMonitorProperties").click();
 }
 
+function getModalMonitorScanning(){
+	$(".ModalMonitorScanning").click();
+}
+
 /*Registrar las credenciales del host actual que monitoriza*/
 $("#Btn_ACLM_Save").click(function(){
 	let user = $("#CredentialLocalMachineUsername").val(), 
@@ -921,6 +960,7 @@ $(".ModalMonitor").hide();
 $(".ModalMonitorNetwork").hide();
 $(".ModalMonitorProcess").hide();
 $(".ModalMonitorProperties").hide();
+$(".ModalMonitorScanning").hide();
 $(".ChangeUserName").hide();
 
 /*Admin Panels*/
@@ -1232,7 +1272,7 @@ function getDataSelection(value){
 	
 		getResourcesMonitor(params);
 
-		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
+		console.log("Action: " + final_value + " | " + "Host selected: " + host_selected);
 	} else if (final_value == "network"){
 		
 		getModalMonitorNetwork();
@@ -1246,7 +1286,7 @@ function getDataSelection(value){
 
 		getResourcesMonitorNetwork(params);
 
-		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
+		console.log("Action: " + final_value + " | " + "Host selected: " + host_selected);
 	} else if (final_value == "processes"){
 		getModalMonitorProcess();
 
@@ -1259,7 +1299,7 @@ function getDataSelection(value){
 
 		getResourcesMonitorProcess(params);
 
-		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
+		console.log("Action: " + final_value + " | " + "Host selected: " + host_selected);
 	} else if (final_value == "properties"){
 		getModalMonitorProperties();
 
@@ -1272,7 +1312,20 @@ function getDataSelection(value){
 
 		getResourcesMonitorProperties(params);
 
-		console.log("Action: " + final_value + " | " + "Host selected: " + $("#Topology_host_selected_ip_host").html());
+		console.log("Action: " + final_value + " | " + "Host selected: " + host_selected);
+	} else if (final_value == "scanning"){
+		getModalMonitorScanning();
+
+		var params = {
+			"name" : "Unknown",
+			"host" : host_selected,
+			"container_return" : "AdminPanel_ResourcesMonitorScanning_PanelBodyModal", 
+			"NProgress" : ".AdminPanel_ResourcesMonitorScanning_PanelBodyModal"
+		};
+
+		getResourcesMonitorScanning(params);
+
+		console.log("Action: " + final_value + " | " + "Host selected: " + host_selected);
 	}
 
 }

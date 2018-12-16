@@ -26,6 +26,15 @@
         </div>
     </li>
 
+    <li class="scanning" onclick="javascript: getDataSelection(this);">
+        <div class="icons-menu-context">
+            <i class="glyphicon glyphicon-fire"></i>
+        </div>
+        <div class="label-menu-context" title="Escanear con NMap">
+            Escanear
+        </div>
+    </li>
+
     <li class="properties" onclick="javascript: getDataSelection(this);">
         <div class="icons-menu-context">
             <i class="fa fa-wrench"></i>

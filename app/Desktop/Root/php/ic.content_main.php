@@ -22,6 +22,7 @@
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.Monitor.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.MonitorNetwork.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.MonitorProcess.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.MonitorScanning.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.MonitorProperties.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.ChangeUserName.php");
 ?>
