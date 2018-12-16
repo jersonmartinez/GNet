@@ -580,6 +580,48 @@ function getResourcesMonitorProperties(params){
 	});
 }
 
+function getMonitorNMapOnThisHost(){
+	Finish_NProgress();
+	
+	let getDataSelection = $("#TextGetDataSelection").val();
+	let container = "";
+
+	if (getDataSelection == "monitor"){
+		container = "AdminPanel_ResourcesMonitor_PanelBodyModal";
+	} else if (getDataSelection == "network") {
+		container = "AdminPanel_ResourcesMonitorNetwork_PanelBodyModal";
+	} else if (getDataSelection == "processes"){
+		container = "AdminPanel_ResourcesMonitorProcess_PanelBodyModal";
+	} else if (getDataSelection == "properties"){
+		container = "AdminPanel_ResourcesProperties_PanelBodyModal";
+	}
+
+	var params = {
+		"name" : "Unknown",
+		"host" : $("#Topology_host_selected_ip_host").html(),
+		"container_return" : container,
+		"NProgress" : "." + container
+	};
+	
+	NProgress.configure({parent: params['NProgress']});
+	NProgress.start();
+	
+	xhr = $.ajax({
+		data: params,
+		url: "app/Desktop/Root/graphic/gn.OnlyMonitoring.php",
+		type: "post",
+		success: function(data){
+			if (data == "Fail"){
+				$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachineDeviceNotFound").html());
+				$("#BtnHiddenNotifyACLMError").click();
+			} else {
+				$("." + params['container_return']).addClass('animated fadeIn').html(data);
+			}
+			Finish_NProgress();
+		}
+	});
+}
+
 $("#sb_item_ResourcesMonitor").dblclick(function(){
 	var_item_ResourcesMonitor = false;
 	
@@ -1172,6 +1214,8 @@ $(".AdminPanel_DevicesManagement").on('contextmenu', function(e){
 
 function getDataSelection(value){
 	let final_value = $(value).attr("class");
+
+	$("#TextGetDataSelection").val(final_value);
 
 	if (final_value == "monitor"){
 		getModalMonitor();

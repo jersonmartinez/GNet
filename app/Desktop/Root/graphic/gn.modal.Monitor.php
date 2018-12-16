@@ -39,6 +39,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="BtnCloseModalMonitor" data-dismiss="modal">Cerrar</button>
+                <button class="btn btn-dark" onclick="javascript: getMonitorNMapOnThisHost();" >Sólo monitorizar</button>
                 <!-- <button type="button" class="btn btn-default btn-primary" id="Btn_ModalMonitorSave">Agregar</button> -->
             </div>
         </div>

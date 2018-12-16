@@ -575,6 +575,10 @@
 			}
 		}
 
+		public function OnlyMonitoring($Host){
+			return explode("\n", $this->RunLines("nmap -sV -O -v ".$Host));
+		}
+
 		public function SondearRed($IPNet){
 			return explode("\n", shell_exec("nmap ".$IPNet." --host-timeout 95s -n -sP | grep report | awk '{print $5}'"));
 		}

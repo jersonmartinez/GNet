@@ -1,6 +1,7 @@
 
 <input type="hidden" id="title_sm" value="" />
 <input type="hidden" id="content_sm" value="" />
+<input type="hidden" id="TextGetDataSelection" value="" />
 
 <input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenDeviceManagementInit" />
 <input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenDeviceManagementFinish" />
