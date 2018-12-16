@@ -1213,7 +1213,10 @@ $(".AdminPanel_DevicesManagement").on('contextmenu', function(e){
 // });
 
 function getDataSelection(value){
-	let final_value = $(value).attr("class");
+	let final_value = $(value).attr("class"), 
+		host_selected = $("#Topology_host_selected_ip_host").html();
+
+	$(".PH_IPAddressHost").html("<span class='fa fa-laptop'></span> " + host_selected);
 
 	$("#TextGetDataSelection").val(final_value);
 
@@ -1222,7 +1225,7 @@ function getDataSelection(value){
 
 		var params = {
 			"name" : "Unknown",
-			"host" : $("#Topology_host_selected_ip_host").html(),
+			"host" : host_selected,
 			"container_return" : "AdminPanel_ResourcesMonitor_PanelBodyModal", 
 			"NProgress" : ".AdminPanel_ResourcesMonitor_PanelBodyModal"
 		};
@@ -1236,7 +1239,7 @@ function getDataSelection(value){
 
 		var params = {
 			"name" : "Unknown",
-			"host" : $("#Topology_host_selected_ip_host").html(),
+			"host" : host_selected,
 			"container_return" : "AdminPanel_ResourcesMonitorNetwork_PanelBodyModal", 
 			"NProgress" : ".AdminPanel_ResourcesMonitorNetwork_PanelBodyModal"
 		};
@@ -1249,7 +1252,7 @@ function getDataSelection(value){
 
 		var params = {
 			"name" : "Unknown",
-			"host" : $("#Topology_host_selected_ip_host").html(),
+			"host" : host_selected,
 			"container_return" : "AdminPanel_ResourcesMonitorProcess_PanelBodyModal", 
 			"NProgress" : ".AdminPanel_ResourcesMonitorProcess_PanelBodyModal"
 		};
@@ -1262,7 +1265,7 @@ function getDataSelection(value){
 
 		var params = {
 			"name" : "Unknown",
-			"host" : $("#Topology_host_selected_ip_host").html(),
+			"host" : host_selected,
 			"container_return" : "AdminPanel_ResourcesMonitorProperties_PanelBodyModal", 
 			"NProgress" : ".AdminPanel_ResourcesMonitorProperties_PanelBodyModal"
 		};

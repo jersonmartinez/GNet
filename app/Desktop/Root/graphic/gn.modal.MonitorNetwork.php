@@ -15,8 +15,8 @@
                     <div class="row">
                         <!-- Create Column with required .admin-grid class -->
                         <div class="col-md-12">
-                            <div class="panel-heading">
-                                <p>Nombre del host</p>
+                            <div class="panel-heading PH_IPAddressHost">
+                                <span class="fa fa-laptop"></span>
                             </div>
 
                             <div class="panel-body AdminPanel_ResourcesMonitorNetwork_PanelBodyModal">
@@ -33,7 +33,7 @@
 
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" id="BtnCloseModalMonitorNetwork" data-dismiss="modal">Cerrar</button>
-                <button class="btn btn-dark" onclick="javascript: getMonitorNMapOnThisHost();" >Sólo monitorizar</button>
+                <button class="btn btn-dark" onclick="javascript: getMonitorNMapOnThisHost();" >Escanear</button>
             </div>
         </div>
     </div>
