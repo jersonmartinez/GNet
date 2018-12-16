@@ -40,7 +40,7 @@
                 <!-- Create Panel with required unique ID -->
                 <div class="panel panel-dark" id="p1">
                     <div class="panel-heading">
-                        <span class="fa fa-dashboard"></span>
+                        <span class="fa fa-sitemap"></span>
                         <span class="panel-title">Interfaces de red y direcciones asignadas</span>
                     </div>
                     <div class="panel-body" style="max-height: 300px;">
@@ -76,7 +76,7 @@
                 <!-- Create Panel with required unique ID -->
                 <div class="panel panel-dark" id="p1">
                     <div class="panel-heading">
-                        <span class="fa fa-dashboard"></span>
+                        <span class="fa fa-th"></span>
                         <span class="panel-title">Tabla de enrutamiento</span>
                     </div>
                     <div class="panel-body" style="max-height: 300px;">
@@ -130,7 +130,7 @@
                 <!-- Create Panel with required unique ID -->
                 <div class="panel panel-dark" id="p3">
                     <div class="panel-heading">
-                        <span class="fa fa-dashboard"></span>
+                        <span class="fa fa-unlink"></span>
                         <span class="panel-title">Puertos Abiertos</span>
                     </div>
                     <div class="panel-body" style="max-height: 300px; overflow: scroll;">
@@ -187,7 +187,7 @@
                 <!-- Create Panel with required unique ID -->
                 <div class="panel panel-dark" id="p3">
                     <div class="panel-heading">
-                        <span class="fa fa-dashboard"></span>
+                        <span class="fa fa-bar-chart-o"></span>
                         <span class="panel-title">Estadísticas de red | protocolo IP</span>
                     </div>
                     <div class="panel-body" style="max-height: 300px; overflow: scroll;">
@@ -242,7 +242,7 @@
                 <!-- Create Panel with required unique ID -->
                 <div class="panel panel-dark" id="p3">
                     <div class="panel-heading">
-                        <span class="fa fa-dashboard"></span>
+                        <span class="fa fa-bar-chart-o"></span>
                         <span class="panel-title">Estadísticas de red | protocolo TCP</span>
                     </div>
                     <div class="panel-body" style="max-height: 300px; overflow: scroll;">
@@ -299,7 +299,7 @@
                 <!-- Create Panel with required unique ID -->
                 <div class="panel panel-dark" id="p3">
                     <div class="panel-heading">
-                        <span class="fa fa-dashboard"></span>
+                        <span class="fa fa-bar-chart-o"></span>
                         <span class="panel-title">Estadísticas de red | protocolo UDP</span>
                     </div>
                     <div class="panel-body" style="max-height: 300px; overflow: scroll;">

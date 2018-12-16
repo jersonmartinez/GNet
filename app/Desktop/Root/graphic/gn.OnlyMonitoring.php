@@ -85,7 +85,7 @@
         <!-- Create Panel with required unique ID -->
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <span class="fa fa-users"></span>
+                <span class="fa fa-info-circle"></span>
                 <span class="panel-title">Dirección MAC</span>
             </div>
             <div class="panel-body">
@@ -97,7 +97,7 @@
                             <?php
                         } else {
                             ?>
-                                <tr><td style="text-align: center;">Información no disponible</td></tr>
+                                <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }
                     ?>
@@ -110,7 +110,7 @@
         <!-- Create Panel with required unique ID -->
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <span class="fa fa-users"></span>
+                <span class="fa fa-info-circle"></span>
                 <span class="panel-title">Sistema Operativo</span>
             </div>
             <div class="panel-body">
@@ -118,19 +118,19 @@
                     <?php
                         if (!empty($OSLinux)){
                             ?>
-                                <tr><td>Linux</td></tr>
+                                <tr><td><span class="fa fa-linux"></span> Linux</td></tr>
                             <?php
                         } else if (!empty($OSWindows)){
                             ?>
-                                <tr><td>Windows</td></tr>
+                                <tr><td><span class="fa fa-windows"></span> Windows</td></tr>
                             <?php
                         } else if (!empty($OSAndroid)){
                             ?>
-                                <tr><td>Android</td></tr>
+                                <tr><td><span class="fa fa-android"></span> Android</td></tr>
                             <?php
                         } else {
                             ?>
-                                <tr><td style="text-align: center;">Información no disponible</td></tr>
+                                <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }
                     ?>
@@ -143,7 +143,7 @@
         <!-- Create Panel with required unique ID -->
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <span class="fa fa-users"></span>
+                <span class="fa fa-info-circle"></span>
                 <span class="panel-title">Estado del dispositivo</span>
             </div>
             <div class="panel-body">
@@ -152,11 +152,11 @@
 
                         if (empty($HostUpOrDown)){
                             ?>
-                                <tr><td>Encendido</td></tr>
+                                <tr><td><span class="fa fa-thumbs-up"></span> Encendido</td></tr>
                             <?php
                         } else {
                             ?>
-                                <tr><td>Apagado</td></tr>
+                                <tr><td><span class="fa fa-thumbs-down"></span> Apagado</td></tr>
                             <?php
                         }
                     ?>
@@ -174,7 +174,7 @@
         <!-- Create Panel with required unique ID -->
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <span class="fa fa-users"></span>
+                <span class="fa fa-info-circle"></span>
                 <span class="panel-title">Inicialización</span>
             </div>
             <div class="panel-body">
@@ -183,12 +183,12 @@
                         if (count($ArrayInitiating) > 0){
                             foreach ($ArrayInitiating as $AInit){
                                 ?>
-                                    <tr><td><?php echo $AInit; ?></td></tr>
+                                    <tr><td><span class="fa fa-check-square"></span> <?php echo $AInit; ?></td></tr>
                                 <?php
                             }
                         } else {
                             ?>
-                                <tr><td style="text-align: center;">Información no disponible</td></tr>
+                                <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }
                     ?>
@@ -201,7 +201,7 @@
         <!-- Create Panel with required unique ID -->
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <span class="fa fa-users"></span>
+                <span class="fa fa-info-circle"></span>
                 <span class="panel-title">Completado</span>
             </div>
             <div class="panel-body">
@@ -210,12 +210,12 @@
                         if (count($ArrayCompleted) > 0){
                             foreach ($ArrayCompleted as $AComp){
                                 ?>
-                                    <tr><td><?php echo $AComp; ?></td></tr>
+                                    <tr><td><span class="fa fa-check-square"></span> <?php echo $AComp; ?></td></tr>
                                 <?php
                             }
                         } else {
                             ?>
-                                <tr><td style="text-align: center;">Información no disponible</td></tr>
+                                <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }
                     ?>
@@ -234,7 +234,7 @@
         <!-- Create Panel with required unique ID -->
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <span class="fa fa-users"></span>
+                <span class="fa fa-unlink"></span>
                 <span class="panel-title">Puertos abiertos</span>
             </div>
             <div class="panel-body">
@@ -243,12 +243,12 @@
                         if (count($ArrayPorts) > 0){
                             foreach ($ArrayPorts as $APort){
                                 ?>
-                                    <tr><td><?php echo $APort; ?></td></tr>
+                                    <tr><td> <span class="fa fa-dot-circle-o"></span> <?php echo $APort; ?></td></tr>
                                 <?php
                             }
                         } else {
                             ?>
-                                <tr><td style="text-align: center;">Información no disponible</td></tr>
+                                <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }
                     ?>
@@ -261,7 +261,7 @@
         <!-- Create Panel with required unique ID -->
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <span class="fa fa-users"></span>
+                <span class="fa fa-info-circle"></span>
                 <span class="panel-title">Enumeración de Plataforma Común (CPE)</span>
             </div>
             <div class="panel-body">
@@ -270,12 +270,12 @@
                         if (count($ArrayCPE) > 0){
                             foreach ($ArrayCPE as $ACPE){
                                 ?>
-                                    <tr><td><?php echo $ACPE; ?></td></tr>
+                                    <tr><td><span class="fa fa-check"></span> <?php echo $ACPE; ?></td></tr>
                                 <?php
                             }
                         } else {
                             ?>
-                                <tr><td style="text-align: center;">Información no disponible</td></tr>
+                                <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }
                     ?>
@@ -294,7 +294,7 @@
         <!-- Create Panel with required unique ID -->
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <span class="fa fa-users"></span>
+                <span class="fa fa-level-up"></span>
                 <span class="panel-title">Aumento del retraso de envío</span>
             </div>
             <div class="panel-body">
@@ -303,12 +303,12 @@
                         if (count($ArrayIncreasing) > 0){
                             foreach ($ArrayIncreasing as $AIncre){
                                 ?>
-                                    <tr><td><?php echo $AIncre; ?></td></tr>
+                                    <tr><td><span class="fa fa-clock-o"></span> <?php echo $AIncre; ?></td></tr>
                                 <?php
                             }
                         } else {
                             ?>
-                                <tr><td style="text-align: center;">Información no disponible</td></tr>
+                                <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }
                     ?>
@@ -326,7 +326,7 @@
         <!-- Create Panel with required unique ID -->
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <span class="fa fa-users"></span>
+                <span class="fa fa-random"></span>
                 <span class="panel-title">Paquetes transitados</span>
             </div>
             <div class="panel-body">
@@ -348,7 +348,7 @@
                             <?php
                         } else {
                             ?>
-                                <tr><td style="text-align: center;">Información no disponible</td></tr>
+                                <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }    
                     ?>
@@ -361,19 +361,19 @@
         <!-- Create Panel with required unique ID -->
         <div class="panel panel-dark">
             <div class="panel-heading">
-                <span class="fa fa-users"></span>
-                <span class="panel-title">Saltos y tiempo de escaneo</span>
+                <span class="fa fa-tachometer"></span>
+                <span class="panel-title">Saltos y tiempos de escaneo</span>
             </div>
             <div class="panel-body">
                 <table class="table">
                     <?php
                         if (!empty($TimeScanned)){
                             ?>
-                                <tr><td><?php echo $TimeScanned; ?></td></tr>
+                                <tr><td><span class="fa fa-clock-o"></span> <?php echo $TimeScanned; ?></td></tr>
                             <?php
                         } else {
                             ?>
-                                <tr><td style="text-align: center;">Información no disponible</td></tr>
+                                <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }
                     ?>

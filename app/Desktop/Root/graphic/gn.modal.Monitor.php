@@ -6,7 +6,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="ModalMonitor"><span class="fa fa-keyboard-o"></span> Monitorización</h4>
+                <h4 class="modal-title" id="ModalMonitor"><span class="fa fa-dashboard"></span> Monitorización</h4>
             </div>
 
             <div class="modal-body">        
@@ -17,11 +17,11 @@
                         <div class="col-md-12">
                             <div class="panel-heading">
                                 <ul class="nav nav-tabs" role="tablist" style="float: left; padding: 4px; border: none;">
-                                    <li role="presentation" class="active"><a href="#graficos" aria-controls="graficos" role="tab" data-toggle="tab" style="font-size: 12px;">USO DE RECURSOS</a></li>
-                                    <li role="presentation"><a href="#system" aria-controls="system" role="tab" data-toggle="tab" style="font-size: 12px;">INFORMACIÓN BÁSICA</a></li>
-                                    <li role="presentation" class="tab_btn_process"><a href="#process" aria-controls="process" role="tab" data-toggle="tab" style="font-size: 12px;">PROCESOS</a></li>
-                                    <li role="presentation"><a href="#network" aria-controls="network" role="tab" data-toggle="tab" style="font-size: 12px;">CONEXIÓN EN RED</a></li>
-                                    <li role="presentation"><a href="#server" aria-controls="server" role="tab" data-toggle="tab" style="font-size: 12px;">SERVICIO WEB</a></li>
+                                    <li role="presentation" class="active"><a href="#graficos" aria-controls="graficos" role="tab" data-toggle="tab" style="font-size: 12px;"><span class="fa fa-bar-chart-o"> USO DE RECURSOS</a></li>
+                                    <li role="presentation"><a href="#system" aria-controls="system" role="tab" data-toggle="tab" style="font-size: 12px;"><span class="fa fa-info-circle"> INFORMACIÓN BÁSICA</a></li>
+                                    <li role="presentation" class="tab_btn_process"><a href="#process" aria-controls="process" role="tab" data-toggle="tab" style="font-size: 12px;"><span class="fa fa-tasks"> PROCESOS</a></li>
+                                    <li role="presentation"><a href="#network" aria-controls="network" role="tab" data-toggle="tab" style="font-size: 12px;"><span class="fa fa-sitemap"> RED</a></li>
+                                    <li role="presentation"><a href="#server" aria-controls="server" role="tab" data-toggle="tab" style="font-size: 12px;"><span class="fa fa-globe"> SERVICIO WEB</a></li>
                                 </ul>
                             </div>
 
