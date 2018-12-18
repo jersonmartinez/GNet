@@ -231,6 +231,7 @@
 
         // if we click on a node, we want to open it up!
         network.on("selectNode", function (params) {
+            // console.log("Heee, let's stay together - Select node");
             if (params.nodes.length == 1) {
                 if (network.isCluster(params.nodes[0]) == true) {
                     network.openCluster(params.nodes[0])
@@ -286,24 +287,7 @@
             }
         }
 
-        // add event listeners
-        $(container).click(function(){
-            document.getElementById("ContextMenuTest").style.visibility = "hidden";
-            document.getElementById("ContextMenuTest_White").style.visibility = "hidden";
-            valueSelection = document.getElementById('Topology_host_selected_ip_host').innerHTML;
-
-            if (valueSelection == ""){
-                // document.getElementById("btn_tracking_b2").setAttribute("disabled", "disabled");
-                $(".btn_tracking_device").attr("disabled", "disabled");
-            } else{
-                $(".btn_tracking_device").removeAttr("disabled");
-                // document.getElementById("btn_tracking_b2").removeAttribute("disabled");
-            }
-        });
-
         network.on('select', function(params) {
-            // document.getElementById('selection').innerHTML = 'Seleccionado: ' + params.nodes;
-            // ip_addr = this.body.nodes[params.nodes[0]].options.ip_addr;
             if (popupMenu !== undefined) {
                 popupMenu.parentNode.removeChild(popupMenu);
                 popupMenu = undefined;
@@ -315,9 +299,27 @@
                 // $("#selection").html(params.nodes);
                 $("#Topology_host_selected_id").html(params.nodes);
                 $("#Topology_host_selected_ip_host").html(clickedNode.options.ip_addr);
-            }            
-            // if (ip_addr != "undefined"){
-            // }
+            } else {
+                $("#Topology_host_selected_ip_host").html("");
+            }
+            // console.log("Heee, let's stay together - Select");
+        });
+
+        // add event listeners
+        $(container).click(function(){
+            // console.log("Heee, let's stay together - Main container - click");
+            document.getElementById("ContextMenuTest_White").style.visibility = "hidden";
+            document.getElementById("ContextMenuTest").style.visibility = "hidden";
+            $("#ContextMenuTest").css("visibility", "hidden");
+            $("#ContextMenuTest_White").css("visibility", "hidden");
+
+            valueSelection = $("#Topology_host_selected_ip_host").html();
+            
+            if (valueSelection == ""){
+                $(".btn_tracking_device").attr("disabled", "disabled");
+            } else{
+                $(".btn_tracking_device").removeAttr("disabled");
+            }
         });
 
         network.on('stabilized', function (params) {
@@ -330,6 +332,7 @@
       
         container.addEventListener('contextmenu', function(e) {
                 // getCoords = getCoordsPosition(e);
+
                 valueSelection = document.getElementById('Topology_host_selected_ip_host').innerHTML;
                 if (valueSelection == ""){
                     popupMenux = document.getElementById("ContextMenuTest_White");
@@ -354,6 +357,9 @@
                 // popupMenux.style.left = getCoords.x - 272 + 'px';
                 // popupMenux.style.top = getCoords.y - 132 + 'px';
                 container.appendChild(popupMenux);
+                $("#ContextMenuTest").css("visibility", "hidden");
+                $("#ContextMenuTest_White").css("visibility", "hidden");
+                
                 popupMenux.style.visibility = "visible";
             e.preventDefault()
         }, false);
@@ -362,9 +368,5 @@
 </script>
 
 <input type="hidden" style="float: right" id="ClickSondeoFinal" onclick="javascript: draw();" value="Cambiar panorama" />
-<div ondblclick="javascript: draw();" id="mynetwork" style="width: 100%; height:470px;"></div>
-
-<p style="display: none;" id="Topology_host_selected_id"></p>
-<p style="display: none;" id="Topology_host_selected_ip_host"></p>
-<p style="display: none;" id="stabilization"></p>
-<p style="display: none;" id="testing_id"></p>
+<div id="mynetwork" style="width: 100%; height:470px;"></div>
+<!-- <div ondblclick="javascript: draw();" id="mynetwork" style="width: 100%; height:470px;"></div> -->

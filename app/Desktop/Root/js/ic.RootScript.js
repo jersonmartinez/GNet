@@ -326,6 +326,7 @@ var var_item_DevicesManagement = false;
 
 /*Gestionar dispositivos en red*/
 $("#sb_item_DevicesManagement").click(function(){
+	$(".AdminPanel_ResourcesTrackingNetworkInformation_PanelBodyModal").html("");
 	HideAdminPanels();
 	
 	NProgress.configure({parent: 'body'});
@@ -578,6 +579,25 @@ function getResourcesMonitorScanning(params){
 			}
 		}
 	});
+}
+
+function getDevicesManagementInformation(params){
+	
+	xhr = $.ajax({
+		data: params,
+		url: "app/Desktop/Root/graphic/gn.DevicesManagementInformation.php",
+		type: "post",
+		success: function(data){
+			if (data == "Fail"){
+				$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachineDeviceNotFound").html());
+				$("#BtnHiddenNotifyACLMError").click();
+			} else {
+				$("." + params['container_return']).addClass('animated fadeIn').html(data);
+			}
+			Finish_NProgress();
+		}
+	});
+		
 }
 
 function getResourcesMonitorProperties(params){
@@ -847,6 +867,10 @@ function getModalMonitorScanning(){
 	$(".ModalMonitorScanning").click();
 }
 
+function getModalTrackingNetworkInformation(){
+	$(".ModalTrackingNetworkInformation").click();
+}
+
 /*Registrar las credenciales del host actual que monitoriza*/
 $("#Btn_ACLM_Save").click(function(){
 	let user = $("#CredentialLocalMachineUsername").val(), 
@@ -962,6 +986,7 @@ $(".ModalMonitorProcess").hide();
 $(".ModalMonitorProperties").hide();
 $(".ModalMonitorScanning").hide();
 $(".ChangeUserName").hide();
+$(".ModalTrackingNetworkInformation").hide();
 
 /*Admin Panels*/
 function HideAdminPanels(){
@@ -1193,7 +1218,7 @@ function PruebaPingConnect(value){
 
 		console.log("Posicion: x = " + info.x + "px, y = " + info.y + "px");
 
-		popupMenux = document.getElementById("ContextMenuTest");
+		popupMenux = $("#ContextMenuTest");
 
     	popupMenux.style.top = e.clientY - info.y + 'px';
 		popupMenux.style.left = e.clientX - info.x + 'px';
@@ -1219,8 +1244,8 @@ function PruebaPingConnect(value){
 }
 
 $(".AdminPanel_DevicesManagement").click(function(){
-	document.getElementById("ContextMenuTest").style.visibility = "hidden";
-    document.getElementById("ContextMenuTest_White").style.visibility = "hidden";
+	$("#ContextMenuTest").style.visibility = "hidden";
+	$("#ContextMenuTest_White").style.visibility = "hidden";
 });
 
 
@@ -1229,7 +1254,7 @@ $(".AdminPanel_DevicesManagement").on('contextmenu', function(e){
 
 	console.log("Posicion: getPosition(x: " + info.x + "px, y: " + info.y + "px" + "| Client(x: " + e.clientX + "px, y: "+ e.clientY +"px) | offset(x: " + e.offsetX + "px, y: " + e.offsetY + "px)");
 
-	var popupMenux = document.getElementById("ContextMenuTest");
+	var popupMenux = $("#ContextMenuTest");
 
 	var offsetX = e.offsetX;
     var offsetY = e.offsetY;
@@ -1253,7 +1278,7 @@ $(".AdminPanel_DevicesManagement").on('contextmenu', function(e){
 // });
 
 function getDataSelection(value){
-	let final_value = $(value).attr("class"), 
+	let final_value = $(value).attr("action_selection"), 
 		host_selected = $("#Topology_host_selected_ip_host").html();
 
 	$(".PH_IPAddressHost").html("<span class='fa fa-laptop'></span> " + host_selected);
@@ -1327,7 +1352,26 @@ function getDataSelection(value){
 
 		console.log("Action: " + final_value + " | " + "Host selected: " + host_selected);
 	}
+}
 
+function getDataContextMenuTestWhite(value){
+	let final_value = $(value).attr("action_selection");
+
+	if (final_value == "tracking_network"){
+		$(".btn_action_tn").click();
+	} else if (final_value == "information"){
+		getModalTrackingNetworkInformation();
+
+		var params = {
+			"name" : "Unknown",
+			"host" : "Unknown",
+			"container_return" : "AdminPanel_ResourcesTrackingNetworkInformation_PanelBodyModal", 
+			"NProgress" : ".AdminPanel_ResourcesTrackingNetworkInformation_PanelBodyModal"
+		};
+
+		getDevicesManagementInformation(params);
+
+	}
 }
 
 $("#DivACLMKeyPress").keypress(function(event){

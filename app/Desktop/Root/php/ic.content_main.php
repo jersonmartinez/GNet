@@ -25,6 +25,7 @@
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.MonitorScanning.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.MonitorProperties.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.ChangeUserName.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.TrackingNetworkInformation.php");
 ?>
 
 <div class="container_platform">
@@ -101,17 +102,18 @@
             <div class="col-md-12">
 
                 <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUniquesd_TrackingNetwork">
+                <div class="panel" id="pUniquesd_TrackingNetworks">
                     <div class="panel-heading">
 
                         <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
                         <span class="panel-title">Mapa de Red (Autodescubrir dispositivos)</span>
 
                         <div class="container_options_controls" style="position: absolute; top: 0; right: 100px;">
-                            <button type="button" id="btn_tracking_b1" class="btn btn-dark btn_tracking_device" disabled="disabled">Monitorizar</button>
-                            <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Procesos</button>
-                            <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Servicios</button>
-                            <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Propiedades</button>
+                            <button type="button" id="btn_tracking_monitor" class="btn btn-dark btn_tracking_device" action_selection="monitor" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="fa fa-tachometer"></i> Monitorizar</button>
+                            <button type="button" id="btn_tracking_network" class="btn btn-dark btn_tracking_device" action_selection="network" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="fa fa-sitemap"></i> Red</button>
+                            <button type="button" id="btn_tracking_processes" class="btn btn-dark btn_tracking_device" action_selection="processes" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="glyphicon glyphicon-tasks"></i> Procesos</button>
+                            <button type="button" id="btn_tracking_scanning" class="btn btn-dark btn_tracking_device" action_selection="scanning" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="glyphicon glyphicon-fire"></i> Escanear</button>
+                            <button type="button" id="btn_tracking_properties" class="btn btn-dark btn_tracking_device" action_selection="properties" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="fa fa-desktop"></i> Propiedades</button>
                             <!-- <button type="button" id="btn_tracking_b2" class="btn btn-dark btn_tracking_device" disabled="disabled">Consola</button> -->
                             <!-- <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Historial</button> -->
 
@@ -124,6 +126,10 @@
                     <div class="panel-body AdminPanel_TrackingNetwork_PanelBody">
                         <!-- El contenido -->
                     </div>
+                    <p style="display: none;" id="Topology_host_selected_id"></p>
+                    <p style="display: none;" id="Topology_host_selected_ip_host"></p>
+                    <p style="display: none;" id="stabilization"></p>
+                    <p style="display: none;" id="testing_id"></p>
                 </div>
             </div>
             <!-- End Column -->
@@ -174,7 +180,7 @@
 
     <div class="panel-footer">
         <button data-dismiss="modal" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales</button>
-        <button class="btn btn-dark" onclick="javascript: getMonitorNMapOnThisHost();" >Sólo monitorizar</button>
+        <button class="btn btn-dark" onclick="javascript: getMonitorNMapOnThisHost();" title="Escaneo sin conexion, con NMap">Escanear</button>
     </div>
 </div>
 
