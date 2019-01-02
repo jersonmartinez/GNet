@@ -88,7 +88,7 @@
 			password VARCHAR(50) NOT NULL
 		);", 
 		# Tabla para el almacenamiento de Logs
-		$X.'syslog' => "CREATE TABLE ".$X."syslog (
+		'SystemEvents' => "CREATE TABLE SystemEvents (
 			ID int(10) unsigned NOT NULL AUTO_INCREMENT,
 			CustomerID bigint(20) DEFAULT NULL,
 			ReceivedAt datetime DEFAULT NULL,

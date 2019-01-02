@@ -103,6 +103,66 @@
 			return true;
 		}
 
+		public function ConfigSyslogClient($ServerSyslog){
+			$filename = "ConfigSyslogClient.sh";
+
+			$ActionArray[] = 'echo "*.*	@@$1:514" > /etc/rsyslog.d/gnet_syslog.conf';
+			array_push($ActionArray, 'service rsyslog restart');
+
+			$RL[] = $this->remote_path.$filename." ".$ServerSyslog;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			
+			return false;
+		}
+
+		public function ConfigSyslogServer($IP, $DB, $User, $Pass, $Level){
+			$filename = "ConfigSyslogServer.sh";
+
+			$ActionArray[] = 'Servidor=$1 DB=$2 User=$3 Pass=$4 Severity=$5 FileConf="/etc/rsyslog.d/mysql.conf"';
+			array_push($ActionArray, 'echo "$"ModLoad imtcp > $FileConf');
+			array_push($ActionArray, 'echo "$"InputTCPServerRun 514 >> $FileConf');
+			array_push($ActionArray, 'echo "$"ModLoad ommysql >> $FileConf');
+			array_push($ActionArray, "case $5 in");
+			array_push($ActionArray, '	"emergencia")');
+			array_push($ActionArray, '		echo "*.emerg ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '	;;');
+			array_push($ActionArray, '	"alerta")');
+			array_push($ActionArray, '		echo "*.alert ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '	;;');
+			array_push($ActionArray, '	"critico")');
+			array_push($ActionArray, '		echo "*.crit ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '	;;');
+			array_push($ActionArray, '	"error")');
+			array_push($ActionArray, '		echo "*.err ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '	;;');
+			array_push($ActionArray, '	"advertencia")');
+			array_push($ActionArray, '		echo "*.warn ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '	;;');
+			array_push($ActionArray, '	"notificacion")');
+			array_push($ActionArray, '		echo "*.notice ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '	;;');
+			array_push($ActionArray, '	"informacion")');
+			array_push($ActionArray, '		echo "*.info ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '	;;');
+			array_push($ActionArray, '	"depuracion")');
+			array_push($ActionArray, '		echo "*.debug ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '	;;');
+			array_push($ActionArray, '	"todo")');
+			array_push($ActionArray, '		echo "*.* ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '	;;');
+			array_push($ActionArray, 'esac');
+			array_push($ActionArray, 'service rsyslog restart');
+
+			$RL[] = $this->remote_path.$filename." ".$IP." ".$DB." ".$User." ".$Pass." ".$Level;
+			array_push($RL, "rm -rf ".$this->remote_path.$filename);
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
+				return $this->RunLines(implode("\n", $RL));
+			
+			return false;
+		}
+
 		public function getDHCPShowAssignIP(){
 			$filename = "getDHCPShowAssignIP.sh";
 			$ActionArray[] = 'echo "="';

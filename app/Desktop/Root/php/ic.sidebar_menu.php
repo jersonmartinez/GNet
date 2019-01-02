@@ -71,14 +71,21 @@
             <li>
                 <a href="#" id="sb_item_LogManagement">
                     <span class="fa fa-dashboard"></span>
-                    Gestionar Logs
+                    Monitorizar Logs
+                </a>
+            </li>
+
+            <li>
+                <a href="#" id="sb_item_ConfigureSyslogServer">
+                    <span class="fa fa-cogs"></span>
+                    Configurar Servidor
                 </a>
             </li>
 
             <li>
                 <a href="#" id="sb_item_ConfigureSyslog">
                     <span class="fa fa-cogs"></span>
-                    Configurar Syslog
+                    Agregar equipos
                 </a>
             </li>    
         </ul>
