@@ -27,37 +27,6 @@
 ?>
 
 <div class="container_platform">
-<<<<<<< HEAD
-=======
-    <!-- <input type="button" value="Mostrar usuarios" onclick="javascript: nuevallamada();" id="TestingShowUsersII" />
-    <div class="container_platform_savenewdata">
-        <p>Parrafo</p>
-    </div> -->
-
-    <!-- Tour Activation Btn -->
-    <!-- <button class="btn btn-primary" id="tour_start" type="button">Begin Tour</button> -->
-
-    <!-- Tour Steps -->
-    <!-- <div class="row">
-      <div class="col-md-6">
-        <div class="panel" id="tour-item1">
-            <div class="panel-heading">
-              <span class="panel-title"> Panel 1</span>
-            </div>    
-            <div class="panel-body" style="min-height: 100px;">
-            </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="panel" id="tour-item2">
-            <div class="panel-heading">
-              <span class="panel-title"> Panel 2</span>
-            </div>    
-            <div class="panel-body" style="min-height: 100px;">
-            </div>
-        </div>
-      </div>
-    </div> -->
 
     <style>
         div.ejecutando_pruebas_syslog {
@@ -107,8 +76,6 @@
 
     </style>
 
-
->>>>>>> Step1-Syslog
     <!-- Wrap content in admin-panel class -->
     <div>
         <div class="row AdminPanel_ProffileSettings">
@@ -182,7 +149,7 @@
             <div class="col-md-12">
 
                 <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUniquesd_TrackingNetwork">
+                <div class="panel" id="pUniquesd_TrackingNetworks">
                     <div class="panel-heading">
 
                         <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
