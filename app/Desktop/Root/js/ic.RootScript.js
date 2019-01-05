@@ -1219,7 +1219,7 @@ $("#btnSaveSettings").click(function(){
 });
 
 $("#btnSaveSettingsServer").click(function(){
-	var IP = "localhost";
+	var IP = "192.168.0.10";
 	var DB = "gnet";
 	var User = "root";
 	var Pass = "root";

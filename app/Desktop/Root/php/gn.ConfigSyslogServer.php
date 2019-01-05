@@ -8,7 +8,7 @@
     include (PF_CONNECT_SERVER);
     include (PF_SSH);
 
-    $CN = new ConnectSSH("127.0.0.1", "root", "123");
+    $CN = new ConnectSSH($_POST['IP'], "root", "123");
     $CN->ConnectDB($H, $U, $P, $D, $X);
     ##########################################
 
