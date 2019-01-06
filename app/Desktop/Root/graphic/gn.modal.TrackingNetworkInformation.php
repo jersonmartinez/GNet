@@ -17,25 +17,25 @@
                             <div class="panel-heading PH_IPAddressHost">
                                 <div class="container_options_controls" style="position: absolute; top: 0; right:100px;">
                                     <button style="padding: 9px;" class="filter btn btn-primary btn-sm active" data-filter="all">Todo</button>
-                                    <button style="padding: 9px;" class="filter btn btn-primary btn-sm" data-filter=".category-1">Dispositivos finales</button>
-                                    <button style="padding: 9px;" class="filter btn btn-info btn-sm" data-filter=".category-2">Enrutadores</button>
-                                    <button style="padding: 9px;" class="filter btn btn-info btn-sm" data-filter=".category-3">Conmutadores</button>
-                                    <button style="padding: 9px;" class="filter btn btn-info btn-sm" data-filter=".category-4">Servidores</button>
+                                    <button style="padding: 9px;" class="filter btn btn-primary btn-sm" data-filter=".category-5">Dispositivos finales</button>
+                                    <button style="padding: 9px;" class="filter btn btn-info btn-sm" data-filter=".category-6">Enrutadores</button>
+                                    <button style="padding: 9px;" class="filter btn btn-info btn-sm" data-filter=".category-7">Conmutadores</button>
+                                    <button style="padding: 9px;" class="filter btn btn-info btn-sm" data-filter=".category-8">Servidores</button>
 
                                     <!-- Orden -->
-                                    <button class="sort btn btn-default btn-sm btn_Order_Asc" data-sort="myorder:asc" style="display: none;">Asc</button>
-                                    <button class="sort btn btn-default btn-sm btn_Order_Desc" data-sort="myorder:desc" style="display: none;">Desc</button>
+                                    <button class="sort btn btn-default btn-sm btn_Order_Asc-secundary" data-sort="myorder:asc" style="display: none;">Asc</button>
+                                    <button class="sort btn btn-default btn-sm btn_Order_Desc-secundary" data-sort="myorder:desc" style="display: none;">Desc</button>
 
                                     <!-- Split button -->
                                     <div class="btn-group" style="display: inline-block;">
-                                        <button type="button" class="btn btn-danger btn_Order_value">Orden</button>
+                                        <button type="button" class="btn btn-danger btn_Order_value-secundary">Orden</button>
                                         <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
                                             <span class="caret"></span>
                                             <span class="sr-only">Toggle Dropdown</span>
                                         </button>
                                         <ul class="dropdown-menu" role="menu">
-                                            <li class="li_OrderAsc"><a href="#">Ascendente</a></li>
-                                            <li class="li_OrderDesc"><a href="#">Descendente</a></li>
+                                            <li class="li_OrderAsc-secundary"><a href="#">Ascendente</a></li>
+                                            <li class="li_OrderDesc-secundary"><a href="#">Descendente</a></li>
                                         </ul>
                                     </div>
                                 </div>

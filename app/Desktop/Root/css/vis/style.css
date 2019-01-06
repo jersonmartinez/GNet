@@ -11,6 +11,10 @@ div.mixings-get-devices .mix-container {
     -webkit-backface-visibility: hidden;
 }
 
+/* ============================================= */
+/* Managament devices primary                   */
+/* ============================================= */
+
 div.mixings-get-devices .mix-container .mix.category-1 {
     height: 150px;
 }

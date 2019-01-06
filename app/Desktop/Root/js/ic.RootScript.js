@@ -1,6 +1,8 @@
 // $(".AddRedactDocumentation").hide();
 var xhr = null;
 var var_item_ResourcesMonitorModal = false;
+var var_item_DevicesManagement = false;
+var var_item_DevicesManagementTest = 0;
 
 function Finish_NProgress(){
 	NProgress.done();
@@ -322,8 +324,6 @@ $("#sb_item_TrackingNetwork").dblclick(function(){
 	$("#sb_item_TrackingNetwork").click();
 });
 
-var var_item_DevicesManagement = false;
-
 /*Gestionar dispositivos en red*/
 $("#sb_item_DevicesManagement").click(function(){
 	$(".AdminPanel_ResourcesTrackingNetworkInformation_PanelBodyModal").html("");
@@ -333,6 +333,12 @@ $("#sb_item_DevicesManagement").click(function(){
 	NProgress.start();
 
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeIn').show();
+
+	if (var_item_DevicesManagementTest == 1){
+		var_item_DevicesManagementTest = 0;
+		$("#sb_item_DevicesManagement").dblclick();
+		console.log("Usted ha ido a tracking network.");
+	}
 
 	if ((typeof respuesta == "undefined") || (!var_item_DevicesManagement)){
 		$.ajax({
@@ -859,6 +865,7 @@ function getModalMonitorScanning(){
 
 function getModalTrackingNetworkInformation(){
 	$(".ModalTrackingNetworkInformation").click();
+	var_item_DevicesManagementTest = 1;
 }
 
 /*Registrar las credenciales del host actual que monitoriza*/
@@ -1233,10 +1240,10 @@ function PruebaPingConnect(value){
 	// }, false);
 }
 
-$(".AdminPanel_DevicesManagement").click(function(){
-	$("#ContextMenuTest").style.visibility = "hidden";
-	$("#ContextMenuTest_White").style.visibility = "hidden";
-});
+// $(".AdminPanel_DevicesManagement").click(function(){
+// 	$("#ContextMenuTest").style.visibility = "hidden";
+// 	$("#ContextMenuTest_White").style.visibility = "hidden";
+// });
 
 
 $(".AdminPanel_DevicesManagement").on('contextmenu', function(e){

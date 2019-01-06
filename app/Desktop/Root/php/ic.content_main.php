@@ -108,7 +108,7 @@
                         <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
                         <span class="panel-title">Mapa de Red (Autodescubrir dispositivos)</span>
 
-                        <div class="container_options_controls" style="position: absolute; top: 0; right: 100px;">
+                        <div style="position: absolute; top: 0; right: 100px;">
                             <button type="button" id="btn_tracking_monitor" class="btn btn-dark btn_tracking_device" action_selection="monitor" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="fa fa-tachometer"></i> Monitorizar</button>
                             <button type="button" id="btn_tracking_network" class="btn btn-dark btn_tracking_device" action_selection="network" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="fa fa-sitemap"></i> Red</button>
                             <button type="button" id="btn_tracking_processes" class="btn btn-dark btn_tracking_device" action_selection="processes" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="glyphicon glyphicon-tasks"></i> Procesos</button>

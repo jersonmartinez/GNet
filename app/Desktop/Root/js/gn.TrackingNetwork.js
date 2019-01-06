@@ -26,7 +26,7 @@ Ladda.bind('.btn_action_tn', {
     }
 });
 
-$('#mix-items-other').mixItUp();
+// $('#mix-items-other').mixItUp();
 
 // Inline
 // $('#datetimepicker_test').datetimepicker({
