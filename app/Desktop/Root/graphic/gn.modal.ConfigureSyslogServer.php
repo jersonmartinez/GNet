@@ -21,7 +21,7 @@
                             <span class="input-group-btn">
                                 <button class="btn btn-default" type="button"><i class="fa fa-user"></i></button>
                             </span>
-                            <input type="text" id="inputIPServerSyslog" name="inputIPServerSyslog" class="form-control" title="IP: Servidor Syslog" placeholder="* Dirección IP del servidor"/>
+                            <input type="text" id="IPServerSyslog" name="IPServerSyslog" class="form-control" title="IP: Servidor Syslog" placeholder="* Dirección IP del servidor"/>
                         </div>
                     </div><!-- /.col-lg-6 -->
                     <div class="col-lg-6">

@@ -69,10 +69,10 @@
     
         <ul class="nav sub-nav">
             <li>
-                <a href="#" id="sb_item_LogManagement">
-                    <span class="fa fa-dashboard"></span>
-                    Monitorizar Logs
-                </a>
+              <a href="#" id="sb_item_MonitorLogs">
+                  <span class="fa fa-dashboard"></span>
+                  Monitorizar Logs
+              </a>
             </li>
 
             <li>

@@ -541,6 +541,31 @@ $(".tab_btn_process").click(function(){
 		$(".sorting_asc").addClass('animated fadeIn').click();
 	}, 100);
 });
+
+// var var_item_MonitorLogs = false;
+
+//Monitorizar Logs
+$("#sb_item_MonitorLogs").click(function(){
+	HideAdminPanels();
+	NProgress.start();
+
+	$(".AdminPanel_MonitorLogs").addClass('animated fadeIn').show();
+	
+	xhr = $.ajax({
+		url: "app/Desktop/Root/graphic/gn.MonitorLogs.php",
+		success: function(data){
+			$(".AdminPanel_MonitorLogs_PanelBody").addClass('animated fadeIn').html(data);
+			// $(".here_write").html($("#MessageFailCheckMonitorLogs").html());
+			Finish_NProgress();
+		}
+	});
+});
+
+$("#sb_item_MonitorLogs").dblclick(function(){
+	// var_item_MonitorLogs = false;
+	$("#sb_item_MonitorLogs").click();
+});
+
 // ----------------------------------------------
 // Configuraciòn de cuenta y perfil del usuario
 // ----------------------------------------------
@@ -836,6 +861,7 @@ function HideAdminPanels(){
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
 	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeOut').hide();
 	$(".AdminPanel_ProffileSettings").addClass('animated fadeOut').hide();
+	$(".AdminPanel_MonitorLogs").addClass('animated fadeOut').hide();
 }
 
 function HideADM(which){
@@ -1211,26 +1237,25 @@ $("#btnSaveSettings").click(function(){
 	xhr = $.ajax({
 		url: "app/Desktop/Root/php/gn.ConfigSyslogClient.php",
 		type: "post",
-		data: ('ServerSyslog='+ServerSyslog),
+		data: ('ServerSyslog='+ServerSyslog+'&ClientSyslog='+ClientSyslog),
 		success: function(data){
-			alert("datos devueltos "+data);
+			alert("Respuesta: "+data);
 		}
 	});
 });
 
 $("#btnSaveSettingsServer").click(function(){
-	var IP = "localhost";
-	var DB = "gnet";
-	var User = "root";
-	var Pass = "root";
+	var IP = $("#IPServerSyslog").val();
+	// var DB = "gnet";
+	// var User = "root";
+	// var Pass = "root";
 	var Level = "todo";
-		alert("CONFIGURANDO...");
 	xhr = $.ajax({
 		url: "app/Desktop/Root/php/gn.ConfigSyslogServer.php",
 		type: "post",
-		data: ('IP='+IP+'&DB='+DB+'&User='+User+'&Pass='+Pass+'&Level='+Level),
+		data: ('IP='+IP+'&Level='+Level),
 		success: function(data){
-			alert("datos devueltos "+data);
+			alert("Respuesta: "+data);
 		}
 	});
 });

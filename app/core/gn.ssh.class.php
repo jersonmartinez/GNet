@@ -117,7 +117,7 @@
 			return false;
 		}
 
-		public function ConfigSyslogServer($IP, $DB, $User, $Pass, $Level){
+		public function ConfigSyslogServer($H, $D, $U, $P, $Level){
 			$filename = "ConfigSyslogServer.sh";
 
 			$ActionArray[] = 'Servidor=$1 DB=$2 User=$3 Pass=$4 Severity=$5 FileConf="/etc/rsyslog.d/mysql.conf"';
@@ -155,10 +155,12 @@
 			array_push($ActionArray, 'esac');
 			array_push($ActionArray, 'service rsyslog restart');
 
-			$RL[] = $this->remote_path.$filename." ".$IP." ".$DB." ".$User." ".$Pass." ".$Level;
+			$RL[] = $this->remote_path.$filename." ".$H." ".$D." ".$U." ".$P." ".$Level;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
-			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
-				return $this->RunLines(implode("\n", $RL));
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename)){
+				$this->RunLines(implode("\n", $RL));
+				return true;
+			}
 			
 			return false;
 		}
@@ -1059,7 +1061,13 @@
 	    		return $Lastname->fetch_array(MYSQLI_ASSOC)['lastname'];
 
 	    	return false;
-	    }
+		}
+
+		// Obtener datos de la tablas SystemEvents 
+
+		public function getLogs(){
+			return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents;");
+		}
 
 		public function ConnectDB($H = null, $U = null, $P = null, $D = null, $X = null){
 			@$FirstConnect = new mysqli($H, $U, $P);

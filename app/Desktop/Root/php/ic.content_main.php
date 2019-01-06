@@ -28,29 +28,6 @@
 
 <div class="container_platform">
 
-    <style>
-        div.ejecutando_pruebas_syslog {
-            background-color: #2d2a22;
-            color: #fff;
-            padding: 30px;
-        }
-
-        div.ejecutando_pruebas_syslog input[type="button"] {
-            background-color: black;
-            padding: 8px 15px;
-            border: 0px;
-            margin-left: 50px;
-        }
-    </style>
-
-    <div class="ejecutando_pruebas_syslog">
-        <label for="datos">Datos: {IP_GNet: "192.168.0.20", Severidad: "error"}</label>
-        <input type="button" id="btn_syslog_test" value="Enviar datos" />
-        
-        <div class="retorno_de_datos">
-        </div>
-    </div>
-
     <style type="text/css">
             
         .box-wrap::after {
@@ -203,7 +180,29 @@
             </div>
             <!-- End Column -->
         </div>
-    </div>
+
+         <!-- Wrap content in admin-panel class -->
+        <div>
+            <div class="row AdminPanel_MonitorLogs">
+
+                <!-- Create Column with required .admin-grid class -->
+                <div class="col-md-12">
+
+                    <!-- Create Panel with required unique ID -->
+                    <div class="panel" id="pUnique_MonitorLogs">
+                        <div class="panel-heading">
+                            <span class="panel-icon"><i class="fa fa-bell"></i></span>
+                            <span class="panel-title">Monitorización de Logs</span>   
+                        </div>
+                        <div class="panel-body AdminPanel_MonitorLogs_PanelBody">
+                            <!-- El contenido -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- End Column -->
+            </div>
+        </div>
 </div>
 
 <?php
