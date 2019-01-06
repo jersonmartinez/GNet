@@ -42,8 +42,7 @@
                             </div>
 
                             <div class="panel-body AdminPanel_ResourcesTrackingNetworkInformation_PanelBodyModal">
-                                Datos por acá.
-                                <br/>
+                                
                             </div>
 
                         </div>

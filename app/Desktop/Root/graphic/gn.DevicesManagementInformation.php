@@ -117,6 +117,38 @@
     }
 </style>
 
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel-heading">
+            Switches (Redes)
+        </div>
+
+        <div class="panel-body">
+            <?php echo $CN->getIPNetNumber(); ?>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel-heading">
+            Switches (Redes)
+        </div>
+
+        <div class="panel-body">
+            <?php echo $CN->getIPNetNumber(); ?>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="panel-heading">
+            Switches (Redes)
+        </div>
+
+        <div class="panel-body">
+            <?php echo $CN->getIPNetNumber(); ?>
+        </div>
+    </div>
+</div>
+
 <div class="mixings-get-devices-secundary" data-example-id="contextual-panels-secundary">
     <!-- <hr class="alt short"> -->
     <div id="mix-items-secundary" class="mix-container-secundary box-wrap boxes blue">

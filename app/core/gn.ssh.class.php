@@ -336,9 +336,14 @@
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE NOT (router='1' AND net_next='-');");
 		}
 
-		//Extrae todas las direcciones de red.
+		# Extract all IP Address of network.
 		public function getIPNet(){
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network ORDER BY ip_net ASC;");
+		}
+
+		# Extract the number of records.
+		public function getIPNetNumber(){
+			return @$this->db_connect->query("SELECT DISTINCT count(*) as 'number' FROM ".$this->db_prefix."network;");
 		}
 
 		public function getIPNetNext($ip_net){
