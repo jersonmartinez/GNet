@@ -466,11 +466,9 @@ function getResourcesMonitor(params){
 					});
 				}
 			} else if (data == "Fail"){
-				if (params['name'] == "GNet"){
-					getModalCredentialsLocalMachine();
-				} else {
-					alert("No existen credenciales de usuario y contraseña para este host");
-				}
+				$(".modal-footer button.btn-default").click();
+				getModalCredentialsLocalMachine();
+				Finish_NProgress();
 			}
 		}
 	});
@@ -501,11 +499,9 @@ function getResourcesMonitorNetwork(params){
 					}
 				});
 			} else if (data == "Fail"){
-				if (params['name'] == "GNet"){
-					getModalCredentialsLocalMachine();
-				} else {
-					alert("No existen credenciales de usuario y contraseña para este host");
-				}
+				$(".modal-footer button.btn-default").click();
+				getModalCredentialsLocalMachine();
+				Finish_NProgress();
 			}
 		}
 	});
@@ -536,11 +532,9 @@ function getResourcesMonitorProcess(params){
 					}
 				});
 			} else if (data == "Fail"){
-				if (params['name'] == "GNet"){
-					getModalCredentialsLocalMachine();
-				} else {
-					alert("No existen credenciales de usuario y contraseña para este host");
-				}
+				$(".modal-footer button.btn-default").click();
+				getModalCredentialsLocalMachine();
+				Finish_NProgress();
 			}
 		}
 	});
@@ -571,11 +565,9 @@ function getResourcesMonitorScanning(params){
 					}
 				});
 			} else if (data == "Fail"){
-				if (params['name'] == "GNet"){
-					getModalCredentialsLocalMachine();
-				} else {
-					alert("No existen credenciales de usuario y contraseña para este host");
-				}
+				$(".modal-footer button.btn-default").click();
+				getModalCredentialsLocalMachine();
+				Finish_NProgress();
 			}
 		}
 	});
@@ -625,11 +617,9 @@ function getResourcesMonitorProperties(params){
 					}
 				});
 			} else if (data == "Fail"){
-				if (params['name'] == "GNet"){
-					getModalCredentialsLocalMachine();
-				} else {
-					alert("No existen credenciales de usuario y contraseña para este host");
-				}
+				$(".modal-footer button.btn-default").click();
+				getModalCredentialsLocalMachine();
+				Finish_NProgress();
 			}
 		}
 	});
