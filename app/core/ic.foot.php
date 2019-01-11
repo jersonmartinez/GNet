@@ -57,8 +57,8 @@
 
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/fileupload/fileupload.js"></script>
 <!-- <script src="<?php #echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/holder/holder.min.js"></script> --> 
-<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/js/footable.all.min.js"></script>
-<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/js/footable.filter.min.js"></script>
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/js/footable.js"></script>
+<!-- <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/js/footable.min.js"></script> -->
 
 <!-- Importants Scripts -->
 <script src="<?php echo PDS_CTL_JS; ?>/ic.script.js"></script>

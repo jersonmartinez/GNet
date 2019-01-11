@@ -1066,7 +1066,43 @@
 		// Obtener datos de la tablas SystemEvents 
 
 		public function getLogs(){
-			return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents;");
+			return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents LIMIT 155;");
+		}
+
+		public function getNumLogs(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'All' FROM SystemEvents;")->fetch_array()['All'];
+		}
+
+		public function getTotalDebug(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Debug' FROM SystemEvents WHERE Priority=7;")->fetch_array()['Debug'];
+		}
+
+		public function getTotalInfo(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Info' FROM SystemEvents WHERE Priority=6;")->fetch_array()['Info'];
+		}
+
+		public function getTotalNotice(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Notice' FROM SystemEvents WHERE Priority=5;")->fetch_array()['Notice'];
+		}
+
+		public function getTotalWarning(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Warning' FROM SystemEvents WHERE Priority=4;")->fetch_array()['Warning'];
+		}
+
+		public function getTotalError(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Error' FROM SystemEvents WHERE Priority=3;")->fetch_array()['Error'];
+		}
+
+		public function getTotalCritical(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Critical' FROM SystemEvents WHERE Priority=2;")->fetch_array()['Critical'];
+		}
+
+		public function getTotalAlert(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Alert' FROM SystemEvents WHERE Priority=1;")->fetch_array()['Alert'];
+		}
+
+		public function getTotalEmer(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Emer' FROM SystemEvents WHERE Priority=1;")->fetch_array()['Emer'];
 		}
 
 		public function ConnectDB($H = null, $U = null, $P = null, $D = null, $X = null){
