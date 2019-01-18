@@ -544,7 +544,9 @@ $(".tab_btn_process").click(function(){
 
 // var var_item_MonitorLogs = false;
 
+//-----------------------------
 //Monitorizar Logs
+//-----------------------------
 $("#sb_item_MonitorLogs").click(function(){
 	HideAdminPanels();
 	NProgress.start();
@@ -1192,7 +1194,9 @@ $("#DivACLMKeyPress").keypress(function(event){
 	}
 });
 
-// Configuración de Syslog
+/****************************/
+// Configuración de Syslog /
+/****************************/
 
 $("#ddt_SelectSeverityOptionEmer").click(function(){
     $(".ddt_SelectLevelSeverity").html("Emergencia <span class='caret'></span>");
@@ -1260,20 +1264,66 @@ $("#btnSaveSettingsServer").click(function(){
 	});
 });
 
-$("#btn_syslog_test").click(function(){
-	
-	var Paquete_de_datos = {
-		IP_GNet: "192.168.0.20", 
-		Severidad: "error"	
-	}
+$(".ids").click(function() {
+	$.ajax({
+	    url: "app/Desktop/Root/graphic/gn.FilterLogs.php",
+	    type: "post",
+	    data: $('.ids:checked').serialize(),
+	    success: function(data) {
+	    	var obj = JSON.parse(data);
+	    	// console.log(data);
+	    	var TableLogs = '<div class="panel" id="spy3">'
+                + '<div class="panel-body pn">'
+                + '<table class="table" data-paging="true">'
+                + '<thead class="headLogs"><tr>'
+                + '<th><span class="fa fa-desktop"></span> Host</th>'
+                + '<th><span class="fa fa-envelope"></span> Mensaje</th>'
+                + '<th><span class="fa fa-foursquare"></span> Recurso</th>'
+                + '<th><span class="fa fa-bell"></span> Tipo</th>'
+                + '<th><span class="fa fa-clock-o"></span> Hora reporte</th>'
+                + '<th><span class="fa fa-tags"></span> Etiqueta</th>'
+                + '</tr></thead>'
+                + '<tbody class="tbodyLogs">'
+                + '</tbody>'
+                + '<tfoot>'
+	            + '<tr class="footable-paging">'
+	            + '<td colspan="7">'
+	            + '<div class="footable-pagination-wrapper">'
+	            + '<ul class="pagination"></ul>'
+	            + '</div>'
+	            + '</td>'
+	            + '</tr>'
+	            + '</tfoot>'
+	            + '</table>'
+	        	+ '</div>'
+				+ '</div>';
+				$('.AdminPanel_MonitorLogs_PanelBody').addClass('animated fadeIn').html(TableLogs);
 
-	xhr = $.ajax({
-		url: "app/Desktop/Root/php/gn.SyslogConfig.php",
-		type: "post",
-		data: Paquete_de_datos,
-		success: function(data){
-			$(".retorno_de_datos").html(data);
-		}
+	    	for (var i = 0; i < obj.length; i++) {
+	    		// console.log(obj[i].FromHost);
+	    		var subMessage = obj[i].Message.substring(0, 61);
+                var tbody = '<tr id="' + obj[i].Priority + '">'
+                + '<th>' + obj[i].FromHost + '</th>'
+                + '<th title="' + obj[i].Message + '">' + subMessage + '</th>'
+                + '<th>' + obj[i].Facility + '</th>'
+                + '<th>' + obj[i].Priority + '</th>'
+                + '<th>' + obj[i].ReceivedAt + '</th>'
+                + '<th>' + obj[i].SysLogTag + '</th>'
+                + '</tr>';
+                $('.tbodyLogs').addClass('animated fadeIn').append(tbody);
+	    	}
+
+        	$(".table").footable();
+	    }
 	});
+});
 
+$(".li_OrderDateDesc").click(function(){
+    $(".btn_Order_Date_Desc").click();
+    $(".btn_Order_val").text("Más reciente");
+});
+
+$(".li_OrderDateAsc").click(function(){
+    $(".btn_Order_Date_Asc").click();
+    $(".btn_Order_val").text("Más antiguo");
 });

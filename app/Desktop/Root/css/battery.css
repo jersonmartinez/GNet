@@ -96,7 +96,7 @@
 /* Estilos para la gestión de Logs */
 /************************************/
 
-.head-logs {
+.headLogs {
     background-color: rgb(59, 63, 79);
     color: rgb(255, 255, 255);
 }
@@ -145,6 +145,11 @@
 #Depuracion {
     background-color: rgb(59, 175, 218);
     color: rgb(255, 255, 255);
+}
+
+.level {
+	float: left;
+	margin-left: 10px;
 }
 
 /*.dividier {

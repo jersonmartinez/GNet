@@ -1066,7 +1066,29 @@
 		// Obtener datos de la tablas SystemEvents 
 
 		public function getLogs(){
-			return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents LIMIT 155;");
+			return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents ORDER BY ReceivedAt DESC LIMIT 155;");
+		}
+
+		public function FilterLogs($arrays){
+			$consulta = "SELECT FromHost, Message, Facility, Priority, ReceivedAt, SysLogTag FROM SystemEvents WHERE ";
+
+			if (empty($arrays)) {
+				return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents ORDER BY ReceivedAt DESC LIMIT 155;");
+			} elseif (is_array($arrays)) {
+		        for ($i = 0; $i < count($arrays); $i++){
+		            if ($i == 0){
+		                $consulta .= " Priority=".$arrays[$i];
+		            } else {
+		                $consulta .= " OR Priority=".$arrays[$i];
+		            }
+		        }
+		    }   
+		    $consulta .= " limit 55;";
+		    return $this->db_connect->query($consulta);
+		}
+
+		public function getLogsOrderAsc(){
+			return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents ORDER BY ReceivedAt ASC LIMIT 155;");
 		}
 
 		public function getNumLogs(){

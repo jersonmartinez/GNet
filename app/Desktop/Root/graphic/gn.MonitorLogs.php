@@ -24,7 +24,7 @@
     <div class="panel-body pn">
         <!-- <table class="table footable" data-page-navigation=".pagination" data-page-size="8"> -->
         <table class="table" data-paging="true">
-            <thead class="head-logs">
+            <thead class="headLogs">
                 <tr>
                     <th><span class="fa fa-desktop"></span> Host</th>
                     <th><span class="fa fa-envelope"></span> Mensaje</th>
@@ -34,7 +34,7 @@
                     <th><span class="fa fa-tags"></span> Etiqueta</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody class="tbodyLogs">
                 <?php
                     while ($A = $Logs->fetch_array(MYSQLI_ASSOC)) {
                 
