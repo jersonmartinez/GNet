@@ -7,6 +7,7 @@
         <span id="toggle_sidemenu_l" class="ad ad-lines"></span>
       </div>
       
+
       <?php
         if (REM_NOTIFY_NECESSARY){
           ?>
@@ -80,7 +81,7 @@
 
       <form class="navbar-form navbar-left navbar-search alt form-navbar-buscador" role="search">
         <div class="form-group form-group-navbar-buscador">
-          <input type="text" class="form-control form-control-group-navbar-buscador" placeholder="Busca un dispositivo..." autofocus />
+          <input type="text" class="form-control form-control-group-navbar-buscador ADM_TB_IPHost" id="MainSearchIPHostFinal" title="Monitorizar dispositivo" placeholder="Busca un dispositivo..." style="color: #3b3f4f; background-color: white;" autofocus />
         </div>
       </form>
 

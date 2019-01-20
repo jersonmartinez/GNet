@@ -57,7 +57,7 @@
                                                 <li class="divider"></li>
                                             <?php
                                         }
-                                    ?>Nombre de 
+                                    ?>
                                     
                                     <li class="Option_ADM_NewNetwork">
                                         <a href="#">Nueva Red</a>

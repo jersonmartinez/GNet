@@ -393,6 +393,21 @@ $("#sb_item_ResourcesMonitor").click(function(){
 	getResourcesMonitor(params);
 });
 
+$("#MainSearchIPHostFinal").keypress( (event) => {
+	if (event.which == 13) {
+
+		var_item_ResourcesMonitor = false;
+
+		var params = {
+			"name" : "GNet",
+			"host" : $("#MainSearchIPHostFinal").val(),
+			"container_return" :  "AdminPanel_ResourcesMonitor_PanelBody", 
+			"NProgress" : "body"
+		};
+
+		getResourcesMonitor(params);
+	}
+});
 
 function getResourcesMonitor(params){
 	xhr = $.ajax({
