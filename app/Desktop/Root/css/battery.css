@@ -147,9 +147,126 @@
     color: rgb(255, 255, 255);
 }
 
-.level {
+.panel-logs {
+	height: 3.5em;
+	position: relative;
+	top: 1.2em;
+}
+
+.title-logs {
+	/*line-height: 49px;
+	letter-spacing: 0.2px;
+	font-weight: 400;*/
+	color: #999999;
+	font-size: 15px;
+}
+
+.checkbox-custom {
 	float: left;
-	margin-left: 10px;
+}
+
+.checkbox-custom.checkbox-emer label:before {
+  border-color: rgb(233, 30, 99);
+}	
+
+.checkbox-custom.checkbox-emer input[type=checkbox]:checked + label:after {
+  background-color: rgb(233, 30, 99);
+  color: rgb(233, 30, 99);
+}
+
+.checkbox-custom.fill.checkbox-emer label:before {
+  background-color: rgb(233, 30, 99);
+}
+
+.checkbox-custom.checkbox-alert label:before {
+  border-color: rgb(150, 122, 220);
+}	
+
+.checkbox-custom.checkbox-alert input[type=checkbox]:checked + label:after {
+  background-color: rgb(150, 122, 220);
+  color: rgb(150, 122, 220);
+}
+
+.checkbox-custom.fill.checkbox-alert label:before {
+  background-color: rgb(150, 122, 220);
+}
+
+.checkbox-custom.checkbox-critical label:before {
+  border-color: rgb(244, 67, 54);
+}	
+
+.checkbox-custom.checkbox-critical input[type=checkbox]:checked + label:after {
+  background-color: rgb(244, 67, 54);
+  color: rgb(244, 67, 54);
+}
+
+.checkbox-custom.fill.checkbox-critical label:before {
+  background-color: rgb(244, 67, 54);
+}
+
+.checkbox-custom.checkbox-error label:before {
+  border-color: rgb(223, 86, 64);
+}	
+
+.checkbox-custom.checkbox-error input[type=checkbox]:checked + label:after {
+  background-color: rgb(223, 86, 64);
+  color: rgb(223, 86, 64);
+}
+
+.checkbox-custom.fill.checkbox-error label:before {
+  background-color: rgb(223, 86, 64);
+}
+
+.checkbox-custom.checkbox-warning label:before {
+  border-color: rgb(255, 152, 0);
+}	
+
+.checkbox-custom.checkbox-warning input[type=checkbox]:checked + label:after {
+  background-color: rgb(255, 152, 0);
+  color: rgb(255, 152, 0);
+}
+
+.checkbox-custom.fill.checkbox-warning label:before {
+  background-color: rgb(255, 152, 0);
+}
+
+.checkbox-custom.checkbox-notice label:before {
+  border-color: rgb(112, 202, 99);
+}	
+
+.checkbox-custom.checkbox-notice input[type=checkbox]:checked + label:after {
+  background-color: rgb(112, 202, 99);
+  color: rgb(112, 202, 99);
+}
+
+.checkbox-custom.fill.checkbox-notice label:before {
+  background-color: rgb(112, 202, 99);
+}
+
+.checkbox-custom.checkbox-info label:before {
+  border-color: rgb(52, 152, 219);
+}	
+
+.checkbox-custom.checkbox-info input[type=checkbox]:checked + label:after {
+  background-color: rgb(52, 152, 219);
+  color: rgb(52, 152, 219);
+}
+
+.checkbox-custom.fill.checkbox-info label:before {
+  background-color: rgb(52, 152, 219);
+}
+
+.checkbox-custom.checkbox-debug label:before {
+  border-color: rgb(59, 175, 218);
+}	
+
+.checkbox-custom.checkbox-debug input[type=checkbox]:checked + label:after {
+  background-color: rgb(59, 175, 218);
+  color: rgb(59, 175, 218);
+}
+
+.checkbox-custom.fill.checkbox-debug label:before {
+  background-color: rgb(59, 175, 218);
 }
 
 /*.dividier {

@@ -542,32 +542,6 @@ $(".tab_btn_process").click(function(){
 	}, 100);
 });
 
-// var var_item_MonitorLogs = false;
-
-//-----------------------------
-//Monitorizar Logs
-//-----------------------------
-$("#sb_item_MonitorLogs").click(function(){
-	HideAdminPanels();
-	NProgress.start();
-
-	$(".AdminPanel_MonitorLogs").addClass('animated fadeIn').show();
-	
-	xhr = $.ajax({
-		url: "app/Desktop/Root/graphic/gn.MonitorLogs.php",
-		success: function(data){
-			$(".AdminPanel_MonitorLogs_PanelBody").addClass('animated fadeIn').html(data);
-			// $(".here_write").html($("#MessageFailCheckMonitorLogs").html());
-			Finish_NProgress();
-		}
-	});
-});
-
-$("#sb_item_MonitorLogs").dblclick(function(){
-	// var_item_MonitorLogs = false;
-	$("#sb_item_MonitorLogs").click();
-});
-
 // ----------------------------------------------
 // Configuraciòn de cuenta y perfil del usuario
 // ----------------------------------------------
@@ -1264,6 +1238,33 @@ $("#btnSaveSettingsServer").click(function(){
 	});
 });
 
+/****************************/
+// Monitorizacón de Logs 	 /
+/****************************/
+
+// var var_item_MonitorLogs = false;
+
+$("#sb_item_MonitorLogs").click(function(){
+	HideAdminPanels();
+	NProgress.start();
+
+	$(".AdminPanel_MonitorLogs").addClass('animated fadeIn').show();
+	
+	$.ajax({
+		url: "app/Desktop/Root/graphic/gn.MonitorLogs.php",
+		success: function(data){
+			$(".AdminPanel_MonitorLogs_PanelBody").addClass('animated fadeIn').html(data);
+			// $(".here_write").html($("#MessageFailCheckMonitorLogs").html());
+			Finish_NProgress();
+		}
+	});
+});
+
+$("#sb_item_MonitorLogs").dblclick(function(){
+	// var_item_MonitorLogs = false;
+	$("#sb_item_MonitorLogs").click();
+});
+
 $(".ids").click(function() {
 	$.ajax({
 	    url: "app/Desktop/Root/graphic/gn.FilterLogs.php",
@@ -1272,15 +1273,13 @@ $(".ids").click(function() {
 	    success: function(data) {
 	    	var obj = JSON.parse(data);
 	    	// console.log(data);
-	    	var TableLogs = '<div class="panel" id="spy3">'
-                + '<div class="panel-body pn">'
-                + '<table class="table" data-paging="true">'
+	    	var TableLogs = '<table class="table" data-paging="true">'
                 + '<thead class="headLogs"><tr>'
                 + '<th><span class="fa fa-desktop"></span> Host</th>'
                 + '<th><span class="fa fa-envelope"></span> Mensaje</th>'
                 + '<th><span class="fa fa-foursquare"></span> Recurso</th>'
                 + '<th><span class="fa fa-bell"></span> Tipo</th>'
-                + '<th><span class="fa fa-clock-o"></span> Hora reporte</th>'
+                + '<th><span class="fa fa-clock-o"></span> Fecha/Hora</th>'
                 + '<th><span class="fa fa-tags"></span> Etiqueta</th>'
                 + '</tr></thead>'
                 + '<tbody class="tbodyLogs">'
@@ -1294,17 +1293,15 @@ $(".ids").click(function() {
 	            + '</td>'
 	            + '</tr>'
 	            + '</tfoot>'
-	            + '</table>'
-	        	+ '</div>'
-				+ '</div>';
-				$('.AdminPanel_MonitorLogs_PanelBody').addClass('animated fadeIn').html(TableLogs);
+	            + '</table>';
+				$('.table').addClass('animated fadeIn').html(TableLogs);
 
 	    	for (var i = 0; i < obj.length; i++) {
 	    		// console.log(obj[i].FromHost);
 	    		var subMessage = obj[i].Message.substring(0, 61);
                 var tbody = '<tr id="' + obj[i].Priority + '">'
                 + '<th>' + obj[i].FromHost + '</th>'
-                + '<th title="' + obj[i].Message + '">' + subMessage + '</th>'
+                + '<th>' + '<span class="tdMessage" title="' + obj[i].Message + '">' + subMessage + '</span>' + '</th>'
                 + '<th>' + obj[i].Facility + '</th>'
                 + '<th>' + obj[i].Priority + '</th>'
                 + '<th>' + obj[i].ReceivedAt + '</th>'
@@ -1314,16 +1311,7 @@ $(".ids").click(function() {
 	    	}
 
         	$(".table").footable();
+        	$('.tdMessage').tooltip();
 	    }
 	});
-});
-
-$(".li_OrderDateDesc").click(function(){
-    $(".btn_Order_Date_Desc").click();
-    $(".btn_Order_val").text("Más reciente");
-});
-
-$(".li_OrderDateAsc").click(function(){
-    $(".btn_Order_Date_Asc").click();
-    $(".btn_Order_val").text("Más antiguo");
 });

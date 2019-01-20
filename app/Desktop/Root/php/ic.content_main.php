@@ -190,60 +190,43 @@
 
                     <!-- Create Panel with required unique ID -->
                     <div class="panel" id="pUnique_MonitorLogs">
-                        <div class="panel-heading">
+                        <div class="panel-logs">
                             <span class="panel-icon"><i class="fa fa-bell"></i></span>
-                            <span class="panel-title">Monitorización de Logs</span>
+                            <span class="panel-title title-logs">Monitorización de Logs</span>
 
-                            <div class="container_options_controls" style="position: absolute; top: 0; right:100px;">
+                            <div class="container_options_filter" style="position: absolute; top: 0; right:100px;">
 
-                                <div class="level">
+                                <div class="checkbox-custom fill checkbox-emer">
                                     <input type="checkbox" class="ids" id="Emergencia" name="ids[]" value="0">
-                                    <label for="">Emergencia</label>
+                                    <label for="Emergencia">Emergencia</label>
                                 </div>
-                                <div class="level">
+                                <div class="checkbox-custom fill checkbox-alert">
                                     <input type="checkbox" class="ids" id="Alerta" name="ids[]" value="1">
-                                    <label for="">Alerta</label>
+                                    <label for="Alerta">Alerta</label>
                                 </div>
-                                <div class="level">
+                                <div class="checkbox-custom fill checkbox-critical">
                                     <input type="checkbox" class="ids" id="Critico" name="ids[]" value="2">
-                                    <label for="">Crítico</label>
+                                    <label for="Critico">Crítico</label>
                                 </div>
-                                <div class="level">
+                                <div class="checkbox-custom fill checkbox-error">
                                     <input type="checkbox" class="ids" id="Error" name="ids[]" value="3">
-                                    <label for="">Error</label>
+                                    <label for="Error">Error</label>
                                 </div>
-                                <div class="level">
+                                <div class="checkbox-custom fill checkbox-warning">
                                     <input type="checkbox" class="ids" id="Advertencia" name="ids[]" value="4">
-                                    <label for="">Advertencia</label>
+                                    <label for="Advertencia">Advertencia</label>
                                 </div>
-                                <div class="level">
+                                <div class="checkbox-custom fill checkbox-notice">
                                     <input type="checkbox" class="ids" id="Notificacion" name="ids[]" value="5">
-                                    <label for="">Aviso</label>
+                                    <label for="Notificacion">Aviso</label>
                                 </div>
-                                <div class="level">
+                                <div class="checkbox-custom fill checkbox-info">
                                     <input type="checkbox" class="ids" id="Informacion" name="ids[]" value="6">
-                                    <label for="">Info</label>
+                                    <label for="Informacion">Información</label>
                                 </div>
-                                <div class="level">
+                                <div class="checkbox-custom fill checkbox-debug">
                                     <input type="checkbox" class="ids" id="Depuracion" name="ids[]" value="7">
-                                    <label for="">Debug</label>
-                                </div>
-
-                                <!-- Orden -->
-                                <button class="sort btn btn-default btn-sm btn_Order_Date_Asc" data-sort="myorder:asc" style="display: none;">Asc</button>
-                                <button class="sort btn btn-default btn-sm btn_Order_Date_Desc" data-sort="myorder:desc" style="display: none;">Desc</button>
-
-                                <!-- Split button -->
-                                <div class="btn-group" style="display: inline-block;">
-                                    <button type="button" class="btn btn-danger btn_Order_val">Ordenar</button>
-                                    <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                        <span class="caret"></span>
-                                        <span class="sr-only">Toggle Dropdown</span>
-                                    </button>
-                                    <ul class="dropdown-menu" role="menu">
-                                        <li class="li_OrderDateAsc"><a href="#">Más antiguo</a></li>
-                                        <li class="li_OrderDateDesc"><a href="#">Más reciente</a></li>
-                                    </ul>
+                                    <label for="Depuracion">Depuración</label>
                                 </div>
                             </div>   
                         </div>

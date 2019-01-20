@@ -30,7 +30,7 @@
                     <th><span class="fa fa-envelope"></span> Mensaje</th>
                     <th><span class="fa fa-foursquare"></span> Recurso</th>
                     <th><span class="fa fa-bell"></span> Tipo</th>
-                    <th><span class="fa fa-clock-o"></span> Hora reporte</th>
+                    <th><span class="fa fa-clock-o"></span> Fecha/Hora</th>
                     <th><span class="fa fa-tags"></span> Etiqueta</th>
                 </tr>
             </thead>
@@ -108,7 +108,7 @@
                         ?>
                     <tr id="<?php echo $Priority ;?>">
                         <th><?php echo $A['FromHost'] ;?></th>
-                        <th title="<?php echo $A['Message'] ;?>"><?php echo substr($A['Message'], 0, 60) ;?></th>
+                        <th><span class="tdMessage" title="<?php echo $A['Message'] ;?>"><?php echo substr($A['Message'], 0, 60) ;?></span></th>
                         <th><?php echo $Facility ;?></th>
                         <th><?php echo $Priority ;?></th>
                         <th><?php echo $A['ReceivedAt'] ;?></th>
@@ -147,14 +147,9 @@
 </div>
 
 <script>
-    jQuery(document).ready(function() {
-        "use strict";
-        // Init Theme Core    
-        Core.init();
-        // Init Demo JS  
-        Demo.init();
-        // Init FooTable Examples
+    $(function() {
         $('.table').footable();
+        $('.tdMessage').tooltip();
     });
 
     Highcharts.chart('container_char_logs', {
