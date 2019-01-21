@@ -81,13 +81,44 @@
 
       <form class="navbar-form navbar-left navbar-search alt form-navbar-buscador" role="search">
         <div class="form-group form-group-navbar-buscador">
-          <input type="text" class="form-control form-control-group-navbar-buscador ADM_TB_IPHost" id="MainSearchIPHostFinal" title="Monitorizar dispositivo" placeholder="Busca un dispositivo..." style="color: #3b3f4f; background-color: white;" autofocus />
+          <input type="text" class="form-control form-control-group-navbar-buscador ADM_TB_IPHost" id="MainSearchIPHostFinal" title="Monitorizar dispositivo" placeholder="Busca un dispositivo..." style="color: #fff; background-color: #576a84;" autofocus />
         </div>
       </form>
 
       <ul class="nav navbar-nav navbar-right">
         <li class="menu-divider hidden-xs">
           <i class="fa fa-circle"></i>
+        </li>
+
+        <li>
+          <div class="navbar-btn btn-group">
+            <a href="#" class="topbar-menu-toggle btn btn-sm" data-toggle="button">
+              <span class="ad ad-wand"></span>
+            </a>
+          </div>
+        </li>
+
+        <li class="dropdown menu-merge">
+          <div class="navbar-btn btn-group">
+            <button data-toggle="dropdown" class="btn btn-sm dropdown-toggle">
+              <span class="flag-xs flag-us"></span>
+              <!-- <span class="caret"></span> -->
+            </button>
+            <ul class="dropdown-menu pv5 animated animated-short flipInX" role="menu">
+              <!-- <li>
+                <a href="javascript:void(0);">
+                  <span class="flag-xs flag-fr mr10"></span> Francés </a>
+              </li> -->
+              <li>
+                <a href="javascript:void(0);">
+                  <span class="flag-xs flag-us mr10"></span> Inglés </a>
+              </li>
+              <li>
+                <a href="javascript:void(0);">
+                  <span class="flag-xs flag-es mr10"></span> Español </a>
+              </li>
+            </ul>
+          </div>
         </li>
         
         <li class="dropdown menu-merge">
