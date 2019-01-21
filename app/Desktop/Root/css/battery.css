@@ -130,7 +130,7 @@
     color: rgb(255, 255, 255);
 }   
 
-#Notificacion {
+#Aviso {
     background-color: rgb(112, 202, 99);
     /* background-color: rgb(55, 188, 155); */
     /* background-color: rgb(246, 187, 66); */
@@ -153,16 +153,12 @@
 	top: 1.2em;
 }
 
-.title-logs {
-	/*line-height: 49px;
-	letter-spacing: 0.2px;
-	font-weight: 400;*/
-	color: #999999;
-	font-size: 15px;
-}
+/*.label-filter::before {
+	top: 1em;
+}*/
 
-.checkbox-custom {
-	float: left;
+.checkbox-custom.filter label::before {
+	top: 1em;
 }
 
 .checkbox-custom.checkbox-emer label:before {

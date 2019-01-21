@@ -1087,9 +1087,18 @@
 		    return $this->db_connect->query($consulta);
 		}
 
-		public function getLogsOrderAsc(){
-			return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents ORDER BY ReceivedAt ASC LIMIT 155;");
+		public function getTotalHosts(){
+			return $this->db_connect->query("SELECT DISTINCT FromHost AS 'Hosts' FROM SystemEvents;");
 		}
+
+		public function LogsByHost($nhost){
+			$consult = "SELECT COUNT(*) AS 'Total' FROM SystemEvents WHERE FromHost='".$nhost."';";
+		    return $this->db_connect->query($consult)->fetch_array(MYSQLI_ASSOC)['Total'];
+		}
+
+		/*public function getLogsOrderAsc(){
+			return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents ORDER BY ReceivedAt ASC LIMIT 155;");
+		}*/
 
 		public function getNumLogs(){
 			return $this->db_connect->query("SELECT COUNT(*) AS 'All' FROM SystemEvents;")->fetch_array()['All'];

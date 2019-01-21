@@ -190,43 +190,43 @@
 
                     <!-- Create Panel with required unique ID -->
                     <div class="panel" id="pUnique_MonitorLogs">
-                        <div class="panel-logs">
+                        <div class="panel-heading">
                             <span class="panel-icon"><i class="fa fa-bell"></i></span>
                             <span class="panel-title title-logs">Monitorización de Logs</span>
 
-                            <div class="container_options_filter" style="position: absolute; top: 0; right:100px;">
+                            <div class="container_options_filter" style="position: absolute; top: 0; left: 14em;">
 
-                                <div class="checkbox-custom fill checkbox-emer">
+                                <div class="checkbox-custom fill filter checkbox-emer" style="float: right;">
                                     <input type="checkbox" class="ids" id="Emergencia" name="ids[]" value="0">
-                                    <label for="Emergencia">Emergencia</label>
+                                    <label class="label-filter" for="Emergencia">Emergencia</label>
                                 </div>
-                                <div class="checkbox-custom fill checkbox-alert">
+                                <div class="checkbox-custom fill filter checkbox-alert" style="float: right;">
                                     <input type="checkbox" class="ids" id="Alerta" name="ids[]" value="1">
-                                    <label for="Alerta">Alerta</label>
+                                    <label class="label-filter" for="Alerta">Alerta</label>
                                 </div>
-                                <div class="checkbox-custom fill checkbox-critical">
+                                <div class="checkbox-custom fill filter checkbox-critical" style="float: right;">
                                     <input type="checkbox" class="ids" id="Critico" name="ids[]" value="2">
-                                    <label for="Critico">Crítico</label>
+                                    <label class="label-filter" for="Critico">Crítico</label>
                                 </div>
-                                <div class="checkbox-custom fill checkbox-error">
+                                <div class="checkbox-custom fill filter checkbox-error" style="float: right;">
                                     <input type="checkbox" class="ids" id="Error" name="ids[]" value="3">
-                                    <label for="Error">Error</label>
+                                    <label class="label-filter" for="Error">Error</label>
                                 </div>
-                                <div class="checkbox-custom fill checkbox-warning">
+                                <div class="checkbox-custom fill filter checkbox-warning" style="float: right;">
                                     <input type="checkbox" class="ids" id="Advertencia" name="ids[]" value="4">
-                                    <label for="Advertencia">Advertencia</label>
+                                    <label class="label-filter" for="Advertencia">Advertencia</label>
                                 </div>
-                                <div class="checkbox-custom fill checkbox-notice">
+                                <div class="checkbox-custom fill filter checkbox-notice" style="float: right;">
                                     <input type="checkbox" class="ids" id="Notificacion" name="ids[]" value="5">
-                                    <label for="Notificacion">Aviso</label>
+                                    <label class="label-filter" for="Notificacion">Aviso</label>
                                 </div>
-                                <div class="checkbox-custom fill checkbox-info">
+                                <div class="checkbox-custom fill filter checkbox-info" style="float: right;">
                                     <input type="checkbox" class="ids" id="Informacion" name="ids[]" value="6">
-                                    <label for="Informacion">Información</label>
+                                    <label class="label-filter" for="Informacion">Información</label>
                                 </div>
-                                <div class="checkbox-custom fill checkbox-debug">
+                                <div class="checkbox-custom fill filter checkbox-debug" style="float: right;">
                                     <input type="checkbox" class="ids" id="Depuracion" name="ids[]" value="7">
-                                    <label for="Depuracion">Depuración</label>
+                                    <label class="label-filter" for="Depuracion">Depuración</label>
                                 </div>
                             </div>   
                         </div>

@@ -18,6 +18,8 @@
     $Crit   = $CN->getTotalCritical();
     $Alert  = $CN->getTotalAlert();
     $Emer   = $CN->getTotalEmer();
+
+    $Hosts  = $CN->getTotalHosts();
 ?>
 
 <div class="panel" id="spy3">
@@ -49,7 +51,7 @@
                             } elseif ($A['Priority'] == 4) {
                                 $Priority = "Advertencia";
                             } elseif ($A['Priority'] == 5) {
-                                $Priority = "Notificacion";
+                                $Priority = "Aviso";
                             } elseif ($A['Priority'] == 6) {
                                 $Priority = "Informacion";
                             } elseif ($A['Priority'] == 7) {
@@ -110,7 +112,17 @@
                         <th><?php echo $A['FromHost'] ;?></th>
                         <th><span class="tdMessage" title="<?php echo $A['Message'] ;?>"><?php echo substr($A['Message'], 0, 60) ;?></span></th>
                         <th><?php echo $Facility ;?></th>
-                        <th><?php echo $Priority ;?></th>
+                        <th>
+                            <?php 
+                                if ($Priority == "Informacion") {
+                                    echo "Información";
+                                } elseif ($Priority == "Depuracion") {
+                                    echo "Depuración";
+                                } elseif ($Priority == "Critico") {
+                                    echo "Crítico";
+                                }                             
+                            ?>     
+                        </th>
                         <th><?php echo $A['ReceivedAt'] ;?></th>
                         <th><?php echo $A['SysLogTag'] ;?></th>
                     </tr>
@@ -141,7 +153,28 @@
             <div id="container_char_logs" style="height: 400px"></div>
         </div>
         <div class="col-xs-6">
-            
+            <?php 
+                while ($H = $Hosts->fetch_array(MYSQLI_ASSOC)) {
+                    $nhost = $H['Hosts'];                    
+            ?>
+                <div class="col-sm-6 col-xl-3">
+                    <div class="panel panel-tile text-center br-a br-grey">
+                        <div class="panel-body">
+                            <h1 class="fs30 mt5 mbn"><?php echo $CN->LogsByHost($nhost); ?></h1>
+                            <h4 class="text-system">EVENTOS</h4>
+                        </div>
+                        <div class="panel-footer br-t p12">
+                            <span class="fs11">
+                                <i class="fa fa-desktop pr5"></i> 
+                                <b style="font-size: 2em;"><?php echo $nhost; ?></b>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div></div>
+            <?php
+                }
+            ?>
         </div>
     </div>
 </div>
@@ -174,23 +207,32 @@
         },
         plotOptions: {
             pie: {
+                depth: 35,
+                center: ['30%', '50%'],
                 allowPointSelect: true,
                 cursor: 'pointer',
-                depth: 35,
                 dataLabels: {
-                    enabled: true,
+                    enabled: false,
                     format: '{point.name}'
-                }
+                },
+                showInLegend: true
             }
         },
+        /*legend: {
+            x: 90,
+            floating: true,
+            verticalAlign: "middle",
+            layout: "horizontal",
+            itemMarginTop: 10
+        },*/
         series: [{
             type: 'pie',
-            name: 'Browser share',
+            name: 'Logs',
             data: [
                 ['Debug', <?php echo $Debug ;?>],
                 ['Info', <?php echo $Info ;?>],
                 {
-                    name: 'Notice',
+                    name: 'Aviso',
                     y: <?php echo $Notice ;?>,
                     sliced: true,
                     selected: true

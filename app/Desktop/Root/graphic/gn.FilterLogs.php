@@ -30,7 +30,7 @@
         } elseif ($Priority == 4) {
             $Priority = "Advertencia";
         } elseif ($Priority == 5) {
-            $Priority = "Notificacion";
+            $Priority = "Aviso";
         } elseif ($Priority == 6) {
             $Priority = "Informacion";
         } elseif ($Priority == 7) {

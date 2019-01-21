@@ -1299,11 +1299,22 @@ $(".ids").click(function() {
 	    	for (var i = 0; i < obj.length; i++) {
 	    		// console.log(obj[i].FromHost);
 	    		var subMessage = obj[i].Message.substring(0, 61);
+	    		let strp = "";
+	    		if (obj[i].Priority == "Informacion") {
+	    			strp = "Información";
+	    		} else if (obj[i].Priority == "Depuracion") {
+	    			strp = "Depuración";
+	    		} else if (obj[i].Priority == "Critico") {
+	    			strp = "Crítico";
+	    		} else {
+	    			strp = obj[i].Priority;
+	    		}
+
                 var tbody = '<tr id="' + obj[i].Priority + '">'
                 + '<th>' + obj[i].FromHost + '</th>'
                 + '<th>' + '<span class="tdMessage" title="' + obj[i].Message + '">' + subMessage + '</span>' + '</th>'
                 + '<th>' + obj[i].Facility + '</th>'
-                + '<th>' + obj[i].Priority + '</th>'
+                + '<th>' + strp + '</th>'
                 + '<th>' + obj[i].ReceivedAt + '</th>'
                 + '<th>' + obj[i].SysLogTag + '</th>'
                 + '</tr>';
