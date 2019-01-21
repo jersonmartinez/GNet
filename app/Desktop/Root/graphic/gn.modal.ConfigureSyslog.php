@@ -21,7 +21,7 @@
                             <!-- <input class="form-control" id="inputIPClientSyslog" type="text" placeholder="* Dirección IP del host" style="height: auto; width: 50%;">
                             <input class="form-control" id="inputIPServerSyslog" type="text" placeholder="* Dirección IP del servidor" style="height: auto; width: 50%;"> -->
                             <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="fa fa-user"></i></button>
+                                <button class="btn btn-default" type="button"><i class="fa fa-desktop"></i></button>
                             </span>
                             <input type="text" id="inputIPClientSyslog" name="inputIPClientSyslog" class="form-control" title="IP: Cliente Syslog" placeholder="* Dirección IP del host"/>
                         </div>

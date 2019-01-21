@@ -69,18 +69,18 @@
     
         <ul class="nav sub-nav">
             <li>
-                <a href="#" id="sb_item_LogManagement">
-                    <span class="fa fa-dashboard"></span>
-                    Monitorizar Logs
-                </a>
+              <a href="#" id="sb_item_MonitorLogs">
+                  <span class="fa fa-dashboard"></span>
+                  Monitorizar Logs
+              </a>
             </li>
 
-            <li>
+            <!-- <li>
                 <a href="#" id="sb_item_ConfigureSyslogServer">
                     <span class="fa fa-cogs"></span>
                     Configurar Servidor
                 </a>
-            </li>
+            </li> -->
 
             <li>
                 <a href="#" id="sb_item_ConfigureSyslog">

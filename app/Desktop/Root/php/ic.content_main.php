@@ -28,29 +28,6 @@
 
 <div class="container_platform">
 
-    <style>
-        div.ejecutando_pruebas_syslog {
-            background-color: #2d2a22;
-            color: #fff;
-            padding: 30px;
-        }
-
-        div.ejecutando_pruebas_syslog input[type="button"] {
-            background-color: black;
-            padding: 8px 15px;
-            border: 0px;
-            margin-left: 50px;
-        }
-    </style>
-
-    <div class="ejecutando_pruebas_syslog">
-        <label for="datos">Datos: {IP_GNet: "192.168.0.20", Severidad: "error"}</label>
-        <input type="button" id="btn_syslog_test" value="Enviar datos" />
-        
-        <div class="retorno_de_datos">
-        </div>
-    </div>
-
     <style type="text/css">
             
         .box-wrap::after {
@@ -203,7 +180,65 @@
             </div>
             <!-- End Column -->
         </div>
-    </div>
+
+         <!-- Wrap content in admin-panel class -->
+        <div>
+            <div class="row AdminPanel_MonitorLogs">
+
+                <!-- Create Column with required .admin-grid class -->
+                <div class="col-md-12">
+
+                    <!-- Create Panel with required unique ID -->
+                    <div class="panel" id="pUnique_MonitorLogs">
+                        <div class="panel-heading">
+                            <span class="panel-icon"><i class="fa fa-bell"></i></span>
+                            <span class="panel-title title-logs">Monitorización de Logs</span>
+
+                            <div class="container_options_filter" style="position: absolute; top: 0; left: 14em;">
+
+                                <div class="checkbox-custom fill filter checkbox-emer" style="float: right;">
+                                    <input type="checkbox" class="ids" id="Emergencia" name="ids[]" value="0">
+                                    <label class="label-filter" for="Emergencia">Emergencia</label>
+                                </div>
+                                <div class="checkbox-custom fill filter checkbox-alert" style="float: right;">
+                                    <input type="checkbox" class="ids" id="Alerta" name="ids[]" value="1">
+                                    <label class="label-filter" for="Alerta">Alerta</label>
+                                </div>
+                                <div class="checkbox-custom fill filter checkbox-critical" style="float: right;">
+                                    <input type="checkbox" class="ids" id="Critico" name="ids[]" value="2">
+                                    <label class="label-filter" for="Critico">Crítico</label>
+                                </div>
+                                <div class="checkbox-custom fill filter checkbox-error" style="float: right;">
+                                    <input type="checkbox" class="ids" id="Error" name="ids[]" value="3">
+                                    <label class="label-filter" for="Error">Error</label>
+                                </div>
+                                <div class="checkbox-custom fill filter checkbox-warning" style="float: right;">
+                                    <input type="checkbox" class="ids" id="Advertencia" name="ids[]" value="4">
+                                    <label class="label-filter" for="Advertencia">Advertencia</label>
+                                </div>
+                                <div class="checkbox-custom fill filter checkbox-notice" style="float: right;">
+                                    <input type="checkbox" class="ids" id="Notificacion" name="ids[]" value="5">
+                                    <label class="label-filter" for="Notificacion">Aviso</label>
+                                </div>
+                                <div class="checkbox-custom fill filter checkbox-info" style="float: right;">
+                                    <input type="checkbox" class="ids" id="Informacion" name="ids[]" value="6">
+                                    <label class="label-filter" for="Informacion">Información</label>
+                                </div>
+                                <div class="checkbox-custom fill filter checkbox-debug" style="float: right;">
+                                    <input type="checkbox" class="ids" id="Depuracion" name="ids[]" value="7">
+                                    <label class="label-filter" for="Depuracion">Depuración</label>
+                                </div>
+                            </div>   
+                        </div>
+                        <div class="panel-body AdminPanel_MonitorLogs_PanelBody">
+                            <!-- El contenido -->
+                            
+                        </div>
+                    </div>
+                </div>
+                <!-- End Column -->
+            </div>
+        </div>
 </div>
 
 <?php

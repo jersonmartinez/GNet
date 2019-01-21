@@ -36,5 +36,9 @@
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery_ui/jquery-ui.min.js"></script>
 
 <link href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datatables/media/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+<!-- FooTable Plugin CSS -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/css/footable.core.min.css"> -->
+<link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/css/footable.bootstrap.css">
+<link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/css/footable.core.min.css">
 
 <link href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/vis.css" rel="stylesheet" type="text/css" />

@@ -8,11 +8,12 @@
     include (PF_CONNECT_SERVER);
     include (PF_SSH);
 
-    $CN = new ConnectSSH("127.0.0.1", "root", "123");
+    $ServerSyslog = $_POST['ServerSyslog'];
+    $ClientSyslog = $_POST['ClientSyslog'];
+
+    $CN = new ConnectSSH($ClientSyslog, "root", "123");
     $CN->ConnectDB($H, $U, $P, $D, $X);
     ##########################################
-
-    $ServerSyslog = $_POST['ServerSyslog'];
 
     echo $CN->ConfigSyslogClient($ServerSyslog);
     echo "configuracion realizada";
