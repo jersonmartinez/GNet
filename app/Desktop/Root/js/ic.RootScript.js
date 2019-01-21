@@ -973,6 +973,10 @@ $("#sb_item_AddDeviceManagement").click(function(){
 	$("#ADM_InsertAliasHost").focus();
 });
 
+$("#sb_item_ConfigureSyslogServer").click(function(){
+	$(".ConfigureSyslogServer").click();
+});
+
 $("#sb_item_ConfigureSyslog").click(function(){
 	$(".ConfigureSyslog").click();
 });
@@ -990,6 +994,7 @@ $("#ddt_SelectTypeDeviceOptionRouter").click(function(){
 });
 
 $(".AddDeviceManagement").hide();
+$(".ConfigureSyslogServer").hide();
 $(".ConfigureSyslog").hide();
 $(".AddCredentialsLocalMachine").hide();
 $(".ModalMonitor").hide();
@@ -1391,4 +1396,91 @@ $("#DivACLMKeyPress").keypress(function(event){
 		$("#Btn_ACLM_Save").click();
 		event.preventDefault();
 	}
+});
+
+// Configuración de Syslog
+
+$("#ddt_SelectSeverityOptionEmer").click(function(){
+    $(".ddt_SelectLevelSeverity").html("Emergencia <span class='caret'></span>");
+});
+
+$("#ddt_SelectSeverityOptionAlert").click(function(){
+    $(".ddt_SelectLevelSeverity").html("Alerta <span class='caret'></span>");
+});
+
+$("#ddt_SelectSeverityOptionCrit").click(function(){
+    $(".ddt_SelectLevelSeverity").html("Crítico <span class='caret'></span>");
+});
+
+$("#ddt_SelectSeverityOptionErr").click(function(){
+    $(".ddt_SelectLevelSeverity").html("Error <span class='caret'></span>");
+});
+
+$("#ddt_SelectSeverityOptionWarn").click(function(){
+    $(".ddt_SelectLevelSeverity").html("Advertencia <span class='caret'></span>");
+});
+
+$("#ddt_SelectSeverityOptionNotice").click(function(){
+    $(".ddt_SelectLevelSeverity").html("Aviso <span class='caret'></span>");
+});
+
+$("#ddt_SelectSeverityOptionInfo").click(function(){
+    $(".ddt_SelectLevelSeverity").html("Información <span class='caret'></span>");
+});
+
+$("#ddt_SelectSeverityOptionDebug").click(function(){
+    $(".ddt_SelectLevelSeverity").html("Depuración <span class='caret'></span>");
+});
+
+$("#ddt_SelectSeverityOptionTodos").click(function(){
+    $(".ddt_SelectLevelSeverity").html("Todos <span class='caret'></span>");
+});
+
+$("#btnSaveSettings").click(function(){
+	var ClientSyslog = $("#inputIPClientSyslog").val(),
+		ServerSyslog = $("#inputIPServerSyslog").val();
+
+	xhr = $.ajax({
+		url: "app/Desktop/Root/php/gn.ConfigSyslogClient.php",
+		type: "post",
+		data: ('ServerSyslog='+ServerSyslog),
+		success: function(data){
+			alert("datos devueltos "+data);
+		}
+	});
+});
+
+$("#btnSaveSettingsServer").click(function(){
+	var IP = "192.168.0.10";
+	var DB = "gnet";
+	var User = "root";
+	var Pass = "root";
+	var Level = "todo";
+		alert("CONFIGURANDO...");
+	xhr = $.ajax({
+		url: "app/Desktop/Root/php/gn.ConfigSyslogServer.php",
+		type: "post",
+		data: ('IP='+IP+'&DB='+DB+'&User='+User+'&Pass='+Pass+'&Level='+Level),
+		success: function(data){
+			alert("datos devueltos "+data);
+		}
+	});
+});
+
+$("#btn_syslog_test").click(function(){
+	
+	var Paquete_de_datos = {
+		IP_GNet: "192.168.0.20", 
+		Severidad: "error"	
+	}
+
+	xhr = $.ajax({
+		url: "app/Desktop/Root/php/gn.SyslogConfig.php",
+		type: "post",
+		data: Paquete_de_datos,
+		success: function(data){
+			$(".retorno_de_datos").html(data);
+		}
+	});
+
 });

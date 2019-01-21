@@ -17,6 +17,7 @@
   include (PD_DESKTOP_ROOT."/graphic/ic.modal.config_network.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddDevicesManagement.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.ConfigureSyslog.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.ConfigureSyslogServer.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddCredentialsLocalMachine.php");
 
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.Monitor.php");
@@ -29,6 +30,55 @@
 ?>
 
 <div class="container_platform">
+
+    <style>
+        div.ejecutando_pruebas_syslog {
+            background-color: #2d2a22;
+            color: #fff;
+            padding: 30px;
+        }
+
+        div.ejecutando_pruebas_syslog input[type="button"] {
+            background-color: black;
+            padding: 8px 15px;
+            border: 0px;
+            margin-left: 50px;
+        }
+    </style>
+
+    <div class="ejecutando_pruebas_syslog">
+        <label for="datos">Datos: {IP_GNet: "192.168.0.20", Severidad: "error"}</label>
+        <input type="button" id="btn_syslog_test" value="Enviar datos" />
+        
+        <div class="retorno_de_datos">
+        </div>
+    </div>
+
+    <style type="text/css">
+            
+        .box-wrap::after {
+          display: block;
+          content: '';
+          clear: both;
+        }
+
+        .boxes div.selected {
+          -webkit-box-shadow: 0 0.45em 0.6em 0 rgba(0, 0, 0, 0.2);
+                  box-shadow: 0 0.45em 0.6em 0 rgba(0, 0, 0, 0.2);
+
+            border-radius: 4px;
+                  /*background-color: red;*/
+        }
+        .selection {
+          /*background: rgba(0, 0, 255, 0.1);*/
+          background: rgba(0, 0, 0,.2);
+          border-radius: 0.1em;
+          /*border: 0.05em solid rgba(0, 0, 255, 0.2);*/
+          border: 0.05em solid rgba(0, 0, 0, 0.4);
+        }
+
+    </style>
+
     <!-- Wrap content in admin-panel class -->
     <div>
         <div class="row AdminPanel_ProffileSettings">
