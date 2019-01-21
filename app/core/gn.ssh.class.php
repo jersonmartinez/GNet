@@ -117,7 +117,7 @@
 			return false;
 		}
 
-		public function ConfigSyslogServer($IP, $DB, $User, $Pass, $Level){
+		public function ConfigSyslogServer($H, $D, $U, $P, $Level){
 			$filename = "ConfigSyslogServer.sh";
 
 			$ActionArray[] = 'Servidor=$1 DB=$2 User=$3 Pass=$4 Severity=$5 FileConf="/etc/rsyslog.d/mysql.conf"';
@@ -155,10 +155,12 @@
 			array_push($ActionArray, 'esac');
 			array_push($ActionArray, 'service rsyslog restart');
 
-			$RL[] = $this->remote_path.$filename." ".$IP." ".$DB." ".$User." ".$Pass." ".$Level;
+			$RL[] = $this->remote_path.$filename." ".$H." ".$D." ".$U." ".$P." ".$Level;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
-			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename))
-				return $this->RunLines(implode("\n", $RL));
+			if ($this->writeFile($ActionArray, $filename) && $this->sendFile($filename)){
+				$this->RunLines(implode("\n", $RL));
+				return true;
+			}
 			
 			return false;
 		}
@@ -1109,7 +1111,80 @@
 	    		return $Lastname->fetch_array(MYSQLI_ASSOC)['lastname'];
 
 	    	return false;
-	    }
+		}
+
+		// Obtener datos de la tablas SystemEvents 
+
+		public function getLogs(){
+			return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents ORDER BY ReceivedAt DESC LIMIT 155;");
+		}
+
+		public function FilterLogs($arrays){
+			$consulta = "SELECT FromHost, Message, Facility, Priority, ReceivedAt, SysLogTag FROM SystemEvents WHERE ";
+
+			if (empty($arrays)) {
+				return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents ORDER BY ReceivedAt DESC LIMIT 155;");
+			} elseif (is_array($arrays)) {
+		        for ($i = 0; $i < count($arrays); $i++){
+		            if ($i == 0){
+		                $consulta .= " Priority=".$arrays[$i];
+		            } else {
+		                $consulta .= " OR Priority=".$arrays[$i];
+		            }
+		        }
+		    }   
+		    $consulta .= " limit 55;";
+		    return $this->db_connect->query($consulta);
+		}
+
+		public function getTotalHosts(){
+			return $this->db_connect->query("SELECT DISTINCT FromHost AS 'Hosts' FROM SystemEvents;");
+		}
+
+		public function LogsByHost($nhost){
+			$consult = "SELECT COUNT(*) AS 'Total' FROM SystemEvents WHERE FromHost='".$nhost."';";
+		    return $this->db_connect->query($consult)->fetch_array(MYSQLI_ASSOC)['Total'];
+		}
+
+		/*public function getLogsOrderAsc(){
+			return $this->db_connect->query("SELECT FromHost,Message,Facility,Priority,ReceivedAt,SysLogTag FROM SystemEvents ORDER BY ReceivedAt ASC LIMIT 155;");
+		}*/
+
+		public function getNumLogs(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'All' FROM SystemEvents;")->fetch_array()['All'];
+		}
+
+		public function getTotalDebug(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Debug' FROM SystemEvents WHERE Priority=7;")->fetch_array()['Debug'];
+		}
+
+		public function getTotalInfo(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Info' FROM SystemEvents WHERE Priority=6;")->fetch_array()['Info'];
+		}
+
+		public function getTotalNotice(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Notice' FROM SystemEvents WHERE Priority=5;")->fetch_array()['Notice'];
+		}
+
+		public function getTotalWarning(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Warning' FROM SystemEvents WHERE Priority=4;")->fetch_array()['Warning'];
+		}
+
+		public function getTotalError(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Error' FROM SystemEvents WHERE Priority=3;")->fetch_array()['Error'];
+		}
+
+		public function getTotalCritical(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Critical' FROM SystemEvents WHERE Priority=2;")->fetch_array()['Critical'];
+		}
+
+		public function getTotalAlert(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Alert' FROM SystemEvents WHERE Priority=1;")->fetch_array()['Alert'];
+		}
+
+		public function getTotalEmer(){
+			return $this->db_connect->query("SELECT COUNT(*) AS 'Emer' FROM SystemEvents WHERE Priority=1;")->fetch_array()['Emer'];
+		}
 
 		public function ConnectDB($H = null, $U = null, $P = null, $D = null, $X = null){
 			@$FirstConnect = new mysqli($H, $U, $P);
