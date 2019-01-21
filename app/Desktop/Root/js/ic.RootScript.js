@@ -1449,7 +1449,7 @@ $("#btnSaveSettings").click(function(){
 		type: "post",
 		data: ('ServerSyslog='+ServerSyslog+'&ClientSyslog='+ClientSyslog),
 		success: function(data){
-			alert("Respuesta: "+data);
+			console.log("Respuesta: "+data);
 		}
 	});
 });
@@ -1465,7 +1465,7 @@ $("#btnSaveSettingsServer").click(function(){
 		type: "post",
 		data: ('IP='+IP+'&Level='+Level),
 		success: function(data){
-			alert("Respuesta: "+data);
+			console.log("Respuesta: "+data);
 		}
 	});
 });
