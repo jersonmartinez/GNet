@@ -1,5 +1,10 @@
+<?php
+    $CN = new ConnectSSH();
+    $CN->ConnectDB($H, $U, $P, $D, $X);
+?>
+
 <!-- Start: Sidebar Menu -->
-<ul class="nav sidebar-menu NAC_SB_ID">
+<ul class="nav sidebar-menu NAC_SB_ID NAC_SB_First">
     <li class="sidebar-label pt20">GESTIÓN DE RED</li>
 
     <li>
@@ -91,7 +96,38 @@
         </ul>
     </li>
 
+    <li>
+        <a href="#" id="sb_item_VPS" title="Servidor Virtual Privado">
+            <span class="fa fa-stack-exchange"></span>
+            <span class="sidebar-title">VPS</span>
+        </a>
+    </li>
 
+    <?php
+        if ($CN->db_connect){
+            $gCVPS = $CN->getCredentialsVPS();
+            if ($gCVPS->num_rows > 0){
+                ?>
+                    <li class="sidebar-label pt20 SB_devicesVPS">DISPOSITIVOS VPS</li>
+                <?php
+                while ($row_gCVPS = $gCVPS->fetch_array(MYSQLI_ASSOC)){
+                    ?>
+                        <li class="sidebar-proj del_<?php echo str_replace(".","",$row_gCVPS['ip_host']); ?>" ip_host="<?php echo $row_gCVPS['ip_host']; ?>" onclick="javascript: getDataMyVPS(this);" >
+                            <a href="#">
+                                <span class="fa fa-dot-circle-o text-success"></span>
+                                <span class="sidebar-title"><?php echo $row_gCVPS['alias']; ?></span>
+                            </a>
+                        </li>
+                    <?php
+                }
+            }
+        }
+    ?>
+
+</ul>
+<!-- End: Sidebar Menu -->
+
+<ul class="nav sidebar-menu NAC_SB_ID"> 
   <?php
     if (REM_NOTIFY_NECESSARY){
       ?>
@@ -124,8 +160,6 @@
 
   <?php 
     $StyleHidden = "visibility: hidden;";
-    $CN = new ConnectSSH();
-    $CN->ConnectDB($H, $U, $P, $D, $X);
     
     if ($CN->db_connect){
         // Credentials Local Machine
@@ -175,10 +209,7 @@
             </div>
         </a>
     </li>
-
 </ul>
-<!-- End: Sidebar Menu -->
-
 
 <!-- Start: Sidebar Collapse Button -->
 <div class="sidebar-toggle-mini">
@@ -187,159 +218,3 @@
   </a>
 </div>
 <!-- End: Sidebar Collapse Button -->
-
-  <!-- Gestionar servicios de red -->
-    <!-- <li>
-        <a class="accordion-toggle" href="#">
-            <span class="glyphicon glyphicon-book"></span>
-            <span class="sidebar-title">Servicios de red</span>
-          
-            <span class="caret"></span>
-        </a>
-    
-        <ul class="nav sub-nav">
-            <li>
-                <a href="#" id="sb_item_ServicesManagement">
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                    Gestionar servicios
-                </a>
-            </li>
-
-            <li>
-                <a href="#" id="sb_item_AddServicesManagement">
-                    <span class="glyphicon glyphicon-text-height"></span>
-                    Agregar servicios
-                </a>
-            </li>      
-        </ul>
-    </li> -->
-
-    <!-- <li>
-        <a class="accordion-toggle" href="#">
-            <span class="glyphicon glyphicon-book"></span>
-            <span class="sidebar-title">Documentación</span>
-          
-            <span class="caret"></span>
-        </a>
-    
-        <ul class="nav sub-nav">
-            <li>
-                <a href="#" id="sidebar_show_documentation">
-                    <span class="glyphicon glyphicon-eye-open"></span>
-                    Mostrar
-                </a>
-            </li>
-            
-            <li>
-                <a href="#" id="sidebar_redactDocumentation">
-                    <span class="glyphicon glyphicon-text-height"></span>
-                    Redactar
-                </a>
-            </li>
-          
-        </ul>
-    </li> -->
-
-  <!-- <li>
-    <a class="accordion-toggle" href="#">
-      <span class="glyphicon glyphicon-duplicate"></span>
-      <span class="sidebar-title">...</span>
-      <span class="caret"></span>
-    </a>
-    <ul class="nav sub-nav">
-      <li>
-        <a class="accordion-toggle" href="#">
-          <span class="fa fa-gears"></span> ...
-          <span class="caret"></span>
-        </a>
-        <ul class="nav sub-nav">
-          <li>
-            <a href="pages_login.html" target="_blank"> ... </a>
-          </li>
-          <li>
-            <a href="pages_login(alt).html" target="_blank"> ... </a>
-          </li>
-          <li>
-            <a href="pages_register.html" target="_blank"> ... </a>
-          </li>
-          <li>
-            <a href="pages_register(alt).html" target="_blank"> ... </a>
-          </li>
-          <li>
-            <a href="pages_screenlock.html" target="_blank"> ... </a>
-          </li>
-          <li>
-            <a href="pages_screenlock(alt).html" target="_blank"> ... </a>
-          </li>
-          <li>
-            <a href="pages_forgotpw.html" target="_blank"> ... </a>
-          </li>
-          <li>
-            <a href="pages_forgotpw(alt).html" target="_blank"> ... </a>
-          </li>
-          <li>
-            <a href="pages_confirmation.html" target="_blank"> ... </a>
-          </li>
-          <li>
-            <a href="landing-page/landing1/index.html" target="_blank">...</a>
-          </li>
-          <li>
-            <a href="pages_404.html">...</a>
-          </li>
-          <li>
-            <a href="pages_404(alt).html">...</a>
-          </li>
-          <li>
-            <a href="pages_500.html"> ... </a>
-          </li>
-          <li>
-            <a href="pages_500(alt).html"> ... </a>
-          </li>
-        </ul>
-      </li>
-      <li>
-        <a class="accordion-toggle" href="#">
-          <span class="fa fa-desktop"></span> ...
-          <span class="caret"></span>
-        </a>
-        <ul class="nav sub-nav">
-          <li>
-            <a href="pages_search-results.html">...</a>
-          </li>
-          <li>
-            <a href="pages_profile.html">...</a>
-          </li>
-          <li>
-            <a href="pages_timeline.html"> ... </a>
-          </li>
-          <li>
-            <a href="pages_timeline-single.html"> ... </a>
-          </li>
-          <li>
-            <a href="pages_faq.html">...</a>
-          </li>
-          <li>
-            <a href="pages_calendar.html">...</a>
-          </li>
-          <li>
-            <a href="pages_messages.html">...</a>
-          </li>
-          <li>
-            <a href="pages_messages(alt).html">...</a>
-          </li>
-          <li>
-            <a href="pages_gallery.html">...</a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li> -->
-
-  <!-- sidebar bullets -->
-  <!-- <li class="sidebar-label pt20">Proyectos</li>
-  <li class="sidebar-proj">
-    <a href="#projectOne">
-      <span class="fa fa-dot-circle-o text-warning"></span>
-      <span class="sidebar-title">Una opción más.</span>
-    </a>
-  </li> -->

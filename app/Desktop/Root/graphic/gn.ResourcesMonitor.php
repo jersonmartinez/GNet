@@ -8,12 +8,17 @@
 
     $CN = new ConnectSSH();
     $Otro = $CN->ConnectDB($H, $U, $P, $D, $X);
-
-    // Credentials Local Machine
-    $CLMUser = $CN->getCredentialsLocalMachine()['username'];
-    $CLMPass = $CN->getCredentialsLocalMachine()['password'];
-
+    
     $host = isset($_POST['host']) ? $_POST['host'] : "127.0.0.1";
+    
+    if ($_POST['type'] == "VPS"){
+        $CLMUser = $CN->getOnlyCredentialsVPS($host)['username'];
+        $CLMPass = $CN->getOnlyCredentialsVPS($host)['password'];
+    } else {
+        // Credentials Local Machine
+        $CLMUser = $CN->getCredentialsLocalMachine()['username'];
+        $CLMPass = $CN->getCredentialsLocalMachine()['password'];
+    }
 
     $ConnectSSH = new ConnectSSH($host, $CLMUser, $CLMPass);
 
@@ -849,8 +854,8 @@
             name: 'Tamaño en GB',
             type: 'pie',
             data: [
-                ['En uso: <?php echo "$DiskUsage[1] GB"; ?>', <?php echo $DiskUsage[1]; ?>],
-                ['Disponible: <?php echo "$DiskUsage[2] GB"; ?>', <?php echo $DiskUsage[2]; ?>]
+                ['En uso: <?php echo "$DiskUsage[1] GB"; ?>', <?php echo @$DiskUsage[1]; ?>],
+                ['Disponible: <?php echo "$DiskUsage[2] GB"; ?>', <?php echo @$DiskUsage[2]; ?>]
             ]
         }]
     });
@@ -899,10 +904,10 @@
             type: 'pie',
             name: 'Porcentaje de CPU',
             data: [
-                ['En uso: <?php echo $ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?> %', <?php echo $ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?>],
+                ['En uso: <?php echo @$ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?> %', <?php echo @$ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "uso"); ?>],
                 {
-                    name: 'Disponible: <?php echo $ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?> %',
-                    y: <?php echo $ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?>,
+                    name: 'Disponible: <?php echo @$ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?> %',
+                    y: <?php echo @$ConnectSSH->OperacionCPU($CpuState[1], $CpuState[2], "disponible"); ?>,
                     sliced: true,
                     selected: true
                 }
@@ -929,7 +934,7 @@
             name: 'Accesos',
             type: 'column',
             colorByPoint: true,
-            data: [<?php echo $AccessWebServer[0] ?>, <?php echo $AccessWebServer[1] ?>, <?php echo $AccessWebServer[2] ?>, <?php echo $AccessWebServer[3] ?>, <?php echo $AccessWebServer[4] ?>, <?php echo $AccessWebServer[5] ?>, <?php echo $AccessWebServer[6] ?>, <?php echo $AccessWebServer[7] ?>, <?php echo $AccessWebServer[8] ?>, <?php echo $AccessWebServer[9] ?>, <?php echo $AccessWebServer[10] ?>, <?php echo $AccessWebServer[11] ?>, <?php echo $AccessWebServer[12] ?>, <?php echo $AccessWebServer[13] ?>, <?php echo $AccessWebServer[14] ?>, <?php echo $AccessWebServer[15] ?>, <?php echo $AccessWebServer[16] ?>, <?php echo $AccessWebServer[17] ?>, <?php echo $AccessWebServer[18] ?>, <?php echo $AccessWebServer[19] ?>, <?php echo $AccessWebServer[20] ?>, <?php echo $AccessWebServer[21] ?>, <?php echo $AccessWebServer[22] ?>, <?php echo $AccessWebServer[23] ?>],
+            data: [<?php echo @$AccessWebServer[0] ?>, <?php echo @$AccessWebServer[1] ?>, <?php echo @$AccessWebServer[2] ?>, <?php echo @$AccessWebServer[3] ?>, <?php echo @$AccessWebServer[4] ?>, <?php echo @$AccessWebServer[5] ?>, <?php echo @$AccessWebServer[6] ?>, <?php echo @$AccessWebServer[7] ?>, <?php echo @$AccessWebServer[8] ?>, <?php echo @$AccessWebServer[9] ?>, <?php echo @$AccessWebServer[10] ?>, <?php echo @$AccessWebServer[11] ?>, <?php echo @$AccessWebServer[12] ?>, <?php echo @$AccessWebServer[13] ?>, <?php echo @$AccessWebServer[14] ?>, <?php echo @$AccessWebServer[15] ?>, <?php echo @$AccessWebServer[16] ?>, <?php echo @$AccessWebServer[17] ?>, <?php echo @$AccessWebServer[18] ?>, <?php echo @$AccessWebServer[19] ?>, <?php echo @$AccessWebServer[20] ?>, <?php echo @$AccessWebServer[21] ?>, <?php echo @$AccessWebServer[22] ?>, <?php echo @$AccessWebServer[23] ?>],
             showInLegend: false
         }]
     });

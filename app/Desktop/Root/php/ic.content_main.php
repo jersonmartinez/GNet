@@ -19,6 +19,7 @@
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.ConfigureSyslog.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.ConfigureSyslogServer.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddCredentialsLocalMachine.php");
+  include (PD_DESKTOP_ROOT."/graphic/gn.modal.AddVPS.php");
 
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.Monitor.php");
   include (PD_DESKTOP_ROOT."/graphic/gn.modal.MonitorNetwork.php");
@@ -264,7 +265,7 @@
     </div>
 
     <div class="panel-footer">
-        <button data-dismiss="modal" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales</button>
+        <button data-dismiss="modal" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales globales</button>
         <button class="btn btn-dark" onclick="javascript: getMonitorNMapOnThisHost();" title="Escaneo sin conexion, con NMap">Escanear</button>
     </div>
 </div>
@@ -278,7 +279,22 @@
         Hemos encontrado un problema con las credenciales anteriormente almacenadas, por favor, actualice las credenciales, nombre de usuario y contraseña de este servidor.
     </div>
 
-    <div class="panel-footer"><button type="button" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales</button></div>
+    <div class="panel-footer"><button type="button" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales globales</button></div>
+</div>
+
+<div class="panel" id="MessageFailCheckCredentialsDBIPVPS" style="display: none;">
+    <div class="panel-heading">
+        <span class="panel-title">Dispositivo desconocido</span>
+    </div>
+
+    <div class="panel-body">
+        Agregue las credenciales pertenecientes a este host y hágalo conocido para nuestro sistema.
+    </div>
+
+    <div class="panel-footer">
+        <button type="button" class="btn btn-dark" onclick="javascript: getModalCredentialsLocalMachine();">Actualizar credenciales globales</button>
+        <button type="button" class="btn btn-dark" onclick="javascript: getModalAddVPS();">Agregar VPS</button>
+    </div>
 </div>
 
 <div class="panel" id="MessageFailCheckTrackingNetwork" style="display: none;">

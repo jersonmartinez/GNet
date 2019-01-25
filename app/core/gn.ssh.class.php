@@ -347,6 +347,41 @@
 			return @(int)$this->db_connect->query("SELECT count(*) AS 'count' FROM ".$this->db_prefix."credentials_local_machine;")->fetch_array()['count'];
 		}
 
+		public function addCredentialsVPS($alias = "Invitado", $ip_host, $user, $pass){
+			$query = "INSERT INTO ".$this->db_prefix."credentials_vps (alias, ip_host, username, password) VALUES ('".$alias."','".$ip_host."','".$user."', '".$pass."');";
+			
+			if ($this->db_connect->query($query))
+				return true;
+
+			return false;
+		}
+
+		public function deleteCredentialsVPS($ip_host){
+			$query = "DELETE FROM ".$this->db_prefix."credentials_vps WHERE ip_host='".$ip_host."';";
+
+			if ($this->db_connect->query($query))
+				return true;
+
+			return false;
+		}
+
+		public function getCredentialsVPS(){
+			return $this->db_connect->query("SELECT * FROM ".$this->db_prefix."credentials_vps;");
+		}
+
+		public function getOnlyCredentialsVPS($ip_host){
+			return $this->db_connect->query("SELECT * FROM ".$this->db_prefix."credentials_vps WHERE ip_host='".$ip_host."';")->fetch_array();
+		}
+
+		public function getCountCredentialsVPS(){
+			return @(int)$this->db_connect->query("SELECT count(*) AS 'count' FROM ".$this->db_prefix."credentials_vps;")->fetch_array()['count'];
+		}
+
+		public function getCountCheckDBIP($ip_host){
+			// return @(int)$this->db_connect->query("SELECT count(*) AS 'count' FROM ".$this->db_prefix."credentials_local_machine;")->fetch_array()['count'];
+			return @(int)$this->db_connect->query("SELECT DISTINCT COUNT(*) AS 'count' FROM ".$this->db_prefix."host WHERE ip_host='".$ip_host."';")->fetch_array()['count'];
+		}
+
 		public function getCredentialsLocalMachine(){
 			return $this->db_connect->query("SELECT username, password FROM ".$this->db_prefix."credentials_local_machine;")->fetch_array();
 		}

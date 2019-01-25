@@ -87,6 +87,13 @@
 			username VARCHAR(50) NOT NULL, 
 			password VARCHAR(50) NOT NULL
 		);", 
+		#Tabla de credenciales para VPS
+		$X.'credentials_vps' => "CREATE TABLE ".$X."credentials_vps (
+			alias VARCHAR(50) NOT NULL, 
+			ip_host VARCHAR(20) NOT NULL, 
+			username VARCHAR(50) NOT NULL, 
+			password VARCHAR(50) NOT NULL
+		);", 
 		# Tabla para el almacenamiento de Logs
 		'SystemEvents' => "CREATE TABLE SystemEvents (
 			ID int(10) unsigned NOT NULL AUTO_INCREMENT,

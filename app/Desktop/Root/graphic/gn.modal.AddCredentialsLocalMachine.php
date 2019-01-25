@@ -6,7 +6,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="ModalAddNewCredentialsLocalMachine"><span class="fa fa-keyboard-o"></span> Monitorizar este servidor</h4>
+                <h4 class="modal-title" id="ModalAddNewCredentialsLocalMachine"><span class="fa fa-keyboard-o"></span> Credenciales globales</h4>
             </div>
 
             <div class="modal-body">        
@@ -15,6 +15,10 @@
                 <!-- Form Add Credentials Local Machine -->
                 <form id="Form_ACLM">
                     <div class="row" id="DivACLMKeyPress">
+                        <div class="col-lg-12">
+                            <p>Escriba la credencial maestra. Esta se ocupará para gestionar el entorno controlado, refiriéndose a los dispositivos de la infraestructura local.</p>
+                            <br/>
+                        </div>
                         <div class="col-lg-6">
                             <div class="input-group">
                                 <span class="input-group-btn">

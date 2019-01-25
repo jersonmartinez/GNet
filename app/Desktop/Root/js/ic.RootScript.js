@@ -385,6 +385,7 @@ $("#sb_item_ResourcesMonitor").click(function(){
 
 	var params = {
 		"name" : "GNet",
+		"type" : "normal",
 		"host" : "127.0.0.1",
 		"container_return" :  "AdminPanel_ResourcesMonitor_PanelBody", 
 		"NProgress" : "body"
@@ -400,6 +401,7 @@ $("#MainSearchIPHostFinal").keypress( (event) => {
 
 		var params = {
 			"name" : "GNet",
+			"type" : "normal",
 			"host" : $("#MainSearchIPHostFinal").val(),
 			"container_return" :  "AdminPanel_ResourcesMonitor_PanelBody", 
 			"NProgress" : "body"
@@ -410,8 +412,13 @@ $("#MainSearchIPHostFinal").keypress( (event) => {
 });
 
 function getResourcesMonitor(params){
+	let path = "app/Desktop/Root/php/gn.CheckCredentialsLocalMachine.php";
+	if (params['type'] == "VPS"){
+		path = "app/Desktop/Root/php/gn.CheckCredentialsVPS.php"
+	}
+
 	xhr = $.ajax({
-		url: "app/Desktop/Root/php/gn.CheckCredentialsLocalMachine.php",
+		url: path,
 		type: "post",
 		success: function(data){
 			if (data == "Ok"){
@@ -438,6 +445,18 @@ function getResourcesMonitor(params){
 								if (data == "Fail"){
 									$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachine").html());
 									$("#BtnHiddenNotifyACLMError").click();
+
+									$.ajax({
+										url: "app/Desktop/Root/php/gn.CheckDBIP.php",
+										type: "post",
+										data: "ip_host=" + params['host'],
+										success: function(data){
+											if (data == "Fail"){
+												$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsDBIPVPS").html());
+												// $("#BtnHiddenNotifyACLMError").click();
+											}
+										}
+									});
 								} else {
 									$("." + params['container_return']).addClass('animated fadeIn').html(data);
 									
@@ -491,6 +510,7 @@ function getResourcesMonitor(params){
 				getModalCredentialsLocalMachine();
 				Finish_NProgress();
 			}
+
 		}
 	});
 }
@@ -664,6 +684,7 @@ function getMonitorNMapOnThisHost(){
 
 	var params = {
 		"name" : "Unknown",
+		"type" : "normal",
 		"host" : $("#Topology_host_selected_ip_host").html(),
 		"container_return" : container,
 		"NProgress" : "." + container
@@ -859,6 +880,10 @@ function getModalCredentialsLocalMachine(){
 	$(".AddCredentialsLocalMachine").click();
 }
 
+function getModalAddVPS(){
+	$(".AddVPS").click();
+}
+
 function getModalMonitor(){
 	$(".ModalMonitor").click();
 }
@@ -914,7 +939,6 @@ $("#Btn_ACLM_Save").click(function(){
 		$("#BtnHiddenNotifyACLMEmpty").click();
 	}
 });
-
 
 var myVar = 0;
 
@@ -982,6 +1006,10 @@ $("#sb_item_ConfigureSyslog").click(function(){
 	$(".ConfigureSyslog").click();
 });
 
+$("#sb_item_VPS").click(function(){
+	$(".AddVPS").click();
+});
+
 $("#ddt_SelectTypeDeviceOptionFinalHost").click(function(){
     $(".ddt_SelectTypeDevice").html("Ordenador <span class='caret'></span>");
 });
@@ -998,6 +1026,7 @@ $(".AddDeviceManagement").hide();
 $(".ConfigureSyslogServer").hide();
 $(".ConfigureSyslog").hide();
 $(".AddCredentialsLocalMachine").hide();
+$(".AddVPS").hide();
 $(".ModalMonitor").hide();
 $(".ModalMonitorNetwork").hide();
 $(".ModalMonitorProcess").hide();
@@ -1309,6 +1338,7 @@ function getDataSelection(value){
 
 		var params = {
 			"name" : "Unknown",
+			"type" : "normal",
 			"host" : host_selected,
 			"container_return" : "AdminPanel_ResourcesMonitor_PanelBodyModal", 
 			"NProgress" : ".AdminPanel_ResourcesMonitor_PanelBodyModal"
@@ -1323,6 +1353,7 @@ function getDataSelection(value){
 
 		var params = {
 			"name" : "Unknown",
+			"type" : "normal",
 			"host" : host_selected,
 			"container_return" : "AdminPanel_ResourcesMonitorNetwork_PanelBodyModal", 
 			"NProgress" : ".AdminPanel_ResourcesMonitorNetwork_PanelBodyModal"
@@ -1336,6 +1367,7 @@ function getDataSelection(value){
 
 		var params = {
 			"name" : "Unknown",
+			"type" : "normal",
 			"host" : host_selected,
 			"container_return" : "AdminPanel_ResourcesMonitorProcess_PanelBodyModal", 
 			"NProgress" : ".AdminPanel_ResourcesMonitorProcess_PanelBodyModal"
@@ -1349,6 +1381,7 @@ function getDataSelection(value){
 
 		var params = {
 			"name" : "Unknown",
+			"type" : "normal",
 			"host" : host_selected,
 			"container_return" : "AdminPanel_ResourcesMonitorProperties_PanelBodyModal", 
 			"NProgress" : ".AdminPanel_ResourcesMonitorProperties_PanelBodyModal"
@@ -1362,6 +1395,7 @@ function getDataSelection(value){
 
 		var params = {
 			"name" : "Unknown",
+			"type" : "normal",
 			"host" : host_selected,
 			"container_return" : "AdminPanel_ResourcesMonitorScanning_PanelBodyModal", 
 			"NProgress" : ".AdminPanel_ResourcesMonitorScanning_PanelBodyModal"
@@ -1383,6 +1417,7 @@ function getDataContextMenuTestWhite(value){
 
 		var params = {
 			"name" : "Unknown",
+			"type" : "normal",
 			"host" : "Unknown",
 			"container_return" : "AdminPanel_ResourcesTrackingNetworkInformation_PanelBodyModal", 
 			"NProgress" : ".AdminPanel_ResourcesTrackingNetworkInformation_PanelBodyModal"
@@ -1558,3 +1593,117 @@ $(".ids").click(function() {
 	    }
 	});
 });
+
+/*Registrar las credenciales del host actual que monitoriza*/
+$("#Btn_ACVPS_Save").click(function(){
+	let alias = $("#CredentialAliasVPS").val(), 
+		ip_host = $("#CredentialIPVPS").val(),
+		user = $("#CredentialUsernameVPS").val(),
+		pass = $("#CredentialPasswordVPS").val();
+
+	if (alias == "")
+		alias = "Invitado";
+
+	if (ip_host != "" && user != "" && pass != ""){
+		NProgress.configure({parent: 'body'});
+		NProgress.start();
+
+		xhr = $.ajax({
+			url: "app/Desktop/Root/php/gn.AddCredentialsVPS.php",
+			type: "post",
+			data: $("#Form_ACVPS").serialize(),
+			success: function(data){
+				if (data == "Ok"){
+					$("#BtnHiddenNotifyACLMOk").click();
+
+					setTimeout(function(){
+						Finish_NProgress();
+						// $("#ModalCloseACVPS").click();
+						// $("#sb_item_ResourcesMonitor").dblclick();
+	
+						let addListVPS = '<tr><td>' 
+							+ alias 
+							+ '</td><td>' 
+							+ ip_host 
+							+ '</td><td>' 
+							+ user
+							+ '</td><td>'
+							+ '<button type="button" ip_host="'+ ip_host +'" onclick="javascript: delete_listVPS(this);" class="btn btn-default btn-danger">Eliminar</button>'
+							+ '</td></tr>';
+							
+						$("#tb_listVPS").addClass('animated fadeIn').append(addListVPS);
+						
+						let showListVPS = '<li class="sidebar-proj del_' + ip_host.split(".").join("") + '" ip_host="'
+							+ ip_host
+							+ '" onclick="javascript: getDataMyVPS(this);">'
+							+ '<a href="#">' 
+							+ '<span class="fa fa-dot-circle-o text-success"></span>'
+							+ '<span class="sidebar-title">' 
+							+ alias
+							+ '</span>';
+							+ '</a>';
+							+ '</li>';
+
+						let CountClassListVPS = $(".sidebar-proj").toArray().length;
+						
+						if (CountClassListVPS == 0){
+							showListVPS = '<li class="sidebar-label pt20 SB_devicesVPS">DISPOSITIVOS VPS</li>' 
+								+ showListVPS;
+						}
+					
+						$(".NAC_SB_First").addClass('animated fadeIn').append(showListVPS);
+						
+						$("#CredentialAliasVPS").val("");
+						$("#CredentialIPVPS").val("");
+						$("#CredentialUsernameVPS").val("");
+						$("#CredentialPasswordVPS").val("");
+
+					}, 200);
+					
+				} else if (data == "Fail"){
+					$("#BtnHiddenNotifyACLMFail").click();
+				}
+			}
+		});
+	} else {
+		$("#BtnHiddenNotifyACLMEmpty").click();
+	}
+});
+
+function delete_listVPS(value){
+	let ip_host = $(value).attr("ip_host");
+
+	xhr = $.ajax({
+		url: "app/Desktop/Root/php/gn.DelCredentialsVPS.php",
+		type: "post",
+		data: "ip_host="+ip_host,
+		success: function(data){
+			if (data != "Fail"){
+				$("#container_ListVPS").addClass('animated fadeIn').html(data);
+
+				let CountClassListVPS = $(".sidebar-proj").toArray().length;
+						
+				if (CountClassListVPS == 1)
+					$(".SB_devicesVPS").remove();
+
+				$(".del_"+ip_host.split(".").join("")).addClass('animated fadeIn').remove();
+			}
+		}
+	});
+}
+
+function getDataMyVPS(value){
+	let ip_host = $(value).attr("ip_host");
+
+	var_item_ResourcesMonitor = false;
+
+		var params = {
+			"name" : "GNet",
+			"type" : "VPS",
+			"host" : ip_host,
+			"container_return" : "AdminPanel_ResourcesMonitor_PanelBody", 
+			"NProgress" : "body"
+		};
+
+		getResourcesMonitor(params);
+}
