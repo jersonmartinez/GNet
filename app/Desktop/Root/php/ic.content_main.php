@@ -65,7 +65,7 @@
             <div class="col-md-12">
 
                 <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUnique_ProfileSetting">
+                <div class="panel" id="pUniquea_ProfileSetting">
                     <div class="panel-heading">
                         <span class="panel-icon"><i class="fa fa-user"></i></span>
                         <span class="panel-title">Configuración de la cuenta del usuario</span>   
@@ -82,7 +82,7 @@
         <div class="row AdminPanel_DevicesManagement">
             <div class="col-md-12">
                  <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUnique_DevicesManagement">
+                <div class="panel" id="pUniquee_DevicesManagement">
                     <div class="panel-heading">
                         <span class="panel-icon"><i class="fa fa-th"></i></span>
                         <span class="panel-title">Gestión de dispositivos</span>
@@ -130,7 +130,7 @@
             <div class="col-md-12">
 
                 <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUniquesd_TrackingNetwork">
+                <div class="panel" id="pUniquew_TrackingNetwork">
                     <div class="panel-heading">
 
                         <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
@@ -169,7 +169,7 @@
             <div class="col-md-12">
 
                 <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUnique_ResourcesMonitor">
+                <div class="panel" id="pUniquer_ResourcesMonitor">
                     <div class="panel-heading">
                         <span class="panel-icon"><i class="fa fa-tachometer"></i></span>
                         <span class="panel-title">Monitorizador de Recursos</span>
@@ -198,7 +198,7 @@
                 <div class="col-md-12">
 
                     <!-- Create Panel with required unique ID -->
-                    <div class="panel" id="pUnique_MonitorLogs">
+                    <div class="panel" id="pUniquen_MonitorLogs">
                         <div class="panel-heading">
                             <span class="panel-icon"><i class="fa fa-bell"></i></span>
                             <span class="panel-title title-logs">Monitorización de Logs</span>

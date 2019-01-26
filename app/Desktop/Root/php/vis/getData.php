@@ -1,6 +1,7 @@
 <?php
     @session_start();
     include (@$_SESSION['getConsts']);
+    $CurrentID = 8415;
     
     // echo "<br/><b>getData: </b>",PDS_DESKTOP_ROOT;
     // exit();
@@ -53,7 +54,7 @@
         //nodes.push({id: 1, label: change, image: DIR + 'server.png', shape: 'image'});
         //nodes.push({id: 2, label: arrayNet, image: DIR + 'switch.png', shape: 'image'});
 
-        //Correcto | Networks
+        //Correct | Networks
         <?php
             #Se obtienen las direcciones de red.
             $ReturnIPNets   = $CN->getIPNet();
@@ -74,11 +75,10 @@
             }
         ?>
 
-        //Correcto | Routers with network next 
+        //Correct | Routers with network next 
         <?php
             $Routers = $CN->getHostTypeRouter();
             while ($RRouter = $Routers->fetch_array(MYSQLI_ASSOC)){
-                
                 if ($RRouter['net_next'] != "-"){
                     $IDRouter = implode("", explode(".", $RRouter['ip_host']));
                     $RIPValueSwitch = implode("", explode("/", implode("", explode(".", $RRouter['ip_net']))));
@@ -88,12 +88,21 @@
 
                     ?>
                         nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo $RIPValueRouter_Alias; ?>", ip_addr: "<?php echo $RIPValueRouterAddr; ?>", image: DIR + 'routers/router2.png', shape: 'image', group: "Routers"});
-                    <?php                    
+                    <?php
                 }
             }
         ?>
 
-        //Correcto | Devices that are not routers.
+        //If there's not records in the DB of type routers.
+        <?php
+            if (!$CN->CheckRouterExists()){
+                ?>
+                    nodes.push({id: <?php echo $CurrentID; ?>, label: "Local Network", ip_addr: "192.168.2.1.5", image: DIR + 'routers/router2.png', shape: 'image', group: "Routers"});
+                <?php
+            }
+        ?>
+
+        //Correct | Devices that are not routers.
         <?php
             $Machines = $CN->getHostTypeHost();
             while ($rm = $Machines->fetch_array(MYSQLI_ASSOC)){
@@ -137,6 +146,7 @@
                             }
                         }
                     }
+                    //edges.push({from: <?php echo $CurrentID; ?>, to: <?php echo $ExtGIPNValue; ?>, length: EDGE_LENGTH_SUB});
                 }
             }
 

@@ -1477,12 +1477,13 @@ $("#ddt_SelectSeverityOptionTodos").click(function(){
 
 $("#btnSaveSettings").click(function(){
 	var ClientSyslog = $("#inputIPClientSyslog").val(),
-		ServerSyslog = $("#inputIPServerSyslog").val();
+		ServerSyslog = $("#inputIPServerSyslog").val(),
+		Level = "todo";
 
 	xhr = $.ajax({
 		url: "app/Desktop/Root/php/gn.ConfigSyslogClient.php",
 		type: "post",
-		data: ('ServerSyslog='+ServerSyslog+'&ClientSyslog='+ClientSyslog),
+		data: ('ServerSyslog='+ServerSyslog+'&ClientSyslog='+ClientSyslog+'&Level='+Level),
 		success: function(data){
 			console.log("Respuesta: "+data);
 		}

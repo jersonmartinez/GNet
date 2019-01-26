@@ -127,7 +127,7 @@
 </ul>
 <!-- End: Sidebar Menu -->
 
-<ul class="nav sidebar-menu NAC_SB_ID"> 
+<ul class="nav sidebar-menu NAC_SB_ID" style="margin-top: -15px;"> 
   <?php
     if (REM_NOTIFY_NECESSARY){
       ?>

@@ -10,7 +10,6 @@
 		private $local_path = "/var/www/html/GNet/app/scripts/";
 		private $remote_path;
 		private $filename;
-
 		public $db_connect;
 		public $db_prefix;
 
@@ -126,31 +125,32 @@
 			array_push($ActionArray, 'echo "$"ModLoad ommysql >> $FileConf');
 			array_push($ActionArray, "case $5 in");
 			array_push($ActionArray, '	"emergencia")');
-			array_push($ActionArray, '		echo "*.emerg :ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.emerg :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, '	"alerta")');
-			array_push($ActionArray, '		echo "*.alert :ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.alert :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, '	"critico")');
-			array_push($ActionArray, '		echo "*.crit :ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.crit :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, '	"error")');
-			array_push($ActionArray, '		echo "*.err :ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.err :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, '	"advertencia")');
-			array_push($ActionArray, '		echo "*.warn :ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.warn :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, '	"notificacion")');
-			array_push($ActionArray, '		echo "*.notice :ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.notice :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, '	"informacion")');
-			array_push($ActionArray, '		echo "*.info :ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.info :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, '	"depuracion")');
-			array_push($ActionArray, '		echo "*.debug :ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.debug :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, '	"todo")');
-			array_push($ActionArray, '		echo "*.* :ommysql:$Servidor,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.emerg;*.alert;*.crit;*.warn;*.notice :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
+			// array_push($ActionArray, '		echo "*.*;!info :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, 'esac');
 			array_push($ActionArray, 'service rsyslog restart');
@@ -453,6 +453,14 @@
 
 		public function getIPNetOnly(){
 			return @$this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."network LIMIT 1;")->fetch_array(MYSQLI_ASSOC)['ip_net'];
+		}
+
+		public function CheckRouterExists(){
+			if ($this->db_connect->query("SELECT COUNT(*) AS 'count' FROM ".$this->db_prefix."host WHERE router='1';")->fetch_array()['count'] > 0){
+				return true;
+			}
+			
+			return false;
 		}
 
 		public $CommandIpRoute = "ip route | sed -e '/src/ !d' | sed '/default/ d' | cut -d ' ' -f1";
