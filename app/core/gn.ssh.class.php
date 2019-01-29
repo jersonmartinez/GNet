@@ -730,7 +730,7 @@
 		public function getCpuState(){
 			$filename = "getcpuState.sh";
 			$ActionArray[] = "NameModel=($(cat /proc/cpuinfo | grep name | cut -d ':' -f2))";
-			array_push($ActionArray, "Velocidad=$(cat /proc/cpuinfo | grep name | cut -d ' ' -f 10)");
+			// array_push($ActionArray, "Velocidad=$(cat /proc/cpuinfo | grep name | cut -d ' ' -f 10)");
 			array_push($ActionArray, "UsoUser=$(top -n1 -b | grep '%Cpu' | awk {'print $2'} | sed 's/,/./g')");
 			array_push($ActionArray, "UsoSystem=$(top -n1 -b | grep '%Cpu' | awk {'print $4'} | sed 's/,/./g')");
 			// array_push($ActionArray, 'UsoTotal=$(echo "$UsoUser + $UsoSystem" | bc)');
@@ -748,7 +748,8 @@
 
 		public function getDiskState(){
 			$filename = "getDiskState.sh";
-			$ActionArray[] = 'Disk=($(df -H /dev/sda1 | sed "1d" | sed "s/,/./g" | tr -d "G"))';
+			$ActionArray[] = "FS=$(df -H | awk {'print $1'} | grep -w dev)";
+			array_push($ActionArray, 'Disk=($(df -H "$FS" | sed "1d" | sed "s/,/./g" | tr -d "G"))');
 			array_push($ActionArray, 'echo "${Disk[1]},${Disk[2]},${Disk[3]},"');
 			
 			$RL[] = $this->remote_path.$filename;

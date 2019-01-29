@@ -49,6 +49,10 @@
 
     // Método para convertir a GB
     $MemoryFree = $MemoryState[0] - $MemoryState[1];
+
+    foreach ($AccessWebServer as $value) {
+        echo $value."";
+    }
 ?>
 
 <input type="hidden" id="InputHiddenPercentageCPU" value="<?php echo $ConnectSSH->PercentageCPU(); ?>"/>

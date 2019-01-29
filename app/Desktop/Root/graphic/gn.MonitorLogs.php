@@ -120,7 +120,10 @@
                                     echo "Depuración";
                                 } elseif ($Priority == "Critico") {
                                     echo "Crítico";
-                                }                             
+                                } else {
+                                    echo $Priority;
+                                }
+
                             ?>     
                         </th>
                         <th><?php echo $A['ReceivedAt'] ;?></th>
