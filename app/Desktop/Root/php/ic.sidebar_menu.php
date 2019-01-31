@@ -80,13 +80,6 @@
               </a>
             </li>
 
-            <!-- <li>
-                <a href="#" id="sb_item_ConfigureSyslogServer">
-                    <span class="fa fa-cogs"></span>
-                    Configurar Servidor
-                </a>
-            </li> -->
-
             <li>
                 <a href="#" id="sb_item_ConfigureSyslog">
                     <span class="fa fa-cogs"></span>

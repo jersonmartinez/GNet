@@ -1476,27 +1476,27 @@ $("#ddt_SelectSeverityOptionTodos").click(function(){
 });
 
 $("#btnSaveSettings").click(function(){
-	var ClientSyslog = $("#inputIPClientSyslog").val(),
+	let ClientSyslog = $("#inputIPClientSyslog").val(),
 		ServerSyslog = $("#inputIPServerSyslog").val(),
 		Level = "todo";
 
-	xhr = $.ajax({
+	$.ajax({
 		url: "app/Desktop/Root/php/gn.ConfigSyslogClient.php",
 		type: "post",
 		data: ('ServerSyslog='+ServerSyslog+'&ClientSyslog='+ClientSyslog+'&Level='+Level),
 		success: function(data){
-			console.log("Respuesta: "+data);
+			console.log("Respuesta: " + data);
 		}
 	});
 });
 
 $("#btnSaveSettingsServer").click(function(){
-	var IP = $("#IPServerSyslog").val();
+	let IP = $("#IPServerSyslog").val();
 	// var DB = "gnet";
 	// var User = "root";
 	// var Pass = "root";
-	var Level = "todo";
-	xhr = $.ajax({
+	let Level = "todo";
+	$.ajax({
 		url: "app/Desktop/Root/php/gn.ConfigSyslogServer.php",
 		type: "post",
 		data: ('IP='+IP+'&Level='+Level),
@@ -1666,8 +1666,6 @@ $("#Btn_ACVPS_Save").click(function(){
 				}
 			}
 		});
-	} else {
-		$("#BtnHiddenNotifyACLMEmpty").click();
 	}
 });
 

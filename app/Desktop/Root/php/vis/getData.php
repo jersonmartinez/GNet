@@ -146,7 +146,7 @@
                             }
                         }
                     }
-                    //edges.push({from: <?php echo $CurrentID; ?>, to: <?php echo $ExtGIPNValue; ?>, length: EDGE_LENGTH_SUB});
+                    // edges.push({from: <?php echo $CurrentID; ?>, to: <?php echo $ExtGIPNValue; ?>, length: EDGE_LENGTH_SUB});
                 }
             }
 
