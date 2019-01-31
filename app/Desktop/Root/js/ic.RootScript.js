@@ -304,7 +304,6 @@ $("#sb_item_TrackingNetwork").click(function(){
 					$(".here_write").html($("#MessageFailCheckTrackingNetwork").html());
 				} else {
 					$(".AdminPanel_TrackingNetwork_PanelBody").addClass('animated fadeIn').html(data);
-					// $(".AdminPanel_TrackingNetwork_PanelBody").html(data);
 					draw();
 				}
 				Finish_NProgress();
@@ -943,7 +942,7 @@ $("#Btn_ACLM_Save").click(function(){
 var myVar = 0;
 
 function StartTracking(){
-	myVar = setInterval(function(){ LoadNetworkMap() }, 2000);
+	// myVar = setInterval(function(){ LoadNetworkMap() }, 2000);
 
 	$(".btn_tracking span").html("SONDEANDO...");
 	$(".network_map_loader").fadeIn(500).show();
@@ -956,7 +955,7 @@ function StartTracking(){
 	    	$(".here_write").html(data);
 			
 			$("#ClickSondeoFinal").click();
-			clearInterval(myVar);
+			// clearInterval(myVar);
 
 			$("#retardo_temporal").show(500).html($("#input_retardo").val());
 	    }

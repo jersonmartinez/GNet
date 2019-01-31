@@ -1,7 +1,7 @@
 <?php
+    $CurrentID = "8415";
     @session_start();
     include (@$_SESSION['getConsts']);
-    $CurrentID = 8415;
     
     // echo "<br/><b>getData: </b>",PDS_DESKTOP_ROOT;
     // exit();
@@ -54,7 +54,7 @@
         //nodes.push({id: 1, label: change, image: DIR + 'server.png', shape: 'image'});
         //nodes.push({id: 2, label: arrayNet, image: DIR + 'switch.png', shape: 'image'});
 
-        //Correct | Networks
+        //Correcto | Networks
         <?php
             #Se obtienen las direcciones de red.
             $ReturnIPNets   = $CN->getIPNet();
@@ -75,10 +75,11 @@
             }
         ?>
 
-        //Correct | Routers with network next 
+        //Correcto | Routers with network next 
         <?php
             $Routers = $CN->getHostTypeRouter();
             while ($RRouter = $Routers->fetch_array(MYSQLI_ASSOC)){
+                
                 if ($RRouter['net_next'] != "-"){
                     $IDRouter = implode("", explode(".", $RRouter['ip_host']));
                     $RIPValueSwitch = implode("", explode("/", implode("", explode(".", $RRouter['ip_net']))));
@@ -88,21 +89,12 @@
 
                     ?>
                         nodes.push({id: <?php echo $IDRouter; ?>, label: "<?php echo $RIPValueRouter_Alias; ?>", ip_addr: "<?php echo $RIPValueRouterAddr; ?>", image: DIR + 'routers/router2.png', shape: 'image', group: "Routers"});
-                    <?php
+                    <?php                    
                 }
             }
         ?>
 
-        //If there's not records in the DB of type routers.
-        <?php
-            if (!$CN->CheckRouterExists()){
-                ?>
-                    nodes.push({id: <?php echo $CurrentID; ?>, label: "Local Network", ip_addr: "192.168.2.1.5", image: DIR + 'routers/router2.png', shape: 'image', group: "Routers"});
-                <?php
-            }
-        ?>
-
-        //Correct | Devices that are not routers.
+        //Correcto | Devices that are not routers.
         <?php
             $Machines = $CN->getHostTypeHost();
             while ($rm = $Machines->fetch_array(MYSQLI_ASSOC)){
@@ -146,7 +138,6 @@
                             }
                         }
                     }
-                    // edges.push({from: <?php echo $CurrentID; ?>, to: <?php echo $ExtGIPNValue; ?>, length: EDGE_LENGTH_SUB});
                 }
             }
 
@@ -158,6 +149,7 @@
 
                 ?>
                     edges.push({from: <?php echo $LastRouterSwitch; ?>, to: <?php echo $IDLastRouter; ?>, length: EDGE_LENGTH_SUB});
+                    // edges.push({from: <?php echo $LastRouterSwitch; ?>, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
                     // edges.push({from: 192168101024, to: 1921681012, length: EDGE_LENGTH_SUB});
                 <?php
                 // echo "ID: ".$IDLastRouter." | LastRouterSwitch: ".$LastRouterSwitch."<br/>";
@@ -181,6 +173,7 @@
 
                             ?>
                                 edges.push({from: <?php echo $MyIDNetNext; ?>, to: <?php echo $OtherRouter; ?>, length: EDGE_LENGTH_SUB});
+                                // edges.push({from: <?php echo $MyIDNetNext; ?>, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
                             <?php
                         }
                     }
@@ -189,6 +182,31 @@
                 // echo "ID: ".$IDLastRouter." | LastRouterSwitch: ".$LastRouterSwitch."<br/>";
             }
         ?>
+
+        /*Si no se han detectado enrutadores, se agrega uno por omisión indicando que es una LAN*/
+        <?php
+            if (!$CN->CheckRouterExists()){
+                ?>
+                    nodes.push({id: <?php echo $CurrentID; ?>, label: "LAN", ip_addr: "192.168.0.1", image: DIR + 'routers/router2.png', shape: 'image', group: "Routers"});
+                <?php
+                
+                $ExtgetIPNet = $CN->getIPNet();
+                
+                if ($ExtgetIPNet->num_rows > 0){
+                    while ($ExtGIPN = $ExtgetIPNet->fetch_array(MYSQLI_ASSOC)){
+                        $ExtGIPNValue = implode("", explode("/", implode("", explode(".", $ExtGIPN['ip_net']))));
+                        
+                        ?>
+                            edges.push({from: <?php echo $ExtGIPNValue; ?>, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
+                        <?php
+                    }
+                }
+            }
+        ?>
+
+        // edges.push({from: 1002024, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
+        // edges.push({from: 1921680024, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
+        // edges.push({from: 1921682024, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
 
         // create a network
         var container = document.getElementById('mynetwork');
@@ -379,4 +397,3 @@
 
 <input type="hidden" style="float: right" id="ClickSondeoFinal" onclick="javascript: draw();" value="Cambiar panorama" />
 <div id="mynetwork" style="width: 100%; height:470px;"></div>
-<!-- <div ondblclick="javascript: draw();" id="mynetwork" style="width: 100%; height:470px;"></div> -->
