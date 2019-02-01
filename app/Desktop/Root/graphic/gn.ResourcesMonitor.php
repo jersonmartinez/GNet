@@ -50,9 +50,9 @@
     // Método para convertir a GB
     $MemoryFree = $MemoryState[0] - $MemoryState[1];
 
-    foreach ($AccessWebServer as $value) {
+    /*foreach ($AccessWebServer as $value) {
         echo $value."";
-    }
+    }*/
 ?>
 
 <input type="hidden" id="InputHiddenPercentageCPU" value="<?php echo $ConnectSSH->PercentageCPU(); ?>"/>
@@ -987,8 +987,9 @@
     var width = dataPercent - 2;
     stDiv.insertAdjacentHTML('afterend', '<style>#battery::after{width:' + width + '%;}</style>');
 
-
-    if (dataPercent <= 10) {
+    if (dataPercent == 0) {
+      stDiv.setAttribute('white','');
+    } else if (dataPercent > 0 && dataPercent <= 10) {
       stDiv.setAttribute('red','');
     } else if (dataPercent > 10 && dataPercent <= 30) {
         stDiv.setAttribute('orange','');
@@ -1008,6 +1009,8 @@
         $(charging_text).html('Queda ' + dataPercent + '%');
     } else if (dataStatus == "fully-charged") {
         $(charging_text).html("Carga completa");
+    } else {
+        $(charging_text).html("Conectado a la corriente");
     }
 
     $('#myTab a').click(function (e) {

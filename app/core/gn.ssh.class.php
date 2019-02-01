@@ -855,7 +855,11 @@
 			$filename = "getBatteryState.sh";
 			$ActionArray[] = "Porcentaje=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk {'print $2'} | tr -d '%')";
 			array_push($ActionArray, "StatusBat=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | awk {'print $2'})");
-			array_push($ActionArray, 'echo "$Porcentaje,$StatusBat,"');
+			array_push($ActionArray, 'if [[ $Porcentaje == "" ]]; then');
+			array_push($ActionArray, '	echo "0,$StatusBat,"');
+			array_push($ActionArray, 'else');
+			array_push($ActionArray, '	echo "$Porcentaje,$StatusBat,"');
+			array_push($ActionArray, 'fi');
 			
 			$RL[] = $this->remote_path.$filename;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
