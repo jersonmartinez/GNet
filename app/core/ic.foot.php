@@ -60,6 +60,8 @@
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/js/footable.js"></script>
 <!-- <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/js/footable.min.js"></script> -->
 
+<!-- <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/anno/anno.js"></script> -->
+
 <!-- Importants Scripts -->
 <script src="<?php echo PDS_CTL_JS; ?>/ic.script.js"></script>
 <script src="<?php echo PDS_DESKTOP_ROOT_JS; ?>/ic.RootScript.js"></script>
@@ -68,6 +70,41 @@
 <script type="text/javascript" src="<?php echo PDS_DESKTOP_ROOT; ?>/js/vis/vis.js"></script>
 
 <script type="text/javascript">
+
+// var anno8 = new Anno([{
+//   target: '.navbar-fixed-top',
+//   position: 'center-left',
+//   content: "Guide your users through nested scrolling panels..."
+// },{
+//   target: '#sb_item_TrackingNetwork',
+//   position:'center-left',
+//   content: "...without confusing them.",
+//   buttons: [AnnoButton.BackButton, AnnoButton.DoneButton]
+// }]);
+
+// var anno9 = new Anno([{
+//   target: '#sidebar_left',
+//   content: "<code>#button1</code> is disabled, but <code>#button2</code> still works.",
+//   className: 'anno-width-400'
+// },{
+//   target: '#skin-toolbox',
+//   position:'center-left',
+//   content: "...without confusing them.",
+//   buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+// },{
+//   target: '#MainSearchIPHostFinal',
+//   position:'center-bottom',
+//   content: "...without confusing them.",
+//   buttons: [AnnoButton.BackButton, AnnoButton.NextButton]
+// },{
+//   target: '#NAC_SB_First',
+//   position:'center-right',
+//   content: "...without confusing them.",
+//   buttons: [AnnoButton.BackButton, AnnoButton.NextButton, AnnoButton.DoneButton]
+// }]);
+
+// demoBtnClick();
+// anno9.show();
 
 jQuery(document).ready(function() {
     "use strict";
