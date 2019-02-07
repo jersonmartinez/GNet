@@ -816,7 +816,7 @@ $("#ConfigureProfile").click(function(){
 						}
 					});
 				} else {
-					alert("Rellene los campos");
+					// alert("Rellene los campos");
 				}
 			}
 
@@ -857,7 +857,7 @@ $("#ConfigureProfile").click(function(){
 							alert("Las contraseñas no coinciden");
 						}						
 					} else {
-						alert("Rellene los campos");
+						// alert("Rellene los campos");
 					}
 				} else {
 					alert("Las contraseñas no coinciden");
