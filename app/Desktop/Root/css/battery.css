@@ -21,6 +21,11 @@
 	background-color: green;
 }
 
+#battery[white]::after {
+  border: 2px solid #AAA;
+  background-color: #AAA;
+}
+
 #battery[red]::after {
 	border: 2px solid #DF5353;
 	background-color: #DF5353;

@@ -736,7 +736,7 @@
 		public function getCpuState(){
 			$filename = "getcpuState.sh";
 			$ActionArray[] = "NameModel=($(cat /proc/cpuinfo | grep name | cut -d ':' -f2))";
-			array_push($ActionArray, "Velocidad=$(cat /proc/cpuinfo | grep name | cut -d ' ' -f 10)");
+			// array_push($ActionArray, "Velocidad=$(cat /proc/cpuinfo | grep name | cut -d ' ' -f 10)");
 			array_push($ActionArray, "UsoUser=$(top -n1 -b | grep '%Cpu' | awk {'print $2'} | sed 's/,/./g')");
 			array_push($ActionArray, "UsoSystem=$(top -n1 -b | grep '%Cpu' | awk {'print $4'} | sed 's/,/./g')");
 			// array_push($ActionArray, 'UsoTotal=$(echo "$UsoUser + $UsoSystem" | bc)');
@@ -754,7 +754,8 @@
 
 		public function getDiskState(){
 			$filename = "getDiskState.sh";
-			$ActionArray[] = 'Disk=($(df -H /dev/sda1 | sed "1d" | sed "s/,/./g" | tr -d "G"))';
+			$ActionArray[] = "FS=$(df -H | awk {'print $1'} | grep -w dev)";
+			array_push($ActionArray, 'Disk=($(df -H "$FS" | sed "1d" | sed "s/,/./g" | tr -d "G"))');
 			array_push($ActionArray, 'echo "${Disk[1]},${Disk[2]},${Disk[3]},"');
 			
 			$RL[] = $this->remote_path.$filename;
@@ -860,7 +861,11 @@
 			$filename = "getBatteryState.sh";
 			$ActionArray[] = "Porcentaje=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep percentage | awk {'print $2'} | tr -d '%')";
 			array_push($ActionArray, "StatusBat=$(upower -i /org/freedesktop/UPower/devices/battery_BAT0 | grep state | awk {'print $2'})");
-			array_push($ActionArray, 'echo "$Porcentaje,$StatusBat,"');
+			array_push($ActionArray, 'if [[ $Porcentaje == "" ]]; then');
+			array_push($ActionArray, '	echo "0,$StatusBat,"');
+			array_push($ActionArray, 'else');
+			array_push($ActionArray, '	echo "$Porcentaje,$StatusBat,"');
+			array_push($ActionArray, 'fi');
 			
 			$RL[] = $this->remote_path.$filename;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
