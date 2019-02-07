@@ -326,8 +326,8 @@
         // add event listeners
         $(container).click(function(){
             // console.log("Heee, let's stay together - Main container - click");
-            document.getElementById("ContextMenuTest_White").style.visibility = "hidden";
-            document.getElementById("ContextMenuTest").style.visibility = "hidden";
+            // document.getElementById("ContextMenuTest_White").style.visibility = "hidden";
+            // document.getElementById("ContextMenuTest").style.visibility = "hidden";
             $("#ContextMenuTest").css("visibility", "hidden");
             $("#ContextMenuTest_White").css("visibility", "hidden");
 

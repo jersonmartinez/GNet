@@ -1257,71 +1257,36 @@ function CheckPingAjax(){
 	});
 }
 
-function PruebaPingConnect(value){
-	// var offsetX;
-	// var offsetY;
-	value.addEventListener('contextmenu', function (e) {
-		var info = getCoordsPosition(e);
-
-		console.log("Posicion: x = " + info.x + "px, y = " + info.y + "px");
-
-		popupMenux = $("#ContextMenuTest");
-
-    	popupMenux.style.top = e.clientY - info.y + 'px';
-		popupMenux.style.left = e.clientX - info.x + 'px';
-		
-        popupMenux.style.visibility = "visible";
-		console.log("Los atributos son: " + $(value).attr("class").split(" ")[2] + " Valor X: " + offsetX + ", Y: " + offsetY);
-
-	    e.preventDefault();
-	}, false);
-
-	// 	console.log("Valor ClIENT (" + "x: " + e.clientX + "px | y: " + e.clientY + "px)");
-    	
-	// 	popupMenux = document.getElementById("ContextMenuTest");
-
- //    	popupMenux.style.top = e.clientY + 'px';
-	// 	popupMenux.style.left = e.clientY + 'px';
-		
- //        popupMenux.style.visibility = "visible";
-
-
-	//     e.preventDefault();
-	// }, false);
+function recvMixContainer(value){
+	$("#Topology_host_selected_ip_host").html($(value).attr("ip_addr"));
 }
 
 // $(".AdminPanel_DevicesManagement").click(function(){
 // 	$("#ContextMenuTest").style.visibility = "hidden";
 // 	$("#ContextMenuTest_White").style.visibility = "hidden";
 // });
+// $(".AdminPanel_DevicesManagement").on('contextmenu', function(e){
+// 	var info = getCoordsPosition(e);
 
+// 	console.log("Posicion: getPosition(x: " + info.x + "px, y: " + info.y + "px" + "| Client(x: " + e.clientX + "px, y: "+ e.clientY +"px) | offset(x: " + e.offsetX + "px, y: " + e.offsetY + "px)");
 
-$(".AdminPanel_DevicesManagement").on('contextmenu', function(e){
-	var info = getCoordsPosition(e);
+// 	var popupMenux = $("#ContextMenuTest");
 
-	console.log("Posicion: getPosition(x: " + info.x + "px, y: " + info.y + "px" + "| Client(x: " + e.clientX + "px, y: "+ e.clientY +"px) | offset(x: " + e.offsetX + "px, y: " + e.offsetY + "px)");
+// 	var offsetX = e.offsetX;
+//     var offsetY = e.offsetY;
 
-	var popupMenux = $("#ContextMenuTest");
+//     if( e.target != this ){ // 'this' is our HTMLElement
+//         offsetX = e.target.offsetLeft + e.offsetX;
+//         offsetY = e.target.offsetTop + e.offsetY;
+//     }
 
-	var offsetX = e.offsetX;
-    var offsetY = e.offsetY;
-
-    if( e.target != this ){ // 'this' is our HTMLElement
-        offsetX = e.target.offsetLeft + e.offsetX;
-        offsetY = e.target.offsetTop + e.offsetY;
-    }
-
-	popupMenux.style.top = info.y + 'px';
-	popupMenux.style.left = offsetX + 'px';
+// 	popupMenux.style.top = info.y + 'px';
+// 	popupMenux.style.left = offsetX + 'px';
 	
-    popupMenux.style.visibility = "visible";
-	// console.log("Los atributos son: " + $(value).attr("class").split(" ")[2] + " Valor X: " + offsetX + ", Y: " + offsetY);
+//     popupMenux.style.visibility = "visible";
+// 	// console.log("Los atributos son: " + $(value).attr("class").split(" ")[2] + " Valor X: " + offsetX + ", Y: " + offsetY);
 
-    e.preventDefault();
-});
-
-// $("#content_wrapper").contextmenu(function(){
-// 	console.log("Funcionando");
+//     e.preventDefault();
 // });
 
 function getDataSelection(value){
@@ -1705,3 +1670,41 @@ function getDataMyVPS(value){
 
 		getResourcesMonitor(params);
 }
+
+$(".mix-context_menu").contextmenu( () => {
+	alert("Right click");
+} );
+
+// container.addEventListener('contextmenu', function(e) {
+// 	// getCoords = getCoordsPosition(e);
+
+// 	valueSelection = document.getElementById('Topology_host_selected_ip_host').innerHTML;
+// 	if (valueSelection == ""){
+// 		popupMenux = document.getElementById("ContextMenuTest_White");
+// 		// document.getElementById("btn_tracking_b2").setAttribute("disabled", "disabled");
+// 	} else {
+// 		// document.getElementById("btn_tracking_b2").removeAttribute("disabled");
+// 		popupMenux = document.getElementById("ContextMenuTest");
+// 	}
+
+// 	var offsetX = e.offsetX;
+// 	var offsetY = e.offsetY;
+
+// 	if (e.target != this){ // 'this' is our HTMLElement
+// 		offsetX = e.target.offsetLeft + e.offsetX;
+// 		offsetY = e.target.offsetTop + e.offsetY;
+// 	}
+
+// 	// alert("X: " + offsetX + ", Y: " + offsetY);
+
+// 	popupMenux.style.left = offsetX + 'px';
+// 	popupMenux.style.top = offsetY + 'px';
+// 	// popupMenux.style.left = getCoords.x - 272 + 'px';
+// 	// popupMenux.style.top = getCoords.y - 132 + 'px';
+// 	container.appendChild(popupMenux);
+// 	$("#ContextMenuTest").css("visibility", "hidden");
+// 	$("#ContextMenuTest_White").css("visibility", "hidden");
+	
+// 	popupMenux.style.visibility = "visible";
+// 	e.preventDefault();
+// }, false);

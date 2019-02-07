@@ -20,11 +20,11 @@
 
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/style.css">
 
-<div class="mixings-get-devices" data-example-id="contextual-panels">
+<div class="mixings-get-devices" id="mixings-get-devices-id" data-example-id="contextual-panels">
     <!-- <hr class="alt short"> -->
     <div id="mix-items" class="mix-container box-wrap boxes blue">
 
-        <section class="box-wrap boxes blue">
+        <section class="box-wrap boxes blue" >
         <?php
             if (@$R->num_rows > 0){
                 $R_Count = 1;
@@ -79,7 +79,7 @@
                         /*Router*/
                         $IDOrderHost = implode("", explode(".", $Restore['ip_host']));
                         ?>
-                            <div class="mix category-2 host<?php echo $IDOrderHost; ?>" oncontextmenu="javascript: PruebaPingConnect(this);" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
+                            <div class="mix category-2 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
                                 <img onselectstart="return false" ondragstart="return false" src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/routers/router4.png" style="margin-left: 25%; height: 130px;" />
                                 
                                 <?php
@@ -105,7 +105,7 @@
 
                         if ($getMyIPServer == $Restore['ip_host']){
                             ?>
-                                <div class="mix category-4 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
+                                <div class="mix category-4 host<?php echo $IDOrderHost; ?>" oncontextmenu="javascript: recvMixContainer(this)" ip_addr="<?php echo $Restore['ip_host']; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
                                     <img src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/servers/server1.png" style="margin-left: 16%; height: 130px;" />
                                     
                                     <?php
@@ -129,7 +129,7 @@
                             <?php
                         } else {
                             ?>
-                                <div class="mix category-1 host<?php echo $IDOrderHost; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
+                                <div class="mix category-1 host<?php echo $IDOrderHost; ?>" oncontextmenu="javascript: recvMixContainer(this)" ip_addr="<?php echo $Restore['ip_host']; ?>" data-myorder="<?php echo $R_Count; ?>" style="display: inline-block;">
                                    <img onselectstart="return false" ondragstart="return false" src="<?php echo PDS_DESKTOP_ROOT ?>/src/vis/img/refresh-cl/news/computers/laptop1.png" style="margin-left: 25%; height: 130px;" />
                                     
                                     <?php
@@ -200,4 +200,46 @@
         $(".btn_Order_value").text("Ascendente");
     });
 
+    let popupMenux = document.getElementById("ContextMenuTest");
+    let mixingsGetGevices = document.getElementById("mixings-get-devices-id");
+
+    mixingsGetGevices.addEventListener('click', function (e) {
+        $("#ContextMenuTest").css("visibility", "hidden");
+        $("#ContextMenuTest_White").css("visibility", "hidden");
+    });
+
+    mixingsGetGevices.addEventListener('contextmenu', function (e) {
+        let offsetX = e.offsetX;
+        let offsetY = e.offsetY;
+
+        if (e.target != this){ // 'this' is our HTMLElement
+            offsetX = e.target.offsetLeft + e.offsetX;
+            offsetY = e.target.offsetTop + e.offsetY;
+        }
+
+        popupMenux.style.left = offsetX + 'px';
+        popupMenux.style.top = offsetY + 'px';
+        
+        mixingsGetGevices.appendChild(popupMenux);
+        $("#ContextMenuTest").css("visibility", "hidden");
+        $("#ContextMenuTest_White").css("visibility", "hidden");
+        
+        popupMenux.style.visibility = "visible";
+
+        e.preventDefault();
+    }, false);
+
 </script>
+
+<style>
+    div.mixings-get-devices .mix-container .mix {
+        transition: .3s all;
+        transition-delay: 0s;
+    }
+
+    div.mixings-get-devices .mix-container .mix:hover {
+        transition: .1s all;
+        transition-delay: 0s; 
+        box-shadow: 0 2px 5px #000;
+    }
+</style>

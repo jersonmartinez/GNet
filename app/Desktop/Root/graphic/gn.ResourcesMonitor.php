@@ -626,29 +626,40 @@
                                         <th>Estado</th>  
                                     </tr>
                                     <?php
-                                        for ($i=0; $i < count($VirtualHost); $i++) { 
+                                        for ($i=0; $i < count($VirtualHost) -1; $i++) { 
                                             $Firts = explode("|", $VirtualHost[$i]);
 
                                             for ($j=0; $j < count($Firts); $j++) { 
-                                            ?>
-                                                <tr>
-                                                    <td><?php echo $Firts[$j]; ?></td>
-                                                    <td><a href="http://<?php echo $Firts[$j+1]; ?>" target="_blank"><?php echo $Firts[$j+1]; $j++; ?></a></td>
-                                                    <td>
-                                                        <?php
-                                                            $SiteStatus = $Firts[$j+1];
-                                                            if ($SiteStatus == "Habilitado") {
-                                                                echo '<span style="color: green">Habilitado</span>';
-                                                            } else if ($SiteStatus == "No habilitado") {
-                                                                echo '<span style="color: red">No habilitado</span>';
-                                                            }
-                                                            $j++;
-                                                            #echo $Firts[$j+1]; $j++;
-                                                        ?>
-                                                    </td>
-                                                </tr>
-                                            <?php
-                                            }
+                                                ?>
+                                                    <tr>
+                                                        <td><?php echo $Firts[$j]; ?></td>
+                                                        <td>
+                                                            <?php
+                                                                if (empty($Firts[$j+1])){
+                                                                    $j++;
+                                                                    echo "-";
+                                                                } else {
+                                                                    ?>
+                                                                        <a href="http://<?php echo $Firts[$j+1]; ?>" target="_blank"><?php echo $Firts[$j+1]; $j++; ?></a>
+                                                                    <?php
+                                                                }
+                                                            ?>
+                                                        </td>
+                                                        <td>
+                                                            <?php
+                                                                $SiteStatus = $Firts[$j+1];
+                                                                if ($SiteStatus == "Habilitado") {
+                                                                    echo '<span style="color: green">Habilitado</span>';
+                                                                } else if ($SiteStatus == "No habilitado") {
+                                                                    echo '<span style="color: red">No habilitado</span>';
+                                                                }
+                                                                $j++;
+                                                                #echo $Firts[$j+1]; $j++;
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+                                                <?php
+                                            }                                            
                                         }
                                     ?>
                                 </table>
