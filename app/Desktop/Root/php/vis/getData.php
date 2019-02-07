@@ -149,10 +149,7 @@
 
                 ?>
                     edges.push({from: <?php echo $LastRouterSwitch; ?>, to: <?php echo $IDLastRouter; ?>, length: EDGE_LENGTH_SUB});
-                    // edges.push({from: <?php echo $LastRouterSwitch; ?>, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
-                    // edges.push({from: 192168101024, to: 1921681012, length: EDGE_LENGTH_SUB});
                 <?php
-                // echo "ID: ".$IDLastRouter." | LastRouterSwitch: ".$LastRouterSwitch."<br/>";
             }
 
             //Recorremos los enrutadores para saber quienes son los siguientes conectados.
@@ -173,13 +170,10 @@
 
                             ?>
                                 edges.push({from: <?php echo $MyIDNetNext; ?>, to: <?php echo $OtherRouter; ?>, length: EDGE_LENGTH_SUB});
-                                // edges.push({from: <?php echo $MyIDNetNext; ?>, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
                             <?php
                         }
                     }
                 }
-                
-                // echo "ID: ".$IDLastRouter." | LastRouterSwitch: ".$LastRouterSwitch."<br/>";
             }
         ?>
 
@@ -203,10 +197,6 @@
                 }
             }
         ?>
-
-        // edges.push({from: 1002024, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
-        // edges.push({from: 1921680024, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
-        // edges.push({from: 1921682024, to: <?php echo $CurrentID; ?>, length: EDGE_LENGTH_SUB});
 
         // create a network
         var container = document.getElementById('mynetwork');

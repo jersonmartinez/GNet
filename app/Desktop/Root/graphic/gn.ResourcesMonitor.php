@@ -633,7 +633,7 @@
                                             ?>
                                                 <tr>
                                                     <td><?php echo $Firts[$j]; ?></td>
-                                                    <td><?php echo $Firts[$j+1]; $j++; ?></td>
+                                                    <td><a href="http://<?php echo $Firts[$j+1]; ?>" target="_blank"><?php echo $Firts[$j+1]; $j++; ?></a></td>
                                                     <td>
                                                         <?php
                                                             $SiteStatus = $Firts[$j+1];
