@@ -735,7 +735,7 @@ $("#ConfigureProfile").click(function(){
 		url: "app/Desktop/Root/graphic/gn.ProfileSettings.php",
 		type: "post",
 		success: function(data){
-			HideAdminPanels();	
+			HideAdminPanels();
 			$(".AdminPanel_ProffileSettings").addClass('animated fadeIn').show();
 			$(".AdminPanel_ProfileSetting_PanelBody").addClass('animated fadeIn').html(data);
 
@@ -944,6 +944,9 @@ var myVar = 0;
 function StartTracking(){
 	// myVar = setInterval(function(){ LoadNetworkMap() }, 2000);
 
+	NProgress.configure({parent: 'body'});
+	NProgress.start();
+
 	$(".btn_tracking span").html("SONDEANDO...");
 	$(".network_map_loader").fadeIn(500).show();
 
@@ -958,6 +961,7 @@ function StartTracking(){
 			// clearInterval(myVar);
 
 			$("#retardo_temporal").show(500).html($("#input_retardo").val());
+			Finish_NProgress();
 	    }
 	});
 }
@@ -1039,6 +1043,7 @@ function HideAdminPanels(){
 	$(".AdminPanel_DevicesManagement").addClass('animated fadeOut').hide();
 	$(".AdminPanel_TrackingNetwork").addClass('animated fadeOut').hide();
 	$(".AdminPanel_ResourcesMonitor").addClass('animated fadeOut').hide();
+	$(".AdminPanel_GNet").addClass('animated fadeOut').hide();
 	$(".AdminPanel_ProffileSettings").addClass('animated fadeOut').hide();
 	$(".AdminPanel_MonitorLogs").addClass('animated fadeOut').hide();
 }
@@ -1067,6 +1072,7 @@ function HideADM(which){
 }
 
 HideAdminPanels();
+$(".AdminPanel_GNet").addClass('animated fadeIn').show();
 HideADM();
 
 var ADM_Value = "";

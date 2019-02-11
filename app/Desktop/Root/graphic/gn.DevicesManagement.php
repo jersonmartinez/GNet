@@ -24,7 +24,7 @@
     <!-- <hr class="alt short"> -->
     <div id="mix-items" class="mix-container box-wrap boxes blue">
 
-        <section class="box-wrap boxes blue" >
+        <section class="box-wrap boxes blue">
         <?php
             if (@$R->num_rows > 0){
                 $R_Count = 1;

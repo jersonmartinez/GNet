@@ -348,6 +348,26 @@
 			return @(int)$this->db_connect->query("SELECT count(*) AS 'count' FROM ".$this->db_prefix."credentials_local_machine;")->fetch_array()['count'];
 		}
 
+		/**
+		 * Devuelve todas las direcciones de red.
+		 * @access public
+		 * @param There is not parameters
+		 * @return int
+		*/
+
+		public function addTour(){
+			$query = "INSERT INTO ".$this->db_prefix."tour (checked) VALUES ('1');";
+			
+			if ($this->db_connect->query($query))
+				return true;
+
+			return false;
+		}
+
+		public function checkTour(){
+			return @(int)$this->db_connect->query("SELECT count(*) AS 'count' FROM ".$this->db_prefix."tour;")->fetch_array()['count'];
+		}
+
 		public function addCredentialsVPS($alias = "Invitado", $ip_host, $user, $pass){
 			$query = "INSERT INTO ".$this->db_prefix."credentials_vps (alias, ip_host, username, password) VALUES ('".$alias."','".$ip_host."','".$user."', '".$pass."');";
 			
@@ -696,7 +716,9 @@
 		}
 
 		public function SondearRed($IPNet){
-			return explode("\n", shell_exec("nmap ".$IPNet." --host-timeout 95s -n -sP | grep report | awk '{print $5}'"));
+			//Hey, por acá caballete de patas blancas...
+			return explode("\n", $this->shell_exec("nmap ".$IPNet." --host-timeout 95s -n -sP | grep report | awk '{print $5}'"));
+			// return explode("\n", $this->RunLines("nmap ".$IPNet." --host-timeout 95s -n -sP | grep report | awk '{print $5}'"));
 		}
 
 		public function RastreoTotal($IPNet){

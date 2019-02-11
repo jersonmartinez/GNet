@@ -16,3 +16,11 @@
     </a>
   </div>
 </div>
+
+<script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/bstour/bootstrap-tour.js"></script>
+
+<?php
+	if ($CN_Global->checkTour() <= 0){
+		include (PD_DESKTOP_ROOT."/graphic/gn.Tour.php");
+	}
+?>

@@ -94,6 +94,10 @@
 			username VARCHAR(50) NOT NULL, 
 			password VARCHAR(50) NOT NULL
 		);", 
+		#Tabla de credenciales para monitorizar el host local
+		$X.'tour' => "CREATE TABLE ".$X."tour (
+			checked INT
+		);", 
 		# Tabla para el almacenamiento de Logs
 		'SystemEvents' => "CREATE TABLE SystemEvents (
 			ID int(10) unsigned NOT NULL AUTO_INCREMENT,

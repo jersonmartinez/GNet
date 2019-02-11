@@ -81,7 +81,7 @@
 
       <form class="navbar-form navbar-left navbar-search alt form-navbar-buscador" role="search">
         <div class="form-group form-group-navbar-buscador">
-          <input type="text" class="form-control form-control-group-navbar-buscador ADM_TB_IPHost" id="MainSearchIPHostFinal" title="Monitorizar dispositivo" placeholder="Busca un dispositivo..." style="color: #fff; background-color: #576a84;" autofocus />
+          <input type="text" class="form-control form-control-group-navbar-buscador ADM_TB_IPHost" id="MainSearchIPHostFinal" title="Buscador y monitorizador" placeholder="Buscar un dispositivo..." style="color: #fff; background-color: #576a84;" autofocus />
         </div>
       </form>
 
@@ -100,7 +100,7 @@
 
         <li class="dropdown menu-merge">
           <div class="navbar-btn btn-group">
-            <button data-toggle="dropdown" class="btn btn-sm dropdown-toggle">
+            <button data-toggle="dropdown" class="btn btn-sm dropdown-toggle dropdown-toggle-language">
               <span class="flag-xs flag-us"></span>
               <!-- <span class="caret"></span> -->
             </button>
@@ -144,9 +144,9 @@
                   <optgroup label="Logueado como: ">
                     <option value="1-1" selected="selected">Root</option>
                     <option value="1-2">Administrador</option>
-                    <option value="1-3">Maestro</option>
-                    <option value="1-4">Estudiante</option>
-                    <option value="1-5">Tutor</option>
+                    <!-- <option value="1-3">Maestro</option> -->
+                    <!-- <option value="1-4">Estudiante</option> -->
+                    <!-- <option value="1-5">Tutor</option> -->
                   </optgroup>
                 </select>
               </div>

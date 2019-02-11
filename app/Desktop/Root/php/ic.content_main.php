@@ -59,6 +59,21 @@
 
     <!-- Wrap content in admin-panel class -->
     <div>
+
+        <div class="row AdminPanel_GNet" style="position: fixed; width: 85%;"> 
+            <!-- Create Column with required .admin-grid class -->
+            <div class="col-md-12">
+
+                <!-- Create Panel with required unique ID -->
+                <div class="panel" id="pUniquea_GNet" style="background-color: transparent;">
+                    <div class="panel-body AdminPanel_GNet_PanelBody" style="border: none;">
+                        <h1 class="gnet_heart" onselectstart="return false" style="text-shadow: 1px 2px 3px #a89e9e; font-family: 'Berkshire Swash', cursive; text-align: center; margin: 150px auto; font-size: 150px;">GNet</h1>
+                    </div>
+                </div>
+            </div>
+            <!-- End Column -->
+        </div>
+
         <div class="row AdminPanel_ProffileSettings">
 
             <!-- Create Column with required .admin-grid class -->
@@ -130,7 +145,7 @@
             <div class="col-md-12">
 
                 <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUniquew_TrackingNedtworks">
+                <div class="panel" id="pUniquewddd_TrlzdfdfgackingNssedtworks">
                     <div class="panel-heading">
 
                         <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
@@ -248,6 +263,7 @@
                 <!-- End Column -->
             </div>
         </div>
+    </div>
 </div>
 
 <?php

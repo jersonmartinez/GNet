@@ -6,6 +6,7 @@
 <meta name="author" content="GNet">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="shortcut icon" href="<?php echo PDS_CTL_SRC; ?>/plugins/assets/img/favicon.ico">
+<link href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet"> 
 
 <!-- FullCalendar Plugin CSS -->
 <!-- <link rel="stylesheet" type="text/css" href="app/controller/src/plugins/vendor/plugins/fullcalendar/fullcalendar.min.css"> -->
@@ -41,6 +42,8 @@
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/css/footable.bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/footable/css/footable.core.min.css">
 <!-- <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/anno/anno.css"> -->
+<!-- <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/bootstraptour/css/bootstrap-tour-standalone.min.css"> -->
+<link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/bstour/bootstrap-tour.css">
 
 
 <link href="<?php echo PDS_DESKTOP_ROOT; ?>/css/vis/vis.css" rel="stylesheet" type="text/css" />

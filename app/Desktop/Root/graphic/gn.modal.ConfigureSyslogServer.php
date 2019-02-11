@@ -55,7 +55,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="ModalCloseADMSave" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default" id="ModalCloseADMSave-ConfigSyslogServer" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-default btn-primary" id="btnSaveSettingsServer">Guardar configuración</button>
             </div>
         </div>

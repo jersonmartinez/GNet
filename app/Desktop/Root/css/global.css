@@ -149,3 +149,15 @@ div#ContextMenuTest_White li div.label-menu-context {
 #MainSearchIPHostFinal::placeholder {
     color: #e1e6ec;
 }
+
+.gnet_heart {
+	font-size: 150px;
+	/* color: rgb(214, 209, 209); */
+	animation: beat 1s infinite alternate;
+	transform-origin: center;
+}
+
+/* Heart beat animation */
+@keyframes beat {
+	to { transform: scale(1.02); }
+}

@@ -1,7 +1,7 @@
 <!-- Start: Theme Preview Pane -->
   <div id="skin-toolbox">
     <div class="panel">
-      <div class="panel-heading">
+      <div class="panel-heading panel-heading-usability">
         <span class="panel-icon">
           <i class="fa fa-gear text-primary"></i>
         </span>

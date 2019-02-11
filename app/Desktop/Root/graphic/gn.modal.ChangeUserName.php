@@ -32,7 +32,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="ModalCloseADMSave" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default" id="ModalCloseADMSave-ChangeUserName" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-default btn-primary" id="btnSaveNewUser">Guardar</button>
             </div>
         </div>

@@ -7,7 +7,7 @@
 <!-- <!- Modal -->
 <div class="modal fade" id="NowConfigureSyslog" tabindex="-1" role="dialog" aria-labelledby="ModalAddNewDeviceNetwork" aria-hidden="true">
     <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content modal-content-NCS">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="ModalAddNewDeviceNetwork"><span class="fa fa-info-circle"></span> Configurar Syslog en un equipo remoto</h4>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" id="ModalCloseADMSave" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-default" id="ModalCloseADMSave-ConfigSyslog" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn btn-default btn-primary" id="btnSaveSettings">Guardar configuración</button>
             </div>
         </div>

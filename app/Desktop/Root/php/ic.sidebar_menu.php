@@ -13,10 +13,18 @@
             <span class="sidebar-title">Mi servidor</span>
         </a>
     </li>
+    
+    <!-- Se aplica el sondeo de Red -->
+    <li class="class-sb_item_TrackingNetwork">
+        <a href="#" id="sb_item_TrackingNetwork">
+            <span class="fa fa-sitemap"></span>
+            <span class="sidebar-title">Autodescubrimiento</span>
+        </a>
+    </li>
 
     <!-- Se gestionan los dispositivos -->
-    <li>
-        <a class="accordion-toggle" href="#">
+    <li class="parent-class-sb_item_DevicesManagement">
+        <a class="accordion-toggle class-sb_item_DevicesManagement" href="#">
             <span class="fa fa-th"></span>
             <span class="sidebar-title">Dispositivos</span>
           
@@ -55,18 +63,10 @@
             ?>     
         </ul>
     </li>
-    
-    <!-- Se aplica el sondeo de Red -->
-    <li>
-        <a href="#" id="sb_item_TrackingNetwork">
-            <span class="fa fa-sitemap"></span>
-            <span class="sidebar-title">Autodescubrimiento</span>
-        </a>
-    </li>
 
     <!-- Gestión de eventos -->
-    <li>
-        <a class="accordion-toggle" href="#">
+    <li class="parent-class-sb_item_MonitorLogs">
+        <a class="accordion-toggle class-sb_item_MonitorLogs" href="#">
             <span class="fa fa-bell"></span>
             <span class="sidebar-title">Gestión de eventos</span>         
             <span class="caret"></span>

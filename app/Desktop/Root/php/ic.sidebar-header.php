@@ -17,7 +17,7 @@
   </div>
 
   <!-- Sidebar Widget - Menu (slidedown) -->
-  <div class="sidebar-widget menu-widget">
+  <div class="sidebar-widget menu-widget menu-options-dashboard">
     <div class="row text-center mbn">
       <div class="col-xs-4">
         <a href="dashboard.html" class="text-primary" data-toggle="tooltip" data-placement="top" title="Principal">
