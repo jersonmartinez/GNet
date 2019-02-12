@@ -79,13 +79,10 @@ $("#dropdown-allServices").click(function(){
 });
 
 $("#dropdown-Network").click(function(){
+	// $("#retardo_temporal").val("");
 	if ($("#SwitchNetwork").val() == "Off"){
-		$("#title_sm").val("Ejecutando red");
-		$("#content_sm").val("Red hospedada...");
-
-		$.ajax("app/Desktop/Root/php/ic.Create_Network.php").fail(function() { 
-			$("#content_sm").val("Ha ocurrido un problema al intentar iniciar MySQL");
-		});
+		$("#title_sm").val("Rastreo activado");
+		$("#content_sm").val("Modo profundo...");
 
 		$("#SwitchNetwork").val("On");
 
@@ -93,12 +90,8 @@ $("#dropdown-Network").click(function(){
 			$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-success");
 		}, 50);
 	} else {
-		$("#title_sm").val("Apagando red");
-		$("#content_sm").val("Red hospedada...");
-
-		$.ajax("app/Desktop/Root/php/ic.Network_Stop.php").fail(function() { 
-			$("#content_sm").val("Ha ocurrido un problema al intentar apagar MySQL");
-		});
+		$("#title_sm").val("Rastreo activado");
+		$("#content_sm").val("Modo normal...");
 
 		$("#SwitchNetwork").val("Off");
 
@@ -947,13 +940,19 @@ function StartTracking(){
 	NProgress.configure({parent: 'body'});
 	NProgress.start();
 
+	let SwitchNetwork = $("#SwitchNetwork").val();
+
+	console.log("Dato enviado: " + SwitchNetwork);
+
 	$(".btn_tracking span").html("SONDEANDO...");
 	$(".network_map_loader").fadeIn(500).show();
 
 	$("#retardo_temporal").html("...");
 
 	xhr = $.ajax({
-	    url: "app/Desktop/Root/php/vis/Tracking.php",
+		url: "app/Desktop/Root/php/vis/Tracking.php",
+		type: "post",
+		data: "SwitchNetwork="+SwitchNetwork,
 	    success: function(data){
 	    	$(".here_write").html(data);
 			
@@ -1714,3 +1713,8 @@ $(".mix-context_menu").contextmenu( () => {
 // 	popupMenux.style.visibility = "visible";
 // 	e.preventDefault();
 // }, false);
+
+$(".btn_action_tn").click( () => {
+	StartTracking();
+} );
+

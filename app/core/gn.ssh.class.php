@@ -534,7 +534,7 @@
 		}
 
 		#Rastreo de Red
-		public function SpaceTest(){
+		public function SpaceTest($SwtichNetwork){
 			#Limpiar las tabalas: network, host.
 			$this->InitTables();
 
@@ -555,8 +555,6 @@
 					}
 				}
 
-				// exit();
-
 				#Obtiene una sola red por la que no se ha sondeado.
 				if ($this->getOnlyOneNetworkChecked()->num_rows > 0){
 
@@ -564,7 +562,13 @@
 					$Network = $this->getOnlyOneNetworkChecked()->fetch_array(MYSQLI_ASSOC)['ip_net'];
 					
 					#Se toma una red no escaneada y se aplica el sondeo de dispositivos.
-					$ArrayIPAddress = $this->SondearRed($Network);
+					
+					if ($SwtichNetwork == "On"){
+						$ArrayIPAddress = $this->SondearRedRoot($Network);
+					} else if ($SwtichNetwork == "Off"){
+						$ArrayIPAddress = $this->SondearRed($Network);
+					}
+
 					#$D = Array
 					// 192.168.100.1
 					// 192.168.100.4
@@ -716,13 +720,16 @@
 		}
 
 		public function SondearRed($IPNet){
-			//Hey, por acá caballete de patas blancas...
-			return explode("\n", $this->shell_exec("nmap ".$IPNet." --host-timeout 95s -n -sP | grep report | awk '{print $5}'"));
-			// return explode("\n", $this->RunLines("nmap ".$IPNet." --host-timeout 95s -n -sP | grep report | awk '{print $5}'"));
+			return explode("\n", shell_exec("nmap ".$IPNet." --host-timeout 95s -n -sP | grep report | awk '{print $5}'"));
+		}
+
+		public function SondearRedRoot($IPNet){
+			return explode("\n", $this->RunLines("nmap ".$IPNet." --host-timeout 95s -n -sP | grep report | awk '{print $5}'"));
 		}
 
 		public function RastreoTotal($IPNet){
-			return explode("\n", shell_exec("nmap ".$IPNet." --host-timeout 95s -n -sP"));
+			return explode("\n", $this->RunLines("nmap ".$IPNet." --host-timeout 95s -n -sP"));
+			// return explode("\n", shell_exec("nmap ".$IPNet." --host-timeout 95s -n -sP"));
 		}
 
 		public function SrMartinez(){

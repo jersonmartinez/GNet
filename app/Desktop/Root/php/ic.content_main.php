@@ -149,7 +149,7 @@
                     <div class="panel-heading">
 
                         <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
-                        <span class="panel-title">Mapa de Red (Autodescubrir dispositivos)</span>
+                        <span class="panel-title">Autodescubrimiento | Mapa de Red</span>
 
                         <div style="position: absolute; top: 0; right: 100px;">
                             <button type="button" id="btn_tracking_monitor" class="btn btn-dark btn_tracking_device" action_selection="monitor" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="fa fa-tachometer"></i> Monitorizar</button>
@@ -160,8 +160,13 @@
                             <!-- <button type="button" id="btn_tracking_b2" class="btn btn-dark btn_tracking_device" disabled="disabled">Consola</button> -->
                             <!-- <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Historial</button> -->
 
-                            <button type="button" class="btn btn-primary ladda-button progress-button btn_action_tn" data-style="expand-right">
-                                <span class="ladda-label">Rastrear</span>
+                            <button type="button" class="btn btn-primary ladda-button progress-button btn_action_tn_effect" data-style="expand-right">
+                                <span class="ladda-label btn_action_tn"><i class="fa fa-magic"></i> Rastrear </span>
+                                <div class="switch switch-info round switch-inline" style="margin-bottom: -15px; margin-left: 5px;">
+                                    <input id="IniciarApagarRH" type="checkbox">
+                                    <label for="IniciarApagarRH" id="dropdown-Network" class="notification" data-note-stack="stack_bottom_right" data-note-style="success"></label>
+                                    <input type="hidden" id="SwitchNetwork" value="Off">
+                                </div>
                             </button>
                         </div>
 

@@ -71,7 +71,7 @@
         if (preg_match("/\blinux\b/i", $value))
             $OSLinux = $value;
 
-        if (preg_match("/\bwindows\b/i", $value))
+        if (preg_match("/\bWindows\b/i", $value))
             $OSWindows = $value;
 
         if (preg_match("/\bandroid\b/i", $value))
@@ -116,15 +116,23 @@
             <div class="panel-body">
                 <table class="table">
                     <?php
-                        if (!empty($OSLinux)){
-                            ?>
-                                <tr><td><span class="fa fa-linux"></span> Linux</td></tr>
-                            <?php
-                        } else if (!empty($OSWindows)){
+                        if (!empty(trim($OSLinux))){
+
+                            if (!empty(trim($OSWindows))){
+                                ?>
+                                    <tr><td><span class="fa fa-windows"></span> Windows</td></tr>
+                                <?php
+                            } else {
+                                ?>
+                                    <tr><td><span class="fa fa-linux"></span> Linux</td></tr>
+                                <?php
+                            }
+
+                        } else if (!empty(trim($OSWindows))){
                             ?>
                                 <tr><td><span class="fa fa-windows"></span> Windows</td></tr>
                             <?php
-                        } else if (!empty($OSAndroid)){
+                        } else if (!empty(trim($OSAndroid))){
                             ?>
                                 <tr><td><span class="fa fa-android"></span> Android</td></tr>
                             <?php
@@ -133,6 +141,7 @@
                                 <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }
+                        // echo "Linux: ", $OSLinux, " | Windows: ", $OSWindows, " | Android: ", $OSAndroid;
                     ?>
                 </table>
             </div>
