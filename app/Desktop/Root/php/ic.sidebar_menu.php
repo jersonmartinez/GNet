@@ -76,7 +76,7 @@
             <li>
               <a href="#" id="sb_item_MonitorLogs">
                   <span class="fa fa-dashboard"></span>
-                  Monitorizar Logs
+                  Visor de eventos
               </a>
             </li>
 
@@ -90,7 +90,7 @@
             <li>
                 <a href="#" id="sb_item_ConfigureSyslog">
                     <span class="fa fa-cogs"></span>
-                    Agregar equipos
+                    Configurar Syslog
                 </a>
             </li>    
         </ul>

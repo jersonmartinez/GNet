@@ -50,9 +50,16 @@
                         </div><!-- /input-group -->
                     </div><!-- /.col-lg-6 -->
                 </div><!-- /.row -->
-
+                <br>
                 <div class="row">
-                    
+                    <!-- <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-addon">
+                                <i class="fa fa-calendar"></i>
+                            </span>
+                            <input id="spinner1" class="form-control ui-spinner-input" name="spinner" value="1" title="Días para conservar logs" id="inputTimeLogs" name="inputTimeLogs" />
+                        </div>
+                    </div> -->
                 </div>
 
             </div>

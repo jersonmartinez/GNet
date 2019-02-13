@@ -1476,19 +1476,43 @@ $("#ddt_SelectSeverityOptionTodos").click(function(){
 });
 
 $("#btnSaveSettings").click(function(){
-	var ClientSyslog = $("#inputIPClientSyslog").val(),
+	let ClientSyslog = $("#inputIPClientSyslog").val(),
 		ServerSyslog = $("#inputIPServerSyslog").val(),
+		// TimeLogs = $("#inputIPServerSyslog").val(),
 		Level = "todo";
 
-	xhr = $.ajax({
-		url: "app/Desktop/Root/php/gn.ConfigSyslogClient.php",
-		type: "post",
-		data: ('ServerSyslog='+ServerSyslog+'&ClientSyslog='+ClientSyslog+'&Level='+Level),
-		success: function(data){
-			console.log("Respuesta: "+data);
-		}
-	});
+	if (ClientSyslog != "" || ServerSyslog != "") {
+		$.ajax({
+			url: "app/Desktop/Root/php/gn.ConfigSyslogClient.php",
+			type: "post",
+			data: ('ServerSyslog='+ServerSyslog+'&ClientSyslog='+ClientSyslog+'&Level='+Level),
+			success: function(data){
+				console.log("Respuesta: "+data);
+			}
+		});
+	} else {
+		// $("#BtnHiddenNotifyGNError").click();
+		console.log("Rellenar campos");
+	}
 });
+
+/*$("#BtnHiddenNotifyGNError").click(function(){
+	$("#title_sm").val("Configuración de Syslog");
+	$("#content_sm").val("Por favor, rellene los campos!");
+	
+	setTimeout(function(){
+		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-error");
+	}, 50);
+});
+
+$("#BtnHiddenNotifyACLMOk").click(function(){
+	$("#title_sm").val("Recolectores de Logs");
+	$("#content_sm").val("¡Estupendo, configuración realizada con éxito!");
+	
+	setTimeout(function(){
+		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-success");
+	}, 50);
+});*/
 
 $("#btnSaveSettingsServer").click(function(){
 	var IP = $("#IPServerSyslog").val();

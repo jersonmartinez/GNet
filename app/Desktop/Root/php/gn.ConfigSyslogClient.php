@@ -17,7 +17,6 @@
     $CN->ConnectDB($H, $U, $P, $D, $X);
     
     echo $CN->ConfigSyslogClient($ServerSyslog);
-    echo "configuracion realizada";
 
     ##########################################
 

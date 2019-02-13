@@ -11,6 +11,8 @@
 <input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenNotifyACLMOk" />
 <input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenNotifyACLMFail" />
 <input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenNotifyACLMError" />
+<!-- <input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenNotifyGLError" />
+<input type="hidden" class="notification" data-note-stack="stack_bottom_right" data-note-style="success" id="BtnHiddenNotifyGLSuccess" /> -->
 
 <?php
   #Load Windows Modals
