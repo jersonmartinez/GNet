@@ -32,6 +32,8 @@
 
 <div class="container_platform">
 
+    
+
     <style type="text/css">
             
         .box-wrap::after {
@@ -67,7 +69,7 @@
                 <!-- Create Panel with required unique ID -->
                 <div class="panel" id="pUniquea_GNet" style="background-color: transparent;">
                     <div class="panel-body AdminPanel_GNet_PanelBody" style="border: none;">
-                        <h1 class="gnet_heart" onselectstart="return false" style="text-shadow: 1px 2px 3px #a89e9e; font-family: 'Berkshire Swash', cursive; text-align: center; margin: 150px auto; font-size: 150px;">GNet</h1>
+                        <h1 class="gnet_heart" onselectstart="return false" style="text-shadow: 1px 2px 3px #a89e9e; font-family: 'Berkshire Swash', cursive; text-align: center; margin: 100px auto; font-size: 100px;">GNet</h1>
                     </div>
                 </div>
             </div>
@@ -145,7 +147,7 @@
             <div class="col-md-12">
 
                 <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUniquewddd_TrlzdfdfgackingNssedtworks">
+                <div class="panel" id="pUniquewddd_TrlzdfdgackingNssedtworks">
                     <div class="panel-heading">
 
                         <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
@@ -157,8 +159,6 @@
                             <button type="button" id="btn_tracking_processes" class="btn btn-dark btn_tracking_device" action_selection="processes" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="glyphicon glyphicon-tasks"></i> Procesos</button>
                             <button type="button" id="btn_tracking_scanning" class="btn btn-dark btn_tracking_device" action_selection="scanning" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="glyphicon glyphicon-fire"></i> Escanear</button>
                             <button type="button" id="btn_tracking_properties" class="btn btn-dark btn_tracking_device" action_selection="properties" onclick="javascript: getDataSelection(this);" disabled="disabled"><i class="fa fa-desktop"></i> Propiedades</button>
-                            <!-- <button type="button" id="btn_tracking_b2" class="btn btn-dark btn_tracking_device" disabled="disabled">Consola</button> -->
-                            <!-- <button type="button" id="btn_tracking_b3" class="btn btn-dark btn_tracking_device" disabled="disabled">Historial</button> -->
 
                             <button type="button" class="btn btn-primary ladda-button progress-button btn_action_tn_effect" data-style="expand-right">
                                 <span class="ladda-label btn_action_tn"><i class="fa fa-magic"></i> Rastrear </span>

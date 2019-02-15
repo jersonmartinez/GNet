@@ -141,7 +141,6 @@
                                 <tr><td style="text-align: center;"><span class="fa fa-meh-o"></span> Información no disponible</td></tr>
                             <?php
                         }
-                        // echo "Linux: ", $OSLinux, " | Windows: ", $OSWindows, " | Android: ", $OSAndroid;
                     ?>
                 </table>
             </div>

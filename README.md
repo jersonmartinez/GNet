@@ -70,7 +70,7 @@ Monitorización sobre los recursos del servidor web actual.
 * Procesos
     * Todo los procesos inciados, expulsando información tal como: `PID`, `Nombre`, `CPU`, `Memoria`, `Tiempo`. 
 
-![My Server 1](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer1.JPG)
+![Monitoring](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Monitoring/1.PNG)
 
 Información sobre las conexiones de red
 
@@ -81,7 +81,7 @@ Información sobre las conexiones de red
     * Puertos abiertos: `Puerto`, `Protocolo`, `Tipo`, `Proceso`.
     * Estadísticas de red sobre los protocolos: `IP`, `TCP`, `UDP`.
 
-![My Server 2](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer2.JPG)
+![Monitoring](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Monitoring/2.PNG)
 
 Información sobre las conexiones de red
 
@@ -91,8 +91,6 @@ Información sobre las conexiones de red
     * Servidor web y sitios virtuales: `Sitio Virtual`, `Nombre del dominio`, `Estado`.
     * Monitorización del servicio web: `Número de accesos`, `Conexiones establecidas`, `Conexiones en espera`, etc. 
 
-![My Server 3](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/MyServer3.JPG)
-
 Monitorización y sondeo de los dispositivos interconectados en la infraestructura de red.
 
 **`Breve descripción`**
@@ -100,8 +98,9 @@ Monitorización y sondeo de los dispositivos interconectados en la infraestructu
     * Tracking Network (Aplica un sondeo en la red para encontrar dispositivos), sondeando en: `Redes privadas`, `Redes públicas`; refiriéndose así, a autodescubrir dentro de las posibilidades de los adaptadores que tenga instalado el sistema. 
     * Topología: `Autogenerada`, `Configurable`, `Usabilidad con clusters de red`, etc. 
     * Capacidad de monitorización: `Información completa` (similar a la información que se obtiene de la monitorización del servidor web), `Red`, `Procesos`, `Propiedades del equipo`, etc. 
+    * Capacidad de realizar un sondeo normal y un sondeo profundo, capaz de encontrar host con distintos tipos de OS, igualmente si se tiene un Firewall. Obtiene datos cómo: `Dirección MAC`, `Sistema Operativo`, `Estado del dispositivo`, ``Puertos abiertos`, `Enumeración CPE`, `Paquetes transitados` y `Saltos y tiempos de escaneo`.
 
-![Topology](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Topology.JPG)
+![TrackingNetwork](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/TrackingNetwork/6.PNG)
 
 Gestión de dispositivos que han sido almacenados en el banco de datos.
 
@@ -110,10 +109,42 @@ Gestión de dispositivos que han sido almacenados en el banco de datos.
     * Vista gráfica y selección: `Menú contextual`
     * Clasificación de dispositivos: `Enrutadores `, `Conmutadores  `, `Dispositivoss finales`, etc. 
     * Capacidad de monitorización: `Información completa` (similar a la información que se obtiene de la monitorización del servidor web), `Red`, `Procesos`, `Propiedades del equipo`, etc. 
-    * Verificación de actividad: `PING`, `TCP`, `UDP`, `SSH`.
+    * Verificación de actividad: `ICMP`, `TCP`, `UDP`, `SSH`.
     * Configurar alias en los dispositivos.
 
-![Machines](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Machines.JPG)
+![ManagementDevices](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementDevices/GNet%20-%20Gesti%C3%B3n%20de%20dispositivos.PNG)
+
+Gestión de eventos en los dispositivos asignados a escuchar.
+
+**`Breve descripción`**
+* Gestión de eventos: 
+    * Vista gráfica: `Menú de selección de severidad`
+    * Filtrado por severidad: `Información `, `Aviso`, `Advertencia`, `Error`, `Crítico`, `Alerta`, `Emergencia`.
+    * Obtienes gráficos de eventos.
+    * Cantidad de eventos recibidos por cada dispositivo.
+
+![ManagementDevices](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementEvents/2.PNG)
+
+Adjunto un screenshot sobre el gráfico de eventos gestionados: 
+
+![ManagementDevices](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementEvents/3.PNG)
+
+Finalmente, tenemos una utilidad interesante; y es precisamente la de gestionar VPS (Virtual Private Server). Siguiendo la misma idea de monitorización y control del primer apartado a los dispositivos.
+
+**`Breve descripción`**
+* Gestión de eventos: 
+    * Sobre el uso de recursos
+    * Obtiene gráficos que representan: `Estado de la memoria`, `Área de intercambio (Swap)`, `Uso de disco`, `Uso de la CPU`.
+    * Obtiene información básica
+    * `Información básica del sistema`, `sesiones iniciadas`, `Estado de batería`.
+    * Procesos
+    * Todo los procesos inciados, expulsando información tal como: `PID`, `Nombre`, `CPU`, `Memoria`, `Tiempo`. 
+
+![VPS](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/VPS/1.PNG)
+
+Obteniendo el resultado final: 
+
+![VPS](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/VPS/2.PNG)
 
 Estas han sido algunas represenaciones gráficas que se muestran ante el SysAdmin o DevOps o el respectivo responsable de estar al tanto de la infraestructura a cargo de GNet.
 

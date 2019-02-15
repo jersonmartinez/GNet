@@ -79,7 +79,6 @@ $("#dropdown-allServices").click(function(){
 });
 
 $("#dropdown-Network").click(function(){
-	// $("#retardo_temporal").val("");
 	if ($("#SwitchNetwork").val() == "Off"){
 		$("#title_sm").val("Rastreo activado");
 		$("#content_sm").val("Modo profundo...");

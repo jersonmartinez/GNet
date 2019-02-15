@@ -15,10 +15,10 @@
         });
       },
       steps: [{
-        element: "body",
+        element: ".gnet_heart",
         title: "Bienvenido a <b>GNet</b>",
         content: "<b>GNet</b> es un sistema de control y monitorización de dispositivos en infraestructuras de redes. <br/><br/>Realiza un recorrido por la plataforma y conoce las impresionantes utilidades que te provee. <br/><br/>Presiona <b>Next</b> para continuar, <b>Prev</b> para retornar y <b>End Tour</b> para finalizar.",
-        placement: 'top',
+        placement: 'bottom',
 		   delay: 1000,
         // backdrop: true,
         onNext: function(tour){

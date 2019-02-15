@@ -1,0 +1,381 @@
+<?php
+/**************************************************************************************************************
+
+    NAME
+        ProcessList.phpclass
+
+    DESCRIPTION
+        A platform-independent class for process list retrieval.
+
+    AUTHOR
+        Christian Vigh, 11/2015.
+
+    HISTORY
+    [Version : 1.0]    [Date : 2015/11/30]     [Author : CV]
+        Initial version.
+
+ **************************************************************************************************************/
+
+
+/*==============================================================================================================
+
+    ProcessList class -
+        Retrieves the running processes.
+
+  ==============================================================================================================*/
+class  ProcessList		implements	\ArrayAccess, \Countable, \IteratorAggregate
+   {
+	// Process list (array of Process objects)
+	protected		$Processes ;
+
+	// True if we are running on a Windows platform
+	protected		$IsWindows ;
+
+
+	/*--------------------------------------------------------------------------------------------------------------
+	 
+	    Constructor -
+		Instanciate a ProcessList object and optionally get the running process list if the $load parameter is
+		true.
+
+	 *-------------------------------------------------------------------------------------------------------------*/
+	public function  __construct  ( $load = true )
+	   {
+		if  ( ! strncasecmp ( php_uname ( 's' ), 'windows', 7 ) )
+			$this -> IsWindows	=  true ;
+		else
+			$this -> IsWindows	=  false ;
+
+		if  ( $load )
+			$this -> Refresh ( ) ;
+	    }
+
+
+	/*--------------------------------------------------------------------------------------------------------------
+	 
+	    GetProcess -
+		Gets a process entry by its process id.
+
+	 *-------------------------------------------------------------------------------------------------------------*/
+	public function  GetProcess ( $id )
+	   {
+		foreach  ( $this -> Processes  as  $process )
+		   {
+			if  ( $process -> ProcessId  ==  $id )
+				return ( $process ) ;
+		    }
+
+		return ( false ) ;
+	    }
+
+
+	/*--------------------------------------------------------------------------------------------------------------
+	 
+	    GetProcessByName -
+		Gets a process entry by its name.
+		Returns an array since it can match several running processes.
+
+	 *-------------------------------------------------------------------------------------------------------------*/
+	public function  GetProcessByName ( $name )
+	   {
+		$result		=  [] ;
+
+
+		foreach  ( $this -> Processes  as  $process )
+		   {
+			if  ( $process -> Command  ==  $name )
+				$result []	=  $process ;
+		    }
+
+		return ( $result ) ;
+	    }
+
+
+	/*--------------------------------------------------------------------------------------------------------------
+	 
+	    GetChildren -
+		Gets process children.
+
+	 *-------------------------------------------------------------------------------------------------------------*/
+	public function  GetChildren ( $id )
+	   {
+		$result		=  [] ;
+
+
+		foreach  ( $this -> Processes  as  $process )
+		   {
+			if  ( $process -> ParentProcessId  ==  $id )
+				$result []	=  $process ;
+		    }
+
+		return ( $result ) ;
+	    }
+
+
+	/*--------------------------------------------------------------------------------------------------------------
+	 
+	    Refresh -
+		Refreshes the process list.
+
+	 *-------------------------------------------------------------------------------------------------------------*/
+	public function  Refresh ( )
+	   {
+		$this -> Processes	=  [] ;
+
+		if  ( $this -> IsWindows )
+			$this -> WindowsPs ( ) ;
+		else
+			$this -> UnixPs ( ) ;
+	    }
+
+
+	/*--------------------------------------------------------------------------------------------------------------
+	 
+		Interfaces implementations.
+
+	 *-------------------------------------------------------------------------------------------------------------*/
+
+	// Countable interface
+	public function  Count ( )
+	   { return ( count ( $this -> Processes ) ) ; }
+
+	// IteratorAggregate interface 
+	public function  getIterator ( )
+	   { return ( new \ArrayIterator ( $this -> Processes ) ) ; }
+
+	// ArrayAccess interface
+	public function  offsetExists ( $offset )
+	   { return ( $offset  >=  0  &&  $offset  <  count ( $this -> Processes ) ) ; }
+
+	public function  offsetGet ( $offset )
+	   { return ( $this -> Processes [ $offset ] ) ; }
+
+	public function  offsetSet ( $offset, $member ) 
+	   { throw ( new \Exception ( "Unsupported operation.") ) ; }
+
+	public function  offsetUnset ( $offset )
+	   { throw ( new \Exception ( "Unsupported operation.") ) ; }
+
+
+	/*--------------------------------------------------------------------------------------------------------------
+	 
+		Protected functions.
+
+	 *-------------------------------------------------------------------------------------------------------------*/
+
+	// WindowsPs -
+	//	Retrieves the process list on Windows platforms.
+	protected function  WindowsPs ( )
+	   {
+		$wmi		=  new Wmi ( ) ;
+		$processes	=  $wmi -> QueryInstances ( 'Win32_Process' ) ;
+
+		foreach ( $processes as $winprocess )
+		   {
+			$winprocess -> GetOwner ( $user, $domain ) ;
+			$user		=  "$domain/$user" ;
+			$pid		=  $winprocess -> ProcessId ;
+			$ppid		=  $winprocess -> ParentProcessId ;
+			$tty		=  '?' ;
+
+			$ctime		=  $winprocess -> CreationDate ;
+			$start_time	=  substr ( $ctime,  0, 4 ) . '-' .	
+					   substr ( $ctime,  4, 2 ) . '-' .
+					   substr ( $ctime,  6, 2 ) . ' ' .
+					   substr ( $ctime,  8, 2 ) . ':' .
+					   substr ( $ctime, 10, 2 ) . ':' .
+					   substr ( $ctime, 12, 2 ) ;
+			$seconds	=  $winprocess -> KernelModeTime + $winprocess -> UserModeTime ;
+			$seconds        =  ( integer ) ( $seconds / ( 10 * 1000 * 1000 ) ) ;
+			$hours		=  ( integer ) ( $seconds / 3600 ) ;
+			$seconds       -=  $hours * 3600 ;
+			$minutes	=  ( integer ) ( $seconds / 60 ) ;
+			$seconds       -=  $minutes * 60 ;
+
+			$process			=  new Process ( $winprocess -> CommandLine, $winprocess -> Caption, $this -> IsWindows ) ;
+			$process -> User		=  $user ;
+			$process -> ProcessId		=  $pid ;
+			$process -> ParentProcessId	=  $ppid ;
+			$process -> StartTime		=  $start_time ;
+			$process -> CpuTime		=  sprintf ( '%02d', $hours ) . ':' .
+							   sprintf ( '%02d', $minutes ) . ':' .
+							   sprintf ( '%02d', $seconds ) ;
+			$process -> Tty			=  $tty ;
+
+			$this -> Processes []		=  $process ;
+		    }
+	    }
+
+
+	// UnixPs -
+	//	Retrieves the process list on Unix platforms.
+	protected function  UnixPs ( )
+	   {
+		exec ( "ps -aefwwww", $output, $status ) ;
+		$count		=  count ( $output ) ;
+
+		for  ( $i = 1 ; $i  <  $count ; $i ++ )
+		   {
+			$line		=  trim ( $output [$i] ) ;
+			$columns	=  String::SplitFields ( $line, 6 ) ;
+			$process	=  new  Process ( $columns [7], null, $this -> IsWindows ) ;
+
+			if  ( preg_match ( '/\d+:\d+/', $columns [4] ) )
+				$start_time	=  date ( 'Y-m-d H:i:s', strtotime ( $columns [4] ) ) ;
+			else
+				$start_time	=  date ( 'Y-m-d', strtotime ( $columns [4] ) ) . ' ??:??:??' ;
+			
+			$process -> User		=  $columns [0] ;
+			$process -> ProcessId		=  $columns [1] ;
+			$process -> ParentProcessId	=  $columns [2] ;
+			$process -> StartTime		=  $start_time ;
+			$process -> CpuTime		=  $columns [5] ;
+			$process -> Tty			=  $columns [6] ;
+
+			$this -> Processes []		=  $process ;
+		    }
+	    }
+    }
+
+
+
+/*==============================================================================================================
+
+    Process -
+        Holds information about a given process.
+
+  ==============================================================================================================*/
+class  Process			// extends  Object
+   {
+	// Process-related data
+	public		$User ;
+	public		$ProcessId ;
+	public		$ParentProcessId ;
+	public		$StartTime ;
+	public		$CpuTime ;
+	public		$Tty ;
+	// Command-line related properties
+	public		$Command		=  '' ;		// Command name, without its path
+	public		$CommandLine ;				// Full command line
+	public		$Title ;				// Caption on Windows, process name on Unix
+	public		$Argv ;					// An argv array, with argv[0] being the command path
+
+
+	public function  __construct ( $command, $process_name = false, $is_windows = false )
+	   {
+		$this -> Argv		=  $this -> ToArgv ( $command, false, $is_windows ) ;
+
+		if  ( count ( $this -> Argv ) )
+			$this -> Command	=  pathinfo ( $this -> Argv [0], PATHINFO_FILENAME ) ;
+
+		$this -> CommandLine	=  $command ;
+		$this -> Title		=  ( $process_name ) ?  $process_name : $this -> Command ;
+	    }
+
+
+	/*--------------------------------------------------------------------------------------------------------------
+	 
+	    NAME
+	        ToArgv - Converts a command-line string to an argv array.
+	 
+	    PROTOTYPE
+	        $argv	=  Convert::ToArgv ( $str, $argv0 = false ) ;
+	 
+	    DESCRIPTION
+	        Converts the specified string, which represents a command line, to an argv array.
+		Quotes can be used to protect individual arguments from being split and are removed from the argument.
+	 
+	    PARAMETERS
+	        $str (string) -
+	                Command-line string to be parsed.
+
+		$argv0 (string) -
+			Normally, the first element of a $argv array is the program name. $argv0 allows to specify a
+			program name if the supplied command-line contains only arguments.
+	 
+	    RETURN VALUE
+	        Returns an array containing the arguments.
+	 
+	 *-------------------------------------------------------------------------------------------------------------*/
+	protected function  ToArgv ( $str, $argv0 = false, $is_windows = false )
+	   {
+		$argv	=  [] ;
+
+		if  ( $argv0 )
+			$argv []	=  $argv0 ;
+
+		$length		=  strlen ( $str ) ;
+		$in_quote	=  false ;
+		$param		=  '' ;
+
+		// Loop through input string characters
+		for  ( $i = 0 ; $i  <  $length ; $i ++ )
+		   {
+			$ch	=  $str [$i] ;
+
+			switch  ( $ch )
+			   {
+				// Backslash : escape sequence - only interpret a few special characters
+				case	'\\' :
+					if  ( ! $is_windows  &&  $i + 1  <  $length )
+					   {
+						$ch2	=  $str [++$i] ;
+
+						switch ( $ch2 )
+						   {
+							case	'n'	: $param  .=  "\n" ; break ;
+							case	't'	: $param  .=  "\t" ; break ;
+							case	'r'	: $param  .=  "\r" ; break ;
+							case	'v'	: $param  .=  "\v" ; break ;
+							default		: $param  .=  $ch2 ;
+						    }
+					    }
+					else
+						$param	.=  '\\' ;
+
+					break ;
+
+				// Space - this terminates the current parameter, if we are not in a quoted string
+				case	' ' :
+				case	"\t" :
+				case	"\n" :
+				case	"\r" :
+					if  ( $in_quote )
+						$param	.=  $ch ;
+					else if  ( $param ) 
+					   {
+						$argv []	=  $param ;
+						$param		=  '' ;
+					    }
+
+					break ;
+
+				// A quote - Either the start or the end of a quoted value
+				case	'"' :
+				case	"'" :
+					if  ( $in_quote )		// We started a quoted string
+					   {
+						if  ( $in_quote  ==  $ch )	// This quoted string started with the same character as the current one
+							$in_quote	=  false ;
+						else				// This quoted string started with a different character
+							$param		.=  $ch ;
+					    }
+					else				// We are not in a quoted string, so say that one quoted string has started
+						$in_quote	=  $ch ;
+
+					break ;
+
+				// Other : just append the current character to the current parameter
+				default :
+					$param		.=  $ch ;
+			    }
+		    }
+
+		// Check for last parameter
+		if  ( $param )
+			$argv []	=  $param ;
+
+		// All done, return
+		return ( $argv ) ;
+	    }
+    }
