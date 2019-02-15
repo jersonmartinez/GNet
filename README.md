@@ -98,7 +98,7 @@ Monitorización y sondeo de los dispositivos interconectados en la infraestructu
     * Tracking Network (Aplica un sondeo en la red para encontrar dispositivos), sondeando en: `Redes privadas`, `Redes públicas`; refiriéndose así, a autodescubrir dentro de las posibilidades de los adaptadores que tenga instalado el sistema. 
     * Topología: `Autogenerada`, `Configurable`, `Usabilidad con clusters de red`, etc. 
     * Capacidad de monitorización: `Información completa` (similar a la información que se obtiene de la monitorización del servidor web), `Red`, `Procesos`, `Propiedades del equipo`, etc. 
-    * Capacidad de realizar un sondeo normal y un sondeo profundo, capaz de encontrar host con distintos tipos de OS, igualmente si se tiene un Firewall. Obtiene datos cómo: `Dirección MAC`, `Sistema Operativo`, `Estado del dispositivo`, ``Puertos abiertos`, `Enumeración CPE`, `Paquetes transitados` y `Saltos y tiempos de escaneo`.
+    * Capacidad de realizar un sondeo normal y un sondeo profundo, capaz de encontrar host con distintos tipos de OS, igualmente si se tiene un Firewall. Obtiene datos cómo: `Dirección MAC`, `Sistema Operativo`, `Estado del dispositivo`, `Puertos abiertos`, `Enumeración CPE`, `Paquetes transitados` y `Saltos y tiempos de escaneo`.
 
 ![TrackingNetwork](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/TrackingNetwork/6.PNG)
 
