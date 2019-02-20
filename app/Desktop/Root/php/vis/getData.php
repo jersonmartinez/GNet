@@ -104,7 +104,7 @@
                 $RMValue_Alias = !empty($rm['alias']) ? $rm['alias'] : $rm['ip_host'];
                 $RMValue_Addr = $rm['ip_host'];
 
-                if ($CN->getMyIPServer() == $rm['ip_host']){
+                if ($CN->getEachAdapterIP() == $rm['ip_host']){
                     ?>
                         nodes.push({id: <?php echo $RMValue; ?>, label: "<?php echo $RMValue_Alias; ?>", ip_addr: "<?php echo $RMValue_Addr; ?>", image: DIR + 'servers/server1.png', shape: 'image'});
                     <?php
@@ -175,6 +175,21 @@
                     }
                 }
             }
+        ?>
+
+        <?php
+            $getIPRouterLocalVals = $CN->getIpRouteLocal();
+
+            // var_dump(explode("\n", trim($getIPRouterLocalVals)));
+
+            $getIPRouterLocalVals = explode("\n", trim($getIPRouterLocalVals));
+            // $IPNetwork = implode("", explode("/", implode("", explode(".", $getIPRouterLocalVals[(count($getIPRouterLocalVals) - 1)]))));
+            $IPNetwork = implode("", explode("/", implode("", explode(".", $getIPRouterLocalVals[(count($getIPRouterLocalVals) - 2)]))));
+            $IPFirstHost = implode("", explode(".", $CN->getIPFirstRouter()));
+            ?>
+                console.log("IP Final: <?php echo $getIPRouterLocalVals[(count($getIPRouterLocalVals) - 2)]; ?> IP ID: <?php echo implode("", explode("/", implode("", explode(".", $getIPRouterLocalVals[(count($getIPRouterLocalVals) - 2)])))); ?> IP Selected: <?php echo $CN->getEachAdapterIP(); ?> IP First host: <?php echo $CN->getIPFirstRouter(); ?> IP ID First Host: <?php echo implode("", explode(".", $CN->getIPFirstRouter())); ?>");
+                edges.push({from: <?php echo $IPNetwork; ?>, to: <?php echo $IPFirstHost; ?>, length: EDGE_LENGTH_SUB});
+            <?php
         ?>
 
         /*Si no se han detectado enrutadores, se agrega uno por omisión indicando que es una LAN*/

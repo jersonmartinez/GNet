@@ -262,12 +262,19 @@
 			return "Okay";
 		}
 
+		public function getEachAdapterIP(){
+			$EachAdapterIP = explode("\n", $this->RunLines("ip route show default | awk '{print $9}' | sed 1d | tr -s '\n' '\n'"));
+			// $EachAdapterIP = explode("\n", shell_exec("ip route show default | awk '{print $9}' | sed 1d"));
+			// return "Count: ". count($EachAdapterIP);
+			return trim($EachAdapterIP[count($EachAdapterIP) - 3]);
+		}
+
 		public function getIPLocalCurrent(){
-			return shell_exec("ip route show default | awk '/default/ {print $3}'");
+			return $this->RunLines("ip route show default | awk '/default/ {print $3}'");
 		}
 
 		public function getMyIPServer(){
-			return shell_exec("ip -4 route get 1.1.1.1 | awk {'print $7'} | tr -d '\n'");
+			return $this->RunLines("ip -4 route get 1.1.1.1 | awk {'print $7'} | tr -d '\n'");
 		}
 
 		public function checkNetwork($ip_net){
@@ -414,6 +421,10 @@
 			return false;
 		}
 
+		public function getIPFirstRouter(){
+			return $this->db_connect->query("SELECT DISTINCT * from ".$this->db_prefix."host WHERE router='1' ORDER BY ip_net ASC LIMIT 1")->fetch_array(MYSQLI_ASSOC)['ip_host'];
+		}
+
 		public function getIPNetFromIPHost($ip_host){
 			return $this->db_connect->query("SELECT DISTINCT * FROM ".$this->db_prefix."host WHERE ip_host='".$ip_host."' LIMIT 1;");
 		}
@@ -509,7 +520,7 @@
 		}
 
 		public function getIpRouteLocal(){
-			return  shell_exec($this->CommandIpRoute);
+			return shell_exec($this->CommandIpRoute);
 		}
 
 		public function getIpRouteRemote($IPHost, $user = "root", $pass = "123"){
