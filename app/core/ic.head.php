@@ -30,7 +30,7 @@
 <link href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/bstour/bootstrap-tour.css" rel="stylesheet" type="text/css"> 
 
 <!-- Para los calendarios... -->
-<!-- <link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datepicker/css/bootstrap-datetimepicker.css"> -->
+<link rel="stylesheet" type="text/css" href="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datepicker/css/bootstrap-datetimepicker.css">
 
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery-1.11.1.min.js"></script>
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_JQ; ?>/jquery_ui/jquery-ui.min.js"></script>

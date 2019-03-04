@@ -102,15 +102,6 @@
 			return true;
 		}
 
-		// Crear job para limpiar la tabla de eventos peridicamente
-		/*public function DeleteEvents(){
-			$job = "CREATE EVENT ON SCHEDULE EVERY 1 DAY STARTS '2019-02-12 12:00:00' DO TRUNCATE TABLE SystemEvents;"; 
-			if ($this->db_connect->query($job)) {
-				return true;
-			}
-		    return false;
-		}*/
-
 		public function ConfigSyslogClient($ServerSyslog){
 			$filename = "ConfigSyslogClient.sh";
 
@@ -163,6 +154,9 @@
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, 'esac');
 			array_push($ActionArray, 'service rsyslog restart');
+			array_push($ActionArray, 'DATE=$(date +%F)');
+			array_push($ActionArray, 'HOUR=$(date +%H:%M:%S)');
+			array_push($ActionArray, 'echo "$DATE,$HOUR"');
 
 			$RL[] = $this->remote_path.$filename." ".$H." ".$D." ".$U." ".$P." ".$Level;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
@@ -1173,6 +1167,30 @@
 	    		return $Lastname->fetch_array(MYSQLI_ASSOC)['lastname'];
 
 	    	return false;
+		}
+
+		// Crear job para limpiar la tabla de eventos peridicamente
+		public function ManagementEvents($date, $hour, $day) {
+			// $ljobs = $this->db_connect->query("SHOW events;");
+			/*$ljobs = "SELECT EVENT_NAME FROM INFORMATION_SCHEMA.EVENTS WHERE EVENT_NAME='limpiar_tabla';";
+		    $job = $this->db_connect->query($ljobs)->fetch_array(MYSQLI_ASSOC)['EVENT_NAME'];*/
+		    @$this->db_connect->query("DROP EVENT limpiar_tabla;");
+		    $cjob = "CREATE EVENT limpiar_tabla ON SCHEDULE EVERY ".$day." MINUTE STARTS '".$date." ".$hour."' DO INSERT INTO test VALUES ('Evento 1', NOW());";
+	    		if ($this->db_connect->query($cjob)) {
+	    			echo "OK";
+	    		} else {
+	    			echo "ERROR";
+	    		}
+			/*if (!empty($ljobs)) {
+	    		
+			} else {
+				$cjob = "CREATE EVENT limpiar_tabla ON SCHEDULE EVERY ".$day." MINUTE STARTS '".$date." ".$hour."' DO INSERT INTO test VALUES ('Evento 1', NOW());";
+	    		if ($this->db_connect->query($cjob)) {
+	    			echo "OK";
+	    		} else {
+	    			echo "ERROR";
+	    		}
+			}*/
 		}
 
 		// Obtener datos de la tablas SystemEvents 

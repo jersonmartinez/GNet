@@ -269,6 +269,24 @@ $("#BtnHiddenNotifyACLMError").click(function(){
 	}, 50);
 });
 
+$("#BtnHiddenNotifyGLError").click(function(){
+	$("#title_sm").val("Configuración de Syslog");
+	$("#content_sm").val("Por favor, rellene los campos!");
+	
+	setTimeout(function(){
+		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-error");
+	}, 50);
+});
+
+/*$("#BtnHiddenNotifyACLMOk").click(function(){
+	$("#title_sm").val("Recolectores de Logs");
+	$("#content_sm").val("¡Estupendo, configuración realizada con éxito!");
+	
+	setTimeout(function(){
+		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-success");
+	}, 50);
+});*/
+
 function LoadPNotifyDeviceManagement(condition){
 	if (condition){
 		$("#BtnHiddenDeviceManagementInit").click();
@@ -1491,28 +1509,12 @@ $("#btnSaveSettings").click(function(){
 			}
 		});
 	} else {
-		// $("#BtnHiddenNotifyGNError").click();
+		$("#BtnHiddenNotifyGLError").click();
 		console.log("Rellenar campos");
 	}
 });
 
-/*$("#BtnHiddenNotifyGNError").click(function(){
-	$("#title_sm").val("Configuración de Syslog");
-	$("#content_sm").val("Por favor, rellene los campos!");
-	
-	setTimeout(function(){
-		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-error");
-	}, 50);
-});
 
-$("#BtnHiddenNotifyACLMOk").click(function(){
-	$("#title_sm").val("Recolectores de Logs");
-	$("#content_sm").val("¡Estupendo, configuración realizada con éxito!");
-	
-	setTimeout(function(){
-		$(".ui-pnotify-container").attr("class", "alert ui-pnotify-container alert-success");
-	}, 50);
-});*/
 
 $("#btnSaveSettingsServer").click(function(){
 	var IP = $("#IPServerSyslog").val();

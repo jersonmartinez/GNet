@@ -16,14 +16,19 @@
     $CN = new ConnectSSH($ClientSyslog, "root", "123");
     $CN->ConnectDB($H, $U, $P, $D, $X);
     
-    echo $CN->ConfigSyslogClient($ServerSyslog);
+    $CN->ConfigSyslogClient($ServerSyslog);
 
     ##########################################
 
     $CNS = new ConnectSSH($ServerSyslog, "root", "123");
-    
     if ($CNS->ConfigSyslogServer($H, $D, $U, $P, $Level)) {
-        echo "Ok";
+    /*$DateTime = explode(",", $CNS->ConfigSyslogServer($H, $D, $U, $P, $Level));
+      
+        // echo $CN->ManagementEvents($DateTime[0], $DateTime[1], 2);
+        foreach ($DateTime as $value) {
+            echo $value."";
+        }*/
+        echo " OK";
     } else {
         echo "Fail";
     }

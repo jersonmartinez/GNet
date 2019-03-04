@@ -37,7 +37,7 @@
 <!-- Ordenar espacios (dispositivos en la filosofia del proyecto) -->
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/mixitup/jquery.mixitup.min.js"></script>
 
-<!-- <script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script> -->
+<script src="app/controller/src/plugins/vendor/plugins/datepicker/js/bootstrap-datetimepicker.min.js"></script>
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/datatables/media/js/jquery.dataTables.min.js"></script>
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/highlight/highlight.pack.js"></script> 
 
@@ -45,7 +45,7 @@
 <script src="<?php echo PDS_SRC_PLUGINS_ASSETS_JS; ?>/demo/widgets.js"></script>
 
 <!-- FullCalendar Plugin + moment Dependency -->
-<!-- <script src="app/controller/src/plugins/vendor/plugins/fullcalendar/lib/moment.min.js"></script> -->
+<script src="app/controller/src/plugins/vendor/plugins/fullcalendar/lib/moment.min.js"></script>
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/fullcalendar/fullcalendar.min.js"></script>
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/typeahead/typeahead.bundle.min.js"></script>
 <script src="<?php echo PDS_SRC_PLUGINS_VENDOR_PLUGINS; ?>/bstour/bootstrap-tour.js"></script>

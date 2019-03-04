@@ -20,9 +20,15 @@
     $Emer   = $CN->getTotalEmer();
 
     $Hosts  = $CN->getTotalHosts();
+    // $Ljobs  = $CN->DeleteEvents();
 ?>
 
 <div class="panel" id="spy3">
+    <?php
+
+        echo $CN->ManagementEvents("2019-02-16", "23:54:00", 2);
+        
+    ?>
     <div class="panel-body pn">
         <!-- <table class="table footable" data-page-navigation=".pagination" data-page-size="8"> -->
         <table class="table" data-paging="true">
