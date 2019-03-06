@@ -14,82 +14,53 @@
             </div>
 
             <div class="modal-body">
-
                 <div class="row Syslog">
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <!-- <input class="form-control" id="inputIPClientSyslog" type="text" placeholder="* Dirección IP del host" style="height: auto; width: 50%;">
-                            <input class="form-control" id="inputIPServerSyslog" type="text" placeholder="* Dirección IP del servidor" style="height: auto; width: 50%;"> -->
-                            <!-- <span class="input-group-btn">
-                                <button class="btn btn-default" type="button"><i class="fa fa-desktop"></i></button>
-                            </span> -->
-                            <span class="input-group-addon">
-                                <i class="fa fa-desktop"></i>
-                            </span>
-                            <input type="text" id="inputIPClientSyslog" name="inputIPClientSyslog" class="form-control" title="IP: Cliente Syslog" placeholder="* Dirección IP del host"/>
-                        </div>
-                    </div><!-- /.col-lg-6 -->
-                    <div class="col-lg-6">
-                        <div class="input-group">
-                            <!-- <div class="input-group-btn"> -->
-                                <!-- <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button"><i class="fa fa-database"></i></button>
-                                </span> -->
-                                <span class="input-group-addon">
-                                    <i class="fa fa-database"></i>
-                                </span>
-                                <input type="text" id="inputIPServerSyslog" name="inputIPServerSyslog" class="form-control" title="IP: Servidor Syslog" placeholder="* Dirección IP del servidor"/>
-                                <!-- <button type="button" class="btn btn-default dropdown-toggle ddt_SelectLevelSeverity" data-toggle="dropdown" aria-expanded="false">* Severidad<span class="caret"></span></button>
-                                <ul class="dropdown-menu" role="menu">
-                                    <li id="ddt_SelectSeverityOptionEmer"><a href="#">Emergencia </a></li>
-                                    <li id="ddt_SelectSeverityOptionAlert"><a href="#">Alerta </a></li>
-                                    <li id="ddt_SelectSeverityOptionCrit"><a href="#">Crítico </a></li>
-                                    <li id="ddt_SelectSeverityOptionErr"><a href="#">Error </a></li>
-                                    <li id="ddt_SelectSeverityOptionWarn"><a href="#">Advertencia </a></li>
-                                    <li id="ddt_SelectSeverityOptionNotice"><a href="#">Aviso </a></li>
-                                    <li id="ddt_SelectSeverityOptionInfo"><a href="#">Información </a></li>
-                                    <li id="ddt_SelectSeverityOptionDebug"><a href="#">Depuración </a></li>
-                                    <li class="divider"></li>
-                                    <li id="ddt_SelectSeverityOptionTodos"><a href="#">Todos </a></li>
-                                </ul> -->
-                            <!--</div> /btn-group -->
-                        </div><!-- /input-group -->
-                    </div><!-- /.col-lg-6 -->
-                </div><!-- /.row -->
-                <br>
-                <div class="row">
-                    <!-- Este codigo comentado se revisará -->
                     <div class="col-lg-12">
                         <div class="form-group">
-                            <div class="col-lg-6">
-                                <label class="control-label">Programar tarea para limpiar eventos periódicamente</label>
+                            <div class="col-lg-12">
                                 <div class="input-group">
                                     <span class="input-group-addon">
-                                        <i class="fa fa-level-up"></i>
+                                        <i class="fa fa-database"></i>
                                     </span>
-                                    <input id="spinner1" class="form-control ui-spinner-input" name="spinner" value="15" />
-                                </div>
-                            </div>                        
-                            <div class="col-lg-6">
-                                <div id="datetimepicker3">
-                                    <input type="text" class="form-control" style="max-width: 250px;">
+                                    <input type="text" id="inputIPServerSyslog" name="inputIPServerSyslog" class="form-control" title="IP: Servidor Syslog" placeholder="* Dirección IP del servidor"/>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="col-lg-12">
-                        <label for="spinner1" class="col-lg-6 control-label">Días de respaldo</label>
-                        <div class="col-lg-6">
-                            <div class="input-group">
-                                <span class="input-group-addon">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                                <input id="spinner1" class="form-control ui-spinner-input" name="spinner" value="1" />
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group">
+                            <div class="col-lg-6">
+                                <label class="control-label">Programar tarea para eliminar eventos periódicamente</label>
+                                <br>
+                                <label class="control-label">¿Cada cuanto se ejecuturá? (En dias):</label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-level-up"></i>
+                                    </span>
+                                    <input id="spinner1" class="form-control ui-spinner-input inputDayJob" name="spinner" value="1" />
+                                </div>
+                                <hr>
+                                <label class="control-label"><span>Agregar clientes Syslog</span></label>
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-desktop"></i>
+                                    </span>
+                                    <input type="text" id="inputIPClientSyslog" name="inputIPClientSyslog" class="form-control" title="IP: Cliente Syslog" placeholder="* Dirección IP del host"/>
+                                </div>
+                                <br>
+                                <button type="button" class="btn btn-default btn-primary" id="btnAddSyslogClient" style="width: 100%;">Agregar equipo</button>
+                            </div>                        
+                            <div class="col-lg-6">
+                                <div id="datetimepicker3">
+                                    <input type="text" class="form-control" style="max-width: 250px;" id="inputDateTimeJob" name="inputDateTimeJob">
+                                </div>
                             </div>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
-
             </div>
             <br>
             <div class="modal-footer">
@@ -103,7 +74,7 @@
 <script type="text/javascript">
   jQuery(document).ready(function() {
         $('#datetimepicker3').datetimepicker({
-        defaultDate: "16/2/2019",
+        defaultDate: "03/13/2019",
         inline: true,
         });
 

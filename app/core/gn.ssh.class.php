@@ -154,9 +154,6 @@
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, 'esac');
 			array_push($ActionArray, 'service rsyslog restart');
-			array_push($ActionArray, 'DATE=$(date +%F)');
-			array_push($ActionArray, 'HOUR=$(date +%H:%M:%S)');
-			array_push($ActionArray, 'echo "$DATE,$HOUR"');
 
 			$RL[] = $this->remote_path.$filename." ".$H." ".$D." ".$U." ".$P." ".$Level;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
@@ -1169,28 +1166,16 @@
 	    	return false;
 		}
 
-		// Crear job para limpiar la tabla de eventos peridicamente
-		public function ManagementEvents($date, $hour, $day) {
-			// $ljobs = $this->db_connect->query("SHOW events;");
-			/*$ljobs = "SELECT EVENT_NAME FROM INFORMATION_SCHEMA.EVENTS WHERE EVENT_NAME='limpiar_tabla';";
-		    $job = $this->db_connect->query($ljobs)->fetch_array(MYSQLI_ASSOC)['EVENT_NAME'];*/
-		    @$this->db_connect->query("DROP EVENT limpiar_tabla;");
-		    $cjob = "CREATE EVENT limpiar_tabla ON SCHEDULE EVERY ".$day." MINUTE STARTS '".$date." ".$hour."' DO INSERT INTO test VALUES ('Evento 1', NOW());";
-	    		if ($this->db_connect->query($cjob)) {
-	    			echo "OK";
-	    		} else {
-	    			echo "ERROR";
-	    		}
-			/*if (!empty($ljobs)) {
-	    		
-			} else {
-				$cjob = "CREATE EVENT limpiar_tabla ON SCHEDULE EVERY ".$day." MINUTE STARTS '".$date." ".$hour."' DO INSERT INTO test VALUES ('Evento 1', NOW());";
-	    		if ($this->db_connect->query($cjob)) {
-	    			echo "OK";
-	    		} else {
-	    			echo "ERROR";
-	    		}
-			}*/
+		// Pragramar tarea para limpiar la tabla de eventos peridicamente
+		public function ScheduleTask($date, $hour, $day) {
+		    @$this->db_connect->query("SET GLOBAL event_scheduler = ON;");
+		    @$this->db_connect->query("DROP EVENT DeleteEvents;");
+		    $cjob = "CREATE EVENT DeleteEvents ON SCHEDULE EVERY ".$day." DAY STARTS '".$date." ".$hour."' DO TRUNCATE TABLE SystemEvents;";
+    		if ($this->db_connect->query($cjob)) {
+    			echo "Tarea programada con éxito";
+    		} else {
+    			echo "Error al programar la tarea";
+    		}
 		}
 
 		// Obtener datos de la tablas SystemEvents 

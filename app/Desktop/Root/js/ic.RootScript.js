@@ -1457,53 +1457,23 @@ $("#DivACLMKeyPress").keypress(function(event){
 // Configuración de Syslog /
 /****************************/
 
-$("#ddt_SelectSeverityOptionEmer").click(function(){
-    $(".ddt_SelectLevelSeverity").html("Emergencia <span class='caret'></span>");
-});
-
-$("#ddt_SelectSeverityOptionAlert").click(function(){
-    $(".ddt_SelectLevelSeverity").html("Alerta <span class='caret'></span>");
-});
-
-$("#ddt_SelectSeverityOptionCrit").click(function(){
-    $(".ddt_SelectLevelSeverity").html("Crítico <span class='caret'></span>");
-});
-
-$("#ddt_SelectSeverityOptionErr").click(function(){
-    $(".ddt_SelectLevelSeverity").html("Error <span class='caret'></span>");
-});
-
-$("#ddt_SelectSeverityOptionWarn").click(function(){
-    $(".ddt_SelectLevelSeverity").html("Advertencia <span class='caret'></span>");
-});
-
-$("#ddt_SelectSeverityOptionNotice").click(function(){
-    $(".ddt_SelectLevelSeverity").html("Aviso <span class='caret'></span>");
-});
-
-$("#ddt_SelectSeverityOptionInfo").click(function(){
-    $(".ddt_SelectLevelSeverity").html("Información <span class='caret'></span>");
-});
-
-$("#ddt_SelectSeverityOptionDebug").click(function(){
-    $(".ddt_SelectLevelSeverity").html("Depuración <span class='caret'></span>");
-});
-
-$("#ddt_SelectSeverityOptionTodos").click(function(){
-    $(".ddt_SelectLevelSeverity").html("Todos <span class='caret'></span>");
-});
-
 $("#btnSaveSettings").click(function(){
-	let ClientSyslog = $("#inputIPClientSyslog").val(),
-		ServerSyslog = $("#inputIPServerSyslog").val(),
-		// TimeLogs = $("#inputIPServerSyslog").val(),
-		Level = "todo";
+	ConfigureSyslogServer();
+});
 
-	if (ClientSyslog != "" || ServerSyslog != "") {
+$("#inputIPServerSyslog,#inputDateTimeJob,.inputDayJob").keypress(enterConfigureSyslogServer);
+
+function ConfigureSyslogServer() {
+	let ServerSyslog = $("#inputIPServerSyslog").val(),
+		DateTimeJob  = $("#inputDateTimeJob").val(),
+		DayJob 		 = $(".inputDayJob").val(),
+		Level 		 = "todo";
+
+	if (ServerSyslog != "" && DateTimeJob != "" && DayJob != "") {
 		$.ajax({
-			url: "app/Desktop/Root/php/gn.ConfigSyslogClient.php",
+			url: "app/Desktop/Root/php/gn.ConfigSyslogServer.php",
 			type: "post",
-			data: ('ServerSyslog='+ServerSyslog+'&ClientSyslog='+ClientSyslog+'&Level='+Level),
+			data: ('DateTimeJob='+DateTimeJob+'&DayJob='+DayJob+'&ServerSyslog='+ServerSyslog+'&Level='+Level),
 			success: function(data){
 				console.log("Respuesta: "+data);
 			}
@@ -1511,25 +1481,32 @@ $("#btnSaveSettings").click(function(){
 	} else {
 		$("#BtnHiddenNotifyGLError").click();
 		console.log("Rellenar campos");
+	}	
+}
+
+function enterConfigureSyslogServer(event){
+	var e = event || window.event;
+	if (e.keyCode == 13) {
+		ConfigureSyslogServer();
 	}
-});
+}
 
-
-
-$("#btnSaveSettingsServer").click(function(){
-	var IP = $("#IPServerSyslog").val();
-	// var DB = "gnet";
-	// var User = "root";
-	// var Pass = "root";
-	var Level = "todo";
-	xhr = $.ajax({
-		url: "app/Desktop/Root/php/gn.ConfigSyslogServer.php",
-		type: "post",
-		data: ('IP='+IP+'&Level='+Level),
-		success: function(data){
-			console.log("Respuesta: "+data);
-		}
-	});
+$("#btnAddSyslogClient").click(function(){
+	let ClientSyslog = $("#inputIPClientSyslog").val(),
+		ServerSyslog = $("#inputIPServerSyslog").val();
+	if (ClientSyslog != "" && ServerSyslog != "") {
+		xhr = $.ajax({
+			url: "app/Desktop/Root/php/gn.ConfigSyslogClient.php",
+			type: "post",
+			data: ('ClientSyslog='+ClientSyslog+'&ServerSyslog='+ServerSyslog),
+			success: function(data){
+				console.log("Respuesta: "+data);
+			}
+		});		
+	} else {
+		$("#BtnHiddenNotifyGLError").click();
+		console.log("Rellenar campos");
+	}
 });
 
 /****************************/
