@@ -149,8 +149,8 @@
 			array_push($ActionArray, '		echo "*.debug :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, '	"todo")');
-			array_push($ActionArray, '		echo "*.emerg;*.alert;*.crit;*.warn;*.notice :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
-			// array_push($ActionArray, '		echo "*.*;!info :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
+			// array_push($ActionArray, '		echo "*.emerg;*.alert;*.crit;*.err;*.warn;*.notice :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.* :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, 'esac');
 			array_push($ActionArray, 'service rsyslog restart');
