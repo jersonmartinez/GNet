@@ -26,7 +26,7 @@
 <div class="panel" id="spy3">
     <?php
 
-        echo $CN->ManagementEvents("2019-02-16", "23:54:00", 2);
+        //echo $CN->ManagementEvents("2019-02-16", "23:54:00", 2);
         
     ?>
     <div class="panel-body pn">
