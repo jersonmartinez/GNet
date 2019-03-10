@@ -887,7 +887,7 @@
             }
         },
         title: {
-            text: 'Uso de la CPU'
+            text: 'Uso de la CPU | <?php echo " Procesadores: $CpuState[3]"; ?>'
         },
         subtitle: {
             text: '<?php echo "$CpuState[0]"; ?>'

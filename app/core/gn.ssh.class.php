@@ -149,9 +149,8 @@
 			array_push($ActionArray, '		echo "*.debug :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, '	"todo")');
-			// array_push($ActionArray, '		echo "*.emerg;*.alert;*.crit;*.warn;*.notice :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
-			array_push($ActionArray, '		echo "*.emerg :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
-			// array_push($ActionArray, '		echo "*.*;!info :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
+			// array_push($ActionArray, '		echo "*.emerg;*.alert;*.crit;*.err;*.warn;*.notice :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
+			array_push($ActionArray, '		echo "*.* :ommysql:localhost,$DB,$User,$Pass" >> $FileConf');
 			array_push($ActionArray, '	;;');
 			array_push($ActionArray, 'esac');
 			array_push($ActionArray, 'service rsyslog restart');
@@ -775,14 +774,19 @@
 
 		public function getCpuState(){
 			$filename = "getcpuState.sh";
-			$ActionArray[] = "NameModel=($(cat /proc/cpuinfo | grep name | cut -d ':' -f2))";
+			$ActionArray[] = "NCPU=($(cat /proc/cpuinfo | grep -w processor | cut -d ':' -f2))";
 			// array_push($ActionArray, "Velocidad=$(cat /proc/cpuinfo | grep name | cut -d ' ' -f 10)");
+			// array_push($ActionArray, "TotalProc=$(ps ax | wc -l)");
 			array_push($ActionArray, "UsoUser=$(top -n1 -b | grep '%Cpu' | awk {'print $2'} | sed 's/,/./g')");
 			array_push($ActionArray, "UsoSystem=$(top -n1 -b | grep '%Cpu' | awk {'print $4'} | sed 's/,/./g')");
-			// array_push($ActionArray, 'UsoTotal=$(echo "$UsoUser + $UsoSystem" | bc)');
-			// array_push($ActionArray, 'Disponible=$(echo "100 - $UsoTotal" | bc)');
-			array_push($ActionArray, "TotalProc=$(ps ax | wc -l)");
-			array_push($ActionArray, 'echo "${NameModel[*]},$UsoUser,$UsoSystem,$TotalProc,"');
+			array_push($ActionArray, 'if [[ ${#NCPU[*]} -gt 1 ]]; then');
+			array_push($ActionArray, "	NameModelOne=($(sed -n 1,10p /proc/cpuinfo | grep -w name | cut -d ':' -f2))");
+			array_push($ActionArray, '	echo "${NameModelOne[*]},$UsoUser,$UsoSystem,${#NCPU[*]},"');
+			array_push($ActionArray, "else");
+			array_push($ActionArray, "	NameModelTwo=($(cat /proc/cpuinfo | grep -w name | cut -d ':' -f2))");
+			array_push($ActionArray, '	echo "${NameModelTwo[*]},$UsoUser,$UsoSystem,${#NCPU[*]},"');
+			array_push($ActionArray, "fi");			
+			// array_push($ActionArray, 'echo "${NameModel[*]},$UsoUser,$UsoSystem,$TotalProc,"');
 			
 			$RL[] = $this->remote_path.$filename;
 			array_push($RL, "rm -rf ".$this->remote_path.$filename);
@@ -1205,6 +1209,18 @@
 	    		return $Lastname->fetch_array(MYSQLI_ASSOC)['lastname'];
 
 	    	return false;
+		}
+
+		// Pragramar tarea para limpiar la tabla de eventos peridicamente
+		public function ScheduleTask($date, $hour, $day) {
+		    @$this->db_connect->query("SET GLOBAL event_scheduler = ON;");
+		    @$this->db_connect->query("DROP EVENT DeleteEvents;");
+		    $cjob = "CREATE EVENT DeleteEvents ON SCHEDULE EVERY ".$day." DAY STARTS '".$date." ".$hour."' DO TRUNCATE TABLE SystemEvents;";
+    		if ($this->db_connect->query($cjob)) {
+    			echo "Tarea programada con éxito";
+    		} else {
+    			echo "Error al programar la tarea";
+    		}
 		}
 
 		// Obtener datos de la tablas SystemEvents 
