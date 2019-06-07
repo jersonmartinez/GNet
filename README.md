@@ -100,7 +100,7 @@ Monitorización y sondeo de los dispositivos interconectados en la infraestructu
     * Capacidad de monitorización: `Información completa` (similar a la información que se obtiene de la monitorización del servidor web), `Red`, `Procesos`, `Propiedades del equipo`, etc. 
     * Capacidad de realizar un sondeo normal y un sondeo profundo, capaz de encontrar host con distintos tipos de OS, igualmente si se tiene un Firewall. Obtiene datos cómo: `Dirección MAC`, `Sistema Operativo`, `Estado del dispositivo`, `Puertos abiertos`, `Enumeración CPE`, `Paquetes transitados` y `Saltos y tiempos de escaneo`.
 
-![TrackingNetwork](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/TrackingNetwork/6.PNG)
+![TrackingNetwork](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/TrackingNetwork/7.PNG)
 
 Gestión de dispositivos que han sido almacenados en el banco de datos.
 
