@@ -455,17 +455,17 @@ function getResourcesMonitor(params){
 									$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsLocalMachine").html());
 									$("#BtnHiddenNotifyACLMError").click();
 
-									$.ajax({
-										url: "app/Desktop/Root/php/gn.CheckDBIP.php",
-										type: "post",
-										data: "ip_host=" + params['host'],
-										success: function(data){
-											if (data == "Fail"){
-												$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsDBIPVPS").html());
-												// $("#BtnHiddenNotifyACLMError").click();
-											}
-										}
-									});
+									// $.ajax({
+									// 	url: "app/Desktop/Root/php/gn.CheckDBIP.php",
+									// 	type: "post",
+									// 	data: "ip_host=" + params['host'],
+									// 	success: function(data){
+									// 		if (data == "Fail"){
+									// 			$("." + params['container_return']).addClass('animated fadeIn').html($("#MessageFailCheckCredentialsDBIPVPS").html());
+									// 			// $("#BtnHiddenNotifyACLMError").click();
+									// 		}
+									// 	}
+									// });
 								} else {
 									$("." + params['container_return']).addClass('animated fadeIn').html(data);
 									
