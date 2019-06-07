@@ -129,6 +129,10 @@ Adjunto un screenshot sobre el gráfico de eventos gestionados:
 
 ![ManagementDevices](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementEvents/3.PNG)
 
+Preparación de una tarea programada para la gestión de eventos con Syslog: 
+
+![ManagementDevices](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementEvents/4.PNG)
+
 Finalmente, tenemos una utilidad interesante; y es precisamente la de gestionar VPS (Virtual Private Server). Siguiendo la misma idea de monitorización y control del primer apartado a los dispositivos.
 
 **`Breve descripción`**
