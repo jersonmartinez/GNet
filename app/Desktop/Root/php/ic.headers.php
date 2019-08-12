@@ -123,7 +123,7 @@
         
         <li class="dropdown menu-merge">
           <a href="#" class="dropdown-toggle fw600 p15" data-toggle="dropdown">
-            <img src="app/controller/src/plugins/assets/img/avatars/5.jpg" alt="avatar" class="mw30 br64">
+            <img src="app/controller/src/logo/user.png" alt="avatar" class="mw30 br64">
             <span class="hidden-xs pl15"><?php echo @$_SESSION['username']; ?></span>
             <span class="caret caret-tp hidden-xs"></span>
           </a>

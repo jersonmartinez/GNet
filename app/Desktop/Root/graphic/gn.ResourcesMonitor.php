@@ -570,9 +570,9 @@
             <div class="col-xs-12">
                 <div id="container_webserver"></div>
                 <div id="button">
-                    <button id="plain">Plain</button>
+                    <button id="plain">Plano</button>
                     <button id="inverted">Invertido</button>
-                    <button id="polar">Polar</button>
+                    <button id="polar">Radial</button>
                 </div>
             </div>
             <style type="text/css">

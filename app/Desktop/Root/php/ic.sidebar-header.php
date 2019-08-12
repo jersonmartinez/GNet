@@ -5,7 +5,7 @@
   <div class="sidebar-widget author-widget">
     <div class="media">
       <a class="media-left" href="#">
-        <img src="app/controller/src/plugins/assets/img/avatars/3.jpg" class="img-responsive">
+        <img src="app/controller/src/logo/user.png" class="img-responsive">
       </a>
       <div class="media-body">
         <div class="media-links">
