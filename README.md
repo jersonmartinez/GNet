@@ -42,7 +42,7 @@ netsh interface ipv4 set dns "VirtualBox Host-Only Network #2" static 192.168.0.
 
 Modificar como root el fichero `/etc/network/interfaces` y agregar la directiva:
 ```
-dns-nameservers 192.168.0.30
+dns-nameservers 192.168.2.30
 ```
 
 Modificar el fichero `/etc/resolv.conf` agregando la directiva: `nameserver 192.168.0.30`
