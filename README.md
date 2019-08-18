@@ -35,7 +35,7 @@ Asignar la dirección IP DNS al adaptador de red que creó el proveedor de virtu
 
 **``Desde la consola de Windows: ``**
 ```bash
-netsh interface ipv4 set dns "VirtualBox Host-Only Network #2" static 192.168.0.30 > nul
+netsh interface ipv4 set dns "VirtualBox Host-Only Network #2" static 192.168.2.30 > nul
 ```
 
 **``Desde Linux (Ejmp: Debian)``**
@@ -45,7 +45,7 @@ Modificar como root el fichero `/etc/network/interfaces` y agregar la directiva:
 dns-nameservers 192.168.2.30
 ```
 
-Modificar el fichero `/etc/resolv.conf` agregando la directiva: `nameserver 192.168.0.30`
+Modificar el fichero `/etc/resolv.conf` agregando la directiva: `nameserver 192.168.2.30`
 
 Para ambos OS, hacer el test: `nslookup gnet.local && nslookup db.gnet.local`
 
