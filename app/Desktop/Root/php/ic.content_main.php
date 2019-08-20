@@ -149,7 +149,7 @@
             <div class="col-md-12">
 
                 <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUniquewddd_TrlzdfdgackingNssedtworks">
+                <div class="panel" id="pUniquewddd_TlzdfdgackingNssedtworks">
                     <div class="panel-heading">
 
                         <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
