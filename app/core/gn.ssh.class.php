@@ -263,9 +263,20 @@
 
 		public function getEachAdapterIP(){
 			$EachAdapterIP = explode("\n", $this->RunLines("ip route show default | awk '{print $9}' | sed 1d | tr -s '\n' '\n'"));
-			// $EachAdapterIP = explode("\n", shell_exec("ip route show default | awk '{print $9}' | sed 1d"));
-			// return "Count: ". count($EachAdapterIP);
-			return trim($EachAdapterIP[count($EachAdapterIP) - 3]);
+
+			foreach ($EachAdapterIP as $key => $value){
+				if(empty(trim($EachAdapterIP[$key])) || is_null(trim($EachAdapterIP[$key])))
+					unset($EachAdapterIP[$key]);
+			}
+		
+			sort($EachAdapterIP);
+
+			$adapter = 1;
+			// if (count($EachAdapterIP) == 4){
+			// 	$adapter = 2;
+			// }
+
+			return trim($EachAdapterIP[ count($EachAdapterIP) - $adapter]);
 		}
 
 		public function getIPLocalCurrent(){
@@ -421,7 +432,11 @@
 		}
 
 		public function getIPFirstRouter(){
-			return $this->db_connect->query("SELECT DISTINCT * from ".$this->db_prefix."host WHERE router='1' ORDER BY ip_net ASC LIMIT 1")->fetch_array(MYSQLI_ASSOC)['ip_host'];
+			$str = $this->db_connect->query("SELECT DISTINCT * from ".$this->db_prefix."host WHERE router='1' ORDER BY ip_net ASC LIMIT 1");
+			if ($str->num_rows > 0)
+				return $str->fetch_array(MYSQLI_ASSOC)['ip_host'];
+
+			return false;
 		}
 
 		public function getIPNetFromIPHost($ip_host){
