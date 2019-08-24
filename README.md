@@ -25,9 +25,9 @@ Plugin que puede llegar a necesitar por si requiere realizar una sincronización
 |Nº | Nombre   | Descripción       | Dirección IP |
 |----- | ------- | -------------------- | ------ |
 |`1` | [Vagrantfile](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/Vagrantfile) | Configuración del entorno sobre la infraestructura de red | 192.168.0.0/24 |
-|`2` | [db](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/db.sh) | Prepara el servidor de base de datos   | 192.168.0.10 |
-|`3` | [web](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/web.sh) | Prepara el servidor de monitorización | 192.168.0.20 |
-|`4` | [dns](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/dns.sh) | Prepara el servidor DNS (gnet.local - db.gnet.local) | 192.168.0.30 |
+|`2` | [db](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/db.sh) | Prepara el servidor de base de datos   | 192.168.2.10 |
+|`3` | [web](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/web.sh) | Prepara el servidor de monitorización | 192.168.2.20 |
+|`4` | [dns](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/dns.sh) | Prepara el servidor DNS (gnet.local - db.gnet.local) | 192.168.2.30 |
 
 **Configurar DNS en la máquina anfitriona** 
 
@@ -35,17 +35,17 @@ Asignar la dirección IP DNS al adaptador de red que creó el proveedor de virtu
 
 **``Desde la consola de Windows: ``**
 ```bash
-netsh interface ipv4 set dns "VirtualBox Host-Only Network #2" static 192.168.0.30 > nul
+netsh interface ipv4 set dns "VirtualBox Host-Only Network #2" static 192.168.2.30 > nul
 ```
 
 **``Desde Linux (Ejmp: Debian)``**
 
 Modificar como root el fichero `/etc/network/interfaces` y agregar la directiva:
 ```
-dns-nameservers 192.168.0.30
+dns-nameservers 192.168.2.30
 ```
 
-Modificar el fichero `/etc/resolv.conf` agregando la directiva: `nameserver 192.168.0.30`
+Modificar el fichero `/etc/resolv.conf` agregando la directiva: `nameserver 192.168.2.30`
 
 Para ambos OS, hacer el test: `nslookup gnet.local && nslookup db.gnet.local`
 
