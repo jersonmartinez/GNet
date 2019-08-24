@@ -49,6 +49,15 @@ Modificar el fichero `/etc/resolv.conf` agregando la directiva: `nameserver 192.
 
 Para ambos OS, hacer el test: `nslookup gnet.local && nslookup db.gnet.local`
 
+**Instalación de soporte de Rsyslog para MySQL**
+
+**`En el servidor de bases de datos ejecuta:`**
+```
+sudo apt install rsyslog-mysql
+```
+
+El asistente de instalación preguntará si deseas configurar la base de datos para `rsyslog-mysql` con dbconfig-common. Debes indicarle que **NO**.
+
 - - -
 
 **Instalación manual**
