@@ -8,7 +8,7 @@ Proyecto Web OpenSource, para la Gestión de Red y dispositivos informáticos (S
 Realizar un clón del proyecto Vagrant de Git y cambiarse al directorio [Vagrant-GNet](https://github.com/SideMasterGM/Vagrant/tree/master/Vagrant-GNet).
 ```bash
 git clone https://github.com/SideMasterGM/Vagrant.git
-cd Vagrant-GNet/
+cd Vagrant/Vagrant-GNet/
 ```
 
 Realizar un clone GNet: 
