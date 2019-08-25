@@ -163,12 +163,16 @@ Estas han sido algunas represenaciones gráficas que se muestran ante el SysAdmi
 
 Es un proyecto en desarrollo (Open Source) y si deseas colaborar, te invitamos a que empieces por hacer fork.
 
+**Encuéntranos en nuestro sitio oficial**
+
+Si deseas conocer más información acerca de GNet, revisa [FullDevOps](https://fulldevops.es) e infórmate un poco más.
+
 - - -
 ### Autores
 
-* **Jerson A. Martínez M.** - *Ing. Telemática* - [LinkedIn - Jerson Martinez](https://www.linkedin.com/in/jersonmartinezsm/)
+* **Jerson A. Martínez M.**  [(LinkedIn)](https://www.linkedin.com/in/jersonmartinezsm/)
 
-* **Frankier Y. Flores Z.** - *Ing. Telemática* - [LinkedIn - Frankier Flores](https://www.linkedin.com/in/frankier-flores-4b9b94108/)
+* **Frankier Y. Flores Z.**  [(LinkedIn)](https://www.linkedin.com/in/frankier-flores-4b9b94108/)
 
 #### Canales de YouTube
-* [**Side Master**](https://www.youtube.com/user/sidemastersupremo/) & [**Core Stack**](https://www.youtube.com/user/gvideosmtutorialesgm)
+* [Side Master](https://www.youtube.com/user/sidemastersupremo/) | [Core Stack](https://www.youtube.com/user/gvideosmtutorialesgm)
