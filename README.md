@@ -60,7 +60,8 @@ El asistente de instalación preguntará si deseas configurar la base de datos p
 
 - - -
 **Demostración**
-[![GNet](https://img.youtube.com/vi/d1Zt3-J0bpI/0.jpg)](https://www.youtube.com/watch?v=d1Zt3-J0bpI "GNet")
+
+[![GNet](https://i.ibb.co/H2bxMbk/GNet-Min.png)](https://www.youtube.com/watch?v=d1Zt3-J0bpI "GNet")
 
 **Instalación manual**
 
