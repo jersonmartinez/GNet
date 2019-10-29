@@ -168,7 +168,7 @@ Es un proyecto en desarrollo (Open Source) y si deseas colaborar, te invitamos a
 
 **Encuéntranos en nuestro sitio oficial**
 
-Si deseas conocer más información acerca de GNet, revisa [FullDevOps](https://fulldevops.es) e infórmate un poco más.
+Si deseas conocer más información acerca de GNet, revisa [FullDevOps](https://www.fulldevops.es) e infórmate un poco más.
 
 - - -
 ### Autores
