@@ -166,7 +166,7 @@
                 while ($H = $Hosts->fetch_array(MYSQLI_ASSOC)) {
                     $nhost = $H['Hosts'];                    
             ?>
-                <div class="col-sm-6 col-xl-3">
+                <div class="col-sm-6">
                     <div class="panel panel-tile text-center br-a br-grey">
                         <div class="panel-body">
                             <h1 class="fs30 mt5 mbn"><?php echo $CN->LogsByHost($nhost); ?></h1>

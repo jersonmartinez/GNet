@@ -1036,7 +1036,7 @@
     /*$('#mix-items').mixItUp();*/
 
     $('#tb_proc').DataTable( {
-        scrollY:        '200px',
+        scrollY:        '50vh',
         scrollCollapse: true,
         paging:         false
     });

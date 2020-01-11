@@ -149,7 +149,7 @@
             <div class="col-md-12">
 
                 <!-- Create Panel with required unique ID -->
-                <div class="panel" id="pUniqueTrackingNet">
+                <div class="panel" id="pUniqueTrackingNet_1">
                     <div class="panel-heading">
 
                         <span class="panel-icon"><i class="fa fa-sitemap"></i></span>
