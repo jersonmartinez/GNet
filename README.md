@@ -1,5 +1,5 @@
-## GNet (Monitorización y control de infraestructuras de redes)
-Proyecto Web OpenSource, para la Gestión de Red y dispositivos informáticos (Servers, Firewalls, [...]) bajo GNU/Linux.
+## GNet
+Sistema Web de Gestión de Red de Dispositivos Informáticos GNU/Linux.
 - - -
 
 ### **Instalación**
@@ -59,6 +59,9 @@ sudo apt install rsyslog-mysql
 El asistente de instalación preguntará si deseas configurar la base de datos para `rsyslog-mysql` con dbconfig-common. Debes indicarle que **NO**.
 
 - - -
+**Demostración**
+
+[![GNet](https://i.ibb.co/H2bxMbk/GNet-Min.png)](https://www.youtube.com/watch?v=d1Zt3-J0bpI "GNet")
 
 **Instalación manual**
 
@@ -165,7 +168,7 @@ Es un proyecto en desarrollo (Open Source) y si deseas colaborar, te invitamos a
 
 **Encuéntranos en nuestro sitio oficial**
 
-Si deseas conocer más información acerca de GNet, revisa [FullDevOps](https://fulldevops.es) e infórmate un poco más.
+Si deseas conocer más información acerca de GNet, revisa [FullDevOps](https://www.fulldevops.es) e infórmate un poco más.
 
 - - -
 ### Autores
