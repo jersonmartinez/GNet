@@ -168,7 +168,16 @@ Es un proyecto en desarrollo (Open Source) y si deseas colaborar, te invitamos a
 
 **Encuéntranos en nuestro sitio oficial**
 
-Si deseas conocer más información acerca de GNet, revisa [FullDevOps](https://www.fulldevops.es) e infórmate un poco más.
+Si deseas conocer más información acerca de GNet, revisa [FullDevOps / GNet](https://www.fulldevops.es/gnet) e infórmate un poco más.
+
+- - -
+### Serie de GNet en FullDevOps
+
+* [GNet #1: Descripción y resumen de funcionalidades](https://www.youtube.com/watch?v=E2viVr901EQ)
+
+* [GNet #2: Instalación y configuración inicial](https://www.youtube.com/watch?v=4CwW6t14Sf0)
+
+* [FullDevOps / GNet / Videos](https://www.fulldevops.es/gnet/videos/)
 
 - - -
 ### Autores
