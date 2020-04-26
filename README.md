@@ -5,15 +5,15 @@ Sistema Web de Gestión de Red de Dispositivos Informáticos GNU/Linux.
 ### **Instalación**
 **Desde Vagrant**
 
-Realizar un clón del proyecto Vagrant de Git y cambiarse al directorio [Vagrant-GNet](https://github.com/SideMasterGM/Vagrant/tree/master/Vagrant-GNet).
+Realizar un clón del proyecto Vagrant de Git y cambiarse al directorio [Vagrant-GNet](https://github.com/jersonmartinez/Vagrant/tree/master/Vagrant-GNet).
 ```bash
-git clone https://github.com/SideMasterGM/Vagrant.git
+git clone https://github.com/jersonmartinez/Vagrant.git
 cd Vagrant/Vagrant-GNet/
 ```
 
 Realizar un clone GNet: 
 ```bash
-git clone https://github.com/SideMasterGM/GNet.git
+git clone https://github.com/jersonmartinez/GNet.git
 ```
 
 ¿Listo?, ¡estupendo!, empieza por hacer el `vagrant up` de Vagrant.
@@ -24,10 +24,10 @@ Plugin que puede llegar a necesitar por si requiere realizar una sincronización
 
 |Nº | Nombre   | Descripción       | Dirección IP |
 |----- | ------- | -------------------- | ------ |
-|`1` | [Vagrantfile](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/Vagrantfile) | Configuración del entorno sobre la infraestructura de red | 192.168.2.0/24 |
-|`2` | [db](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/db.sh) | Prepara el servidor de base de datos   | 192.168.2.10 |
-|`3` | [web](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/web.sh) | Prepara el servidor de monitorización | 192.168.2.20 |
-|`4` | [dns](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/dns.sh) | Prepara el servidor DNS (gnet.local - db.gnet.local) | 192.168.2.30 |
+|`1` | [Vagrantfile](https://github.com/jersonmartinez/Vagrant/blob/master/Vagrant-GNet/Vagrantfile) | Configuración del entorno sobre la infraestructura de red | 192.168.2.0/24 |
+|`2` | [db](https://github.com/jersonmartinez/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/db.sh) | Prepara el servidor de base de datos   | 192.168.2.10 |
+|`3` | [web](https://github.com/jersonmartinez/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/web.sh) | Prepara el servidor de monitorización | 192.168.2.20 |
+|`4` | [dns](https://github.com/jersonmartinez/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/dns.sh) | Prepara el servidor DNS (gnet.local - db.gnet.local) | 192.168.2.30 |
 
 **Configurar DNS en la máquina anfitriona** 
 
@@ -65,9 +65,9 @@ El asistente de instalación preguntará si deseas configurar la base de datos p
 
 **Instalación manual**
 
-Para este caso, la mejor opción es tomar los scripts [db](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/db.sh), [web](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/web.sh), [dns](https://github.com/SideMasterGM/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/dns.sh) e instalarlos, ya sea en una infraestructura con sistema distribuido o general.
+Para este caso, la mejor opción es tomar los scripts [db](https://github.com/jersonmartinez/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/db.sh), [web](https://github.com/jersonmartinez/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/web.sh), [dns](https://github.com/jersonmartinez/Vagrant/blob/master/Vagrant-GNet/ProvisionScripts/dns.sh) e instalarlos, ya sea en una infraestructura con sistema distribuido o general.
 
-Si desea entender y correr paso a paso, siga los pasos correspondientes que se muestran en el siguiente enlace sobre [cómo realizar la instalación manual](https://github.com/SideMasterGM/GNet/wiki/Principal---Instalaci%C3%B3n-manual).
+Si desea entender y correr paso a paso, siga los pasos correspondientes que se muestran en el siguiente enlace sobre [cómo realizar la instalación manual](https://github.com/jersonmartinez/GNet/wiki/Principal---Instalaci%C3%B3n-manual).
 
 - - -
 
@@ -82,7 +82,7 @@ Monitorización sobre los recursos del servidor web actual.
 * Procesos
     * Todo los procesos inciados, expulsando información tal como: `PID`, `Nombre`, `CPU`, `Memoria`, `Tiempo`. 
 
-![Monitoring](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Monitoring/1.PNG)
+![Monitoring](https://github.com/jersonmartinez/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Monitoring/1.PNG)
 
 Información sobre las conexiones de red
 
@@ -93,7 +93,7 @@ Información sobre las conexiones de red
     * Puertos abiertos: `Puerto`, `Protocolo`, `Tipo`, `Proceso`.
     * Estadísticas de red sobre los protocolos: `IP`, `TCP`, `UDP`.
 
-![Monitoring](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Monitoring/2.PNG)
+![Monitoring](https://github.com/jersonmartinez/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/Monitoring/2.PNG)
 
 Información sobre las conexiones de red
 
@@ -112,7 +112,7 @@ Monitorización y sondeo de los dispositivos interconectados en la infraestructu
     * Capacidad de monitorización: `Información completa` (similar a la información que se obtiene de la monitorización del servidor web), `Red`, `Procesos`, `Propiedades del equipo`, etc. 
     * Capacidad de realizar un sondeo normal y un sondeo profundo, capaz de encontrar host con distintos tipos de OS, igualmente si se tiene un Firewall. Obtiene datos cómo: `Dirección MAC`, `Sistema Operativo`, `Estado del dispositivo`, `Puertos abiertos`, `Enumeración CPE`, `Paquetes transitados` y `Saltos y tiempos de escaneo`.
 
-![TrackingNetwork](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/TrackingNetwork/7.PNG)
+![TrackingNetwork](https://github.com/jersonmartinez/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/TrackingNetwork/7.PNG)
 
 Gestión de dispositivos que han sido almacenados en el banco de datos.
 
@@ -124,7 +124,7 @@ Gestión de dispositivos que han sido almacenados en el banco de datos.
     * Verificación de actividad: `ICMP`, `TCP`, `UDP`, `SSH`.
     * Configurar alias en los dispositivos.
 
-![ManagementDevices](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementDevices/GNet%20-%20Gesti%C3%B3n%20de%20dispositivos.PNG)
+![ManagementDevices](https://github.com/jersonmartinez/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementDevices/GNet%20-%20Gesti%C3%B3n%20de%20dispositivos.PNG)
 
 Gestión de eventos en los dispositivos asignados a escuchar.
 
@@ -135,15 +135,15 @@ Gestión de eventos en los dispositivos asignados a escuchar.
     * Obtienes gráficos de eventos.
     * Cantidad de eventos recibidos por cada dispositivo.
 
-![ManagementDevices](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementEvents/2.PNG)
+![ManagementDevices](https://github.com/jersonmartinez/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementEvents/2.PNG)
 
 Adjunto un screenshot sobre el gráfico de eventos gestionados: 
 
-![ManagementDevices](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementEvents/3.PNG)
+![ManagementDevices](https://github.com/jersonmartinez/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementEvents/3.PNG)
 
 Preparación de una tarea programada para la gestión de eventos con Syslog: 
 
-![ManagementDevices](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementEvents/4.PNG)
+![ManagementDevices](https://github.com/jersonmartinez/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/ManagementEvents/4.PNG)
 
 Finalmente, tenemos una utilidad interesante; y es precisamente la de gestionar VPS (Virtual Private Server). Siguiendo la misma idea de monitorización y control del primer apartado a los dispositivos.
 
@@ -156,11 +156,11 @@ Finalmente, tenemos una utilidad interesante; y es precisamente la de gestionar 
     * Procesos
     * Todo los procesos inciados, expulsando información tal como: `PID`, `Nombre`, `CPU`, `Memoria`, `Tiempo`. 
 
-![VPS](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/VPS/1.PNG)
+![VPS](https://github.com/jersonmartinez/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/VPS/1.PNG)
 
 Obteniendo el resultado final: 
 
-![VPS](https://github.com/SideMasterGM/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/VPS/2.PNG)
+![VPS](https://github.com/jersonmartinez/Vagrant/blob/SideMaster/Vagrant-GNet/Resources/VPS/2.PNG)
 
 Estas han sido algunas represenaciones gráficas que se muestran ante el SysAdmin o DevOps o el respectivo responsable de estar al tanto de la infraestructura a cargo de GNet.
 
