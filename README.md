@@ -177,6 +177,8 @@ Si deseas conocer más información acerca de GNet, revisa [FullDevOps / GNet](h
 
 * [GNet #2: Instalación y configuración inicial](https://www.youtube.com/watch?v=4CwW6t14Sf0)
 
+* [GNet #3: Autodescubrimiento](https://youtu.be/h1upInacUfE)
+
 * [FullDevOps / GNet / Videos](https://www.fulldevops.es/gnet/videos/)
 
 - - -
