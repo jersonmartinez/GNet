@@ -184,9 +184,13 @@ Si deseas conocer más información acerca de GNet, revisa [FullDevOps / GNet](h
 - - -
 ### Autores
 
-* **Jerson A. Martínez M.**  [(LinkedIn)](https://www.linkedin.com/in/jersonmartinezsm/)
+✔ Ing. Jerson Martínez ( 💌 jersonmartinezsm@gmail.com )
 
-* **Frankier Y. Flores Z.**  [(LinkedIn)](https://www.linkedin.com/in/frankier-flores-4b9b94108/)
+<a href="https://www.fulldevops.es/?suscribirse" target="_blank"><img alt="FullDevOps" src="https://img.shields.io/twitter/url?color=9cf&label=%40FullDevOps&logo=FullDevOps&logoColor=informational&style=for-the-badge&url=https%3A%2F%2Ftwitter.com%2Fantoniomorenosm"></a>
+<a href="https://twitter.com/antoniomorenosm" target="_blank"><img alt="Twitter" src="https://img.shields.io/twitter/url?color=9cf&label=%40antoniomorenosm&logo=Side%20Master&logoColor=yellow&style=for-the-badge&url=https%3A%2F%2Ftwitter.com%2Fantoniomorenosm"></a>
+<a href="https://www.youtube.com/user/gvideosmtutorialesgm/videos" target="_blank"><img alt="YouTube Channel - Core Stack" src="https://img.shields.io/twitter/url?color=red&label=%40Core%20Stack&logo=Side%20Master&logoColor=yellow&style=for-the-badge&url=https%3A%2F%2Ftwitter.com%2Fantoniomorenosm"></a>
+<a href="https://www.youtube.com/user/sidemastersupremo/videos" target="_blank"><img alt="YouTube Channel - Side Master" src="https://img.shields.io/twitter/url?color=red&label=%40Side%20Master&logo=Side%20Master&logoColor=yellow&style=for-the-badge&url=https%3A%2F%2Ftwitter.com%2Fantoniomorenosm"></a>
 
-#### Canales de YouTube
-* [Side Master](https://www.youtube.com/user/sidemastersupremo/) | [Core Stack](https://www.youtube.com/user/gvideosmtutorialesgm)
+[(LinkedIn)](https://www.linkedin.com/in/jersonmartinezsm/)
+
+✔ Ing. Frankier Flores  [(LinkedIn)](https://www.linkedin.com/in/frankier-flores-4b9b94108/)
