@@ -193,7 +193,7 @@ Si deseas conocer más información acerca de GNet, revisa [FullDevOps / GNet](h
 <a href="https://www.linkedin.com/in/jersonmartinezsm/" target="_blank"><img alt="LinkedIn URL" src="https://img.shields.io/twitter/url?label=Ing.%20Jerson%20Mart%C3%ADnez&logo=linkedin&style=social&url=https%3A%2F%2Fwww.linkedin.com%2Fin%2Fjersonmartinezsm%2F"></a>
 <a href="https://twitter.com/antoniomorenosm" target="_blank"><img alt="Twitter Follow" src="https://img.shields.io/twitter/follow/antoniomorenosm?label=S%C3%ADgueme%20en%20%40antoniomorenosm&style=social"></a>
 
-
+<br/>
 
 ✔ Ing. Frankier Flores ( 💌 frankierflores@gmail.com )
 
