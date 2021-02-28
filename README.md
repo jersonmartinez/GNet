@@ -168,10 +168,10 @@ Es un proyecto en desarrollo (Open Source) y si deseas colaborar, te invitamos a
 
 **Encuéntranos en nuestro sitio oficial**
 
-Si deseas conocer más información acerca de GNet, revisa [FullDevOps / GNet](https://www.fulldevops.es/gnet) e infórmate un poco más.
+Si deseas conocer más información acerca de GNet, revisa [Crashell / GNet](https://www.crashell.com/gnet) e infórmate un poco más.
 
 - - -
-### Serie de GNet en FullDevOps
+### Serie de GNet en Crashell
 
 * [GNet #1: Descripción y resumen de funcionalidades](https://www.youtube.com/watch?v=E2viVr901EQ)
 
@@ -179,14 +179,14 @@ Si deseas conocer más información acerca de GNet, revisa [FullDevOps / GNet](h
 
 * [GNet #3: Autodescubrimiento](https://youtu.be/h1upInacUfE)
 
-* [FullDevOps / GNet / Videos](https://www.fulldevops.es/gnet/videos/)
+* [Crashell / GNet / Videos](https://www.crashell.com/gnet/videos/)
 
 - - -
 ### Autores
 
 ✔ Ing. Jerson Martínez ( 💌 jersonmartinezsm@gmail.com )
 
-<a href="https://www.fulldevops.es/?suscribirse" target="_blank"><img alt="FullDevOps" src="https://img.shields.io/twitter/url?color=9cf&label=%40FullDevOps&logo=FullDevOps&logoColor=informational&style=for-the-badge&url=https%3A%2F%2Ftwitter.com%2Fantoniomorenosm"></a>
+<a href="https://www.crashell.com/?suscribirse" target="_blank"><img alt="Crashell" src="https://img.shields.io/twitter/url?color=9cf&label=%40Crashell&logo=Crashell&logoColor=informational&style=for-the-badge&url=https%3A%2F%2Ftwitter.com%2Fantoniomorenosm"></a>
 <a href="https://www.youtube.com/user/gvideosmtutorialesgm/videos" target="_blank"><img alt="YouTube Channel - Core Stack" src="https://img.shields.io/twitter/url?color=red&label=%40Core%20Stack&logo=Side%20Master&logoColor=yellow&style=for-the-badge&url=https%3A%2F%2Ftwitter.com%2Fantoniomorenosm"></a>
 <a href="https://www.youtube.com/user/sidemastersupremo/videos" target="_blank"><img alt="YouTube Channel - Side Master" src="https://img.shields.io/twitter/url?color=red&label=%40Side%20Master&logo=Side%20Master&logoColor=yellow&style=for-the-badge&url=https%3A%2F%2Ftwitter.com%2Fantoniomorenosm"></a>
 
